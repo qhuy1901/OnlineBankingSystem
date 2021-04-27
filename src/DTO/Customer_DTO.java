@@ -10,6 +10,11 @@ public class Customer_DTO
 
     }
     
+    public Customer_DTO(long id)
+    {
+        this.id = id;
+    }
+    
     public Customer_DTO(long id, String name, String gender, String address, String phoneNumber, String idCard)
     {
         this.id = id;

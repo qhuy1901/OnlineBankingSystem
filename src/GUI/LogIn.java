@@ -188,7 +188,9 @@ public class LogIn extends javax.swing.JFrame {
                 //LogIn Login_GUI = new LogIn();
                 //Login_GUI.setVisible(true);
                 Admin_GUI ad = new Admin_GUI();
+                //LogIn lg = new LogIn();
                 ad.setVisible(true);
+                //lg.setVisible(true);
                 //Customer_Management ad = new Customer_Management();
                 //ad.setVisible(true);
             }
