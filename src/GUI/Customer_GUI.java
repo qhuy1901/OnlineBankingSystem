@@ -7,7 +7,7 @@ package GUI;
 
 /**
  *
- * @author ACER
+ * @author THUYNGA
  */
 public class Customer_GUI extends javax.swing.JFrame {
 
@@ -27,21 +27,165 @@ public class Customer_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        iconAdmin = new javax.swing.JLabel();
+        logOutButton = new javax.swing.JButton();
+        welcomLabel = new javax.swing.JLabel();
+        WelcomePanel = new javax.swing.JPanel();
+        welcom = new javax.swing.JLabel();
+        to = new javax.swing.JLabel();
+        adminPortal = new javax.swing.JLabel();
+        tietKiemButton = new javax.swing.JButton();
+        thanhToanButton = new javax.swing.JButton();
+        viButton = new javax.swing.JButton();
+        chuyenTienButton = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 891, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 501, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        iconAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/FontAwesome_f007(0)_100.png"))); // NOI18N
+        getContentPane().add(iconAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        logOutButton.setBackground(new java.awt.Color(239, 250, 252));
+        logOutButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        logOutButton.setForeground(new java.awt.Color(32, 172, 210));
+        logOutButton.setText("Log out");
+        logOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logOutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, -1, -1));
+
+        welcomLabel.setBackground(new java.awt.Color(32, 172, 216));
+        welcomLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        welcomLabel.setForeground(new java.awt.Color(239, 250, 252));
+        welcomLabel.setText("        Chúc quý khách một ngày tốt lành!");
+        welcomLabel.setOpaque(true);
+        getContentPane().add(welcomLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 25, 800, 50));
+
+        WelcomePanel.setBackground(new java.awt.Color(32, 172, 216));
+
+        welcom.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        welcom.setForeground(new java.awt.Color(240, 240, 240));
+        welcom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcom.setText("Welcome");
+        welcom.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        welcom.setPreferredSize(new java.awt.Dimension(200, 200));
+        WelcomePanel.add(welcom);
+
+        to.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        to.setForeground(new java.awt.Color(240, 240, 240));
+        to.setText("to");
+        to.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        to.setFocusTraversalPolicyProvider(true);
+        to.setPreferredSize(new java.awt.Dimension(50, 190));
+        WelcomePanel.add(to);
+
+        adminPortal.setFont(new java.awt.Font("Tahoma", 0, 58)); // NOI18N
+        adminPortal.setForeground(new java.awt.Color(240, 240, 240));
+        adminPortal.setText("NK Bank!");
+        adminPortal.setPreferredSize(new java.awt.Dimension(250, 55));
+        WelcomePanel.add(adminPortal);
+
+        getContentPane().add(WelcomePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 310, 420));
+
+        tietKiemButton.setBackground(new java.awt.Color(255, 255, 255));
+        tietKiemButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tietKiemButton.setForeground(new java.awt.Color(32, 172, 210));
+        tietKiemButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/tietkiem_130.png"))); // NOI18N
+        tietKiemButton.setText("Tài khoản tiết kiệm");
+        tietKiemButton.setBorder(null);
+        tietKiemButton.setBorderPainted(false);
+        tietKiemButton.setDefaultCapable(false);
+        tietKiemButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        tietKiemButton.setMargin(new java.awt.Insets(0, 14, 30, 14));
+        tietKiemButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tietKiemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tietKiemButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tietKiemButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 230, -1));
+
+        thanhToanButton.setBackground(new java.awt.Color(255, 255, 255));
+        thanhToanButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        thanhToanButton.setForeground(new java.awt.Color(32, 172, 210));
+        thanhToanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/thanhtoan_130.png"))); // NOI18N
+        thanhToanButton.setText("Thanh toán");
+        thanhToanButton.setBorder(null);
+        thanhToanButton.setBorderPainted(false);
+        thanhToanButton.setDefaultCapable(false);
+        thanhToanButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        thanhToanButton.setMargin(new java.awt.Insets(0, 14, 30, 14));
+        thanhToanButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        thanhToanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thanhToanButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(thanhToanButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 310, 230, -1));
+
+        viButton.setBackground(new java.awt.Color(255, 255, 255));
+        viButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        viButton.setForeground(new java.awt.Color(32, 172, 210));
+        viButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/taikhoan_130.png"))); // NOI18N
+        viButton.setText("Ví của tôi");
+        viButton.setBorder(null);
+        viButton.setBorderPainted(false);
+        viButton.setDefaultCapable(false);
+        viButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        viButton.setMargin(new java.awt.Insets(0, 14, 30, 14));
+        viButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        viButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(viButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 230, -1));
+
+        chuyenTienButton.setBackground(new java.awt.Color(255, 255, 255));
+        chuyenTienButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        chuyenTienButton.setForeground(new java.awt.Color(32, 172, 210));
+        chuyenTienButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/chuyentien_130.png"))); // NOI18N
+        chuyenTienButton.setText("Chuyển tiền");
+        chuyenTienButton.setBorder(null);
+        chuyenTienButton.setBorderPainted(false);
+        chuyenTienButton.setDefaultCapable(false);
+        chuyenTienButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chuyenTienButton.setMargin(new java.awt.Insets(0, 14, 30, 14));
+        chuyenTienButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        chuyenTienButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chuyenTienButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(chuyenTienButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, 230, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
+        // TODO add your handling code here:
+        LogIn guiLogIn= new LogIn();
+        guiLogIn.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_logOutButtonActionPerformed
+
+    private void tietKiemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tietKiemButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tietKiemButtonActionPerformed
+
+    private void thanhToanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thanhToanButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_thanhToanButtonActionPerformed
+
+    private void viButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viButtonActionPerformed
+
+    private void chuyenTienButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chuyenTienButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chuyenTienButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +223,16 @@ public class Customer_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel WelcomePanel;
+    private javax.swing.JLabel adminPortal;
+    private javax.swing.JButton chuyenTienButton;
+    private javax.swing.JLabel iconAdmin;
+    private javax.swing.JButton logOutButton;
+    private javax.swing.JButton thanhToanButton;
+    private javax.swing.JButton tietKiemButton;
+    private javax.swing.JLabel to;
+    private javax.swing.JButton viButton;
+    private javax.swing.JLabel welcom;
+    private javax.swing.JLabel welcomLabel;
     // End of variables declaration//GEN-END:variables
 }
