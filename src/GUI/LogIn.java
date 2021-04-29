@@ -1,24 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
 import BUS.UserLogin_BUS;
 import DTO.UserLogin_DTO;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ACER
- */
-public class LogIn extends javax.swing.JFrame {
-
-    /**
-     * Creates new form LogIn
-     */
-    UserLogin_BUS userLogin_BUS = new UserLogin_BUS();
+public class LogIn extends javax.swing.JFrame 
+{
+    UserLogin_BUS busUserLogin = new UserLogin_BUS();
     
     public LogIn() 
     {
@@ -132,65 +120,42 @@ public class LogIn extends javax.swing.JFrame {
     }
     
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
         if(isFormValid())
         {
-            UserLogin_DTO userLogin_DTO = new UserLogin_DTO(txtUsername.getText(), txtPassword.getText());
-            if(userLogin_BUS.check(userLogin_DTO))
+            UserLogin_DTO dtoUserLogin = new UserLogin_DTO(txtUsername.getText(), txtPassword.getText());
+            if(busUserLogin.check(dtoUserLogin))
             {
-                Admin_GUI adminGUI = new Admin_GUI();
-                adminGUI.setLocationRelativeTo(null);
-                adminGUI.setVisible(true);
-
+                if(busUserLogin.isAdmin(dtoUserLogin))
+                {
+                    Admin_GUI guiAdmin = new Admin_GUI();
+                    guiAdmin.setLocationRelativeTo(null);
+                    guiAdmin.setVisible(true);
+                }
+                else
+                {
+                    Customer_GUI guiCustomer = new Customer_GUI();
+                    guiCustomer.setLocationRelativeTo(null);
+                    guiCustomer.setVisible(true);
+                }
                 this.setVisible(false);
             }
             else
                 JOptionPane.showMessageDialog(this, "Username or password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
-        }      
+        } 
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+    public static void main(String args[]) 
+    {
         java.awt.EventQueue.invokeLater(new Runnable() 
         {
             public void run() 
             {
-                //LogIn Login_GUI = new LogIn();
-                //Login_GUI.setVisible(true);
                 Admin_GUI ad = new Admin_GUI();
-                //LogIn lg = new LogIn();
                 ad.setVisible(true);
-                //lg.setVisible(true);
                 //Customer_Management ad = new Customer_Management();
                 //ad.setVisible(true);
             }

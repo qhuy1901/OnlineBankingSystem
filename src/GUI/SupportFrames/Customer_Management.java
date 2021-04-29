@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package GUI.SupportFrames;
 
 import BUS.Customer_BUS;
 import DTO.Customer_DTO;
 import GUI.Admin_GUI;
+import GUI.LogIn;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -16,10 +11,6 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-/**
- *
- * @author DUONG NGOC YEN
- */
 public class Customer_Management extends javax.swing.JFrame 
 {
     Customer_BUS customer_BUS = new Customer_BUS();
@@ -38,11 +29,11 @@ public class Customer_Management extends javax.swing.JFrame
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel9 = new javax.swing.JPanel();
         txtSearch = new javax.swing.JTextField();
+        btnHome_ViewCustomer = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCustomers = new javax.swing.JTable();
-        btnExit1 = new javax.swing.JButton();
+        btnLogout_ViewCustomer = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnHome1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -59,8 +50,8 @@ public class Customer_Management extends javax.swing.JFrame
         btnAdd = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        btnHome = new javax.swing.JButton();
-        btnExit = new javax.swing.JButton();
+        btnHome_AddCustomer = new javax.swing.JButton();
+        btnLogout_AddCustomer = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
@@ -89,8 +80,8 @@ public class Customer_Management extends javax.swing.JFrame
         btnDeleteCustomer = new javax.swing.JButton();
         jLabel35 = new javax.swing.JLabel();
         txtUpdateIDCard = new javax.swing.JTextField();
-        btnHome_Update = new javax.swing.JButton();
-        btnExit_Update = new javax.swing.JButton();
+        btnHome_UpdateCustomer = new javax.swing.JButton();
+        btnLogout_UpdateCustomer = new javax.swing.JButton();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
         btnUpdate2.setBackground(new java.awt.Color(32, 172, 216));
@@ -107,6 +98,7 @@ public class Customer_Management extends javax.swing.JFrame
         jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jPanel9.setBackground(new java.awt.Color(239, 250, 252));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtSearch.setForeground(new java.awt.Color(204, 204, 204));
         txtSearch.setText("Enter ID, Name, ID Card,... to search");
@@ -128,6 +120,24 @@ public class Customer_Management extends javax.swing.JFrame
                 txtSearchKeyReleased(evt);
             }
         });
+        jPanel9.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 230, 30));
+
+        btnHome_ViewCustomer.setBackground(new java.awt.Color(32, 172, 216));
+        btnHome_ViewCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnHome_ViewCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        btnHome_ViewCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/home_25px.png"))); // NOI18N
+        btnHome_ViewCustomer.setText("Home");
+        btnHome_ViewCustomer.setToolTipText("");
+        btnHome_ViewCustomer.setBorder(null);
+        btnHome_ViewCustomer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHome_ViewCustomer.setIconTextGap(1);
+        btnHome_ViewCustomer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHome_ViewCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHome_ViewCustomerActionPerformed(evt);
+            }
+        });
+        jPanel9.add(btnHome_ViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 76, 50));
 
         tableCustomers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,33 +149,27 @@ public class Customer_Management extends javax.swing.JFrame
         ));
         jScrollPane1.setViewportView(tableCustomers);
 
-        btnExit1.setBackground(new java.awt.Color(32, 172, 216));
-        btnExit1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnExit1.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/shutdown_20px.png"))); // NOI18N
-        btnExit1.setText("Logout");
-        btnExit1.setToolTipText("");
-        btnExit1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnExit1.setIconTextGap(0);
-        btnExit1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel9.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 910, 370));
 
-        jLabel1.setText("Search");
-
-        btnHome1.setBackground(new java.awt.Color(32, 172, 216));
-        btnHome1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnHome1.setForeground(new java.awt.Color(255, 255, 255));
-        btnHome1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/home_25px.png"))); // NOI18N
-        btnHome1.setText("Home");
-        btnHome1.setToolTipText("");
-        btnHome1.setBorder(null);
-        btnHome1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnHome1.setIconTextGap(1);
-        btnHome1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnHome1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout_ViewCustomer.setBackground(new java.awt.Color(32, 172, 216));
+        btnLogout_ViewCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnLogout_ViewCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout_ViewCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/shutdown_20px.png"))); // NOI18N
+        btnLogout_ViewCustomer.setText("Logout");
+        btnLogout_ViewCustomer.setToolTipText("");
+        btnLogout_ViewCustomer.setBorder(null);
+        btnLogout_ViewCustomer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogout_ViewCustomer.setIconTextGap(0);
+        btnLogout_ViewCustomer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLogout_ViewCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHome1ActionPerformed(evt);
+                btnLogout_ViewCustomerActionPerformed(evt);
             }
         });
+        jPanel9.add(btnLogout_ViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 40, 60, 50));
+
+        jLabel1.setText("Search");
+        jPanel9.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(32, 172, 216));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -173,52 +177,7 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel7.setText("        View Customer");
         jLabel7.setOpaque(true);
         jLabel7.setPreferredSize(new java.awt.Dimension(34, 50));
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(700, 700, 700)
-                                .addComponent(btnHome1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(800, 800, 800)
-                                .addComponent(btnExit1))))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(321, 321, 321)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 941, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(3, 3, 3))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnHome1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExit1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jPanel9.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 950, 66));
 
         jTabbedPane1.addTab("View Customer", jPanel9);
 
@@ -299,38 +258,39 @@ public class Customer_Management extends javax.swing.JFrame
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(795, 203, -1, -1));
 
-        btnHome.setBackground(new java.awt.Color(32, 172, 216));
-        btnHome.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnHome.setForeground(new java.awt.Color(255, 255, 255));
-        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/home_25px.png"))); // NOI18N
-        btnHome.setText("Home");
-        btnHome.setToolTipText("");
-        btnHome.setBorder(null);
-        btnHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnHome.setIconTextGap(1);
-        btnHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
+        btnHome_AddCustomer.setBackground(new java.awt.Color(32, 172, 216));
+        btnHome_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnHome_AddCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        btnHome_AddCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/home_25px.png"))); // NOI18N
+        btnHome_AddCustomer.setText("Home");
+        btnHome_AddCustomer.setToolTipText("");
+        btnHome_AddCustomer.setBorder(null);
+        btnHome_AddCustomer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHome_AddCustomer.setIconTextGap(1);
+        btnHome_AddCustomer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHome_AddCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
+                btnHome_AddCustomerActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(871, 24, 76, 58));
+        jPanel1.add(btnHome_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, 76, 58));
 
-        btnExit.setBackground(new java.awt.Color(32, 172, 216));
-        btnExit.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/shutdown_20px.png"))); // NOI18N
-        btnExit.setText("Logout");
-        btnExit.setToolTipText("");
-        btnExit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnExit.setIconTextGap(0);
-        btnExit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout_AddCustomer.setBackground(new java.awt.Color(32, 172, 216));
+        btnLogout_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnLogout_AddCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout_AddCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/shutdown_20px.png"))); // NOI18N
+        btnLogout_AddCustomer.setText("Logout");
+        btnLogout_AddCustomer.setToolTipText("");
+        btnLogout_AddCustomer.setBorder(null);
+        btnLogout_AddCustomer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogout_AddCustomer.setIconTextGap(0);
+        btnLogout_AddCustomer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLogout_AddCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
+                btnLogout_AddCustomerActionPerformed(evt);
             }
         });
-        jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(957, 24, 77, 58));
+        jPanel1.add(btnLogout_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 20, 77, 58));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/add_user_group_man_man_55px.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 17, 125, 77));
@@ -341,7 +301,7 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel4.setText("        Add Customer");
         jLabel4.setOpaque(true);
         jLabel4.setPreferredSize(new java.awt.Dimension(34, 50));
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 19, 906, 66));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 19, 970, 66));
 
         jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(32, 172, 216));
@@ -460,30 +420,37 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel35.setForeground(new java.awt.Color(32, 172, 216));
         jLabel35.setText("ID Card");
 
-        btnHome_Update.setBackground(new java.awt.Color(32, 172, 216));
-        btnHome_Update.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnHome_Update.setForeground(new java.awt.Color(255, 255, 255));
-        btnHome_Update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/home_25px.png"))); // NOI18N
-        btnHome_Update.setText("Home");
-        btnHome_Update.setToolTipText("");
-        btnHome_Update.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnHome_Update.setIconTextGap(1);
-        btnHome_Update.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnHome_Update.addActionListener(new java.awt.event.ActionListener() {
+        btnHome_UpdateCustomer.setBackground(new java.awt.Color(32, 172, 216));
+        btnHome_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnHome_UpdateCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        btnHome_UpdateCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/home_25px.png"))); // NOI18N
+        btnHome_UpdateCustomer.setText("Home");
+        btnHome_UpdateCustomer.setToolTipText("");
+        btnHome_UpdateCustomer.setBorder(null);
+        btnHome_UpdateCustomer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHome_UpdateCustomer.setIconTextGap(1);
+        btnHome_UpdateCustomer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHome_UpdateCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHome_UpdateActionPerformed(evt);
+                btnHome_UpdateCustomerActionPerformed(evt);
             }
         });
 
-        btnExit_Update.setBackground(new java.awt.Color(32, 172, 216));
-        btnExit_Update.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnExit_Update.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit_Update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/shutdown_20px.png"))); // NOI18N
-        btnExit_Update.setText("Logout");
-        btnExit_Update.setToolTipText("");
-        btnExit_Update.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnExit_Update.setIconTextGap(0);
-        btnExit_Update.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLogout_UpdateCustomer.setBackground(new java.awt.Color(32, 172, 216));
+        btnLogout_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnLogout_UpdateCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout_UpdateCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/shutdown_20px.png"))); // NOI18N
+        btnLogout_UpdateCustomer.setText("Logout");
+        btnLogout_UpdateCustomer.setToolTipText("");
+        btnLogout_UpdateCustomer.setBorder(null);
+        btnLogout_UpdateCustomer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogout_UpdateCustomer.setIconTextGap(0);
+        btnLogout_UpdateCustomer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLogout_UpdateCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogout_UpdateCustomerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -501,13 +468,13 @@ public class Customer_Management extends javax.swing.JFrame
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnHome_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnHome_UpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnExit_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnLogout_UpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
+                        .addGap(90, 90, 90)
                         .addComponent(txtUpdateID, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addGap(26, 26, 26)
                         .addComponent(btnShowInformation)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDeleteCustomer)
@@ -534,7 +501,7 @@ public class Customer_Management extends javax.swing.JFrame
                     .addComponent(txtUpdateAddress)
                     .addComponent(txtUpdatePhoneNumber)
                     .addComponent(txtUpdateIDCard))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(99, 99, 99))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -552,8 +519,8 @@ public class Customer_Management extends javax.swing.JFrame
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnExit_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnHome_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnLogout_UpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnHome_UpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -619,7 +586,7 @@ public class Customer_Management extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1055, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -629,12 +596,12 @@ public class Customer_Management extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+    private void btnHome_AddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_AddCustomerActionPerformed
         // TODO add your handling code here:
         Admin_GUI guiAdmin = new Admin_GUI();
         guiAdmin.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnHomeActionPerformed
+    }//GEN-LAST:event_btnHome_AddCustomerActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
@@ -717,14 +684,12 @@ public class Customer_Management extends javax.swing.JFrame
                 
                 // Clear Form
                 txtUpdateID.setText("");
-                if(isTxtUpdateIDIsFilled())
-                {
-                    txtUpdateName.setText(ct.getName());
-                    cbbUpdateGender.setSelectedItem(ct.getGender());
-                    txtUpdateAddress.setText(ct.getAddress());
-                    txtUpdatePhoneNumber.setText(ct.getPhoneNumber());
-                    txtUpdateIDCard.setText(ct.getIDCard());
-                }
+                txtUpdateName.setText("");
+                cbbUpdateGender.setSelectedItem(null);
+                txtUpdateAddress.setText("");
+                txtUpdatePhoneNumber.setText("");
+                txtUpdateIDCard.setText("");
+                
             }
             else
                 JOptionPane.showMessageDialog(this, "Cannot delete customers!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -749,13 +714,16 @@ public class Customer_Management extends javax.swing.JFrame
     
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtUpdateID.getText()) , txtUpdateName.getText(), cbbUpdateGender.getSelectedItem().toString(), txtUpdateAddress.getText(), txtUpdatePhoneNumber.getText(), txtUpdateIDCard.getText());
-        if(customer_BUS.update(ct))
+        if(isValidUpdateForm())
         {
-            JOptionPane.showMessageDialog(this, "Customer updated susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtUpdateID.getText()) , txtUpdateName.getText(), cbbUpdateGender.getSelectedItem().toString(), txtUpdateAddress.getText(), txtUpdatePhoneNumber.getText(), txtUpdateIDCard.getText());
+            if(customer_BUS.update(ct))
+            {
+                JOptionPane.showMessageDialog(this, "Customer updated susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Cannot update customers!", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else
-            JOptionPane.showMessageDialog(this, "Cannot update customers!", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnUpdateActionPerformed
     
     
@@ -781,18 +749,27 @@ public class Customer_Management extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUpdateAddressActionPerformed
 
-    private void btnHome_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_UpdateActionPerformed
-        // TODO add your handling code here:
-        btnHomeActionPerformed(evt);
-    }//GEN-LAST:event_btnHome_UpdateActionPerformed
+    private void btnHome_UpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_UpdateCustomerActionPerformed
+        btnHome_AddCustomerActionPerformed(evt);
+    }//GEN-LAST:event_btnHome_UpdateCustomerActionPerformed
 
-    private void btnHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHome1ActionPerformed
+    private void btnHome_ViewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_ViewCustomerActionPerformed
+        btnHome_AddCustomerActionPerformed(evt);
+    }//GEN-LAST:event_btnHome_ViewCustomerActionPerformed
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExitActionPerformed
+    private void btnLogout_AddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_AddCustomerActionPerformed
+        btnLogout_ViewCustomerActionPerformed(evt);
+    }//GEN-LAST:event_btnLogout_AddCustomerActionPerformed
+
+    private void btnLogout_UpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_UpdateCustomerActionPerformed
+        btnLogout_ViewCustomerActionPerformed(evt);
+    }//GEN-LAST:event_btnLogout_UpdateCustomerActionPerformed
+
+    private void btnLogout_ViewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_ViewCustomerActionPerformed
+        LogIn guiLogIn= new LogIn();
+        guiLogIn.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnLogout_ViewCustomerActionPerformed
 
     private boolean isFormValid()
     {
@@ -827,12 +804,12 @@ public class Customer_Management extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDeleteCustomer;
-    private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnExit1;
-    private javax.swing.JButton btnExit_Update;
-    private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnHome1;
-    private javax.swing.JButton btnHome_Update;
+    private javax.swing.JButton btnHome_AddCustomer;
+    private javax.swing.JButton btnHome_UpdateCustomer;
+    private javax.swing.JButton btnHome_ViewCustomer;
+    private javax.swing.JButton btnLogout_AddCustomer;
+    private javax.swing.JButton btnLogout_UpdateCustomer;
+    private javax.swing.JButton btnLogout_ViewCustomer;
     private javax.swing.JButton btnShowInformation;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdate2;

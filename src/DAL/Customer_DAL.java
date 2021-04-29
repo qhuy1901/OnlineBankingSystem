@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAL;
 
 import DTO.Customer_DTO;
@@ -24,7 +19,7 @@ public class Customer_DAL extends DBConnection
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "insert into CUSTOMER values (?, ?, ?, ?, ?, ?)";
+            String SQL = "INSERT INTO CUSTOMER VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, ct.getId());
             prest.setString(2, ct.getName());
@@ -85,7 +80,6 @@ public class Customer_DAL extends DBConnection
         try
         {
             Connection con = DBConnection.ConnectDb();
-            
             String SQL = "SELECT * FROM CUSTOMER WHERE ID = " + id;
             Statement stat = con.createStatement();
             ResultSet rs = stat.executeQuery(SQL);
