@@ -87,7 +87,7 @@ public class Customer_GUI extends javax.swing.JFrame {
         adminPortal.setPreferredSize(new java.awt.Dimension(250, 55));
         WelcomePanel.add(adminPortal);
 
-        getContentPane().add(WelcomePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 310, 420));
+        getContentPane().add(WelcomePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 280, 380));
 
         tietKiemButton.setBackground(new java.awt.Color(255, 255, 255));
         tietKiemButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -105,7 +105,7 @@ public class Customer_GUI extends javax.swing.JFrame {
                 tietKiemButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(tietKiemButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 230, -1));
+        getContentPane().add(tietKiemButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 230, -1));
 
         thanhToanButton.setBackground(new java.awt.Color(255, 255, 255));
         thanhToanButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -141,7 +141,7 @@ public class Customer_GUI extends javax.swing.JFrame {
                 viButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(viButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 230, -1));
+        getContentPane().add(viButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 230, -1));
 
         chuyenTienButton.setBackground(new java.awt.Color(255, 255, 255));
         chuyenTienButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -159,7 +159,7 @@ public class Customer_GUI extends javax.swing.JFrame {
                 chuyenTienButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(chuyenTienButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, 230, -1));
+        getContentPane().add(chuyenTienButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, 230, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
