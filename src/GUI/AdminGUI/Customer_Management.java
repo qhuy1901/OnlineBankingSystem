@@ -1,4 +1,4 @@
-package GUI.SupportFrames;
+package GUI.AdminGUI;
 
 import BUS.Customer_BUS;
 import DTO.Customer_DTO;

@@ -1,7 +1,7 @@
 package GUI;
 
 import BUS.Customer_BUS;
-import GUI.SupportFrames.Customer_Management;
+import GUI.AdminGUI.Customer_Management;
 
 public class Admin_GUI extends javax.swing.JFrame 
 {
@@ -45,7 +45,7 @@ public class Admin_GUI extends javax.swing.JFrame
                 btnLogOutActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 50, 150, 40));
+        getContentPane().add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 60, 150, 40));
 
         jLabel2.setBackground(new java.awt.Color(32, 172, 210));
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
