@@ -10,6 +10,7 @@ public class Admin_GUI extends javax.swing.JFrame
     {
         initComponents();
         setLocationRelativeTo(null);
+        setVisible(true);
         //display();
     }
 

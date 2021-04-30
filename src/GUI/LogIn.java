@@ -12,6 +12,7 @@ public class LogIn extends javax.swing.JFrame
     {
         initComponents();
         setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     /**
@@ -147,20 +148,6 @@ public class LogIn extends javax.swing.JFrame
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed
-
-    public static void main(String args[]) 
-    {
-        java.awt.EventQueue.invokeLater(new Runnable() 
-        {
-            public void run() 
-            {
-                Admin_GUI ad = new Admin_GUI();
-                ad.setVisible(true);
-                //Customer_Management ad = new Customer_Management();
-                //ad.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;

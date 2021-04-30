@@ -123,7 +123,7 @@ public class Customer_GUI extends javax.swing.JFrame {
                 thanhToanButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(thanhToanButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 310, 230, -1));
+        getContentPane().add(thanhToanButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 340, 230, -1));
 
         viButton.setBackground(new java.awt.Color(255, 255, 255));
         viButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -141,7 +141,7 @@ public class Customer_GUI extends javax.swing.JFrame {
                 viButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(viButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 230, -1));
+        getContentPane().add(viButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 230, -1));
 
         chuyenTienButton.setBackground(new java.awt.Color(255, 255, 255));
         chuyenTienButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -159,7 +159,7 @@ public class Customer_GUI extends javax.swing.JFrame {
                 chuyenTienButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(chuyenTienButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, 230, -1));
+        getContentPane().add(chuyenTienButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 230, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -186,41 +186,6 @@ public class Customer_GUI extends javax.swing.JFrame {
     private void chuyenTienButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chuyenTienButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chuyenTienButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Customer_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Customer_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Customer_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Customer_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Customer_GUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel WelcomePanel;

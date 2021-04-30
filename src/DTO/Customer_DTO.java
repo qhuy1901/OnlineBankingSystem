@@ -1,9 +1,12 @@
 package DTO;
 
+import java.util.Date;
+
 public class Customer_DTO
 {
     private long id, userLoginID;
     private String name , gender, address, phoneNumber, idCard;
+    private Date dateOfBirth;
 
     public Customer_DTO()
     {
@@ -15,10 +18,11 @@ public class Customer_DTO
         this.id = id;
     }
     
-    public Customer_DTO(long id, String name, String gender, String address, String phoneNumber, String idCard)
+    public Customer_DTO(long id, String name, String gender, Date dateOfBirth, String address, String phoneNumber, String idCard)
     {
         this.id = id;
         this.name = name;
+        this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -44,6 +48,10 @@ public class Customer_DTO
     
     public String getGender() {
         return gender;
+    }
+    
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
     
     public String getAddress() {

@@ -5,7 +5,12 @@ import DTO.Customer_DTO;
 import GUI.Admin_GUI;
 import GUI.LogIn;
 import java.awt.Color;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -14,10 +19,31 @@ import javax.swing.table.TableRowSorter;
 public class Customer_Management extends javax.swing.JFrame 
 {
     Customer_BUS customer_BUS = new Customer_BUS();
-    public Customer_Management() {
+    
+    public Customer_Management() 
+    {
         initComponents();
         setLocationRelativeTo(null);
-        display();
+        setVisible(true);
+        createTable();
+    }
+    
+    DefaultTableModel tblCustomerModel;
+    public void createTable()
+    {
+        ArrayList<Customer_DTO> list = customer_BUS.getCustomersList();
+        tblCustomerModel = new DefaultTableModel();
+        String title[] = {"ID", "Full Name", "Gender", "Date of birth", "Address", "Phone number", "ID Card"};
+        tblCustomerModel.setColumnIdentifiers(title);
+        tblCustomerModel.setRowCount(0); 
+        for(int i = 0; i < list.size(); i++)
+        {
+            Customer_DTO dtoCustomer = list.get(i);
+            String[] rows = {String.valueOf(dtoCustomer.getId()), dtoCustomer.getName(), dtoCustomer.getGender(),  dtoCustomer.getDateOfBirth().toString(), dtoCustomer.getAddress(), dtoCustomer.getPhoneNumber(), dtoCustomer.getIDCard()};
+            tblCustomerModel.addRow(rows);
+        }
+        tblViewCustomer.setModel(tblCustomerModel);
+        setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -30,11 +56,11 @@ public class Customer_Management extends javax.swing.JFrame
         jPanel9 = new javax.swing.JPanel();
         txtSearch = new javax.swing.JTextField();
         btnHome_ViewCustomer = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableCustomers = new javax.swing.JTable();
         btnLogout_ViewCustomer = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblViewCustomer = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -56,7 +82,9 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel4 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         txtIDCard = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dcDateOfBirth_AddCustomer = new com.toedter.calendar.JDateChooser();
+        txtTest = new javax.swing.JTextField();
+        btnTest = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
@@ -82,7 +110,7 @@ public class Customer_Management extends javax.swing.JFrame
         txtUpdateIDCard = new javax.swing.JTextField();
         btnHome_UpdateCustomer = new javax.swing.JButton();
         btnLogout_UpdateCustomer = new javax.swing.JButton();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        dcDateOfBirth_UpdateCustomer = new com.toedter.calendar.JDateChooser();
 
         btnUpdate2.setBackground(new java.awt.Color(32, 172, 216));
         btnUpdate2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -139,19 +167,7 @@ public class Customer_Management extends javax.swing.JFrame
                 btnHome_ViewCustomerActionPerformed(evt);
             }
         });
-        jPanel9.add(btnHome_ViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 76, 50));
-
-        tableCustomers.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Name", "Gender", "Address", "Phone Number", "ID Card"
-            }
-        ));
-        jScrollPane1.setViewportView(tableCustomers);
-
-        jPanel9.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 910, 370));
+        jPanel9.add(btnHome_ViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 30, 76, 50));
 
         btnLogout_ViewCustomer.setBackground(new java.awt.Color(32, 172, 216));
         btnLogout_ViewCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -168,7 +184,7 @@ public class Customer_Management extends javax.swing.JFrame
                 btnLogout_ViewCustomerActionPerformed(evt);
             }
         });
-        jPanel9.add(btnLogout_ViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 40, 60, 50));
+        jPanel9.add(btnLogout_ViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 30, 60, 50));
 
         jLabel1.setText("Search");
         jPanel9.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, -1, -1));
@@ -179,7 +195,22 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel7.setText("        View Customer");
         jLabel7.setOpaque(true);
         jLabel7.setPreferredSize(new java.awt.Dimension(34, 50));
-        jPanel9.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 950, 66));
+        jPanel9.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 950, 66));
+
+        tblViewCustomer.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblViewCustomer);
+
+        jPanel9.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 960, 350));
 
         jTabbedPane1.addTab("View Customer", jPanel9);
 
@@ -309,8 +340,25 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel34.setForeground(new java.awt.Color(32, 172, 216));
         jLabel34.setText("ID Card");
         jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 409, -1, -1));
-        jPanel1.add(txtIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 409, 225, 32));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 228, 178, 32));
+        jPanel1.add(txtIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 225, 32));
+
+        dcDateOfBirth_AddCustomer.setDateFormatString("dd/MM/yyyy");
+        jPanel1.add(dcDateOfBirth_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 228, 178, 32));
+
+        txtTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTestActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 530, 225, 32));
+
+        btnTest.setText("jButton1");
+        btnTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 540, -1, -1));
 
         jTabbedPane1.addTab("Add Customer", jPanel1);
 
@@ -498,7 +546,7 @@ public class Customer_Management extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(dcDateOfBirth_UpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtUpdateName)
                     .addComponent(txtUpdateAddress)
                     .addComponent(txtUpdatePhoneNumber)
@@ -508,8 +556,8 @@ public class Customer_Management extends javax.swing.JFrame
                 .addGap(99, 99, 99))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 82, Short.MAX_VALUE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 106, Short.MAX_VALUE)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -547,7 +595,7 @@ public class Customer_Management extends javax.swing.JFrame
                                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(33, 33, 33))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dcDateOfBirth_UpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -568,7 +616,7 @@ public class Customer_Management extends javax.swing.JFrame
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(19, 19, 19)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(481, Short.MAX_VALUE)))
+                    .addContainerGap(503, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -592,7 +640,7 @@ public class Customer_Management extends javax.swing.JFrame
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
 
         pack();
@@ -601,7 +649,6 @@ public class Customer_Management extends javax.swing.JFrame
     private void btnHome_AddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_AddCustomerActionPerformed
         // TODO add your handling code here:
         Admin_GUI guiAdmin = new Admin_GUI();
-        guiAdmin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_AddCustomerActionPerformed
 
@@ -609,7 +656,7 @@ public class Customer_Management extends javax.swing.JFrame
         // TODO add your handling code here:
         if(isFormValid())
         {
-            Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtID.getText()) , txtName.getText(), cbGender.getSelectedItem().toString(), txtAddress.getText(), txtPhoneNumber.getText(), txtIDCard.getText());
+            Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtID.getText()) , txtName.getText(), cbGender.getSelectedItem().toString(), dcDateOfBirth_AddCustomer.getDate() ,txtAddress.getText(), txtPhoneNumber.getText(), txtIDCard.getText());
             if(customer_BUS.insert(ct))
             {
                 JOptionPane.showMessageDialog(this, "Customer added susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -618,6 +665,7 @@ public class Customer_Management extends javax.swing.JFrame
                 txtID.setText("");
                 txtName.setText("");
                 cbGender.setSelectedItem(null);
+                dcDateOfBirth_AddCustomer.cleanup();
                 txtAddress.setText("");
                 txtPhoneNumber.setText("");
                 txtIDCard.setText("");
@@ -629,10 +677,10 @@ public class Customer_Management extends javax.swing.JFrame
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
-        DefaultTableModel SearchTable = (DefaultTableModel) tableCustomers.getModel();
+        DefaultTableModel SearchTable = (DefaultTableModel) tblViewCustomer.getModel();
         String search = txtSearch.getText();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(SearchTable);
-        tableCustomers.setRowSorter(tr);
+        tblViewCustomer.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_txtSearchKeyReleased
 
@@ -688,6 +736,7 @@ public class Customer_Management extends javax.swing.JFrame
                 txtUpdateID.setText("");
                 txtUpdateName.setText("");
                 cbbUpdateGender.setSelectedItem(null);
+                dcDateOfBirth_UpdateCustomer.setDate(null);
                 txtUpdateAddress.setText("");
                 txtUpdatePhoneNumber.setText("");
                 txtUpdateIDCard.setText("");
@@ -718,7 +767,7 @@ public class Customer_Management extends javax.swing.JFrame
         // TODO add your handling code here:
         if(isValidUpdateForm())
         {
-            Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtUpdateID.getText()) , txtUpdateName.getText(), cbbUpdateGender.getSelectedItem().toString(), txtUpdateAddress.getText(), txtUpdatePhoneNumber.getText(), txtUpdateIDCard.getText());
+            Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtUpdateID.getText()) , txtUpdateName.getText(), cbbUpdateGender.getSelectedItem().toString(), dcDateOfBirth_UpdateCustomer.getDate(), txtUpdateAddress.getText(), txtUpdatePhoneNumber.getText(), txtUpdateIDCard.getText());
             if(customer_BUS.update(ct))
             {
                 JOptionPane.showMessageDialog(this, "Customer updated susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -738,12 +787,19 @@ public class Customer_Management extends javax.swing.JFrame
             {
                 txtUpdateName.setText(ct.getName());
                 cbbUpdateGender.setSelectedItem(ct.getGender());
+                /*Date date = null;
+                try {
+                    date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(ct.getDateOfBirth());
+                } catch (ParseException ex) {
+                    Logger.getLogger(Customer_Management.class.getName()).log(Level.SEVERE, null, ex);
+                }*/
+                dcDateOfBirth_UpdateCustomer.setDate(ct.getDateOfBirth());
                 txtUpdateAddress.setText(ct.getAddress());
                 txtUpdatePhoneNumber.setText(ct.getPhoneNumber());
                 txtUpdateIDCard.setText(ct.getIDCard());
             }
             else
-                JOptionPane.showMessageDialog(this, "Không tìm thấy thông tin khách hàng!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No customer information found!", "Error", JOptionPane.ERROR_MESSAGE);
         } 
     }//GEN-LAST:event_btnShowInformationActionPerformed
 
@@ -752,26 +808,41 @@ public class Customer_Management extends javax.swing.JFrame
     }//GEN-LAST:event_txtUpdateAddressActionPerformed
 
     private void btnHome_UpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_UpdateCustomerActionPerformed
-        btnHome_AddCustomerActionPerformed(evt);
+        Admin_GUI guiAdmin = new Admin_GUI();
+        this.setVisible(false);
     }//GEN-LAST:event_btnHome_UpdateCustomerActionPerformed
 
     private void btnHome_ViewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_ViewCustomerActionPerformed
-        btnHome_AddCustomerActionPerformed(evt);
+        Admin_GUI guiAdmin = new Admin_GUI();
+        this.setVisible(false);
     }//GEN-LAST:event_btnHome_ViewCustomerActionPerformed
 
     private void btnLogout_AddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_AddCustomerActionPerformed
-        btnLogout_ViewCustomerActionPerformed(evt);
+        LogIn guiLogIn = new LogIn();
+        this.setVisible(false);
     }//GEN-LAST:event_btnLogout_AddCustomerActionPerformed
 
     private void btnLogout_UpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_UpdateCustomerActionPerformed
-        btnLogout_ViewCustomerActionPerformed(evt);
+        LogIn guiLogIn = new LogIn();
+        this.setVisible(false);
     }//GEN-LAST:event_btnLogout_UpdateCustomerActionPerformed
 
     private void btnLogout_ViewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_ViewCustomerActionPerformed
-        LogIn guiLogIn= new LogIn();
-        guiLogIn.setVisible(true);
+        LogIn guiLogIn = new LogIn();
         this.setVisible(false);
     }//GEN-LAST:event_btnLogout_ViewCustomerActionPerformed
+
+    private void txtTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTestActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtTestActionPerformed
+
+    private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
+        // TODO add your handling code here:
+       
+//        SimpleDateFormat dcn = new SimpleDateFormat("yyyy-MM-dd");
+//        String date = dcn.format(dcDateOfBirth_UpdateCustomer.getDate());
+    }//GEN-LAST:event_btnTestActionPerformed
 
     private boolean isFormValid()
     {
@@ -784,25 +855,6 @@ public class Customer_Management extends javax.swing.JFrame
                 return true;
     }
     
-    public void display()
-    {
-        ArrayList<Customer_DTO> list = customer_BUS.getCustomersList();
-        DefaultTableModel model = (DefaultTableModel)tableCustomers.getModel();
-        Object[] row = new Object[6];
-        
-        for(int i = 0; i < list.size(); i++)
-        {
-            row[0] = list.get(i).getId();
-            row[1] = list.get(i).getName();
-            row[2] = list.get(i).getGender();
-            row[3] = list.get(i).getAddress();
-            row[4] = list.get(i).getPhoneNumber();
-            row[5] = list.get(i).getIDCard();
-            model.addRow(row);
-        }
-    }
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDeleteCustomer;
@@ -813,13 +865,14 @@ public class Customer_Management extends javax.swing.JFrame
     private javax.swing.JButton btnLogout_UpdateCustomer;
     private javax.swing.JButton btnLogout_ViewCustomer;
     private javax.swing.JButton btnShowInformation;
+    private javax.swing.JButton btnTest;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdate2;
     private javax.swing.JComboBox<String> cbGender;
     private javax.swing.JComboBox<String> cbbUpdateGender;
+    private com.toedter.calendar.JDateChooser dcDateOfBirth_AddCustomer;
+    private com.toedter.calendar.JDateChooser dcDateOfBirth_UpdateCustomer;
     private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -848,16 +901,17 @@ public class Customer_Management extends javax.swing.JFrame
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable tableCustomers;
+    private javax.swing.JTable tblViewCustomer;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtIDCard;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhoneNumber;
     private javax.swing.JTextField txtSearch;
+    private javax.swing.JTextField txtTest;
     private javax.swing.JTextField txtUpdateAddress;
     private javax.swing.JTextField txtUpdateID;
     private javax.swing.JTextField txtUpdateIDCard;
