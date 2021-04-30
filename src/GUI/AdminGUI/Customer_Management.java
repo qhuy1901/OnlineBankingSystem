@@ -83,8 +83,6 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel34 = new javax.swing.JLabel();
         txtIDCard = new javax.swing.JTextField();
         dcDateOfBirth_AddCustomer = new com.toedter.calendar.JDateChooser();
-        txtTest = new javax.swing.JTextField();
-        btnTest = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
@@ -344,21 +342,6 @@ public class Customer_Management extends javax.swing.JFrame
 
         dcDateOfBirth_AddCustomer.setDateFormatString("dd/MM/yyyy");
         jPanel1.add(dcDateOfBirth_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 228, 178, 32));
-
-        txtTest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTestActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 530, 225, 32));
-
-        btnTest.setText("jButton1");
-        btnTest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTestActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 540, -1, -1));
 
         jTabbedPane1.addTab("Add Customer", jPanel1);
 
@@ -832,18 +815,6 @@ public class Customer_Management extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_btnLogout_ViewCustomerActionPerformed
 
-    private void txtTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTestActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtTestActionPerformed
-
-    private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
-        // TODO add your handling code here:
-       
-//        SimpleDateFormat dcn = new SimpleDateFormat("yyyy-MM-dd");
-//        String date = dcn.format(dcDateOfBirth_UpdateCustomer.getDate());
-    }//GEN-LAST:event_btnTestActionPerformed
-
     private boolean isFormValid()
     {
             if(txtName.getText().equals("") || txtID.getText().equals("") || txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || txtIDCard.getText().equals(""))
@@ -865,7 +836,6 @@ public class Customer_Management extends javax.swing.JFrame
     private javax.swing.JButton btnLogout_UpdateCustomer;
     private javax.swing.JButton btnLogout_ViewCustomer;
     private javax.swing.JButton btnShowInformation;
-    private javax.swing.JButton btnTest;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdate2;
     private javax.swing.JComboBox<String> cbGender;
@@ -911,7 +881,6 @@ public class Customer_Management extends javax.swing.JFrame
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhoneNumber;
     private javax.swing.JTextField txtSearch;
-    private javax.swing.JTextField txtTest;
     private javax.swing.JTextField txtUpdateAddress;
     private javax.swing.JTextField txtUpdateID;
     private javax.swing.JTextField txtUpdateIDCard;

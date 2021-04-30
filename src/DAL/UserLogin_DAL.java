@@ -1,12 +1,10 @@
 package DAL;
 
 import DTO.UserLogin_DTO;
-import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class UserLogin_DAL extends DBConnection
@@ -15,15 +13,17 @@ public class UserLogin_DAL extends DBConnection
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT ID FROM UserLogins WHERE Username = 'tuanln' AND Password = '123456'";
-            Statement stat = con.createStatement();
-            ResultSet rs = stat.executeQuery(SQL);
-            String LoginID = "";
+            String SQL = "SELECT ID FROM UserLogins WHERE Username = ? AND Password = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, dtoUserLogin.getUsername());
+            ps.setString(2, dtoUserLogin.getPassword());
+            ResultSet rs = ps.executeQuery();
+            int LoginID = 0;
             while(rs.next())
-                LoginID = rs.getString(1);
+                LoginID = rs.getInt(1);
             con.close();
                 
-            if(LoginID.equals(""))
+            if(LoginID == 0)
                 return false;
             else 
                 return true;
