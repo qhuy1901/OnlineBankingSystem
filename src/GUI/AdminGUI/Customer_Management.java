@@ -5,12 +5,7 @@ import DTO.Customer_DTO;
 import GUI.Admin_GUI;
 import GUI.LogIn;
 import java.awt.Color;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +19,7 @@ public class Customer_Management extends javax.swing.JFrame
     {
         initComponents();
         setLocationRelativeTo(null);
+        setSize(1064, 650);
         setVisible(true);
         createTable();
     }
@@ -58,6 +54,7 @@ public class Customer_Management extends javax.swing.JFrame
         btnHome_ViewCustomer = new javax.swing.JButton();
         btnLogout_ViewCustomer = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblViewCustomer = new javax.swing.JTable();
@@ -101,13 +98,13 @@ public class Customer_Management extends javax.swing.JFrame
         jPanel5 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        btnHome_UpdateCustomer = new javax.swing.JButton();
+        btnLogout_UpdateCustomer = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         btnShowInformation = new javax.swing.JButton();
         btnDeleteCustomer = new javax.swing.JButton();
         jLabel35 = new javax.swing.JLabel();
         txtUpdateIDCard = new javax.swing.JTextField();
-        btnHome_UpdateCustomer = new javax.swing.JButton();
-        btnLogout_UpdateCustomer = new javax.swing.JButton();
         dcDateOfBirth_UpdateCustomer = new com.toedter.calendar.JDateChooser();
 
         btnUpdate2.setBackground(new java.awt.Color(32, 172, 216));
@@ -187,10 +184,13 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel1.setText("Search");
         jPanel9.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, -1, -1));
 
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/CustomerManagement_ViewCustomer.png"))); // NOI18N
+        jPanel9.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
+
         jLabel7.setBackground(new java.awt.Color(32, 172, 216));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("        View Customer");
+        jLabel7.setText("            View Customer");
         jLabel7.setOpaque(true);
         jLabel7.setPreferredSize(new java.awt.Dimension(34, 50));
         jPanel9.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 950, 66));
@@ -275,19 +275,19 @@ public class Customer_Management extends javax.swing.JFrame
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel12)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(54, Short.MAX_VALUE)
                 .addComponent(jLabel12)
-                .addGap(35, 35, 35))
+                .addGap(44, 44, 44))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(795, 203, -1, -1));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(795, 203, -1, 200));
 
         btnHome_AddCustomer.setBackground(new java.awt.Color(32, 172, 216));
         btnHome_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -321,10 +321,10 @@ public class Customer_Management extends javax.swing.JFrame
                 btnLogout_AddCustomerActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLogout_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 20, 77, 58));
+        jPanel1.add(btnLogout_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 20, 77, 58));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/add_user_group_man_man_55px.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 17, 125, 77));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/CustomerManagement_AddCustomer.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 140, 100));
 
         jLabel4.setBackground(new java.awt.Color(32, 172, 216));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -346,24 +346,32 @@ public class Customer_Management extends javax.swing.JFrame
         jTabbedPane1.addTab("Add Customer", jPanel1);
 
         jPanel3.setBackground(new java.awt.Color(239, 250, 252));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/add_user_group_man_man_55px.png"))); // NOI18N
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/CustomerManagement_Update&DeleteCustomer.png"))); // NOI18N
+        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, -10, 135, -1));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(32, 172, 216));
         jLabel13.setText("ID");
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, 20));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(32, 172, 216));
         jLabel14.setText("Name");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 193, 53, -1));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(32, 172, 216));
         jLabel16.setText("Date of birth");
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 249, -1, -1));
+        jPanel3.add(txtUpdateName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 193, 412, 32));
+        jPanel3.add(txtUpdateID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 230, 32));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(32, 172, 216));
         jLabel17.setText("Gender");
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 249, -1, -1));
 
         cbbUpdateGender.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         cbbUpdateGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", " " }));
@@ -373,20 +381,25 @@ public class Customer_Management extends javax.swing.JFrame
                 cbbUpdateGenderActionPerformed(evt);
             }
         });
+        jPanel3.add(cbbUpdateGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 245, 118, -1));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(32, 172, 216));
         jLabel18.setText("Address");
+        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 338, -1, -1));
 
         txtUpdateAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUpdateAddressActionPerformed(evt);
             }
         });
+        jPanel3.add(txtUpdateAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 338, 412, 32));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(32, 172, 216));
         jLabel19.setText("Phone No.");
+        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 410, -1, -1));
+        jPanel3.add(txtUpdatePhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 412, 32));
 
         btnUpdate.setBackground(new java.awt.Color(32, 172, 216));
         btnUpdate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -398,6 +411,7 @@ public class Customer_Management extends javax.swing.JFrame
                 btnUpdateActionPerformed(evt);
             }
         });
+        jPanel3.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(934, 104, -1, -1));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -408,50 +422,20 @@ public class Customer_Management extends javax.swing.JFrame
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(48, 48, 48)
                 .addComponent(jLabel20)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
                 .addComponent(jLabel20)
-                .addGap(35, 35, 35))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
-        jLabel22.setBackground(new java.awt.Color(32, 172, 216));
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("        Update/ Delete Customer");
-        jLabel22.setOpaque(true);
-        jLabel22.setPreferredSize(new java.awt.Dimension(34, 50));
-
-        btnShowInformation.setBackground(new java.awt.Color(32, 172, 216));
-        btnShowInformation.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnShowInformation.setForeground(new java.awt.Color(255, 255, 255));
-        btnShowInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/search_20px.png"))); // NOI18N
-        btnShowInformation.setText("Show Information");
-        btnShowInformation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowInformationActionPerformed(evt);
-            }
-        });
-
-        btnDeleteCustomer.setBackground(new java.awt.Color(32, 172, 216));
-        btnDeleteCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnDeleteCustomer.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeleteCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/delete_25px.png"))); // NOI18N
-        btnDeleteCustomer.setText("Delete");
-        btnDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteCustomerActionPerformed(evt);
-            }
-        });
-
-        jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel35.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel35.setText("ID Card");
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(761, 193, -1, 200));
+        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 168, 1059, 19));
 
         btnHome_UpdateCustomer.setBackground(new java.awt.Color(32, 172, 216));
         btnHome_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -468,6 +452,7 @@ public class Customer_Management extends javax.swing.JFrame
                 btnHome_UpdateCustomerActionPerformed(evt);
             }
         });
+        jPanel3.add(btnHome_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, 76, 58));
 
         btnLogout_UpdateCustomer.setBackground(new java.awt.Color(32, 172, 216));
         btnLogout_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -484,123 +469,46 @@ public class Customer_Management extends javax.swing.JFrame
                 btnLogout_UpdateCustomerActionPerformed(evt);
             }
         });
+        jPanel3.add(btnLogout_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 20, 77, 58));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jLabel13)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnHome_UpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLogout_UpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(txtUpdateID, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnShowInformation)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDeleteCustomer)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnUpdate)))
-                .addGap(18, 18, 18))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel35))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(cbbUpdateGender, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dcDateOfBirth_UpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtUpdateName)
-                    .addComponent(txtUpdateAddress)
-                    .addComponent(txtUpdatePhoneNumber)
-                    .addComponent(txtUpdateIDCard))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 106, Short.MAX_VALUE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnLogout_UpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnHome_UpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUpdateID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnShowInformation)
-                    .addComponent(btnDeleteCustomer)
-                    .addComponent(btnUpdate))
-                .addGap(29, 29, 29)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtUpdateName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel17)
-                                    .addComponent(cbbUpdateGender, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(33, 33, 33))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(dcDateOfBirth_UpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtUpdateAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtUpdatePhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel35)
-                            .addComponent(txtUpdateIDCard, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(96, 96, 96))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(19, 19, 19)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(503, Short.MAX_VALUE)))
-        );
+        jLabel22.setBackground(new java.awt.Color(32, 172, 216));
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setText("             Update/ Delete Customer");
+        jLabel22.setOpaque(true);
+        jLabel22.setPreferredSize(new java.awt.Dimension(34, 50));
+        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 19, 960, 66));
+
+        btnShowInformation.setBackground(new java.awt.Color(32, 172, 216));
+        btnShowInformation.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnShowInformation.setForeground(new java.awt.Color(255, 255, 255));
+        btnShowInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/search_20px.png"))); // NOI18N
+        btnShowInformation.setText("Show Information");
+        btnShowInformation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowInformationActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnShowInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, -1, -1));
+
+        btnDeleteCustomer.setBackground(new java.awt.Color(32, 172, 216));
+        btnDeleteCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnDeleteCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeleteCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/delete_25px.png"))); // NOI18N
+        btnDeleteCustomer.setText("Delete");
+        btnDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCustomerActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(815, 104, -1, -1));
+
+        jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(32, 172, 216));
+        jLabel35.setText("ID Card");
+        jPanel3.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 488, -1, -1));
+        jPanel3.add(txtUpdateIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 488, 412, 32));
+        jPanel3.add(dcDateOfBirth_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(404, 245, 178, 32));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -643,7 +551,7 @@ public class Customer_Management extends javax.swing.JFrame
             if(customer_BUS.insert(ct))
             {
                 JOptionPane.showMessageDialog(this, "Customer added susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
-
+                createTable();
                 // Clear Form
                 txtID.setText("");
                 txtName.setText("");
@@ -714,7 +622,7 @@ public class Customer_Management extends javax.swing.JFrame
             if(customer_BUS.delete(ct))
             {
                 JOptionPane.showMessageDialog(this, "Customer deleted susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                
+                createTable();
                 // Clear Form
                 txtUpdateID.setText("");
                 txtUpdateName.setText("");
@@ -754,6 +662,7 @@ public class Customer_Management extends javax.swing.JFrame
             if(customer_BUS.update(ct))
             {
                 JOptionPane.showMessageDialog(this, "Customer updated susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                createTable();
             }
             else
                 JOptionPane.showMessageDialog(this, "Cannot update customers!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -770,12 +679,6 @@ public class Customer_Management extends javax.swing.JFrame
             {
                 txtUpdateName.setText(ct.getName());
                 cbbUpdateGender.setSelectedItem(ct.getGender());
-                /*Date date = null;
-                try {
-                    date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(ct.getDateOfBirth());
-                } catch (ParseException ex) {
-                    Logger.getLogger(Customer_Management.class.getName()).log(Level.SEVERE, null, ex);
-                }*/
                 dcDateOfBirth_UpdateCustomer.setDate(ct.getDateOfBirth());
                 txtUpdateAddress.setText(ct.getAddress());
                 txtUpdatePhoneNumber.setText(ct.getPhoneNumber());
@@ -856,6 +759,7 @@ public class Customer_Management extends javax.swing.JFrame
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
