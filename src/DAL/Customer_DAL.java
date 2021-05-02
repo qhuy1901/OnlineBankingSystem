@@ -10,10 +10,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ACER
- */
 public class Customer_DAL extends DBConnection
 {
     public boolean insert(Customer_DTO ct)

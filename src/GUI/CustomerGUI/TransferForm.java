@@ -1,12 +1,17 @@
 package GUI.CustomerGUI;
 
+import BUS.Account_BUS;
+import DTO.Account_DTO;
 import GUI.Customer_GUI;
 import GUI.LogIn;
 import javax.swing.JOptionPane;
 
 public class TransferForm extends javax.swing.JFrame 
 {
-    public TransferForm() {
+    Account_BUS busAccount = new Account_BUS();
+    
+    public TransferForm() 
+    {
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
@@ -29,7 +34,7 @@ public class TransferForm extends javax.swing.JFrame
         lblFee = new javax.swing.JLabel();
         lblDescription = new javax.swing.JLabel();
         CbB_Bank = new javax.swing.JComboBox<>();
-        txtBeneficiary_Account = new javax.swing.JTextField();
+        txtBeneficiaryAccount = new javax.swing.JTextField();
         txtBeneficiary_name = new javax.swing.JTextField();
         txtAmount = new javax.swing.JTextField();
         lbltienVND = new javax.swing.JLabel();
@@ -125,8 +130,8 @@ public class TransferForm extends javax.swing.JFrame
         CbB_Bank.setSelectedIndex(-1);
         jPanel1.add(CbB_Bank, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, 422, -1));
 
-        txtBeneficiary_Account.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(txtBeneficiary_Account, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 422, -1));
+        txtBeneficiaryAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel1.add(txtBeneficiaryAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 422, -1));
 
         txtBeneficiary_name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPanel1.add(txtBeneficiary_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 422, -1));
@@ -187,13 +192,24 @@ public class TransferForm extends javax.swing.JFrame
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
-        if(txtBeneficiary_Account.getText().equals("")|| txtBeneficiary_name.getText().equals("")|| txtAmount.getText().equals("")|| txtFee.getText().equals("") || txtDescription.getText().equals(""))
+        if(txtBeneficiaryAccount.getText().equals("")|| txtBeneficiary_name.getText().equals("")|| txtAmount.getText().equals("")|| txtFee.getText().equals("") || txtDescription.getText().equals(""))
         {
-            JOptionPane.showConfirmDialog(null, "Vui lòng nhập đầy đủ thông tin", "", JOptionPane.CLOSED_OPTION);
+            JOptionPane.showConfirmDialog(null, "Required fields are empty", "Please fill all required fields...!", JOptionPane.CLOSED_OPTION);
         }
         else
         {
-            new ConfirmationForm();
+            ConfirmationForm confirmationForm = new ConfirmationForm();
+            if(confirmationForm.isCorrectPassword)
+            {
+                Account_DTO tkNguoiNhan = new Account_DTO(Long.parseLong(txtBeneficiaryAccount.getText()));
+                if(busAccount.isValidAccount(tkNguoiNhan))
+                {
+                    if(busAccount.increase(tkNguoiNhan, Long.parseLong(txtAmount.getText())))
+                    JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);    
+                }
+                else       
+                    JOptionPane.showConfirmDialog(null, "Beneficiary account is blocked or not exist", "Error", JOptionPane.CLOSED_OPTION);
+            }
         }
     }//GEN-LAST:event_btnContinueActionPerformed
 
@@ -223,7 +239,7 @@ public class TransferForm extends javax.swing.JFrame
     private javax.swing.JLabel lbltienVND;
     private javax.swing.JLabel llblBeneficiary_Name;
     private javax.swing.JTextField txtAmount;
-    private javax.swing.JTextField txtBeneficiary_Account;
+    private javax.swing.JTextField txtBeneficiaryAccount;
     private javax.swing.JTextField txtBeneficiary_name;
     private javax.swing.JTextField txtDescription;
     private javax.swing.JTextField txtFee;
