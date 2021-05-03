@@ -217,7 +217,6 @@ public class Customer_GUI extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCustomerManagement4ActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCustomerManagement1;
     private javax.swing.JButton btnCustomerManagement3;

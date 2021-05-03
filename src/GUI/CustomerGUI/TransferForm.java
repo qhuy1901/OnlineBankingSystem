@@ -259,7 +259,6 @@ public class TransferForm extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContinue;
     private javax.swing.JButton btnHome;
