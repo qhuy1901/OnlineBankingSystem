@@ -1,21 +1,30 @@
 package GUI.CustomerGUI;
 
 import BUS.Account_BUS;
+import BUS.Customer_BUS;
 import DTO.Account_DTO;
+import DTO.Customer_DTO;
+import DTO.UserLogin_DTO;
 import GUI.Customer_GUI;
 import GUI.LogIn;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class TransferForm extends javax.swing.JFrame 
 {
     Account_BUS busAccount = new Account_BUS();
+    Customer_BUS busCustomer = new Customer_BUS();
+            
+    Account_DTO dtoAccount = null; // Tài khoản của người đang thực hiện chuyển tiền
+    Customer_DTO dtoCustomer = null; //Người chuyển tiền
     
-    public TransferForm() 
+    public TransferForm(Customer_DTO customer, Account_DTO account) 
     {
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
         setVisible(true);
+        dtoAccount = account;
+        dtoCustomer = customer;
     }
 
     @SuppressWarnings("unchecked")
@@ -33,9 +42,9 @@ public class TransferForm extends javax.swing.JFrame
         lblAmount = new javax.swing.JLabel();
         lblFee = new javax.swing.JLabel();
         lblDescription = new javax.swing.JLabel();
-        CbB_Bank = new javax.swing.JComboBox<>();
+        cbb_Bank = new javax.swing.JComboBox<>();
         txtBeneficiaryAccount = new javax.swing.JTextField();
-        txtBeneficiary_name = new javax.swing.JTextField();
+        txtBeneficiaryName = new javax.swing.JTextField();
         txtAmount = new javax.swing.JTextField();
         lbltienVND = new javax.swing.JLabel();
         txtFee = new javax.swing.JTextField();
@@ -125,16 +134,16 @@ public class TransferForm extends javax.swing.JFrame
         lblDescription.setText("Description");
         jPanel1.add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, -1, -1));
 
-        CbB_Bank.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        CbB_Bank.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACB Bank", "VP Bank", "Saccombank", " " }));
-        CbB_Bank.setSelectedIndex(-1);
-        jPanel1.add(CbB_Bank, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, 422, -1));
+        cbb_Bank.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        cbb_Bank.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACB Bank", "VP Bank", "Saccombank", " " }));
+        cbb_Bank.setSelectedIndex(-1);
+        jPanel1.add(cbb_Bank, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, 422, -1));
 
         txtBeneficiaryAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPanel1.add(txtBeneficiaryAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 422, -1));
 
-        txtBeneficiary_name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(txtBeneficiary_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 422, -1));
+        txtBeneficiaryName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel1.add(txtBeneficiaryName, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 422, -1));
 
         txtAmount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPanel1.add(txtAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 250, -1));
@@ -191,39 +200,71 @@ public class TransferForm extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    private String confirmPassword()
+    {
+        // Create Password JOptionPane
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Please enter your password:");
+        JPasswordField pass = new JPasswordField(10);
+        panel.add(label);
+        panel.add(pass);
+        String[] options = new String[]{"Confirm", "Cancel"};
+        int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
+        String password = "";
+        if(option == 0) // pressing OK button
+        {
+            char[] pw = pass.getPassword();
+            password = new String(pw);
+        }
+        return password;
+    }
+    
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
-        if(txtBeneficiaryAccount.getText().equals("")|| txtBeneficiary_name.getText().equals("")|| txtAmount.getText().equals("")|| txtFee.getText().equals("") || txtDescription.getText().equals(""))
+        if(txtBeneficiaryAccount.getText().equals("")|| txtBeneficiaryName.getText().equals("")|| txtAmount.getText().equals("")|| txtFee.getText().equals("") || txtDescription.getText().equals(""))
         {
             JOptionPane.showConfirmDialog(null, "Required fields are empty", "Please fill all required fields...!", JOptionPane.CLOSED_OPTION);
         }
         else
         {
-            ConfirmationForm confirmationForm = new ConfirmationForm();
-            if(confirmationForm.isCorrectPassword)
+            Account_DTO tkNguoiNhan = new Account_DTO(Long.parseLong(txtBeneficiaryAccount.getText())); // tài khoản của người nhận
+            if(busAccount.isValidAccount(tkNguoiNhan))
             {
-                Account_DTO tkNguoiNhan = new Account_DTO(Long.parseLong(txtBeneficiaryAccount.getText()));
-                if(busAccount.isValidAccount(tkNguoiNhan))
+                UserLogin_DTO dtoUserLogIn = busCustomer.getUserLogin(dtoCustomer);
+                if(confirmPassword().equals(dtoUserLogIn.getPassword()))
                 {
-                    if(busAccount.increase(tkNguoiNhan, Long.parseLong(txtAmount.getText())))
-                    JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);    
+                    if(busAccount.increase(tkNguoiNhan, Long.parseLong(txtAmount.getText())) && busAccount.deduct(dtoAccount, Long.parseLong(txtAmount.getText()) + Long.parseLong(txtFee.getText())))
+                    {
+                        JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);
+                        
+                        //Clear Form
+                        cbb_Bank.setSelectedItem(null);
+                        txtBeneficiaryAccount.setText("");
+                        txtBeneficiaryName.setText("");
+                        txtAmount.setText("");
+                        txtFee.setText("");
+                        txtDescription.setText("");
+                    }
                 }
-                else       
-                    JOptionPane.showConfirmDialog(null, "Beneficiary account is blocked or not exist", "Error", JOptionPane.CLOSED_OPTION);
+                else
+                    JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
             }
+            else       
+                JOptionPane.showConfirmDialog(null, "Beneficiary account is blocked or not exist", "Error", JOptionPane.CLOSED_OPTION);
+            
         }
     }//GEN-LAST:event_btnContinueActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new Customer_GUI();
+        new Customer_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CbB_Bank;
     private javax.swing.JButton btnContinue;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JComboBox<String> cbb_Bank;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAmount;
@@ -240,7 +281,7 @@ public class TransferForm extends javax.swing.JFrame
     private javax.swing.JLabel llblBeneficiary_Name;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtBeneficiaryAccount;
-    private javax.swing.JTextField txtBeneficiary_name;
+    private javax.swing.JTextField txtBeneficiaryName;
     private javax.swing.JTextField txtDescription;
     private javax.swing.JTextField txtFee;
     // End of variables declaration//GEN-END:variables

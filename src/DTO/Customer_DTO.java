@@ -27,7 +27,18 @@ public class Customer_DTO
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.idCard = idCard;
-        //this.userLoginID = userLoginID;
+    }
+    
+    public Customer_DTO(long id, String name, String gender, Date dateOfBirth, String address, String phoneNumber, String idCard, long userLoginID)
+    {
+        this.id = id;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.idCard = idCard;
+        this.userLoginID = userLoginID;
     }
 
     public long getId() {

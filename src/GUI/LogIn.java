@@ -1,6 +1,7 @@
 package GUI;
 
 import BUS.UserLogin_BUS;
+import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
 import javax.swing.JOptionPane;
 
@@ -104,38 +105,31 @@ public class LogIn extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean isFormValid()
-    {
-            if(txtUsername.getText().equals("") || txtPassword.getText().equals(""))
-            {
-                JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }    
-            else
-                return true;
-    }
-    
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        if(isFormValid())
+        if(txtUsername.getText().equals("") || txtPassword.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
+        }
+        else
         {
             UserLogin_DTO dtoUserLogin = new UserLogin_DTO(txtUsername.getText(), txtPassword.getText());
-            if(busUserLogin.check(dtoUserLogin))
+            if(busUserLogin.checkPassword(dtoUserLogin))
             {
-                if(busUserLogin.isAdmin(dtoUserLogin))
+                if(busUserLogin.checkRole(dtoUserLogin))
                 {
                     Admin_GUI guiAdmin = new Admin_GUI();
-                    guiAdmin.setLocationRelativeTo(null);
+                    
                 }
                 else
                 {
-                    Customer_GUI guiCustomer = new Customer_GUI();
-                    guiCustomer.setLocationRelativeTo(null);
+                    Customer_DTO dtoCustomer = busUserLogin.getCustomerInfo(dtoUserLogin);
+                    Customer_GUI guiCustomer = new Customer_GUI(dtoCustomer);
                 }
                 this.setVisible(false);
             }
             else
                 JOptionPane.showMessageDialog(this, "Username or password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
-        } 
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed

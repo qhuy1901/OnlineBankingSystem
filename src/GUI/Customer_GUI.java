@@ -1,15 +1,23 @@
 package GUI;
 
+import BUS.Customer_BUS;
+import DTO.Account_DTO;
+import DTO.Customer_DTO;
 import GUI.CustomerGUI.TransferForm;
 
 public class Customer_GUI extends javax.swing.JFrame 
 {
-    public Customer_GUI() 
+    Customer_BUS busCustomer= new Customer_BUS();
+    Customer_DTO dtoCustomer = null; // Người đang đăng nhập hệ thống
+   
+    public Customer_GUI(Customer_DTO customer) 
     {
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
         setVisible(true);
+        dtoCustomer = customer;
+        lblHelloCustomer.setText("        Hello " + dtoCustomer.getName());
     }
 
     @SuppressWarnings("unchecked")
@@ -18,7 +26,7 @@ public class Customer_GUI extends javax.swing.JFrame
 
         jLabel1 = new javax.swing.JLabel();
         btnLogOut = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lblHelloCustomer = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnCustomerManagement1 = new javax.swing.JButton();
         btnTransfer = new javax.swing.JButton();
@@ -46,12 +54,12 @@ public class Customer_GUI extends javax.swing.JFrame
         });
         getContentPane().add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 60, 150, 40));
 
-        jLabel2.setBackground(new java.awt.Color(32, 172, 210));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(239, 250, 252));
-        jLabel2.setText("        Chúc quý khách một ngày tốt lành!");
-        jLabel2.setOpaque(true);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 35, 1010, 80));
+        lblHelloCustomer.setBackground(new java.awt.Color(32, 172, 210));
+        lblHelloCustomer.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblHelloCustomer.setForeground(new java.awt.Color(239, 250, 252));
+        lblHelloCustomer.setText("        Chúc quý khách một ngày tốt lành!");
+        lblHelloCustomer.setOpaque(true);
+        getContentPane().add(lblHelloCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 35, 1010, 80));
 
         jPanel1.setBackground(new java.awt.Color(239, 250, 252));
 
@@ -188,7 +196,6 @@ public class Customer_GUI extends javax.swing.JFrame
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
         LogIn guiLogIn= new LogIn();
-        guiLogIn.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
@@ -197,7 +204,8 @@ public class Customer_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnCustomerManagement1ActionPerformed
 
     private void btnTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferActionPerformed
-        TransferForm guiTransfer = new TransferForm();
+        Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
+        TransferForm guiTransfer = new TransferForm(dtoCustomer, dtoAccount);
         this.setVisible(false);
     }//GEN-LAST:event_btnTransferActionPerformed
 
@@ -217,11 +225,11 @@ public class Customer_GUI extends javax.swing.JFrame
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnTransfer;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblHelloCustomer;
     // End of variables declaration//GEN-END:variables
 }

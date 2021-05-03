@@ -18,7 +18,6 @@ public class Account_DAL
             prest.setLong(1, money);
             prest.setLong(2, dtoAccount.getId());
             prest.executeUpdate();
-            JOptionPane.showConfirmDialog(null, "Chuyển tiền thành công 2", "Thành công", JOptionPane.CLOSED_OPTION);
             return true;
         }
         catch(SQLException e)

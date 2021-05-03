@@ -1,6 +1,8 @@
 package DAL;
 
+import DTO.Account_DTO;
 import DTO.Customer_DTO;
+import DTO.UserLogin_DTO;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -91,6 +93,50 @@ public class Customer_DAL extends DBConnection
             JOptionPane.showMessageDialog(null, e);
         }
         return dotCustomer; 
+    }
+    
+    public Account_DTO getPaymentAccount(Customer_DTO dtoCustomer)
+    {
+        try
+        {
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "SELECT * FROM Account WHERE CustomerID = ? AND AccountTypeID = 1";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setLong(1, dtoCustomer.getId());
+            ResultSet rs = ps.executeQuery();
+            Account_DTO dtoAccount = null;
+            while(rs.next())
+                dtoAccount = new Account_DTO(rs.getLong(1), rs.getLong(2), rs.getDate(3), rs.getString(4),rs.getDouble(5), rs.getString(6), rs.getLong(7));
+            con.close();
+            return dtoAccount;
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null; 
+    }
+    
+    public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)
+    {
+        try
+        {
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "SELECT * FROM UserLogins WHERE ID = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setLong(1, dtoCustomer.getUserLoginID());
+            ResultSet rs = ps.executeQuery();
+            UserLogin_DTO dtoUserLogin = null;
+            while(rs.next())
+                dtoUserLogin = new UserLogin_DTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+            con.close();
+            return dtoUserLogin;
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null; 
     }
     
     public ArrayList<Customer_DTO> getCustomersList()
