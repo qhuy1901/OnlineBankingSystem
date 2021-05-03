@@ -136,7 +136,7 @@ public class Admin_GUI extends javax.swing.JFrame
                 .addGap(53, 53, 53))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 650));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1080, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
