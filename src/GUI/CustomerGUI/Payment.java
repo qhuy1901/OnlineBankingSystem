@@ -38,7 +38,7 @@ public class Payment extends javax.swing.JFrame {
         WaterBill = new javax.swing.JPanel();
         btnLogout_Water = new javax.swing.JButton();
         btnHome_Water = new javax.swing.JButton();
-        jLabel18 = new javax.swing.JLabel();
+        lblSupplier = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         txtmoneyAmount_Water = new javax.swing.JTextField();
         btnConfirm_Water = new javax.swing.JButton();
@@ -48,7 +48,7 @@ public class Payment extends javax.swing.JFrame {
         Internet = new javax.swing.JPanel();
         btnHome_Internet = new javax.swing.JButton();
         btnLogout_Internet = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lblSupplier_Internet = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtmoneyAmount_Internet = new javax.swing.JTextField();
@@ -61,7 +61,7 @@ public class Payment extends javax.swing.JFrame {
         btnLogout_Elect = new javax.swing.JButton();
         btnHome_Elect = new javax.swing.JButton();
         txtmoneyAmount_Elect = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
+        lblSupplier_Electricity = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         txtaccBalance_Elect = new javax.swing.JTextField();
@@ -72,7 +72,7 @@ public class Payment extends javax.swing.JFrame {
         TelephoneFee = new javax.swing.JPanel();
         btnLogout_Mobi = new javax.swing.JButton();
         btnHome_Mobi = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
+        lblSupplier_Telephone = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         cbbValue_Mobi = new javax.swing.JComboBox<>();
         rdbViettel_Mobi = new javax.swing.JRadioButton();
@@ -132,10 +132,10 @@ public class Payment extends javax.swing.JFrame {
         });
         WaterBill.add(btnHome_Water, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, 76, 58));
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel18.setText("Provider: ");
-        WaterBill.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
+        lblSupplier.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblSupplier.setForeground(new java.awt.Color(32, 172, 216));
+        lblSupplier.setText("Supplier:");
+        WaterBill.add(lblSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(32, 172, 216));
@@ -210,10 +210,10 @@ public class Payment extends javax.swing.JFrame {
         });
         Internet.add(btnLogout_Internet, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 20, 77, 58));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel2.setText("Provider: ");
-        Internet.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
+        lblSupplier_Internet.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblSupplier_Internet.setForeground(new java.awt.Color(32, 172, 216));
+        lblSupplier_Internet.setText("Supplier:");
+        Internet.add(lblSupplier_Internet, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(32, 172, 216));
@@ -226,10 +226,10 @@ public class Payment extends javax.swing.JFrame {
         Internet.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
 
         txtmoneyAmount_Internet.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Internet.add(txtmoneyAmount_Internet, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 400, -1));
+        Internet.add(txtmoneyAmount_Internet, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 400, -1));
 
         txtaccBalance_Internet.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Internet.add(txtaccBalance_Internet, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 400, -1));
+        Internet.add(txtaccBalance_Internet, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 400, -1));
 
         tbtConfirm_Internet.setBackground(new java.awt.Color(32, 172, 216));
         tbtConfirm_Internet.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -255,7 +255,7 @@ public class Payment extends javax.swing.JFrame {
 
         jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPT Telecom", "Viettel", "VNPT" }));
-        Internet.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 190, -1));
+        Internet.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 190, -1));
 
         jTabbedPane1.addTab("Internet", Internet);
 
@@ -299,10 +299,10 @@ public class Payment extends javax.swing.JFrame {
         txtmoneyAmount_Elect.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Electricity.add(txtmoneyAmount_Elect, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 400, -1));
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel25.setText("Provider: ");
-        Electricity.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
+        lblSupplier_Electricity.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblSupplier_Electricity.setForeground(new java.awt.Color(32, 172, 216));
+        lblSupplier_Electricity.setText("Supplier:");
+        Electricity.add(lblSupplier_Electricity, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(32, 172, 216));
@@ -382,10 +382,10 @@ public class Payment extends javax.swing.JFrame {
         });
         TelephoneFee.add(btnHome_Mobi, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, 76, 58));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel10.setText("Network provider: ");
-        TelephoneFee.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
+        lblSupplier_Telephone.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblSupplier_Telephone.setForeground(new java.awt.Color(32, 172, 216));
+        lblSupplier_Telephone.setText("Network supplier: ");
+        TelephoneFee.add(lblSupplier_Telephone, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(32, 172, 216));
@@ -582,17 +582,13 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
@@ -603,6 +599,10 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblSupplier;
+    private javax.swing.JLabel lblSupplier_Electricity;
+    private javax.swing.JLabel lblSupplier_Internet;
+    private javax.swing.JLabel lblSupplier_Telephone;
     private javax.swing.JRadioButton rdbMobi_Mobi;
     private javax.swing.JRadioButton rdbViettel_Mobi;
     private javax.swing.JRadioButton rdbVina_Mobi;
