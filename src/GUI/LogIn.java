@@ -31,6 +31,7 @@ public class LogIn extends javax.swing.JFrame
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Online Banking System");
         setBackground(new java.awt.Color(239, 250, 252));
         setLocationByPlatform(true);
         setSize(new java.awt.Dimension(950, 650));

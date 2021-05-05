@@ -3,6 +3,8 @@ package GUI;
 import BUS.Customer_BUS;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
+import GUI.CustomerGUI.MyWallet;
+import GUI.CustomerGUI.Payment;
 import GUI.CustomerGUI.TransferForm;
 
 public class Customer_GUI extends javax.swing.JFrame 
@@ -28,10 +30,10 @@ public class Customer_GUI extends javax.swing.JFrame
         btnLogOut = new javax.swing.JButton();
         lblHelloCustomer = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        btnCustomerManagement1 = new javax.swing.JButton();
+        btnMyWallet = new javax.swing.JButton();
         btnTransfer = new javax.swing.JButton();
-        btnCustomerManagement3 = new javax.swing.JButton();
-        btnCustomerManagement4 = new javax.swing.JButton();
+        btnSaving = new javax.swing.JButton();
+        btnPayment = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -63,20 +65,20 @@ public class Customer_GUI extends javax.swing.JFrame
 
         jPanel1.setBackground(new java.awt.Color(239, 250, 252));
 
-        btnCustomerManagement1.setBackground(new java.awt.Color(255, 255, 255));
-        btnCustomerManagement1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnCustomerManagement1.setForeground(new java.awt.Color(32, 172, 210));
-        btnCustomerManagement1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/customergui_vicuatoi.png"))); // NOI18N
-        btnCustomerManagement1.setText("Ví của tôi");
-        btnCustomerManagement1.setBorder(null);
-        btnCustomerManagement1.setBorderPainted(false);
-        btnCustomerManagement1.setDefaultCapable(false);
-        btnCustomerManagement1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCustomerManagement1.setMargin(new java.awt.Insets(0, 14, 30, 14));
-        btnCustomerManagement1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnCustomerManagement1.addActionListener(new java.awt.event.ActionListener() {
+        btnMyWallet.setBackground(new java.awt.Color(255, 255, 255));
+        btnMyWallet.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnMyWallet.setForeground(new java.awt.Color(32, 172, 210));
+        btnMyWallet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/customergui_vicuatoi.png"))); // NOI18N
+        btnMyWallet.setText("My Wallet");
+        btnMyWallet.setBorder(null);
+        btnMyWallet.setBorderPainted(false);
+        btnMyWallet.setDefaultCapable(false);
+        btnMyWallet.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnMyWallet.setMargin(new java.awt.Insets(0, 14, 30, 14));
+        btnMyWallet.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnMyWallet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCustomerManagement1ActionPerformed(evt);
+                btnMyWalletActionPerformed(evt);
             }
         });
 
@@ -97,37 +99,37 @@ public class Customer_GUI extends javax.swing.JFrame
             }
         });
 
-        btnCustomerManagement3.setBackground(new java.awt.Color(255, 255, 255));
-        btnCustomerManagement3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnCustomerManagement3.setForeground(new java.awt.Color(32, 172, 210));
-        btnCustomerManagement3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/customergui_tietkiem.png"))); // NOI18N
-        btnCustomerManagement3.setText("Tiết kiệm");
-        btnCustomerManagement3.setBorder(null);
-        btnCustomerManagement3.setBorderPainted(false);
-        btnCustomerManagement3.setDefaultCapable(false);
-        btnCustomerManagement3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCustomerManagement3.setMargin(new java.awt.Insets(0, 14, 30, 14));
-        btnCustomerManagement3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnCustomerManagement3.addActionListener(new java.awt.event.ActionListener() {
+        btnSaving.setBackground(new java.awt.Color(255, 255, 255));
+        btnSaving.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnSaving.setForeground(new java.awt.Color(32, 172, 210));
+        btnSaving.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/customergui_tietkiem.png"))); // NOI18N
+        btnSaving.setText("Saving");
+        btnSaving.setBorder(null);
+        btnSaving.setBorderPainted(false);
+        btnSaving.setDefaultCapable(false);
+        btnSaving.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSaving.setMargin(new java.awt.Insets(0, 14, 30, 14));
+        btnSaving.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSaving.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCustomerManagement3ActionPerformed(evt);
+                btnSavingActionPerformed(evt);
             }
         });
 
-        btnCustomerManagement4.setBackground(new java.awt.Color(255, 255, 255));
-        btnCustomerManagement4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnCustomerManagement4.setForeground(new java.awt.Color(32, 172, 210));
-        btnCustomerManagement4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/customergui_thanhtoan.png"))); // NOI18N
-        btnCustomerManagement4.setText("Thanh toán");
-        btnCustomerManagement4.setBorder(null);
-        btnCustomerManagement4.setBorderPainted(false);
-        btnCustomerManagement4.setDefaultCapable(false);
-        btnCustomerManagement4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCustomerManagement4.setMargin(new java.awt.Insets(0, 14, 30, 14));
-        btnCustomerManagement4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnCustomerManagement4.addActionListener(new java.awt.event.ActionListener() {
+        btnPayment.setBackground(new java.awt.Color(255, 255, 255));
+        btnPayment.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnPayment.setForeground(new java.awt.Color(32, 172, 210));
+        btnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/customergui_thanhtoan.png"))); // NOI18N
+        btnPayment.setText("Payment");
+        btnPayment.setBorder(null);
+        btnPayment.setBorderPainted(false);
+        btnPayment.setDefaultCapable(false);
+        btnPayment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPayment.setMargin(new java.awt.Insets(0, 14, 30, 14));
+        btnPayment.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnPayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCustomerManagement4ActionPerformed(evt);
+                btnPaymentActionPerformed(evt);
             }
         });
 
@@ -164,12 +166,12 @@ public class Customer_GUI extends javax.swing.JFrame
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCustomerManagement1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCustomerManagement3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnMyWallet, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSaving, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(78, 78, 78)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCustomerManagement4, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,12 +181,12 @@ public class Customer_GUI extends javax.swing.JFrame
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCustomerManagement1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMyWallet, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(40, 40, 40)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCustomerManagement4, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCustomerManagement3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSaving, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(26, 26, 26))
         );
 
@@ -199,9 +201,10 @@ public class Customer_GUI extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
-    private void btnCustomerManagement1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerManagement1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCustomerManagement1ActionPerformed
+    private void btnMyWalletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyWalletActionPerformed
+        new MyWallet();
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMyWalletActionPerformed
 
     private void btnTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferActionPerformed
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
@@ -209,19 +212,20 @@ public class Customer_GUI extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_btnTransferActionPerformed
 
-    private void btnCustomerManagement3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerManagement3ActionPerformed
+    private void btnSavingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavingActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCustomerManagement3ActionPerformed
+    }//GEN-LAST:event_btnSavingActionPerformed
 
-    private void btnCustomerManagement4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerManagement4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCustomerManagement4ActionPerformed
+    private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
+        new Payment();
+        this.setVisible(false);
+    }//GEN-LAST:event_btnPaymentActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCustomerManagement1;
-    private javax.swing.JButton btnCustomerManagement3;
-    private javax.swing.JButton btnCustomerManagement4;
     private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnMyWallet;
+    private javax.swing.JButton btnPayment;
+    private javax.swing.JButton btnSaving;
     private javax.swing.JButton btnTransfer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;

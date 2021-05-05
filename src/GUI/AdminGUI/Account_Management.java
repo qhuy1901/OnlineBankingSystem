@@ -1,5 +1,7 @@
 package GUI.AdminGUI;
 
+import GUI.Admin_GUI;
+import GUI.LogIn;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
@@ -226,11 +228,13 @@ public class Account_Management extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHome_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_OpenAccountActionPerformed
-        // TODO add your handling code here:
+        Admin_GUI guiAdmin = new Admin_GUI();
+        this.setVisible(false);
     }//GEN-LAST:event_btnHome_OpenAccountActionPerformed
 
     private void btnLogout_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_OpenAccountActionPerformed
-
+        LogIn guiLogIn = new LogIn();
+        this.setVisible(false);
     }//GEN-LAST:event_btnLogout_OpenAccountActionPerformed
 
     private void btnActivate_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivate_OpenAccountActionPerformed
@@ -240,11 +244,13 @@ public class Account_Management extends javax.swing.JFrame
     }//GEN-LAST:event_btnActivate_OpenAccountActionPerformed
 
     private void btnLogout_SearchAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_SearchAccountActionPerformed
-        // TODO add your handling code here:
+        LogIn guiLogIn = new LogIn();
+        this.setVisible(false);
     }//GEN-LAST:event_btnLogout_SearchAccountActionPerformed
 
     private void btnHome_SearchAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_SearchAccountActionPerformed
-        // TODO add your handling code here:
+        Admin_GUI guiAdmin = new Admin_GUI();
+        this.setVisible(false);
     }//GEN-LAST:event_btnHome_SearchAccountActionPerformed
 
 

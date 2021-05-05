@@ -1,7 +1,9 @@
 package GUI;
 
 import BUS.Customer_BUS;
+import GUI.AdminGUI.Account_Management;
 import GUI.AdminGUI.Customer_Management;
+import GUI.AdminGUI.Supplier_Management;
 
 public class Admin_GUI extends javax.swing.JFrame 
 {
@@ -12,31 +14,62 @@ public class Admin_GUI extends javax.swing.JFrame
         setLocationRelativeTo(null);
         setSize(1064, 650);
         setVisible(true);
-        //display();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        btnLogOut = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        pnlBackground = new javax.swing.JPanel();
+        pnlWelcome = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        lblIcon = new javax.swing.JLabel();
+        btnLogOut = new javax.swing.JButton();
+        lblAdminPortal = new javax.swing.JLabel();
+        btnAccountManagement = new javax.swing.JButton();
         btnCustomerManagement = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnSupplierManagement = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NK Bank");
         setBackground(new java.awt.Color(239, 250, 252));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/FontAwesome_f007(0)_128.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        pnlBackground.setBackground(new java.awt.Color(239, 250, 252));
+        pnlBackground.setMinimumSize(new java.awt.Dimension(1060, 650));
+        pnlBackground.setPreferredSize(new java.awt.Dimension(1060, 650));
+        pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlWelcome.setBackground(new java.awt.Color(32, 172, 210));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Welcome");
+        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabel4.setPreferredSize(new java.awt.Dimension(200, 200));
+        pnlWelcome.add(jLabel4);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel5.setText("to");
+        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabel5.setFocusTraversalPolicyProvider(true);
+        jLabel5.setPreferredSize(new java.awt.Dimension(50, 190));
+        pnlWelcome.add(jLabel5);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel6.setText("Admin Portal!");
+        jLabel6.setPreferredSize(new java.awt.Dimension(250, 44));
+        pnlWelcome.add(jLabel6);
+
+        pnlBackground.add(pnlWelcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 330, 400));
+
+        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/FontAwesome_f007(0)_128.png"))); // NOI18N
+        pnlBackground.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         btnLogOut.setBackground(new java.awt.Color(239, 250, 252));
         btnLogOut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -47,46 +80,38 @@ public class Admin_GUI extends javax.swing.JFrame
                 btnLogOutActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 60, 150, 40));
+        pnlBackground.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 60, 150, 40));
 
-        jLabel2.setBackground(new java.awt.Color(32, 172, 210));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(239, 250, 252));
-        jLabel2.setText("        Admin Portal");
-        jLabel2.setOpaque(true);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 35, 1010, 80));
+        lblAdminPortal.setBackground(new java.awt.Color(32, 172, 210));
+        lblAdminPortal.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblAdminPortal.setForeground(new java.awt.Color(239, 250, 252));
+        lblAdminPortal.setText("        Admin Portal");
+        lblAdminPortal.setOpaque(true);
+        pnlBackground.add(lblAdminPortal, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 35, 1010, 80));
 
-        jPanel1.setBackground(new java.awt.Color(239, 250, 252));
-
-        jPanel2.setBackground(new java.awt.Color(32, 172, 210));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Welcome");
-        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel4.setPreferredSize(new java.awt.Dimension(200, 200));
-        jPanel2.add(jLabel4);
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel5.setText("to");
-        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel5.setFocusTraversalPolicyProvider(true);
-        jLabel5.setPreferredSize(new java.awt.Dimension(50, 190));
-        jPanel2.add(jLabel5);
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel6.setText("Admin Portal!");
-        jLabel6.setPreferredSize(new java.awt.Dimension(250, 44));
-        jPanel2.add(jLabel6);
+        btnAccountManagement.setBackground(new java.awt.Color(255, 255, 255));
+        btnAccountManagement.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnAccountManagement.setForeground(new java.awt.Color(32, 172, 210));
+        btnAccountManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_AccountManagement.png"))); // NOI18N
+        btnAccountManagement.setText("Account Management");
+        btnAccountManagement.setBorder(null);
+        btnAccountManagement.setBorderPainted(false);
+        btnAccountManagement.setDefaultCapable(false);
+        btnAccountManagement.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAccountManagement.setMargin(new java.awt.Insets(0, 14, 30, 14));
+        btnAccountManagement.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAccountManagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccountManagementActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(btnAccountManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 170, 270, -1));
 
         btnCustomerManagement.setBackground(new java.awt.Color(255, 255, 255));
-        btnCustomerManagement.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCustomerManagement.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnCustomerManagement.setForeground(new java.awt.Color(32, 172, 210));
-        btnCustomerManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/linea_2f(2)_180.png"))); // NOI18N
-        btnCustomerManagement.setText("Quản lý khách hàng");
+        btnCustomerManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_cusmanagement.png"))); // NOI18N
+        btnCustomerManagement.setText("Customer Management");
         btnCustomerManagement.setBorder(null);
         btnCustomerManagement.setBorderPainted(false);
         btnCustomerManagement.setDefaultCapable(false);
@@ -98,59 +123,30 @@ public class Admin_GUI extends javax.swing.JFrame
                 btnCustomerManagementActionPerformed(evt);
             }
         });
+        pnlBackground.add(btnCustomerManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 270, -1));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(32, 172, 210));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/linea_1f2(0)_180.png"))); // NOI18N
-        jButton3.setText("Biểu đồ thống kê");
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setMargin(new java.awt.Insets(0, 14, 30, 14));
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnSupplierManagement.setBackground(new java.awt.Color(255, 255, 255));
+        btnSupplierManagement.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnSupplierManagement.setForeground(new java.awt.Color(32, 172, 210));
+        btnSupplierManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_PartnerManagement.png"))); // NOI18N
+        btnSupplierManagement.setText("Supplier Management");
+        btnSupplierManagement.setBorder(null);
+        btnSupplierManagement.setBorderPainted(false);
+        btnSupplierManagement.setDefaultCapable(false);
+        btnSupplierManagement.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSupplierManagement.setMargin(new java.awt.Insets(0, 14, 30, 14));
+        btnSupplierManagement.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSupplierManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnSupplierManagementActionPerformed(evt);
             }
         });
+        pnlBackground.add(btnSupplierManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 270, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addComponent(btnCustomerManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(179, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(188, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCustomerManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53))
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1080, 650));
+        getContentPane().add(pnlBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void btnCustomerManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerManagementActionPerformed
-        // TODO add your handling code here:
-        Customer_Management guiCustomerManagement = new Customer_Management();
-        guiCustomerManagement.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnCustomerManagementActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
@@ -159,46 +155,32 @@ public class Admin_GUI extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
-    /*public void display()
-    {
-        ArrayList<Customer_DTO> list = customer_BUS.getCustomersList();
-        DefaultTableModel model = (DefaultTableModel)tableCustomers.getModel();
-        Object[] row = new Object[6];
-        
-        for(int i = 0; i < list.size(); i++)
-        {
-            row[0] = list.get(i).getId();
-            row[1] = list.get(i).getName();
-            row[2] = list.get(i).getGender();
-            row[3] = list.get(i).getAddress();
-            row[4] = list.get(i).getPhoneNumber();
-            row[5] = list.get(i).getIDCard();
-            model.addRow(row);
-        }
-    }*/
-        
-    /*private boolean isFormValid()
-    {
-            if(txtName.getText().equals("") || txtID.getText().equals("") || txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || txtIDCard.getText().equals(""))
-            {
-                JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }    
-            else
-                return true;
-    }*/
-    
+    private void btnSupplierManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierManagementActionPerformed
+        new Supplier_Management();
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSupplierManagementActionPerformed
+
+    private void btnAccountManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountManagementActionPerformed
+        new Account_Management();
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAccountManagementActionPerformed
+
+    private void btnCustomerManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerManagementActionPerformed
+        Customer_Management guiCustomerManagement = new Customer_Management();
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCustomerManagementActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAccountManagement;
     private javax.swing.JButton btnCustomerManagement;
     private javax.swing.JButton btnLogOut;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnSupplierManagement;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblAdminPortal;
+    private javax.swing.JLabel lblIcon;
+    private javax.swing.JPanel pnlBackground;
+    private javax.swing.JPanel pnlWelcome;
     // End of variables declaration//GEN-END:variables
 }
