@@ -14,7 +14,7 @@ public class TransferForm extends javax.swing.JFrame
     Account_BUS busAccount = new Account_BUS();
     Customer_BUS busCustomer = new Customer_BUS();
             
-    Account_DTO dtoAccount = null; // Tài khoản của người đang thực hiện chuyển tiền
+    Account_DTO dtoAccount = null; // Tài khoản của người chuyển tiền
     Customer_DTO dtoCustomer = null; //Người chuyển tiền
     
     public TransferForm(Customer_DTO customer, Account_DTO account) 
@@ -226,12 +226,13 @@ public class TransferForm extends javax.swing.JFrame
         }
         else
         {
-            Account_DTO tkNguoiNhan = new Account_DTO(Long.parseLong(txtBeneficiaryAccount.getText())); // tài khoản của người nhận
-            if(busAccount.isValidAccount(tkNguoiNhan))
+            Account_DTO tkNguoiNhan = new Account_DTO(Long.parseLong(txtBeneficiaryAccount.getText())); // Tạo tài khoản của người nhận
+            if(busAccount.isValidAccount(tkNguoiNhan)) // Kiểm tra tài khoản người nhận có tồn tại hay không
             {
-                UserLogin_DTO dtoUserLogIn = busCustomer.getUserLogin(dtoCustomer);
-                if(confirmPassword().equals(dtoUserLogIn.getPassword()))
+                UserLogin_DTO dtoUserLogIn = busCustomer.getUserLogin(dtoCustomer); // Lấy password của người chuyển tiền
+                if(true)//confirmPassword().equals(dtoUserLogIn.getPassword()) // So sánh password với password đang nhập
                 {
+                    
                     if(busAccount.increase(tkNguoiNhan, Long.parseLong(txtAmount.getText())) && busAccount.deduct(dtoAccount, Long.parseLong(txtAmount.getText()) + Long.parseLong(txtFee.getText())))
                     {
                         JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);

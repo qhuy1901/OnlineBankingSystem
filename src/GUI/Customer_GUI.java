@@ -19,7 +19,7 @@ public class Customer_GUI extends javax.swing.JFrame
         setSize(1064, 650);
         setVisible(true);
         dtoCustomer = customer;
-        lblHelloCustomer.setText("        Hello " + dtoCustomer.getName());
+        lblHelloCustomer.setText("        Hello " + dtoCustomer.getLastName());
     }
 
     @SuppressWarnings("unchecked")

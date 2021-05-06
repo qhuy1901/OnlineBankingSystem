@@ -13,7 +13,7 @@ public class Account_DAL
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "UPDATE Account SET CurrentBalance = CurrentBalance + ? WHERE ID = ?";
+            String SQL = "UPDATE Account SET Current_Balance = Current_Balance + ? WHERE Account_ID = ?";
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, money);
             prest.setLong(2, dtoAccount.getId());
@@ -31,7 +31,7 @@ public class Account_DAL
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "UPDATE Account SET CurrentBalance = CurrentBalance - ? WHERE ID = ?";
+            String SQL = "UPDATE Account SET Current_Balance = Current_Balance - ? WHERE Account_ID = ?";
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, money);
             prest.setLong(2, dtoAccount.getId());
@@ -49,7 +49,7 @@ public class Account_DAL
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT ID, Status FROM Account WHERE ID = ?";
+            String SQL = "SELECT Account_ID, Status FROM Account WHERE Account_ID = ?";
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, dtoAccount.getId());
             ResultSet rs = prest.executeQuery();

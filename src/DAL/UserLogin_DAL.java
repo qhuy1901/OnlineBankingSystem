@@ -14,7 +14,7 @@ public class UserLogin_DAL extends DBConnection
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT ID FROM UserLogins WHERE Username = ? AND Password = ?";
+            String SQL = "SELECT UserLogin_ID FROM User_Login WHERE Username = ? AND Password = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, dtoUserLogin.getUsername());
             ps.setString(2, dtoUserLogin.getPassword());
@@ -40,7 +40,7 @@ public class UserLogin_DAL extends DBConnection
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT Role FROM UserLogins WHERE Username = ? AND Password = ?";
+            String SQL = "SELECT Role FROM User_Login WHERE Username = ? AND Password = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, dtoUserLogin.getUsername());
             ps.setString(2, dtoUserLogin.getPassword());
@@ -65,7 +65,7 @@ public class UserLogin_DAL extends DBConnection
             Connection con = DBConnection.ConnectDb();
             
             // Lấy userID từ username và password
-            String SQL1 = "SELECT ID FROM UserLogins WHERE Username = ? AND Password = ?"; 
+            String SQL1 = "SELECT UserLogin_ID FROM User_Login WHERE Username = ? AND Password = ?"; 
             PreparedStatement ps1 = con.prepareStatement(SQL1);
             ps1.setString(1, dtoUserLogin.getUsername());
             ps1.setString(2, dtoUserLogin.getPassword());
@@ -76,13 +76,12 @@ public class UserLogin_DAL extends DBConnection
             
             // Tạo người dùng, lấy thông tin thông qua userID và return thông tin người dùng
             Customer_DTO dtoCustomer = null;
-            String SQL2 = "SELECT * FROM Customer WHERE UserLoginID = ?"; 
+            String SQL2 = "SELECT * FROM Customer WHERE UserLogin_ID = ?"; 
             PreparedStatement ps2 = con.prepareStatement(SQL2);
             ps2.setLong(1, UserLoginID);
             ResultSet rs2 = ps2.executeQuery();
             while(rs2.next())
-                dtoCustomer = new Customer_DTO(rs2.getLong(1), rs2.getString(2), rs2.getString(3), rs2.getDate(4),rs2.getString(5), rs2.getString(6), rs2.getString(7), rs2.getLong(8));
-                
+                dtoCustomer = new Customer_DTO(rs2.getLong(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getDate(5),rs2.getString(6), rs2.getString(7), rs2.getString(8), rs2.getLong(8)); 
             con.close();
             return dtoCustomer;
         }

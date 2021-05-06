@@ -35,7 +35,7 @@ public class Customer_Management extends javax.swing.JFrame
         for(int i = 0; i < list.size(); i++)
         {
             Customer_DTO dtoCustomer = list.get(i);
-            String[] rows = {String.valueOf(dtoCustomer.getId()), dtoCustomer.getName(), dtoCustomer.getGender(),  dtoCustomer.getDateOfBirth().toString(), dtoCustomer.getAddress(), dtoCustomer.getPhoneNumber(), dtoCustomer.getIDCard()};
+            String[] rows = {String.valueOf(dtoCustomer.getId()), dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName() , dtoCustomer.getGender(),  dtoCustomer.getDateOfBirth().toString(), dtoCustomer.getAddress(), dtoCustomer.getPhoneNumber(), dtoCustomer.getIDCard()};
             tblCustomerModel.addRow(rows);
         }
         tblViewCustomer.setModel(tblCustomerModel);
@@ -59,13 +59,11 @@ public class Customer_Management extends javax.swing.JFrame
         jScrollPane2 = new javax.swing.JScrollPane();
         tblViewCustomer = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        txtID = new javax.swing.JTextField();
+        txtLastName_AddCustomer = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        cbGender = new javax.swing.JComboBox<>();
+        cbGender_AddCustomer = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -80,13 +78,15 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel34 = new javax.swing.JLabel();
         txtIDCard = new javax.swing.JTextField();
         dcDateOfBirth_AddCustomer = new com.toedter.calendar.JDateChooser();
+        jLabel15 = new javax.swing.JLabel();
+        txtFirstName_AddCustomer = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        txtUpdateName = new javax.swing.JTextField();
+        txtLastName_UpdateCustomer = new javax.swing.JTextField();
         txtUpdateID = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         cbbUpdateGender = new javax.swing.JComboBox<>();
@@ -106,6 +106,8 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel35 = new javax.swing.JLabel();
         txtUpdateIDCard = new javax.swing.JTextField();
         dcDateOfBirth_UpdateCustomer = new com.toedter.calendar.JDateChooser();
+        jLabel24 = new javax.swing.JLabel();
+        txtFirstName_UpdateCustomer = new javax.swing.JTextField();
 
         btnUpdate2.setBackground(new java.awt.Color(32, 172, 216));
         btnUpdate2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -215,44 +217,38 @@ public class Customer_Management extends javax.swing.JFrame
         jPanel1.setBackground(new java.awt.Color(239, 250, 252));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel5.setText("ID");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 124, 94, 20));
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel6.setText("Name");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 169, 94, -1));
+        jLabel6.setText("Last Name");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 94, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(32, 172, 216));
         jLabel8.setText("Date of birth");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 232, -1, -1));
-        jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 161, 428, 32));
-        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 111, 222, 32));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, -1, -1));
+        jPanel1.add(txtLastName_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 200, 32));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(32, 172, 216));
         jLabel9.setText("Gender");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 232, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
 
-        cbGender.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        cbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", " " }));
-        cbGender.setSelectedIndex(-1);
-        jPanel1.add(cbGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 228, 122, -1));
+        cbGender_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbGender_AddCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", " " }));
+        cbGender_AddCustomer.setSelectedIndex(-1);
+        jPanel1.add(cbGender_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 200, -1));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(32, 172, 216));
         jLabel10.setText("Address");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 286, -1, -1));
-        jPanel1.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 286, 428, 32));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
+        jPanel1.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 540, 32));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(32, 172, 216));
         jLabel11.setText("Phone No.");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 358, -1, -1));
-        jPanel1.add(txtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 350, 428, 32));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
+        jPanel1.add(txtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 320, 32));
 
         btnAdd.setBackground(new java.awt.Color(32, 172, 216));
         btnAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -274,17 +270,17 @@ public class Customer_Management extends javax.swing.JFrame
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(jLabel12)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jLabel12)
-                .addGap(44, 44, 44))
+                .addGap(46, 46, 46))
         );
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(795, 203, -1, 200));
@@ -329,7 +325,7 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel4.setBackground(new java.awt.Color(32, 172, 216));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("        Add Customer");
+        jLabel4.setText("         Register an online banking account for customer");
         jLabel4.setOpaque(true);
         jLabel4.setPreferredSize(new java.awt.Dimension(34, 50));
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 19, 970, 66));
@@ -337,11 +333,17 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(32, 172, 216));
         jLabel34.setText("ID Card");
-        jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 409, -1, -1));
-        jPanel1.add(txtIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 225, 32));
+        jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, -1, -1));
+        jPanel1.add(txtIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 320, 32));
 
         dcDateOfBirth_AddCustomer.setDateFormatString("dd/MM/yyyy");
-        jPanel1.add(dcDateOfBirth_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 228, 178, 32));
+        jPanel1.add(dcDateOfBirth_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 200, 32));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(32, 172, 216));
+        jLabel15.setText("First Name");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 94, -1));
+        jPanel1.add(txtFirstName_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 200, 32));
 
         jTabbedPane1.addTab("Add Customer", jPanel1);
 
@@ -358,22 +360,22 @@ public class Customer_Management extends javax.swing.JFrame
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel14.setText("Name");
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 193, 53, -1));
+        jLabel14.setText("Last Name");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 80, -1));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(32, 172, 216));
         jLabel16.setText("Date of birth");
-        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 249, -1, -1));
-        jPanel3.add(txtUpdateName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 193, 412, 32));
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, -1, -1));
+        jPanel3.add(txtLastName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 180, 32));
         jPanel3.add(txtUpdateID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 230, 32));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(32, 172, 216));
         jLabel17.setText("Gender");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 249, -1, -1));
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
 
-        cbbUpdateGender.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        cbbUpdateGender.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbbUpdateGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", " " }));
         cbbUpdateGender.setSelectedIndex(-1);
         cbbUpdateGender.addActionListener(new java.awt.event.ActionListener() {
@@ -381,7 +383,7 @@ public class Customer_Management extends javax.swing.JFrame
                 cbbUpdateGenderActionPerformed(evt);
             }
         });
-        jPanel3.add(cbbUpdateGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 245, 118, -1));
+        jPanel3.add(cbbUpdateGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 220, -1));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(32, 172, 216));
@@ -393,13 +395,13 @@ public class Customer_Management extends javax.swing.JFrame
                 txtUpdateAddressActionPerformed(evt);
             }
         });
-        jPanel3.add(txtUpdateAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 338, 412, 32));
+        jPanel3.add(txtUpdateAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 338, 540, 32));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(32, 172, 216));
         jLabel19.setText("Phone No.");
         jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 410, -1, -1));
-        jPanel3.add(txtUpdatePhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 412, 32));
+        jPanel3.add(txtUpdatePhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 330, 32));
 
         btnUpdate.setBackground(new java.awt.Color(32, 172, 216));
         btnUpdate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -507,8 +509,14 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel35.setForeground(new java.awt.Color(32, 172, 216));
         jLabel35.setText("ID Card");
         jPanel3.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 488, -1, -1));
-        jPanel3.add(txtUpdateIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 488, 412, 32));
-        jPanel3.add(dcDateOfBirth_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(404, 245, 178, 32));
+        jPanel3.add(txtUpdateIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 488, 330, 32));
+        jPanel3.add(dcDateOfBirth_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 178, 32));
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(32, 172, 216));
+        jLabel24.setText("First Name");
+        jPanel3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 193, 80, -1));
+        jPanel3.add(txtFirstName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 193, 220, 32));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -547,16 +555,17 @@ public class Customer_Management extends javax.swing.JFrame
         // TODO add your handling code here:
         if(isFormValid())
         {
-            Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtID.getText()) , txtName.getText(), cbGender.getSelectedItem().toString(), dcDateOfBirth_AddCustomer.getDate() ,txtAddress.getText(), txtPhoneNumber.getText(), txtIDCard.getText());
+            Customer_DTO ct = new Customer_DTO(0 , txtFirstName_AddCustomer.getText(), txtLastName_AddCustomer.getText(), cbGender_AddCustomer.getSelectedItem().toString(), dcDateOfBirth_AddCustomer.getDate() ,txtAddress.getText(), txtPhoneNumber.getText(), txtIDCard.getText());
             if(customer_BUS.insert(ct))
             {
                 JOptionPane.showMessageDialog(this, "Customer added susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 createTable();
+                
                 // Clear Form
-                txtID.setText("");
-                txtName.setText("");
-                cbGender.setSelectedItem(null);
-                dcDateOfBirth_AddCustomer.cleanup();
+                txtFirstName_AddCustomer.setText("");
+                txtLastName_AddCustomer.setText("");
+                cbGender_AddCustomer.setSelectedItem(null);
+                dcDateOfBirth_AddCustomer.setCalendar(null);
                 txtAddress.setText("");
                 txtPhoneNumber.setText("");
                 txtIDCard.setText("");
@@ -625,7 +634,8 @@ public class Customer_Management extends javax.swing.JFrame
                 createTable();
                 // Clear Form
                 txtUpdateID.setText("");
-                txtUpdateName.setText("");
+                txtFirstName_UpdateCustomer.setText("");
+                txtLastName_UpdateCustomer.setText("");
                 cbbUpdateGender.setSelectedItem(null);
                 dcDateOfBirth_UpdateCustomer.setDate(null);
                 txtUpdateAddress.setText("");
@@ -645,7 +655,7 @@ public class Customer_Management extends javax.swing.JFrame
 
     private boolean isValidUpdateForm()
     {
-            if(txtUpdateName.getText().equals("") || txtUpdateID.getText().equals("") || txtUpdateAddress.getText().equals("") || txtUpdatePhoneNumber.getText().equals("") || txtUpdateIDCard.getText().equals(""))
+            if(txtLastName_UpdateCustomer.getText().equals("") || txtUpdateID.getText().equals("") || txtUpdateAddress.getText().equals("") || txtUpdatePhoneNumber.getText().equals("") || txtUpdateIDCard.getText().equals(""))
             {
                 JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
                 return false;
@@ -658,7 +668,7 @@ public class Customer_Management extends javax.swing.JFrame
         // TODO add your handling code here:
         if(isValidUpdateForm())
         {
-            Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtUpdateID.getText()) , txtUpdateName.getText(), cbbUpdateGender.getSelectedItem().toString(), dcDateOfBirth_UpdateCustomer.getDate(), txtUpdateAddress.getText(), txtUpdatePhoneNumber.getText(), txtUpdateIDCard.getText());
+            Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtUpdateID.getText()) , txtFirstName_UpdateCustomer.getText(), txtLastName_UpdateCustomer.getText(), cbbUpdateGender.getSelectedItem().toString(), dcDateOfBirth_UpdateCustomer.getDate(), txtUpdateAddress.getText(), txtUpdatePhoneNumber.getText(), txtUpdateIDCard.getText());
             if(customer_BUS.update(ct))
             {
                 JOptionPane.showMessageDialog(this, "Customer updated susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -677,7 +687,8 @@ public class Customer_Management extends javax.swing.JFrame
             Customer_DTO ct = customer_BUS.getInformation(Integer.parseInt(txtUpdateID.getText()));
             if(ct != null)
             {
-                txtUpdateName.setText(ct.getName());
+                txtFirstName_UpdateCustomer.setText(ct.getFirstName());
+                txtLastName_UpdateCustomer.setText(ct.getLastName());
                 cbbUpdateGender.setSelectedItem(ct.getGender());
                 dcDateOfBirth_UpdateCustomer.setDate(ct.getDateOfBirth());
                 txtUpdateAddress.setText(ct.getAddress());
@@ -720,7 +731,7 @@ public class Customer_Management extends javax.swing.JFrame
 
     private boolean isFormValid()
     {
-            if(txtName.getText().equals("") || txtID.getText().equals("") || txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || txtIDCard.getText().equals(""))
+            if(txtLastName_AddCustomer.getText().equals("") || txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || txtIDCard.getText().equals(""))
             {
                 JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
                 return false;
@@ -741,7 +752,7 @@ public class Customer_Management extends javax.swing.JFrame
     private javax.swing.JButton btnShowInformation;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdate2;
-    private javax.swing.JComboBox<String> cbGender;
+    private javax.swing.JComboBox<String> cbGender_AddCustomer;
     private javax.swing.JComboBox<String> cbbUpdateGender;
     private com.toedter.calendar.JDateChooser dcDateOfBirth_AddCustomer;
     private com.toedter.calendar.JDateChooser dcDateOfBirth_UpdateCustomer;
@@ -752,6 +763,7 @@ public class Customer_Management extends javax.swing.JFrame
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -760,11 +772,11 @@ public class Customer_Management extends javax.swing.JFrame
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -780,15 +792,16 @@ public class Customer_Management extends javax.swing.JFrame
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblViewCustomer;
     private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtFirstName_AddCustomer;
+    private javax.swing.JTextField txtFirstName_UpdateCustomer;
     private javax.swing.JTextField txtIDCard;
-    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtLastName_AddCustomer;
+    private javax.swing.JTextField txtLastName_UpdateCustomer;
     private javax.swing.JTextField txtPhoneNumber;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtUpdateAddress;
     private javax.swing.JTextField txtUpdateID;
     private javax.swing.JTextField txtUpdateIDCard;
-    private javax.swing.JTextField txtUpdateName;
     private javax.swing.JTextField txtUpdatePhoneNumber;
     // End of variables declaration//GEN-END:variables
 }
