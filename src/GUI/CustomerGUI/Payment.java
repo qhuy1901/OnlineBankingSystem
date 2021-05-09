@@ -1,17 +1,28 @@
 package GUI.CustomerGUI;
 
+import BUS.Payment_BUS;
+import DTO.Account_DTO;
 import DTO.Customer_DTO;
-import GUI.Customer_GUI;
+import DTO.PaymentBill_DTO;
+import DTO.Supplier_DTO;
 import GUI.LogIn;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 public class Payment extends javax.swing.JFrame 
 {
-    public Payment() 
+    Payment_BUS busPayment = new Payment_BUS();
+    Account_DTO dtoAccount = null; // Tài khoản của người chuyển tiền
+    
+    public Payment(Account_DTO account) 
     {
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
         setVisible(true);
+        cboServiceType.setSelectedItem(null);
+
+        dtoAccount = account; 
     }
 
     @SuppressWarnings("unchecked")
@@ -27,35 +38,13 @@ public class Payment extends javax.swing.JFrame
         btnHome_Water = new javax.swing.JButton();
         lblSupplier = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        txtmoneyAmount_Water = new javax.swing.JTextField();
+        txtCustomerID_Water = new javax.swing.JTextField();
         btnConfirm_Water = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        Internet = new javax.swing.JPanel();
-        btnHome_Internet = new javax.swing.JButton();
-        btnLogout_Internet = new javax.swing.JButton();
-        lblSupplier_Internet = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtmoneyAmount_Internet = new javax.swing.JTextField();
-        txtaccBalance_Internet = new javax.swing.JTextField();
-        tbtConfirm_Internet = new javax.swing.JButton();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        Electricity = new javax.swing.JPanel();
-        btnLogout_Elect = new javax.swing.JButton();
-        btnHome_Elect = new javax.swing.JButton();
-        txtmoneyAmount_Elect = new javax.swing.JTextField();
-        lblSupplier_Electricity = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        txtaccBalance_Elect = new javax.swing.JTextField();
-        btnConfirm_Elect = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cboServiceType = new javax.swing.JComboBox<>();
+        lblSupplier1 = new javax.swing.JLabel();
+        cboSupplierName = new javax.swing.JComboBox<>();
         TelephoneFee = new javax.swing.JPanel();
         btnLogout_Mobi = new javax.swing.JButton();
         btnHome_Mobi = new javax.swing.JButton();
@@ -121,16 +110,16 @@ public class Payment extends javax.swing.JFrame
 
         lblSupplier.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblSupplier.setForeground(new java.awt.Color(32, 172, 216));
-        lblSupplier.setText("Supplier:");
-        WaterBill.add(lblSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
+        lblSupplier.setText("Service Type:");
+        WaterBill.add(lblSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(32, 172, 216));
         jLabel19.setText("Customer ID:");
-        WaterBill.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, -1));
+        WaterBill.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
 
-        txtmoneyAmount_Water.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        WaterBill.add(txtmoneyAmount_Water, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 400, -1));
+        txtCustomerID_Water.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        WaterBill.add(txtCustomerID_Water, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 270, -1));
 
         btnConfirm_Water.setBackground(new java.awt.Color(32, 172, 216));
         btnConfirm_Water.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -149,188 +138,35 @@ public class Payment extends javax.swing.JFrame
         jLabel17.setBackground(new java.awt.Color(32, 172, 216));
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("         Water Bill");
+        jLabel17.setText("         Bill Payment");
         jLabel17.setOpaque(true);
         jLabel17.setPreferredSize(new java.awt.Dimension(34, 50));
         WaterBill.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 970, 66));
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dong Nai Water Supplier", "Thu Duc Water Supplier", "Ben Thanh Water Supplier", "Da Nang Water Supplier", "Clean Water Ha Noi (Hawacom)" }));
-        WaterBill.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
-
-        jTabbedPane1.addTab("Water Bill", WaterBill);
-
-        Internet.setBackground(new java.awt.Color(239, 250, 252));
-        Internet.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnHome_Internet.setBackground(new java.awt.Color(32, 172, 216));
-        btnHome_Internet.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnHome_Internet.setForeground(new java.awt.Color(255, 255, 255));
-        btnHome_Internet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Home.png"))); // NOI18N
-        btnHome_Internet.setText("Home");
-        btnHome_Internet.setToolTipText("");
-        btnHome_Internet.setBorder(null);
-        btnHome_Internet.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnHome_Internet.setIconTextGap(1);
-        btnHome_Internet.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnHome_Internet.addActionListener(new java.awt.event.ActionListener() {
+        cboServiceType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cboServiceType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Water bill payment", "Internet bill payment", "Electricity bill payment" }));
+        cboServiceType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHome_InternetActionPerformed(evt);
+                cboServiceTypeActionPerformed(evt);
             }
         });
-        Internet.add(btnHome_Internet, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, 76, 58));
+        WaterBill.add(cboServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 270, -1));
 
-        btnLogout_Internet.setBackground(new java.awt.Color(32, 172, 216));
-        btnLogout_Internet.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnLogout_Internet.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout_Internet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
-        btnLogout_Internet.setText("Logout");
-        btnLogout_Internet.setToolTipText("");
-        btnLogout_Internet.setBorder(null);
-        btnLogout_Internet.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLogout_Internet.setIconTextGap(0);
-        btnLogout_Internet.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLogout_Internet.addActionListener(new java.awt.event.ActionListener() {
+        lblSupplier1.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblSupplier1.setForeground(new java.awt.Color(32, 172, 216));
+        lblSupplier1.setText("Supplier Name:");
+        WaterBill.add(lblSupplier1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, -1));
+
+        cboSupplierName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cboSupplierName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dong Nai Water Supplier", "Thu Duc Water Supplier", "Ben Thanh Water Supplier", "Da Nang Water Supplier", "Clean Water Ha Noi (Hawacom)" }));
+        cboSupplierName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogout_InternetActionPerformed(evt);
+                cboSupplierNameActionPerformed(evt);
             }
         });
-        Internet.add(btnLogout_Internet, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 20, 77, 58));
+        WaterBill.add(cboSupplierName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 270, -1));
 
-        lblSupplier_Internet.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        lblSupplier_Internet.setForeground(new java.awt.Color(32, 172, 216));
-        lblSupplier_Internet.setText("Supplier:");
-        Internet.add(lblSupplier_Internet, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel3.setText("Money Amount:");
-        Internet.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel5.setText("Account Balance:");
-        Internet.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
-
-        txtmoneyAmount_Internet.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Internet.add(txtmoneyAmount_Internet, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 400, -1));
-
-        txtaccBalance_Internet.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Internet.add(txtaccBalance_Internet, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 400, -1));
-
-        tbtConfirm_Internet.setBackground(new java.awt.Color(32, 172, 216));
-        tbtConfirm_Internet.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tbtConfirm_Internet.setForeground(new java.awt.Color(255, 255, 255));
-        tbtConfirm_Internet.setText("Confirm");
-        tbtConfirm_Internet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbtConfirm_InternetActionPerformed(evt);
-            }
-        });
-        Internet.add(tbtConfirm_Internet, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, -1, -1));
-
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Payment_Internet.png"))); // NOI18N
-        Internet.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 110, 110));
-
-        jLabel4.setBackground(new java.awt.Color(32, 172, 216));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("         Internet");
-        jLabel4.setOpaque(true);
-        jLabel4.setPreferredSize(new java.awt.Dimension(34, 50));
-        Internet.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 970, 66));
-
-        jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPT Telecom", "Viettel", "VNPT" }));
-        Internet.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 190, -1));
-
-        jTabbedPane1.addTab("Internet", Internet);
-
-        Electricity.setBackground(new java.awt.Color(239, 250, 252));
-        Electricity.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnLogout_Elect.setBackground(new java.awt.Color(32, 172, 216));
-        btnLogout_Elect.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnLogout_Elect.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout_Elect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
-        btnLogout_Elect.setText("Logout");
-        btnLogout_Elect.setToolTipText("");
-        btnLogout_Elect.setBorder(null);
-        btnLogout_Elect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLogout_Elect.setIconTextGap(0);
-        btnLogout_Elect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLogout_Elect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogout_ElectActionPerformed(evt);
-            }
-        });
-        Electricity.add(btnLogout_Elect, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 20, 77, 58));
-
-        btnHome_Elect.setBackground(new java.awt.Color(32, 172, 216));
-        btnHome_Elect.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnHome_Elect.setForeground(new java.awt.Color(255, 255, 255));
-        btnHome_Elect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Home.png"))); // NOI18N
-        btnHome_Elect.setText("Home");
-        btnHome_Elect.setToolTipText("");
-        btnHome_Elect.setBorder(null);
-        btnHome_Elect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnHome_Elect.setIconTextGap(1);
-        btnHome_Elect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnHome_Elect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHome_ElectActionPerformed(evt);
-            }
-        });
-        Electricity.add(btnHome_Elect, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, 76, 58));
-
-        txtmoneyAmount_Elect.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Electricity.add(txtmoneyAmount_Elect, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 400, -1));
-
-        lblSupplier_Electricity.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        lblSupplier_Electricity.setForeground(new java.awt.Color(32, 172, 216));
-        lblSupplier_Electricity.setText("Supplier:");
-        Electricity.add(lblSupplier_Electricity, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
-
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel26.setText("Money Amount:");
-        Electricity.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, -1, -1));
-
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel27.setText("Account Balance:");
-        Electricity.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
-
-        txtaccBalance_Elect.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Electricity.add(txtaccBalance_Elect, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 400, -1));
-
-        btnConfirm_Elect.setBackground(new java.awt.Color(32, 172, 216));
-        btnConfirm_Elect.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnConfirm_Elect.setForeground(new java.awt.Color(255, 255, 255));
-        btnConfirm_Elect.setText("Confirm");
-        btnConfirm_Elect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirm_ElectActionPerformed(evt);
-            }
-        });
-        Electricity.add(btnConfirm_Elect, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 510, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Payment_Electricity.png"))); // NOI18N
-        Electricity.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 120, 110));
-
-        jLabel24.setBackground(new java.awt.Color(32, 172, 216));
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel24.setText("         Electricity Bill");
-        jLabel24.setOpaque(true);
-        jLabel24.setPreferredSize(new java.awt.Dimension(34, 50));
-        Electricity.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 970, 66));
-
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nothern Power Corp", "Southern Power Corp", "Central Power Corp", " ", " " }));
-        Electricity.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, -1, -1));
-
-        jTabbedPane1.addTab("Electricity Bill", Electricity);
+        jTabbedPane1.addTab("Bill Payment", WaterBill);
 
         TelephoneFee.setBackground(new java.awt.Color(239, 250, 252));
         TelephoneFee.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -453,21 +289,6 @@ public class Payment extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private void btnHome_InternetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_InternetActionPerformed
-        // TODO add your handling code here:
-     
-    }//GEN-LAST:event_btnHome_InternetActionPerformed
-
-    private void btnLogout_InternetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_InternetActionPerformed
-        LogIn guiLogIn = new LogIn();
-        this.setVisible(false);
-    }//GEN-LAST:event_btnLogout_InternetActionPerformed
-
-    private void btnLogout_ElectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_ElectActionPerformed
-        LogIn guiLogIn = new LogIn();
-        this.setVisible(false);
-    }//GEN-LAST:event_btnLogout_ElectActionPerformed
-
     private void btnLogout_WaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_WaterActionPerformed
         LogIn guiLogIn = new LogIn();
         this.setVisible(false);
@@ -478,10 +299,6 @@ public class Payment extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_btnLogout_MobiActionPerformed
 
-    private void btnHome_ElectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_ElectActionPerformed
-
-    }//GEN-LAST:event_btnHome_ElectActionPerformed
-
     private void btnHome_WaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_WaterActionPerformed
 
     }//GEN-LAST:event_btnHome_WaterActionPerformed
@@ -490,81 +307,93 @@ public class Payment extends javax.swing.JFrame
 
     }//GEN-LAST:event_btnHome_MobiActionPerformed
 
-    private void tbtConfirm_InternetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtConfirm_InternetActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_tbtConfirm_InternetActionPerformed
-
     private void btnConfirm_MobiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirm_MobiActionPerformed
-        // TODO add your handling code here:
+        // Mua thẻ điện thoại
         
     }//GEN-LAST:event_btnConfirm_MobiActionPerformed
 
     private void btnConfirm_WaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirm_WaterActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnConfirm_WaterActionPerformed
+        //Thanh toán nước
+        long customerId = Long.parseLong(txtCustomerID_Water.getText());
+        String supplierName = cboSupplierName.getSelectedItem().toString();
+        PaymentBill_DTO dtoWaterBill = busPayment.getBill(new Customer_DTO(customerId), new Supplier_DTO(supplierName));
+        if(dtoWaterBill != null) // Hóa đơn tồn tại
+        {
+            if(busPayment.payment(dtoWaterBill, dtoAccount))
+            {
+                JOptionPane.showConfirmDialog(null, "Payment is successful", "Successful", JOptionPane.CLOSED_OPTION);
 
-    private void btnConfirm_ElectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirm_ElectActionPerformed
-            
-    }//GEN-LAST:event_btnConfirm_ElectActionPerformed
+                //Clear form
+                cboServiceType.setSelectedItem(null);
+                txtCustomerID_Water.setText("");
+            }
+        }
+        else
+            JOptionPane.showMessageDialog(this, "This bill is not exist", "Error", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_btnConfirm_WaterActionPerformed
 
     private void cbbValue_MobiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbValue_MobiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbValue_MobiActionPerformed
 
+    private void cboServiceTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboServiceTypeActionPerformed
+        //Chọn loại dịch vụ cần thanh toán
+        if(cboServiceType.getSelectedItem() == null)
+            cboSupplierName.setSelectedItem(null);
+        else if(cboServiceType.getSelectedItem().toString().equals("Water bill payment"))
+        {
+            cboSupplierName.setModel(new DefaultComboBoxModel<>(new String[]{
+                "Dong Nai Water Supplier", "Thu Duc Water Supplier", "Ben Thanh Water Supplier", "Da Nang Water Supplier", "Clean Water Ha Noi"
+            }));
+        }
+        else if(cboServiceType.getSelectedItem().toString().equals("Electricity bill payment"))
+        {
+            cboSupplierName.setModel(new DefaultComboBoxModel<>(new String[]{
+                "Nothern Power Corp", "Southern Power Corp", "Central Power Corp"
+            }));
+        }
+        else // (cboServiceType.getSelectedItem().toString().equals("Internet bill payment"))
+        {
+            cboSupplierName.setModel(new DefaultComboBoxModel<>(new String[]{
+                "FPT Telecom", "Viettel", "VNPT"
+            }));
+        }
+    }//GEN-LAST:event_cboServiceTypeActionPerformed
+
+    private void cboSupplierNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSupplierNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboSupplierNameActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Electricity;
-    private javax.swing.JPanel Internet;
     private javax.swing.JPanel TelephoneFee;
     private javax.swing.JPanel WaterBill;
-    private javax.swing.JButton btnConfirm_Elect;
     private javax.swing.JButton btnConfirm_Mobi;
     private javax.swing.JButton btnConfirm_Water;
-    private javax.swing.JButton btnHome_Elect;
-    private javax.swing.JButton btnHome_Internet;
     private javax.swing.JButton btnHome_Mobi;
     private javax.swing.JButton btnHome_Water;
-    private javax.swing.JButton btnLogout_Elect;
-    private javax.swing.JButton btnLogout_Internet;
     private javax.swing.JButton btnLogout_Mobi;
     private javax.swing.JButton btnLogout_Water;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbValue_Mobi;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cboServiceType;
+    private javax.swing.JComboBox<String> cboSupplierName;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblSupplier;
-    private javax.swing.JLabel lblSupplier_Electricity;
-    private javax.swing.JLabel lblSupplier_Internet;
+    private javax.swing.JLabel lblSupplier1;
     private javax.swing.JLabel lblSupplier_Telephone;
     private javax.swing.JRadioButton rdbMobi_Mobi;
     private javax.swing.JRadioButton rdbViettel_Mobi;
     private javax.swing.JRadioButton rdbVina_Mobi;
-    private javax.swing.JButton tbtConfirm_Internet;
+    private javax.swing.JTextField txtCustomerID_Water;
     private javax.swing.JTextField txtNo_Mobi;
-    private javax.swing.JTextField txtaccBalance_Elect;
-    private javax.swing.JTextField txtaccBalance_Internet;
-    private javax.swing.JTextField txtmoneyAmount_Elect;
-    private javax.swing.JTextField txtmoneyAmount_Internet;
-    private javax.swing.JTextField txtmoneyAmount_Water;
     // End of variables declaration//GEN-END:variables
 }
