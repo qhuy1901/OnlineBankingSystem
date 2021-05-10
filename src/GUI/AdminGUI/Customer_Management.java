@@ -1,6 +1,7 @@
 package GUI.AdminGUI;
 
 import BUS.Customer_BUS;
+import DTO.Admin_DTO;
 import DTO.Customer_DTO;
 import GUI.Admin_GUI;
 import GUI.LogIn;
@@ -14,13 +15,15 @@ import javax.swing.table.TableRowSorter;
 public class Customer_Management extends javax.swing.JFrame 
 {
     Customer_BUS customer_BUS = new Customer_BUS();
+    Admin_DTO dtoAdmin = null;
     
-    public Customer_Management() 
+    public Customer_Management(Admin_DTO admin) 
     {
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
         setVisible(true);
+        dtoAdmin = admin;
         createTable();
     }
     
@@ -547,7 +550,7 @@ public class Customer_Management extends javax.swing.JFrame
 
     private void btnHome_AddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_AddCustomerActionPerformed
         // TODO add your handling code here:
-        Admin_GUI guiAdmin = new Admin_GUI();
+        new Admin_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_AddCustomerActionPerformed
 
@@ -641,7 +644,6 @@ public class Customer_Management extends javax.swing.JFrame
                 txtUpdateAddress.setText("");
                 txtUpdatePhoneNumber.setText("");
                 txtUpdateIDCard.setText("");
-                
             }
             else
                 JOptionPane.showMessageDialog(this, "Cannot delete customers!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -706,12 +708,12 @@ public class Customer_Management extends javax.swing.JFrame
     }//GEN-LAST:event_txtUpdateAddressActionPerformed
 
     private void btnHome_UpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_UpdateCustomerActionPerformed
-        Admin_GUI guiAdmin = new Admin_GUI();
+        new Admin_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_UpdateCustomerActionPerformed
 
     private void btnHome_ViewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_ViewCustomerActionPerformed
-        Admin_GUI guiAdmin = new Admin_GUI();
+        new Admin_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_ViewCustomerActionPerformed
 

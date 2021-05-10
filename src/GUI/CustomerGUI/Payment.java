@@ -6,6 +6,7 @@ import DTO.Customer_DTO;
 import DTO.PaymentBill_DTO;
 import DTO.Supplier_DTO;
 import GUI.LogIn;
+import GUI.Report.Report;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -124,13 +125,13 @@ public class Payment extends javax.swing.JFrame
         btnConfirm_Water.setBackground(new java.awt.Color(32, 172, 216));
         btnConfirm_Water.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnConfirm_Water.setForeground(new java.awt.Color(255, 255, 255));
-        btnConfirm_Water.setText("Confirm");
+        btnConfirm_Water.setText("Payment");
         btnConfirm_Water.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirm_WaterActionPerformed(evt);
             }
         });
-        WaterBill.add(btnConfirm_Water, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 520, -1, -1));
+        WaterBill.add(btnConfirm_Water, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, -1, -1));
 
         jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Payment_Water.png"))); // NOI18N
         WaterBill.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 110, 100));
@@ -323,6 +324,8 @@ public class Payment extends javax.swing.JFrame
             {
                 JOptionPane.showConfirmDialog(null, "Payment is successful", "Successful", JOptionPane.CLOSED_OPTION);
 
+                Report r = new Report();
+                r.showPaymentBill(dtoWaterBill.getId());
                 //Clear form
                 cboServiceType.setSelectedItem(null);
                 txtCustomerID_Water.setText("");

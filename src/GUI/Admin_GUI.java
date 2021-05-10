@@ -1,19 +1,24 @@
 package GUI;
 
-import BUS.Customer_BUS;
+import BUS.Admin_BUS;
+import DTO.Admin_DTO;
 import GUI.AdminGUI.Account_Management;
 import GUI.AdminGUI.Customer_Management;
 import GUI.AdminGUI.Supplier_Management;
 
 public class Admin_GUI extends javax.swing.JFrame 
 {
-    Customer_BUS customer_BUS = new Customer_BUS();
-    public Admin_GUI() 
+    Admin_BUS busAdmin = new Admin_BUS();
+    Admin_DTO dtoAdmin = null;
+    
+    public Admin_GUI(Admin_DTO admin) 
     {
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
         setVisible(true);
+        dtoAdmin = admin;
+        lblHelloAdmin.setText("        Hello " + admin.getLastName());
     }
 
     @SuppressWarnings("unchecked")
@@ -27,7 +32,7 @@ public class Admin_GUI extends javax.swing.JFrame
         jLabel6 = new javax.swing.JLabel();
         lblIcon = new javax.swing.JLabel();
         btnLogOut = new javax.swing.JButton();
-        lblAdminPortal = new javax.swing.JLabel();
+        lblHelloAdmin = new javax.swing.JLabel();
         btnAccountManagement = new javax.swing.JButton();
         btnCustomerManagement = new javax.swing.JButton();
         btnSupplierManagement = new javax.swing.JButton();
@@ -82,12 +87,12 @@ public class Admin_GUI extends javax.swing.JFrame
         });
         pnlBackground.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 60, 150, 40));
 
-        lblAdminPortal.setBackground(new java.awt.Color(32, 172, 210));
-        lblAdminPortal.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        lblAdminPortal.setForeground(new java.awt.Color(239, 250, 252));
-        lblAdminPortal.setText("        Admin Portal");
-        lblAdminPortal.setOpaque(true);
-        pnlBackground.add(lblAdminPortal, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 35, 1010, 80));
+        lblHelloAdmin.setBackground(new java.awt.Color(32, 172, 210));
+        lblHelloAdmin.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblHelloAdmin.setForeground(new java.awt.Color(239, 250, 252));
+        lblHelloAdmin.setText("        Admin Portal");
+        lblHelloAdmin.setOpaque(true);
+        pnlBackground.add(lblHelloAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 35, 1010, 80));
 
         btnAccountManagement.setBackground(new java.awt.Color(255, 255, 255));
         btnAccountManagement.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -150,23 +155,22 @@ public class Admin_GUI extends javax.swing.JFrame
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
-        LogIn guiLogIn= new LogIn();
-        guiLogIn.setVisible(true);
+        new LogIn();
         this.setVisible(false);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnSupplierManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierManagementActionPerformed
-        new Supplier_Management();
+        new Supplier_Management(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnSupplierManagementActionPerformed
 
     private void btnAccountManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountManagementActionPerformed
-        new Account_Management();
+        new Account_Management(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnAccountManagementActionPerformed
 
     private void btnCustomerManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerManagementActionPerformed
-        Customer_Management guiCustomerManagement = new Customer_Management();
+        new Customer_Management(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnCustomerManagementActionPerformed
 
@@ -178,7 +182,7 @@ public class Admin_GUI extends javax.swing.JFrame
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel lblAdminPortal;
+    private javax.swing.JLabel lblHelloAdmin;
     private javax.swing.JLabel lblIcon;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JPanel pnlWelcome;

@@ -1,5 +1,6 @@
 package GUI.AdminGUI;
 
+import DTO.Admin_DTO;
 import GUI.Admin_GUI;
 import GUI.LogIn;
 import javax.swing.Icon;
@@ -7,11 +8,14 @@ import javax.swing.JOptionPane;
 
 public class Account_Management extends javax.swing.JFrame 
 {
-    public Account_Management() 
+    Admin_DTO dtoAdmin = null;
+    
+    public Account_Management(Admin_DTO admin) 
     {
         initComponents();
         setSize(1064,650);
         setLocationRelativeTo(null);
+        dtoAdmin = admin;
         setVisible(true);
     }
 
@@ -228,7 +232,7 @@ public class Account_Management extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHome_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_OpenAccountActionPerformed
-        Admin_GUI guiAdmin = new Admin_GUI();
+        new Admin_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_OpenAccountActionPerformed
 
@@ -249,11 +253,9 @@ public class Account_Management extends javax.swing.JFrame
     }//GEN-LAST:event_btnLogout_SearchAccountActionPerformed
 
     private void btnHome_SearchAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_SearchAccountActionPerformed
-        Admin_GUI guiAdmin = new Admin_GUI();
+        new Admin_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_SearchAccountActionPerformed
-
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel_OpenAccount;

@@ -1,6 +1,7 @@
 package GUI;
 
 import BUS.UserLogin_BUS;
+import DTO.Admin_DTO;
 import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
 import javax.swing.JOptionPane;
@@ -118,8 +119,8 @@ public class LogIn extends javax.swing.JFrame
             {
                 if(busUserLogin.checkRole(dtoUserLogin))
                 {
-                    Admin_GUI guiAdmin = new Admin_GUI();
-                    
+                    Admin_DTO dtoAdmin = busUserLogin.getAdminInfo(dtoUserLogin);
+                    Admin_GUI guiAdmin = new Admin_GUI(dtoAdmin);
                 }
                 else
                 {

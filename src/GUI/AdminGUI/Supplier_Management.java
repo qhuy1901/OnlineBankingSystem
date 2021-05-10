@@ -1,5 +1,6 @@
 package GUI.AdminGUI;
 
+import DTO.Admin_DTO;
 import GUI.Admin_GUI;
 import GUI.LogIn;
 import javax.swing.JOptionPane;
@@ -7,11 +8,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class Supplier_Management extends javax.swing.JFrame 
 {
-    public Supplier_Management() 
+    Admin_DTO dtoAdmin = null;
+    
+    public Supplier_Management(Admin_DTO admin) 
     {
         initComponents();
         setSize(1064,650);
         setLocationRelativeTo(null);
+        dtoAdmin = admin;
         TaoTable();
         setVisible(true);
     }
@@ -254,7 +258,7 @@ public class Supplier_Management extends javax.swing.JFrame
     }//GEN-LAST:event_btnDelete_Supplier1ActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        Admin_GUI guiAdmin = new Admin_GUI();
+        new Admin_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 

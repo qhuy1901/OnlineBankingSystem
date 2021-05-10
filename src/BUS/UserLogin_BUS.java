@@ -1,6 +1,7 @@
 package BUS;
 
 import DAL.UserLogin_DAL;
+import DTO.Admin_DTO;
 import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
 
@@ -21,5 +22,10 @@ public class UserLogin_BUS
     public Customer_DTO getCustomerInfo(UserLogin_DTO dtoUserLogin)
     {
         return dal.getCustomerInfo(dtoUserLogin);
+    }
+    
+    public Admin_DTO getAdminInfo(UserLogin_DTO dtoUserLogin)
+    {
+        return dal.getAdminInfo(dtoUserLogin);
     }
 }
