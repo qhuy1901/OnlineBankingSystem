@@ -113,7 +113,7 @@ public class Customer_DAL extends DBConnection
             ResultSet rs = ps.executeQuery();
             Account_DTO dtoAccount = null;
             while(rs.next())
-                dtoAccount = new Account_DTO(rs.getLong(1), rs.getLong(2), rs.getDate(3), rs.getString(4),rs.getDouble(5), rs.getString(6), rs.getLong(7));
+                dtoAccount = new Account_DTO(rs.getLong(1), rs.getLong(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getLong(6));
             con.close();
             return dtoAccount;
         }

@@ -2,18 +2,20 @@ package DTO;
 
 import java.util.Date;
 
-public class PaymentBill_DTO 
+public class Bill_DTO 
 {
     private long id, supplierID, customerID, billAmount;
+    private Date invoiceDate;
     private Date paymentDate;
     private String status;
 
-    public PaymentBill_DTO() 
+    public Bill_DTO() 
     {
         
     }
 
-    public PaymentBill_DTO(long id, long supplierID, long customerID, long billAmount, Date paymentDate, String status) {
+    public Bill_DTO(long id, long supplierID, long customerID, long billAmount, Date paymentDate, String status) 
+    {
         this.id = id;
         this.supplierID = supplierID;
         this.customerID = customerID;
@@ -21,6 +23,18 @@ public class PaymentBill_DTO
         this.paymentDate = paymentDate;
         this.status = status;
     }
+
+    public Bill_DTO(long id, long supplierID, long customerID, long billAmount, Date invoiceDate, Date paymentDate, String status) {
+        this.id = id;
+        this.supplierID = supplierID;
+        this.customerID = customerID;
+        this.billAmount = billAmount;
+        this.invoiceDate = invoiceDate;
+        this.paymentDate = paymentDate;
+        this.status = status;
+    }
+    
+    
 
     public long getId() {
         return id;

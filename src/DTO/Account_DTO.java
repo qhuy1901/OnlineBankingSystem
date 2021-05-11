@@ -8,7 +8,6 @@ public class Account_DTO
     private long currentBalance;
     private Date openDay;
     private String accountTypeID;
-    private double interestRate;
     private String Status;
     private long CustomerID;
 
@@ -22,13 +21,12 @@ public class Account_DTO
         this.id = id;
     }
     
-    public Account_DTO(long id, long currentBalance, Date openDay, String accountTypeID, double interestRate, String Status, long CustomerID) 
+    public Account_DTO(long id, long currentBalance, Date openDay, String accountTypeID, String Status, long CustomerID) 
     {
         this.id = id;
         this.currentBalance = currentBalance;
         this.openDay = openDay;
         this.accountTypeID = accountTypeID;
-        this.interestRate = interestRate;
         this.Status = Status;
         this.CustomerID = CustomerID;
     }
@@ -51,11 +49,6 @@ public class Account_DTO
     public String getAccountTypeID() 
     {
         return accountTypeID;
-    }
-
-    public double getInterestRate() 
-    {
-        return interestRate;
     }
 
     public String getStatus() 
@@ -87,10 +80,6 @@ public class Account_DTO
         this.accountTypeID = accountTypeID;
     }
 
-    public void setInterestRate(double interestRate) 
-    {
-        this.interestRate = interestRate;
-    }
 
     public void setStatus(String Status) 
     {

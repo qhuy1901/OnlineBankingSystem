@@ -2,7 +2,7 @@ package DAL;
 
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
-import DTO.PaymentBill_DTO;
+import DTO.Bill_DTO;
 import DTO.Supplier_DTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class PaymentBill_DAL 
 {
-    public boolean payment(PaymentBill_DTO dtoBill, Account_DTO dtoAccount)
+    public boolean payment(Bill_DTO dtoBill, Account_DTO dtoAccount)
     {
         try{
             Connection con = DBConnection.ConnectDb();
@@ -32,9 +32,9 @@ public class PaymentBill_DAL
         return false;
     }
     
-    public PaymentBill_DTO getBill(Customer_DTO dtoCustomer, Supplier_DTO dtoSupplier)
+    public Bill_DTO getBill(Customer_DTO dtoCustomer, Supplier_DTO dtoSupplier)
     {
-        PaymentBill_DTO dotBill = null;
+        Bill_DTO dotBill = null;
         try
         {
             Connection con = DBConnection.ConnectDb();
@@ -49,7 +49,7 @@ public class PaymentBill_DAL
             
             while(rs.next())
             {
-                dotBill  = new PaymentBill_DTO(rs.getLong(1), rs.getLong(2), rs.getLong(3), rs.getLong(4), rs.getDate(5), rs.getString(6));
+                dotBill  = new Bill_DTO(rs.getLong(1), rs.getLong(2), rs.getLong(3), rs.getLong(4), rs.getDate(5), rs.getString(6));
             }
                 
             con.close();

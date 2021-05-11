@@ -3,13 +3,17 @@ package GUI.CustomerGUI;
 import BUS.Payment_BUS;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
-import DTO.PaymentBill_DTO;
+import DTO.Bill_DTO;
 import DTO.Supplier_DTO;
+import DTO.UserLogin_DTO;
 import GUI.Customer_GUI;
 import GUI.LogIn;
 import GUI.Report.Report;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 public class Payment extends javax.swing.JFrame 
 {
@@ -317,22 +321,47 @@ public class Payment extends javax.swing.JFrame
         
     }//GEN-LAST:event_btnConfirm_MobiActionPerformed
 
+    private String confirmPassword()
+    {
+        // Create Password JOptionPane
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Please enter your password:");
+        JPasswordField pass = new JPasswordField(10);
+        panel.add(label);
+        panel.add(pass);
+        String[] options = new String[]{"Confirm", "Cancel"};
+        int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
+        String password = "";
+        if(option == 0) // pressing OK button
+        {
+            char[] pw = pass.getPassword();
+            password = new String(pw);
+        }
+        else
+            return "cancel";
+        return password;
+    }
+    
     private void btnConfirm_WaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirm_WaterActionPerformed
         //Thanh toán nước
         long customerId = Long.parseLong(txtCustomerID_Water.getText());
         String supplierName = cboSupplierName.getSelectedItem().toString();
-        PaymentBill_DTO dtoWaterBill = busPayment.getBill(new Customer_DTO(customerId), new Supplier_DTO(supplierName));
+        Bill_DTO dtoWaterBill = busPayment.getBill(new Customer_DTO(customerId), new Supplier_DTO(supplierName));
         if(dtoWaterBill != null) // Hóa đơn tồn tại
         {
-            if(busPayment.payment(dtoWaterBill, dtoAccount))
+            UserLogin_DTO dtoUserLogIn = busPayment.getUserLogin(dtoCustomer); // Lấy password người dùng
+            if(confirmPassword().equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
             {
-                JOptionPane.showConfirmDialog(null, "Payment is successful", "Successful", JOptionPane.CLOSED_OPTION);
+                if(busPayment.payment(dtoWaterBill, dtoAccount))
+                {
+                    JOptionPane.showConfirmDialog(null, "Payment is successful", "Successful", JOptionPane.CLOSED_OPTION);
 
-                Report r = new Report();
-                r.showPaymentBill(dtoWaterBill.getId());
-                //Clear form
-                cboServiceType.setSelectedItem(null);
-                txtCustomerID_Water.setText("");
+                    Report r = new Report();
+                    r.showPaymentBill(dtoWaterBill.getId());
+                    //Clear form
+                    cboServiceType.setSelectedItem(null);
+                    txtCustomerID_Water.setText("");
+                }
             }
         }
         else
