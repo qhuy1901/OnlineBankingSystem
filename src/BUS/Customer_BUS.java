@@ -36,10 +36,10 @@ public class Customer_BUS
         return dal.getPaymentAccount(dtoCustomer);
     }
     
-    public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)
+    /*public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)
     {
         return dal.getUserLogin(dtoCustomer);
-    }
+    }*/
     
     public ArrayList<Customer_DTO> getCustomersList()
     {

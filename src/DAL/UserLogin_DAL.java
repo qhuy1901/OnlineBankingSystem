@@ -82,7 +82,7 @@ public class UserLogin_DAL extends DBConnection
             ps2.setLong(1, UserLoginID);
             ResultSet rs2 = ps2.executeQuery();
             while(rs2.next())
-                dtoCustomer = new Customer_DTO(rs2.getLong(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getDate(5),rs2.getString(6), rs2.getString(7), rs2.getString(8), rs2.getLong(8)); 
+                dtoCustomer = new Customer_DTO(rs2.getLong(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getDate(5),rs2.getString(6), rs2.getString(7), rs2.getString(8), rs2.getLong(9)); 
             con.close();
             return dtoCustomer;
         }

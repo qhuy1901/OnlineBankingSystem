@@ -8,6 +8,7 @@ public class Transaction_DTO
     private String transactionTypeID;
     private Date trasactionDate;
     private long totalTransactionAmount;
+    private int transactionFee;
     
     public Transaction_DTO()
     {

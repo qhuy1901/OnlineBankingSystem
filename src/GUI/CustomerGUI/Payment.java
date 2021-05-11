@@ -5,6 +5,7 @@ import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.PaymentBill_DTO;
 import DTO.Supplier_DTO;
+import GUI.Customer_GUI;
 import GUI.LogIn;
 import GUI.Report.Report;
 import javax.swing.DefaultComboBoxModel;
@@ -14,15 +15,16 @@ public class Payment extends javax.swing.JFrame
 {
     Payment_BUS busPayment = new Payment_BUS();
     Account_DTO dtoAccount = null; // Tài khoản của người chuyển tiền
+    Customer_DTO dtoCustomer = null;
     
-    public Payment(Account_DTO account) 
+    public Payment(Customer_DTO customer, Account_DTO account) 
     {
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
         setVisible(true);
         cboServiceType.setSelectedItem(null);
-
+        dtoCustomer = customer;
         dtoAccount = account; 
     }
 
@@ -301,11 +303,13 @@ public class Payment extends javax.swing.JFrame
     }//GEN-LAST:event_btnLogout_MobiActionPerformed
 
     private void btnHome_WaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_WaterActionPerformed
-
+        new Customer_GUI(dtoCustomer);
+        this.setVisible(false);
     }//GEN-LAST:event_btnHome_WaterActionPerformed
 
     private void btnHome_MobiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_MobiActionPerformed
-
+        new Customer_GUI(dtoCustomer);
+        this.setVisible(false);
     }//GEN-LAST:event_btnHome_MobiActionPerformed
 
     private void btnConfirm_MobiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirm_MobiActionPerformed

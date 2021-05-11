@@ -93,4 +93,26 @@ public class Account_DAL
         }
         return totalSavingAccount;
     }
+    
+    public boolean transfer(Account_DTO senderAccount, Account_DTO receiverAccount, String transactionType, long Amount)
+    {
+        try{
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "BEGIN\n"
+                            + "transfer(?, ?, ?, ?);\n" +
+                         "END;";
+            PreparedStatement prest = con.prepareStatement(SQL);
+            prest.setLong(1, senderAccount.getId());
+            prest.setLong(2, receiverAccount.getId());
+            prest.setString(3, transactionType);
+            prest.setLong(4, Amount);
+            prest.executeUpdate();
+            return true;
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e);    
+        }
+        return false;
+    }
 }

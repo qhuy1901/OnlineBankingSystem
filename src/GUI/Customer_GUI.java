@@ -220,7 +220,7 @@ public class Customer_GUI extends javax.swing.JFrame
 
     private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
-        new Payment(dtoAccount);
+        new Payment(dtoCustomer, dtoAccount);
         this.setVisible(false);
     }//GEN-LAST:event_btnPaymentActionPerformed
 
