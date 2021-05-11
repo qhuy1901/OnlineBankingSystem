@@ -1,6 +1,7 @@
 package DAL;
 
 import DTO.Account_DTO;
+import DTO.Customer_DTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,5 +70,27 @@ public class Account_DAL
             JOptionPane.showMessageDialog(null, e);    
         }
         return false;
+    }
+    
+    public long getTotalSavingAccount(Customer_DTO dtoCustomer)
+    {
+        long totalSavingAccount = 0;
+        try{
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "SELECT SUM(CURRENT_BALANCE) FROM Account WHERE CUSTOMER_ID = ? AND ACCOUNT_TYPE_ID = 'SA'";
+            PreparedStatement prest = con.prepareStatement(SQL);
+            prest.setLong(1, dtoCustomer.getId());
+            ResultSet rs = prest.executeQuery();
+            while(rs.next())
+            {
+                totalSavingAccount = rs.getLong(1);
+            } 
+            con.close();
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e);    
+        }
+        return totalSavingAccount;
     }
 }

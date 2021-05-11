@@ -5,11 +5,12 @@ import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import GUI.CustomerGUI.MyWallet;
 import GUI.CustomerGUI.Payment;
+import GUI.CustomerGUI.Saving;
 import GUI.CustomerGUI.TransferForm;
 
 public class Customer_GUI extends javax.swing.JFrame 
 {
-    Customer_BUS busCustomer= new Customer_BUS();
+    Customer_BUS busCustomer = new Customer_BUS();
     Customer_DTO dtoCustomer = null; // Người đang đăng nhập hệ thống
    
     public Customer_GUI(Customer_DTO customer) 
@@ -19,7 +20,7 @@ public class Customer_GUI extends javax.swing.JFrame
         setSize(1064, 650);
         setVisible(true);
         dtoCustomer = customer;
-        lblHelloCustomer.setText("        Hello " + dtoCustomer.getLastName());
+        lblHelloCustomer.setText("        Hello " + dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
     }
 
     @SuppressWarnings("unchecked")
@@ -202,18 +203,19 @@ public class Customer_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnMyWalletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyWalletActionPerformed
-        new MyWallet();
+        new MyWallet(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnMyWalletActionPerformed
 
     private void btnTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferActionPerformed
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
-        TransferForm guiTransfer = new TransferForm(dtoCustomer, dtoAccount);
+        new TransferForm(dtoCustomer, dtoAccount);
         this.setVisible(false);
     }//GEN-LAST:event_btnTransferActionPerformed
 
     private void btnSavingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavingActionPerformed
-        // TODO add your handling code here:
+        new Saving(dtoCustomer);
+        this.setVisible(false);
     }//GEN-LAST:event_btnSavingActionPerformed
 
     private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed

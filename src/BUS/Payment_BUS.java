@@ -1,5 +1,5 @@
 package BUS;
-
+// Bus này chỉ dùng cho form thanh toán hóa đơn (Payment)
 import DAL.PaymentBill_DAL;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;

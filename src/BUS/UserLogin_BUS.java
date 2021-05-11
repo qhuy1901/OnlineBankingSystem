@@ -1,5 +1,5 @@
 package BUS;
-
+// Bus này chỉ dùng cho form LogIn
 import DAL.UserLogin_DAL;
 import DTO.Admin_DTO;
 import DTO.Customer_DTO;

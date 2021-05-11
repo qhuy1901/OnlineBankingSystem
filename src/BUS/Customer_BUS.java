@@ -1,6 +1,6 @@
 package BUS;
 
-
+// Bus này dùng cho form menu của Customer (Customer_GUI) và Customer_Mangagement
 import DAL.Customer_DAL;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;

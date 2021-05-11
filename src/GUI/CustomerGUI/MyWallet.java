@@ -1,17 +1,21 @@
 package GUI.CustomerGUI;
 
+import DTO.Customer_DTO;
+import GUI.Customer_GUI;
 import GUI.LogIn;
 import javax.swing.table.DefaultTableModel;
 
 public class MyWallet extends javax.swing.JFrame 
 {
-    public MyWallet()
+    Customer_DTO dtoCustomer = null; // Người đang đăng nhập
+    public MyWallet(Customer_DTO customer)
     {
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
         setTitle("My Wallet");
         TaoTable();
+        dtoCustomer = customer; // customer này là từ form LogIn tryền vào cho form này
         setVisible(true);
     }
 
@@ -145,7 +149,8 @@ public class MyWallet extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        
+        new Customer_GUI(dtoCustomer);
+        this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
