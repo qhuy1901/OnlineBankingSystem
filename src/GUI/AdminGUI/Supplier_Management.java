@@ -104,20 +104,20 @@ public class Supplier_Management extends javax.swing.JFrame
         pnlSaving.add(lblTranfer, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 30, 931, 58));
 
         lblSupplier_ID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblSupplier_ID.setForeground(new java.awt.Color(51, 51, 51));
+        lblSupplier_ID.setForeground(new java.awt.Color(32, 172, 216));
         lblSupplier_ID.setText("Supplier ID");
         pnlSaving.add(lblSupplier_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
 
         txtSupplier_ID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        pnlSaving.add(txtSupplier_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 250, -1));
+        pnlSaving.add(txtSupplier_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 250, -1));
 
         lblSupplier_Name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblSupplier_Name.setForeground(new java.awt.Color(51, 51, 51));
+        lblSupplier_Name.setForeground(new java.awt.Color(32, 172, 216));
         lblSupplier_Name.setText("Supplier name");
         pnlSaving.add(lblSupplier_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
 
         txtSupplier_Name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        pnlSaving.add(txtSupplier_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 250, -1));
+        pnlSaving.add(txtSupplier_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 250, -1));
 
         tblSupplier.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,10 +132,10 @@ public class Supplier_Management extends javax.swing.JFrame
         ));
         jScrollPane1.setViewportView(tblSupplier);
 
-        pnlSaving.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 850, 270));
+        pnlSaving.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 850, 270));
 
         lblTransaction_type.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTransaction_type.setForeground(new java.awt.Color(51, 51, 51));
+        lblTransaction_type.setForeground(new java.awt.Color(32, 172, 216));
         lblTransaction_type.setText("Transaction type  ");
         pnlSaving.add(lblTransaction_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, -1, -1));
 
@@ -151,7 +151,7 @@ public class Supplier_Management extends javax.swing.JFrame
                 btnSearch_SupplierActionPerformed(evt);
             }
         });
-        pnlSaving.add(btnSearch_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 560, 113, 30));
+        pnlSaving.add(btnSearch_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 570, 113, 30));
 
         btnClear_Supplier.setBackground(new java.awt.Color(32, 172, 216));
         btnClear_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -165,7 +165,7 @@ public class Supplier_Management extends javax.swing.JFrame
                 btnClear_SupplierActionPerformed(evt);
             }
         });
-        pnlSaving.add(btnClear_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 560, 111, 30));
+        pnlSaving.add(btnClear_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 570, 111, 30));
 
         btnAdd_Supplier.setBackground(new java.awt.Color(32, 172, 216));
         btnAdd_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -180,7 +180,7 @@ public class Supplier_Management extends javax.swing.JFrame
                 btnAdd_SupplierActionPerformed(evt);
             }
         });
-        pnlSaving.add(btnAdd_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 560, 111, 30));
+        pnlSaving.add(btnAdd_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 570, 111, 30));
 
         btnUpdate_Supplier.setBackground(new java.awt.Color(32, 172, 216));
         btnUpdate_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -194,11 +194,11 @@ public class Supplier_Management extends javax.swing.JFrame
                 btnUpdate_SupplierActionPerformed(evt);
             }
         });
-        pnlSaving.add(btnUpdate_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 560, 113, 30));
+        pnlSaving.add(btnUpdate_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 570, 113, 30));
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Water Bill", "Internet", "Electricity Bill", "Telephone Free", " " }));
-        pnlSaving.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 200, 30));
+        pnlSaving.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 140, 200, 30));
 
         btnDelete_Supplier1.setBackground(new java.awt.Color(32, 172, 216));
         btnDelete_Supplier1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -212,7 +212,7 @@ public class Supplier_Management extends javax.swing.JFrame
                 btnDelete_Supplier1ActionPerformed(evt);
             }
         });
-        pnlSaving.add(btnDelete_Supplier1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 560, 111, 30));
+        pnlSaving.add(btnDelete_Supplier1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 570, 111, 30));
 
         getContentPane().add(pnlSaving, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1064, 650));
 

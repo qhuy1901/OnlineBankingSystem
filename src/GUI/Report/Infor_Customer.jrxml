@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="720" pageHeight="842" columnWidth="680" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ff5bffcd-2687-41ea-aec2-3af33e9cdecf">
+	<property name="ireport.zoom" value="1.610510000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from customer
+]]>
+	</queryString>
+	<field name="CUSTOMER_ID" class="java.math.BigDecimal"/>
+	<field name="FIRST_NAME" class="java.lang.String"/>
+	<field name="LAST_NAME" class="java.lang.String"/>
+	<field name="GENDER" class="java.lang.String"/>
+	<field name="DATE_OF_BIRTH" class="java.sql.Timestamp"/>
+	<field name="ADDRESS" class="java.lang.String"/>
+	<field name="PHONE_NUMBER" class="java.lang.String"/>
+	<field name="ID_CARD" class="java.math.BigDecimal"/>
+	<field name="USERLOGIN_ID" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="108" splitType="Stretch">
+			<staticText>
+				<reportElement x="196" y="14" width="315" height="20" uuid="cf874e69-d084-43c9-8e1d-5718136f5de0"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[NGÂN HÀNG NGOẠI THƯƠNG VIỆT NAM ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="34" width="333" height="23" uuid="46b3486e-0bae-4592-8ecb-dc5d6a7253b1"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VIETCOMBANK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="57" width="345" height="32" uuid="d525bfb5-986e-488f-9c8c-cee35795486d"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ DANH SACH KHACH HANG]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="ca730a96-dc8e-4797-8f35-ffcdfe25b170"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã khách hàng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="1" width="146" height="20" uuid="27daf970-c0cf-4921-a912-35d1eb31d389"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tên khách hàng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="1" width="98" height="20" uuid="58b9f6dd-18f1-44a5-a24f-f164d334d3d1"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày sinh]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="1" width="100" height="20" uuid="43ebd4da-a902-4d66-8bfd-187ec0d2c0a9"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Phone Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="1" width="100" height="20" uuid="dad07a2c-9aff-4345-95a5-2823d48f48ba"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Card]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="22" width="680" height="1" uuid="d61c1954-432c-41f7-ae40-e8519f03bde6"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="680" height="1" uuid="a7a3c2c1-f089-4982-8e08-dae1cfdd1f10"/>
+			</line>
+			<staticText>
+				<reportElement x="344" y="1" width="136" height="20" uuid="91e8c79c-bc34-4ca7-bf4d-05fcd3eb75a7"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Địa chỉ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="5204c36e-5188-4cee-9fc9-7383962632c2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CUSTOMER_ID}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="246" y="1" width="98" height="20" uuid="6cef35fc-c06e-4f9e-b173-36c0afbd3533"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{DATE_OF_BIRTH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="1" width="100" height="20" uuid="a8d15657-e850-4ac2-ad54-9a074a39cf23"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{PHONE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="580" y="1" width="100" height="20" uuid="876e7159-b654-44cc-a8d7-6ca939ef314c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ID_CARD}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="33" width="680" height="1" uuid="ba915af8-99e9-47c7-84c7-0cc0dfce0f0d"/>
+			</line>
+			<textField>
+				<reportElement x="344" y="1" width="136" height="20" uuid="ecc194a2-16df-4d73-be6a-5eacfde662e8"/>
+				<textFieldExpression><![CDATA[$F{ADDRESS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="96" height="20" uuid="c715c631-108d-4e87-b403-81fbd9264105"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{FIRST_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="196" y="0" width="50" height="20" uuid="7ffea342-8fd1-4817-8ada-d115d6bb7bce"/>
+				<textElement>
+					<font isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LAST_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -328,7 +328,7 @@ public class Customer_Management extends javax.swing.JFrame
         jLabel4.setBackground(new java.awt.Color(32, 172, 216));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("         Register an online banking account for customer");
+        jLabel4.setText("         Add new customer");
         jLabel4.setOpaque(true);
         jLabel4.setPreferredSize(new java.awt.Dimension(34, 50));
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 19, 970, 66));

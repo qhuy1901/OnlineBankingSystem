@@ -2,20 +2,36 @@ package BUS;
 
 import DAL.Account_DAL;
 import DTO.Account_DTO;
+import java.util.ArrayList;
 
 public class Account_BUS 
 {
     Account_DAL dal = new Account_DAL();
-    
-    /*public boolean deduct(Account_DTO dtoAccount, long money)
+
+    public Account_DTO getInformation(long id)
     {
-        return dal.deduct(dtoAccount, money);
+        return dal.getInformation(id);
     }
     
-    public boolean increase(Account_DTO dtoAccount, long money)
+    public ArrayList<Account_DTO> getAccountList()
     {
-        return dal.increase(dtoAccount, money);
-    }*/
+        return dal.getAccountList();
+    }
+    
+    public boolean openPaymentAccount(long customerId, long initialAmount)
+    {
+        return dal.openPaymentAccount(customerId, initialAmount);
+    }
+    
+    public boolean lockAccount(long accountId)
+    {
+        return dal.lockAccount(accountId);
+    }
+    
+    public boolean unlockAccount(long accountId)
+    {
+        return dal.unlockAccount(accountId);
+    }
     
     public boolean isValidAccount(Account_DTO dtoAccount)
     {

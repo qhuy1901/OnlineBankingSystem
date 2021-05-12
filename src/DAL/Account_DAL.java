@@ -13,14 +13,31 @@ import javax.swing.JOptionPane;
 
 public class Account_DAL 
 {
-    /*public boolean increase(Account_DTO dtoAccount, long money)
+    public boolean openPaymentAccount(long customerId, long initialAmount)
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "UPDATE Account SET Current_Balance = Current_Balance + ? WHERE Account_ID = ?";
+            String SQL = "INSERT INTO ACCOUNT VALUES (ACCOUNT_ID_SEQUENCE.NEXTVAL, ?, SYSDATE, 'PA', 'Active',?)";
             PreparedStatement prest = con.prepareStatement(SQL);
-            prest.setLong(1, money);
-            prest.setLong(2, dtoAccount.getId());
+            prest.setLong(1, initialAmount);
+            prest.setLong(2, customerId);
+            prest.executeUpdate();
+            return true;
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e); 
+        }
+        return false;
+    }
+    
+    public boolean lockAccount(long accountId)
+    {
+        try{
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "UPDATE ACCOUNT SET STATUS = 'Locked' WHERE ACCOUNT_ID = ?";
+            PreparedStatement prest = con.prepareStatement(SQL);
+            prest.setLong(1, accountId);
             prest.executeUpdate();
             return true;
         }
@@ -31,14 +48,13 @@ public class Account_DAL
         return false;
     }
     
-    public boolean deduct(Account_DTO dtoAccount, long money)
+    public boolean unlockAccount(long accountId)
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "UPDATE Account SET Current_Balance = Current_Balance - ? WHERE Account_ID = ?";
+            String SQL = "UPDATE ACCOUNT SET STATUS = 'Active' WHERE ACCOUNT_ID = ?";
             PreparedStatement prest = con.prepareStatement(SQL);
-            prest.setLong(1, money);
-            prest.setLong(2, dtoAccount.getId());
+            prest.setLong(1, accountId);
             prest.executeUpdate();
             return true;
         }
@@ -47,7 +63,53 @@ public class Account_DAL
             JOptionPane.showMessageDialog(null, e);    
         }
         return false;
-    }*/
+    }
+    
+    public ArrayList<Account_DTO> getAccountList()
+    {
+            ArrayList<Account_DTO> accountList = new ArrayList<Account_DTO>();
+        try
+        {
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "SELECT * FROM ACCOUNT";
+            Statement stat = con.createStatement();
+            ResultSet rs = stat.executeQuery(SQL);
+            while(rs.next())
+            {
+                Account_DTO  ac = new Account_DTO(rs.getLong(1), rs.getLong(2), rs.getDate(3), rs.getString(4),rs.getString(5), rs.getLong(6));
+                accountList.add(ac);
+            } 
+            con.close();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return accountList; 
+    }
+     
+    public Account_DTO getInformation(long id)
+      {
+        Account_DTO dotAccount = null;
+        try
+        {
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "SELECT * , AT.NAME"
+                    + "FROM ACCOUNT A JOIN ACCOUNT_TYPE AT ON A.ACCOUNT_TYPE_ID = AT.ACCOUNT_TYPE_ID"
+                    + " WHERE ACCOUNT _ID = " + id;
+            Statement stat = con.createStatement();
+            ResultSet rs = stat.executeQuery(SQL);
+            while(rs.next())
+                 dotAccount = new Account_DTO(rs.getLong(1), rs.getLong(2), rs.getDate(3), rs.getString(4),rs.getString(5), rs.getLong(6));
+            con.close();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return dotAccount;
+    }
+
     public boolean openSavingsAccount(Customer_DTO dtoCustomer, AccountType_DTO dtoAccountType, long amount)
     {
         try{
