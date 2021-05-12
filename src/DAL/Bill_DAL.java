@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-public class PaymentBill_DAL 
+public class Bill_DAL 
 {
     public boolean payment(Bill_DTO dtoBill, Account_DTO dtoAccount)
     {

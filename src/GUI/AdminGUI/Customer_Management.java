@@ -155,7 +155,7 @@ public class Customer_Management extends javax.swing.JFrame
         btnHome_ViewCustomer.setBackground(new java.awt.Color(32, 172, 216));
         btnHome_ViewCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnHome_ViewCustomer.setForeground(new java.awt.Color(255, 255, 255));
-        btnHome_ViewCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/home_25px.png"))); // NOI18N
+        btnHome_ViewCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Home.png"))); // NOI18N
         btnHome_ViewCustomer.setText("Home");
         btnHome_ViewCustomer.setToolTipText("");
         btnHome_ViewCustomer.setBorder(null);
@@ -172,7 +172,7 @@ public class Customer_Management extends javax.swing.JFrame
         btnLogout_ViewCustomer.setBackground(new java.awt.Color(32, 172, 216));
         btnLogout_ViewCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnLogout_ViewCustomer.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout_ViewCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/shutdown_20px.png"))); // NOI18N
+        btnLogout_ViewCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
         btnLogout_ViewCustomer.setText("Logout");
         btnLogout_ViewCustomer.setToolTipText("");
         btnLogout_ViewCustomer.setBorder(null);
@@ -291,7 +291,7 @@ public class Customer_Management extends javax.swing.JFrame
         btnHome_AddCustomer.setBackground(new java.awt.Color(32, 172, 216));
         btnHome_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnHome_AddCustomer.setForeground(new java.awt.Color(255, 255, 255));
-        btnHome_AddCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/home_25px.png"))); // NOI18N
+        btnHome_AddCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Home.png"))); // NOI18N
         btnHome_AddCustomer.setText("Home");
         btnHome_AddCustomer.setToolTipText("");
         btnHome_AddCustomer.setBorder(null);
@@ -308,7 +308,7 @@ public class Customer_Management extends javax.swing.JFrame
         btnLogout_AddCustomer.setBackground(new java.awt.Color(32, 172, 216));
         btnLogout_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnLogout_AddCustomer.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout_AddCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/shutdown_20px.png"))); // NOI18N
+        btnLogout_AddCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
         btnLogout_AddCustomer.setText("Logout");
         btnLogout_AddCustomer.setToolTipText("");
         btnLogout_AddCustomer.setBorder(null);
@@ -445,7 +445,7 @@ public class Customer_Management extends javax.swing.JFrame
         btnHome_UpdateCustomer.setBackground(new java.awt.Color(32, 172, 216));
         btnHome_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnHome_UpdateCustomer.setForeground(new java.awt.Color(255, 255, 255));
-        btnHome_UpdateCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/home_25px.png"))); // NOI18N
+        btnHome_UpdateCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Home.png"))); // NOI18N
         btnHome_UpdateCustomer.setText("Home");
         btnHome_UpdateCustomer.setToolTipText("");
         btnHome_UpdateCustomer.setBorder(null);
@@ -462,7 +462,7 @@ public class Customer_Management extends javax.swing.JFrame
         btnLogout_UpdateCustomer.setBackground(new java.awt.Color(32, 172, 216));
         btnLogout_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnLogout_UpdateCustomer.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout_UpdateCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/shutdown_20px.png"))); // NOI18N
+        btnLogout_UpdateCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
         btnLogout_UpdateCustomer.setText("Logout");
         btnLogout_UpdateCustomer.setToolTipText("");
         btnLogout_UpdateCustomer.setBorder(null);
@@ -487,7 +487,7 @@ public class Customer_Management extends javax.swing.JFrame
         btnShowInformation.setBackground(new java.awt.Color(32, 172, 216));
         btnShowInformation.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnShowInformation.setForeground(new java.awt.Color(255, 255, 255));
-        btnShowInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/search_20px.png"))); // NOI18N
+        btnShowInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Search.png"))); // NOI18N
         btnShowInformation.setText("Show Information");
         btnShowInformation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

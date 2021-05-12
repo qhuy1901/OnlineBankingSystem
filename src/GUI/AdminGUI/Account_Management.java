@@ -193,7 +193,7 @@ public class Account_Management extends javax.swing.JFrame
         btnShowAcc_SearchAccount.setBackground(new java.awt.Color(32, 172, 216));
         btnShowAcc_SearchAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnShowAcc_SearchAccount.setForeground(new java.awt.Color(255, 255, 255));
-        btnShowAcc_SearchAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/search_20px.png"))); // NOI18N
+        btnShowAcc_SearchAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Search.png"))); // NOI18N
         btnShowAcc_SearchAccount.setText("Show Account");
         Panel_SearchAccount.add(btnShowAcc_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 140, -1, -1));
 

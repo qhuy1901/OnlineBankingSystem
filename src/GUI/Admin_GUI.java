@@ -18,7 +18,7 @@ public class Admin_GUI extends javax.swing.JFrame
         setSize(1064, 650);
         setVisible(true);
         dtoAdmin = admin;
-        lblHelloAdmin.setText("        Hello " + admin.getLastName());
+        lblHelloAdmin.setText("          Hello " + admin.getFirstName() + " " + admin.getLastName());
     }
 
     @SuppressWarnings("unchecked")
@@ -73,8 +73,8 @@ public class Admin_GUI extends javax.swing.JFrame
 
         pnlBackground.add(pnlWelcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 330, 400));
 
-        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/FontAwesome_f007(0)_128.png"))); // NOI18N
-        pnlBackground.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/MenuIcon_118px.png"))); // NOI18N
+        pnlBackground.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 120, 130));
 
         btnLogOut.setBackground(new java.awt.Color(239, 250, 252));
         btnLogOut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -90,7 +90,7 @@ public class Admin_GUI extends javax.swing.JFrame
         lblHelloAdmin.setBackground(new java.awt.Color(32, 172, 210));
         lblHelloAdmin.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblHelloAdmin.setForeground(new java.awt.Color(239, 250, 252));
-        lblHelloAdmin.setText("        Admin Portal");
+        lblHelloAdmin.setText("            Admin Portal");
         lblHelloAdmin.setOpaque(true);
         pnlBackground.add(lblHelloAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 35, 1010, 80));
 

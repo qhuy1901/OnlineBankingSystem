@@ -350,7 +350,8 @@ public class Payment extends javax.swing.JFrame
         if(dtoWaterBill != null) // Hóa đơn tồn tại
         {
             UserLogin_DTO dtoUserLogIn = busPayment.getUserLogin(dtoCustomer); // Lấy password người dùng
-            if(confirmPassword().equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
+            String EnteredPassword = confirmPassword();
+            if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
             {
                 if(busPayment.payment(dtoWaterBill, dtoAccount))
                 {
@@ -363,6 +364,12 @@ public class Payment extends javax.swing.JFrame
                     txtCustomerID_Water.setText("");
                 }
             }
+            else if(EnteredPassword.equals("cancel"))
+            {
+                // Không làm gì hết
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
         }
         else
             JOptionPane.showMessageDialog(this, "This bill is not exist", "Error", JOptionPane.ERROR_MESSAGE);

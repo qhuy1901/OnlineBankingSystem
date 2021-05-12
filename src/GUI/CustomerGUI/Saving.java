@@ -1,14 +1,28 @@
 package GUI.CustomerGUI;
 
 import BUS.Saving_BUS;
+import DTO.AccountType_DTO;
+import DTO.Account_DTO;
 import DTO.Customer_DTO;
+import DTO.UserLogin_DTO;
 import GUI.Customer_GUI;
 import GUI.LogIn;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.table.DefaultTableModel;
 
 public class Saving extends javax.swing.JFrame 
 {
     Saving_BUS busSaving = new Saving_BUS();
+    
     Customer_DTO dtoCustomer = null;
+    AccountType_DTO dtoSavingsAccountType = null;
     
     public Saving(Customer_DTO customer) 
     {
@@ -16,8 +30,30 @@ public class Saving extends javax.swing.JFrame
         setLocationRelativeTo(null);
         setSize(1064, 650);
         setVisible(true);
+        cboSavingsAccountType.setSelectedItem(null);
+        cboTerm.setSelectedItem(null);
         dtoCustomer = customer;
+        btnOpenAccount.setVisible(false);
         txtTotalSavingAccount.setText(String.valueOf(busSaving.getTotalSavingAccount(dtoCustomer)));
+        createTable();
+    }
+    
+    DefaultTableModel tblAccountModel;
+    public void createTable()
+    {
+        ArrayList<Account_DTO> list = busSaving.getSavingsAccountList(dtoCustomer);
+        tblAccountModel = new DefaultTableModel();
+        String title[] = {"Account No", "Name", "Amount", "Open Date"};
+        tblAccountModel.setColumnIdentifiers(title);
+        tblAccountModel.setRowCount(0); 
+        for(int i = 0; i < list.size(); i++)
+        {
+            Account_DTO dtoAccount = list.get(i);
+            String[] rows = {String.valueOf(dtoAccount.getId()), dtoAccount.getAccountTypeID(), String.valueOf(dtoAccount.getCurrentBalance()), String.valueOf(dtoAccount.getOpenDay())};
+            tblAccountModel.addRow(rows);
+        }
+        tblSavingsAccount.setModel(tblAccountModel);
+        setVisible(true);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -31,8 +67,9 @@ public class Saving extends javax.swing.JFrame
         lblTit = new javax.swing.JLabel();
         btnConfirm_Water = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblSavingsAccount = new javax.swing.JTable();
         lblDebitAccount2 = new javax.swing.JLabel();
+        lblDebitAccount6 = new javax.swing.JLabel();
         txtTotalSavingAccount = new javax.swing.JFormattedTextField();
         OpenOnlineSavings = new javax.swing.JPanel();
         btnHome = new javax.swing.JButton();
@@ -41,22 +78,29 @@ public class Saving extends javax.swing.JFrame
         lblTit1 = new javax.swing.JLabel();
         lblDebitAccount = new javax.swing.JLabel();
         lblTerm = new javax.swing.JLabel();
-        lblAvailableBalanceDataBase = new javax.swing.JLabel();
         lblVND = new javax.swing.JLabel();
-        jcbChooseTerm = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
-        jcbChooseTerm1 = new javax.swing.JComboBox<>();
-        tbtConfirm2 = new javax.swing.JButton();
-        btnAdd3 = new javax.swing.JButton();
+        cboSavingsAccountType = new javax.swing.JComboBox<>();
+        txtDeposits = new javax.swing.JTextField();
+        cboTerm = new javax.swing.JComboBox<>();
+        btnFindSuitableProduct = new javax.swing.JButton();
+        btnOpenAccount = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         lblDebitAccount3 = new javax.swing.JLabel();
         lblDebitAccount5 = new javax.swing.JLabel();
-        lblDebitAccount6 = new javax.swing.JLabel();
+        lblInterestRate = new javax.swing.JLabel();
         lblDebitAccount7 = new javax.swing.JLabel();
-        lblDebitAccount8 = new javax.swing.JLabel();
-        lblDebitAccount9 = new javax.swing.JLabel();
-        lblDebitAccount10 = new javax.swing.JLabel();
+        lblStartDate = new javax.swing.JLabel();
+        lblAnticipatedInterest = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JTextField();
+        txtInterestRate = new javax.swing.JTextField();
+        txtAnticipatedInterest = new javax.swing.JTextField();
+        lblInterestRate1 = new javax.swing.JLabel();
+        lblInterestRate2 = new javax.swing.JLabel();
+        txtStartDate = new javax.swing.JTextField();
+        txtMaturityDate = new javax.swing.JTextField();
+        txtProductName = new javax.swing.JTextField();
+        lblInterestRate3 = new javax.swing.JLabel();
         lblDebitAccount4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,12 +143,14 @@ public class Saving extends javax.swing.JFrame
             }
         });
         WithdrawOnlineSavings.add(btnHome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, 76, 58));
-        WithdrawOnlineSavings.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 100, 110));
+
+        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/customergui_tietkiem.png"))); // NOI18N
+        WithdrawOnlineSavings.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 120, 110));
 
         lblTit.setBackground(new java.awt.Color(32, 172, 216));
         lblTit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblTit.setForeground(new java.awt.Color(255, 255, 255));
-        lblTit.setText("         Withdrawal Online Savings");
+        lblTit.setText("                 View Online Savings Accounts");
         lblTit.setOpaque(true);
         lblTit.setPreferredSize(new java.awt.Dimension(34, 50));
         WithdrawOnlineSavings.add(lblTit, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 940, 66));
@@ -120,7 +166,7 @@ public class Saving extends javax.swing.JFrame
         });
         WithdrawOnlineSavings.add(btnConfirm_Water, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 450, 130, 40));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblSavingsAccount.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -131,18 +177,29 @@ public class Saving extends javax.swing.JFrame
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblSavingsAccount);
 
         WithdrawOnlineSavings.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 160, 750, 260));
 
         lblDebitAccount2.setBackground(new java.awt.Color(32, 172, 216));
         lblDebitAccount2.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblDebitAccount2.setForeground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount2.setText("Total Saving Account:");
-        WithdrawOnlineSavings.add(lblDebitAccount2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
+        lblDebitAccount2.setText("(VND)");
+        WithdrawOnlineSavings.add(lblDebitAccount2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
 
+        lblDebitAccount6.setBackground(new java.awt.Color(32, 172, 216));
+        lblDebitAccount6.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        lblDebitAccount6.setForeground(new java.awt.Color(32, 172, 216));
+        lblDebitAccount6.setText("Total Saving Account:");
+        WithdrawOnlineSavings.add(lblDebitAccount6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
+
+        txtTotalSavingAccount.setEditable(false);
+        txtTotalSavingAccount.setBackground(new java.awt.Color(239, 250, 252));
+        txtTotalSavingAccount.setBorder(null);
+        txtTotalSavingAccount.setForeground(new java.awt.Color(32, 172, 216));
         txtTotalSavingAccount.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-        WithdrawOnlineSavings.add(txtTotalSavingAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 230, 30));
+        txtTotalSavingAccount.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        WithdrawOnlineSavings.add(txtTotalSavingAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 150, -1));
 
         jTabbedPane1.addTab("View Online Savings Information", WithdrawOnlineSavings);
 
@@ -198,68 +255,64 @@ public class Saving extends javax.swing.JFrame
         lblDebitAccount.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblDebitAccount.setForeground(new java.awt.Color(32, 172, 216));
         lblDebitAccount.setText("Deposits:");
-        OpenOnlineSavings.add(lblDebitAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
+        OpenOnlineSavings.add(lblDebitAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
 
         lblTerm.setBackground(new java.awt.Color(32, 172, 216));
         lblTerm.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblTerm.setForeground(new java.awt.Color(32, 172, 216));
         lblTerm.setText("Term:");
-        OpenOnlineSavings.add(lblTerm, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, -1, -1));
-
-        lblAvailableBalanceDataBase.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        lblAvailableBalanceDataBase.setForeground(new java.awt.Color(1, 1, 1));
-        OpenOnlineSavings.add(lblAvailableBalanceDataBase, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 260, 30));
+        OpenOnlineSavings.add(lblTerm, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
 
         lblVND.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblVND.setForeground(new java.awt.Color(32, 172, 216));
         lblVND.setText("VND");
-        OpenOnlineSavings.add(lblVND, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, -1, -1));
+        OpenOnlineSavings.add(lblVND, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, -1, -1));
 
-        jcbChooseTerm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jcbChooseTerm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Term Savings Account", "Non-term Savings Account" }));
-        OpenOnlineSavings.add(jcbChooseTerm, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 170, -1));
+        cboSavingsAccountType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cboSavingsAccountType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Term Savings Account", "Non-term Savings Account" }));
+        OpenOnlineSavings.add(cboSavingsAccountType, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 170, -1));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(1, 1, 1));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtDeposits.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtDeposits.setForeground(new java.awt.Color(1, 1, 1));
+        txtDeposits.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtDepositsActionPerformed(evt);
             }
         });
-        OpenOnlineSavings.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 310, -1));
+        OpenOnlineSavings.add(txtDeposits, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 320, -1));
 
-        jcbChooseTerm1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jcbChooseTerm1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 month", "3 months", "6 months" }));
-        jcbChooseTerm1.addActionListener(new java.awt.event.ActionListener() {
+        cboTerm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cboTerm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 month", "3 months", "6 months" }));
+        cboTerm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbChooseTerm1ActionPerformed(evt);
+                cboTermActionPerformed(evt);
             }
         });
-        OpenOnlineSavings.add(jcbChooseTerm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 170, -1));
+        OpenOnlineSavings.add(cboTerm, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 170, -1));
 
-        tbtConfirm2.setBackground(new java.awt.Color(32, 172, 216));
-        tbtConfirm2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tbtConfirm2.setForeground(new java.awt.Color(255, 255, 255));
-        tbtConfirm2.setText("Find Suitable Product");
-        tbtConfirm2.addActionListener(new java.awt.event.ActionListener() {
+        btnFindSuitableProduct.setBackground(new java.awt.Color(32, 172, 216));
+        btnFindSuitableProduct.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnFindSuitableProduct.setForeground(new java.awt.Color(255, 255, 255));
+        btnFindSuitableProduct.setText("Find Suitable Product");
+        btnFindSuitableProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbtConfirm2ActionPerformed(evt);
+                btnFindSuitableProductActionPerformed(evt);
             }
         });
-        OpenOnlineSavings.add(tbtConfirm2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 120, -1, 30));
+        OpenOnlineSavings.add(btnFindSuitableProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 120, -1, 30));
 
-        btnAdd3.setBackground(new java.awt.Color(32, 172, 216));
-        btnAdd3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAdd3.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdd3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/plus_25px.png"))); // NOI18N
-        btnAdd3.setText("Open Account");
-        btnAdd3.addActionListener(new java.awt.event.ActionListener() {
+        btnOpenAccount.setBackground(new java.awt.Color(32, 172, 216));
+        btnOpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnOpenAccount.setForeground(new java.awt.Color(255, 255, 255));
+        btnOpenAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/plus_25px.png"))); // NOI18N
+        btnOpenAccount.setText("Open Account");
+        btnOpenAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd3ActionPerformed(evt);
+                btnOpenAccountActionPerformed(evt);
             }
         });
-        OpenOnlineSavings.add(btnAdd3, new org.netbeans.lib.awtextra.AbsoluteConstraints(873, 170, 160, -1));
-        OpenOnlineSavings.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 710, 10));
+        OpenOnlineSavings.add(btnOpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 170, 170, -1));
+        OpenOnlineSavings.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 710, 10));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -267,7 +320,7 @@ public class Saving extends javax.swing.JFrame
         lblDebitAccount3.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
         lblDebitAccount3.setForeground(new java.awt.Color(32, 172, 216));
         lblDebitAccount3.setText("Maturity date:");
-        jPanel1.add(lblDebitAccount3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, -1, -1));
+        jPanel1.add(lblDebitAccount3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, -1, -1));
 
         lblDebitAccount5.setBackground(new java.awt.Color(32, 172, 216));
         lblDebitAccount5.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
@@ -275,11 +328,11 @@ public class Saving extends javax.swing.JFrame
         lblDebitAccount5.setText("Suitable Product Details:");
         jPanel1.add(lblDebitAccount5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        lblDebitAccount6.setBackground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount6.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblDebitAccount6.setForeground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount6.setText("Interest rate:");
-        jPanel1.add(lblDebitAccount6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        lblInterestRate.setBackground(new java.awt.Color(32, 172, 216));
+        lblInterestRate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblInterestRate.setForeground(new java.awt.Color(32, 172, 216));
+        lblInterestRate.setText("(VND)");
+        jPanel1.add(lblInterestRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
 
         lblDebitAccount7.setBackground(new java.awt.Color(32, 172, 216));
         lblDebitAccount7.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
@@ -287,31 +340,109 @@ public class Saving extends javax.swing.JFrame
         lblDebitAccount7.setText("Total: ");
         jPanel1.add(lblDebitAccount7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
-        lblDebitAccount8.setBackground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount8.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblDebitAccount8.setForeground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount8.setText("Start day:");
-        jPanel1.add(lblDebitAccount8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
+        lblStartDate.setBackground(new java.awt.Color(32, 172, 216));
+        lblStartDate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblStartDate.setForeground(new java.awt.Color(32, 172, 216));
+        lblStartDate.setText("Start date:");
+        jPanel1.add(lblStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, -1, -1));
 
-        lblDebitAccount9.setBackground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount9.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblDebitAccount9.setForeground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount9.setText("NAME");
-        jPanel1.add(lblDebitAccount9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
+        lblAnticipatedInterest.setBackground(new java.awt.Color(32, 172, 216));
+        lblAnticipatedInterest.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblAnticipatedInterest.setForeground(new java.awt.Color(32, 172, 216));
+        lblAnticipatedInterest.setText("Anticipated Interest:");
+        jPanel1.add(lblAnticipatedInterest, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
-        lblDebitAccount10.setBackground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount10.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblDebitAccount10.setForeground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount10.setText("Anticipated Interest:");
-        jPanel1.add(lblDebitAccount10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        txtTotal.setEditable(false);
+        txtTotal.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        txtTotal.setForeground(new java.awt.Color(32, 172, 216));
+        txtTotal.setBorder(null);
+        txtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 150, -1));
 
-        OpenOnlineSavings.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 710, 200));
+        txtInterestRate.setEditable(false);
+        txtInterestRate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        txtInterestRate.setForeground(new java.awt.Color(32, 172, 216));
+        txtInterestRate.setBorder(null);
+        txtInterestRate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtInterestRateActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtInterestRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 150, -1));
+
+        txtAnticipatedInterest.setEditable(false);
+        txtAnticipatedInterest.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        txtAnticipatedInterest.setForeground(new java.awt.Color(32, 172, 216));
+        txtAnticipatedInterest.setBorder(null);
+        txtAnticipatedInterest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAnticipatedInterestActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtAnticipatedInterest, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 150, -1));
+
+        lblInterestRate1.setBackground(new java.awt.Color(32, 172, 216));
+        lblInterestRate1.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblInterestRate1.setForeground(new java.awt.Color(32, 172, 216));
+        lblInterestRate1.setText("Interest rate:");
+        jPanel1.add(lblInterestRate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
+        lblInterestRate2.setBackground(new java.awt.Color(32, 172, 216));
+        lblInterestRate2.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblInterestRate2.setForeground(new java.awt.Color(32, 172, 216));
+        lblInterestRate2.setText("%");
+        jPanel1.add(lblInterestRate2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
+
+        txtStartDate.setEditable(false);
+        txtStartDate.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        txtStartDate.setForeground(new java.awt.Color(32, 172, 216));
+        txtStartDate.setBorder(null);
+        txtStartDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStartDateActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 140, -1));
+
+        txtMaturityDate.setEditable(false);
+        txtMaturityDate.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        txtMaturityDate.setForeground(new java.awt.Color(32, 172, 216));
+        txtMaturityDate.setBorder(null);
+        txtMaturityDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaturityDateActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtMaturityDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 150, -1));
+
+        txtProductName.setEditable(false);
+        txtProductName.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        txtProductName.setForeground(new java.awt.Color(32, 172, 216));
+        txtProductName.setBorder(null);
+        txtProductName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProductNameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtProductName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 400, -1));
+
+        lblInterestRate3.setBackground(new java.awt.Color(32, 172, 216));
+        lblInterestRate3.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblInterestRate3.setForeground(new java.awt.Color(32, 172, 216));
+        lblInterestRate3.setText("(VND)");
+        jPanel1.add(lblInterestRate3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
+
+        OpenOnlineSavings.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 710, 200));
 
         lblDebitAccount4.setBackground(new java.awt.Color(32, 172, 216));
         lblDebitAccount4.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblDebitAccount4.setForeground(new java.awt.Color(32, 172, 216));
         lblDebitAccount4.setText("Saving Account Type:");
-        OpenOnlineSavings.add(lblDebitAccount4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
+        OpenOnlineSavings.add(lblDebitAccount4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
         jTabbedPane1.addTab("Open Online Savings", OpenOnlineSavings);
 
@@ -355,57 +486,179 @@ public class Saving extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtDepositsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepositsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtDepositsActionPerformed
 
-    private void tbtConfirm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtConfirm2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbtConfirm2ActionPerformed
+    private void btnFindSuitableProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindSuitableProductActionPerformed
+        if(cboSavingsAccountType.getSelectedItem().equals(null) ||cboTerm.getSelectedItem().equals(null) || txtDeposits.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(Long.parseLong(txtDeposits.getText()) < 1000000)
+        {
+            JOptionPane.showMessageDialog(this, "The deposit amount must be more than 1,000,000 VND", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            // Lấy loại tài khoản tiết kiệm,lãi xuất từ database và tính toán
+            dtoSavingsAccountType = busSaving.getSavingsAccountType(cboSavingsAccountType.getSelectedItem().toString(), cboTerm.getSelectedItem().toString());
+            double interestRate = dtoSavingsAccountType.getInterestRate();
+            long anticipatedInterest = (long)(Long.parseLong(txtDeposits.getText()) * interestRate);
+            long total = (long)(Long.parseLong(txtDeposits.getText()) + anticipatedInterest);
 
-    private void btnAdd3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdd3ActionPerformed
+            long millis = System.currentTimeMillis();  
+            java.sql.Date startDate = new java.sql.Date(millis); 
 
-    private void jcbChooseTerm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbChooseTerm1ActionPerformed
+            Calendar temp = Calendar.getInstance();
+            temp.setTime(startDate);
+            String term = cboTerm.getSelectedItem().toString();
+            if(term.equals("6 months"))
+                temp.roll(Calendar.MONTH, 6);
+            else if(term.equals("3 months"))
+                temp.roll(Calendar.MONTH, 3);
+            else
+                temp.roll(Calendar.MONTH, 1);
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String maturityDate = df.format(temp.getTime());
+
+            // Hiển thị sản phẩm phù hợp
+            txtProductName.setText(dtoSavingsAccountType.getName());
+            txtInterestRate.setText(String.valueOf(Math.round(interestRate * 100.0 * 100.0) / 100.0));
+            txtAnticipatedInterest.setText(String.valueOf(anticipatedInterest));
+            txtTotal.setText(String.valueOf(total));
+            txtStartDate.setText(startDate.toString());
+            txtMaturityDate.setText(maturityDate);
+            btnOpenAccount.setVisible(true);
+        }  
+    }//GEN-LAST:event_btnFindSuitableProductActionPerformed
+
+    private String confirmPassword()
+    {
+        // Create Password JOptionPane
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Please enter your password:");
+        JPasswordField pass = new JPasswordField(10);
+        panel.add(label);
+        panel.add(pass);
+        String[] options = new String[]{"Confirm", "Cancel"};
+        int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
+        String password = "";
+        if(option == 0) // pressing OK button
+        {
+            char[] pw = pass.getPassword();
+            password = new String(pw);
+        }
+        else
+            return "cancel";
+        return password;
+    }
+    
+    private void btnOpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenAccountActionPerformed
+        UserLogin_DTO dtoUserLogIn = busSaving.getUserLogin(dtoCustomer); // Lấy password người dùng
+        String EnteredPassword = confirmPassword();
+        if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
+        {
+            int savingAccountId = busSaving.openSavingsAccount2(dtoCustomer, dtoSavingsAccountType, Long.parseLong(txtDeposits.getText()));
+            if(savingAccountId != 0 && savingAccountId != 1)
+            {
+                JOptionPane.showConfirmDialog(null, "Open savings account is successful", "Successful", JOptionPane.CLOSED_OPTION);
+
+                //Clear form
+                cboSavingsAccountType.setSelectedItem(null);
+                cboTerm.setSelectedItem(null);
+                txtDeposits.setText("");
+                txtInterestRate.setText("");
+                txtAnticipatedInterest.setText("");
+                txtTotal.setText("");
+                txtStartDate.setText("");
+                txtMaturityDate.setText("");
+                txtProductName.setText("");
+                btnOpenAccount.setVisible(false);
+            }
+            else
+                JOptionPane.showConfirmDialog(null, "Cannot open savings account.", "Error", JOptionPane.CLOSED_OPTION);
+        }
+        else if(EnteredPassword.equals("cancel"))
+        {
+           // Không làm gì hết
+        }
+        else
+            JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+        
+    }//GEN-LAST:event_btnOpenAccountActionPerformed
+
+    private void cboTermActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTermActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbChooseTerm1ActionPerformed
+    }//GEN-LAST:event_cboTermActionPerformed
+
+    private void txtStartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStartDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStartDateActionPerformed
+
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalActionPerformed
+
+    private void txtInterestRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInterestRateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtInterestRateActionPerformed
+
+    private void txtAnticipatedInterestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnticipatedInterestActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAnticipatedInterestActionPerformed
+
+    private void txtMaturityDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaturityDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaturityDateActionPerformed
+
+    private void txtProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProductNameActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel OpenOnlineSavings;
     private javax.swing.JPanel WithdrawOnlineSavings;
-    private javax.swing.JButton btnAdd3;
     private javax.swing.JButton btnConfirm_Water;
+    private javax.swing.JButton btnFindSuitableProduct;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnHome1;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnLogout1;
+    private javax.swing.JButton btnOpenAccount;
+    private javax.swing.JComboBox<String> cboSavingsAccountType;
+    private javax.swing.JComboBox<String> cboTerm;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JComboBox<String> jcbChooseTerm;
-    private javax.swing.JComboBox<String> jcbChooseTerm1;
-    private javax.swing.JLabel lblAvailableBalanceDataBase;
+    private javax.swing.JLabel lblAnticipatedInterest;
     private javax.swing.JLabel lblDebitAccount;
-    private javax.swing.JLabel lblDebitAccount10;
     private javax.swing.JLabel lblDebitAccount2;
     private javax.swing.JLabel lblDebitAccount3;
     private javax.swing.JLabel lblDebitAccount4;
     private javax.swing.JLabel lblDebitAccount5;
     private javax.swing.JLabel lblDebitAccount6;
     private javax.swing.JLabel lblDebitAccount7;
-    private javax.swing.JLabel lblDebitAccount8;
-    private javax.swing.JLabel lblDebitAccount9;
     private javax.swing.JLabel lblIcon;
     private javax.swing.JLabel lblIcon1;
+    private javax.swing.JLabel lblInterestRate;
+    private javax.swing.JLabel lblInterestRate1;
+    private javax.swing.JLabel lblInterestRate2;
+    private javax.swing.JLabel lblInterestRate3;
+    private javax.swing.JLabel lblStartDate;
     private javax.swing.JLabel lblTerm;
     private javax.swing.JLabel lblTit;
     private javax.swing.JLabel lblTit1;
     private javax.swing.JLabel lblVND;
-    private javax.swing.JButton tbtConfirm2;
+    private javax.swing.JTable tblSavingsAccount;
+    private javax.swing.JTextField txtAnticipatedInterest;
+    private javax.swing.JTextField txtDeposits;
+    private javax.swing.JTextField txtInterestRate;
+    private javax.swing.JTextField txtMaturityDate;
+    private javax.swing.JTextField txtProductName;
+    private javax.swing.JTextField txtStartDate;
+    private javax.swing.JTextField txtTotal;
     private javax.swing.JFormattedTextField txtTotalSavingAccount;
     // End of variables declaration//GEN-END:variables
 }

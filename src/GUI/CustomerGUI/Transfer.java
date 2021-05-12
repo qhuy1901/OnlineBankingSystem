@@ -8,14 +8,14 @@ import GUI.Customer_GUI;
 import GUI.LogIn;
 import javax.swing.*;
 
-public class TransferForm extends javax.swing.JFrame 
+public class Transfer extends javax.swing.JFrame 
 {
     Transfer_BUS busTransfer = new Transfer_BUS();
     
     Account_DTO dtoAccount = null; // Tài khoản của người chuyển tiền
     Customer_DTO dtoCustomer = null; //Người chuyển tiền
     
-    public TransferForm(Customer_DTO customer, Account_DTO account) 
+    public Transfer(Customer_DTO customer, Account_DTO account) 
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -218,10 +218,12 @@ public class TransferForm extends javax.swing.JFrame
         else
         {
             Account_DTO dtoReceiverAccount = new Account_DTO(Long.parseLong(txtReceiverAccount.getText())); // Tạo tài khoản của người nhận
+            JOptionPane.showConfirmDialog(null, txtReceiverAccount.getText()+ dtoReceiverAccount.getStatus(), "Please fill all required fields...!", JOptionPane.CLOSED_OPTION);
             if(busTransfer.isValidAccount(dtoReceiverAccount)) // Kiểm tra tài khoản người nhận có tồn tại hay không
             {
                 UserLogin_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); // Lấy password của người chuyển tiền
-                if(confirmPassword().equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
+                String EnteredPassword = confirmPassword();
+                if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
                 {
                     if(busTransfer.transfer(dtoAccount, dtoReceiverAccount, "CT01", Long.parseLong(txtAmount.getText())))
                     {
@@ -234,15 +236,15 @@ public class TransferForm extends javax.swing.JFrame
                         txtContent.setText("");
                     }
                 }
-                else if(confirmPassword().equals("cancel"))
+                else if(EnteredPassword.equals("cancel"))
                 {
-                    
+                    // Không làm gì hết
                 }
                 else
                     JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
             }
             else       
-                JOptionPane.showConfirmDialog(null, "Beneficiary account is blocked or not exist", "Error", JOptionPane.CLOSED_OPTION);
+                JOptionPane.showConfirmDialog(null, "Receiver account is blocked or not exist", "Error", JOptionPane.CLOSED_OPTION);
             
         }
     }//GEN-LAST:event_btnContinueActionPerformed

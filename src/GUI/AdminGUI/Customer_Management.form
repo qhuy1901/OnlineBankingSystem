@@ -130,7 +130,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/GUI/Images/home_25px.png"/>
+                  <Image iconType="3" name="/GUI/Images/Home.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Home"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -162,7 +162,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/GUI/Images/shutdown_20px.png"/>
+                  <Image iconType="3" name="/GUI/Images/Logout.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Logout"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -505,7 +505,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/GUI/Images/home_25px.png"/>
+                  <Image iconType="3" name="/GUI/Images/Home.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Home"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -537,7 +537,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/GUI/Images/shutdown_20px.png"/>
+                  <Image iconType="3" name="/GUI/Images/Logout.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Logout"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -936,7 +936,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/GUI/Images/home_25px.png"/>
+                      <Image iconType="3" name="/GUI/Images/Home.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Home"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -968,7 +968,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/GUI/Images/shutdown_20px.png"/>
+                      <Image iconType="3" name="/GUI/Images/Logout.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Logout"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -1023,7 +1023,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/GUI/Images/search_20px.png"/>
+                      <Image iconType="3" name="/GUI/Images/Search.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Show Information"/>
                   </Properties>

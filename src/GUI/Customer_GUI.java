@@ -6,7 +6,7 @@ import DTO.Customer_DTO;
 import GUI.CustomerGUI.MyWallet;
 import GUI.CustomerGUI.Payment;
 import GUI.CustomerGUI.Saving;
-import GUI.CustomerGUI.TransferForm;
+import GUI.CustomerGUI.Transfer;
 
 public class Customer_GUI extends javax.swing.JFrame 
 {
@@ -20,14 +20,14 @@ public class Customer_GUI extends javax.swing.JFrame
         setSize(1064, 650);
         setVisible(true);
         dtoCustomer = customer;
-        lblHelloCustomer.setText("        Hello " + dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
+        lblHelloCustomer.setText("         Hello " + dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblIcon = new javax.swing.JLabel();
         btnLogOut = new javax.swing.JButton();
         lblHelloCustomer = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -43,8 +43,8 @@ public class Customer_GUI extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/FontAwesome_f007(0)_128.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/MenuIcon_118px.png"))); // NOI18N
+        getContentPane().add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 120, 130));
 
         btnLogOut.setBackground(new java.awt.Color(239, 250, 252));
         btnLogOut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -60,9 +60,9 @@ public class Customer_GUI extends javax.swing.JFrame
         lblHelloCustomer.setBackground(new java.awt.Color(32, 172, 210));
         lblHelloCustomer.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblHelloCustomer.setForeground(new java.awt.Color(239, 250, 252));
-        lblHelloCustomer.setText("        Chúc quý khách một ngày tốt lành!");
+        lblHelloCustomer.setText("          Chúc quý khách một ngày tốt lành!");
         lblHelloCustomer.setOpaque(true);
-        getContentPane().add(lblHelloCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 35, 1010, 80));
+        getContentPane().add(lblHelloCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 35, 980, 80));
 
         jPanel1.setBackground(new java.awt.Color(239, 250, 252));
 
@@ -172,7 +172,8 @@ public class Customer_GUI extends javax.swing.JFrame
                 .addGap(78, 78, 78)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +210,7 @@ public class Customer_GUI extends javax.swing.JFrame
 
     private void btnTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferActionPerformed
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
-        new TransferForm(dtoCustomer, dtoAccount);
+        new Transfer(dtoCustomer, dtoAccount);
         this.setVisible(false);
     }//GEN-LAST:event_btnTransferActionPerformed
 
@@ -230,12 +231,12 @@ public class Customer_GUI extends javax.swing.JFrame
     private javax.swing.JButton btnPayment;
     private javax.swing.JButton btnSaving;
     private javax.swing.JButton btnTransfer;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblHelloCustomer;
+    private javax.swing.JLabel lblIcon;
     // End of variables declaration//GEN-END:variables
 }
