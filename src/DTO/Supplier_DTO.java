@@ -7,7 +7,7 @@ public class Supplier_DTO
     private int id;
     private String name;
     private String serviceName;
-    private Date countractSigningDate;
+    private Date contractSigningDate;
     private String address;
     private String phoneNumber;
 
@@ -19,11 +19,11 @@ public class Supplier_DTO
     }
 
     
-    public Supplier_DTO(int id, String name, String serviceName, Date countractSigningDate, String address, String phoneNumber) {
+    public Supplier_DTO(int id, String name, String serviceName, Date contractSigningDate, String address, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.serviceName = serviceName;
-        this.countractSigningDate = countractSigningDate;
+        this.contractSigningDate = contractSigningDate;
         this.address = address;
         this.phoneNumber = phoneNumber;
     }
@@ -40,8 +40,8 @@ public class Supplier_DTO
         return serviceName;
     }
 
-    public Date getCountractSigningDate() {
-        return countractSigningDate;
+    public Date getContractSigningDate() {
+        return contractSigningDate;
     }
 
     public String getAddress() {
@@ -64,8 +64,8 @@ public class Supplier_DTO
         this.serviceName = serviceName;
     }
 
-    public void setCountractSigningDate(Date countractSigningDate) {
-        this.countractSigningDate = countractSigningDate;
+    public void setContractSigningDate(Date contractSigningDate) {
+        this.contractSigningDate = contractSigningDate;
     }
 
     public void setAddress(String address) {

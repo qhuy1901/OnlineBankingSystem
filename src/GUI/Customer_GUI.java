@@ -60,7 +60,7 @@ public class Customer_GUI extends javax.swing.JFrame
         lblHelloCustomer.setBackground(new java.awt.Color(32, 172, 210));
         lblHelloCustomer.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblHelloCustomer.setForeground(new java.awt.Color(239, 250, 252));
-        lblHelloCustomer.setText("          Chúc quý khách một ngày tốt lành!");
+        lblHelloCustomer.setText("          Customer Portal");
         lblHelloCustomer.setOpaque(true);
         getContentPane().add(lblHelloCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 35, 980, 80));
 
@@ -152,9 +152,9 @@ public class Customer_GUI extends javax.swing.JFrame
         jLabel5.setPreferredSize(new java.awt.Dimension(50, 190));
         jPanel2.add(jLabel5);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 50)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 44)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel6.setText("NK Bank");
+        jLabel6.setText("VietcomBank");
         jLabel6.setPreferredSize(new java.awt.Dimension(250, 44));
         jPanel2.add(jLabel6);
 
