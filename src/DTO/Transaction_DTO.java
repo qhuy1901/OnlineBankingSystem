@@ -4,24 +4,27 @@ import java.util.Date;
 
 public class Transaction_DTO 
 {
-    private int id, accountID;
+    private int id;
     private String transactionTypeID;
     private Date trasactionDate;
     private long totalTransactionAmount;
-    private int transactionFee;
+    private int accountID;
     
     public Transaction_DTO()
     {
         
     }
 
-    public Transaction_DTO(int id, int accountID, String transactionTypeID, Date trasactionDate, long totalTransactionAmount) {
+    public Transaction_DTO(int id, String transactionTypeID, Date trasactionDate, long totalTransactionAmount, int accountID) 
+    {
         this.id = id;
-        this.accountID = accountID;
         this.transactionTypeID = transactionTypeID;
         this.trasactionDate = trasactionDate;
         this.totalTransactionAmount = totalTransactionAmount;
+        this.accountID = accountID;
     }
+
+    
 
     public int getId() {
         return id;

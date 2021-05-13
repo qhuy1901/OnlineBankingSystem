@@ -204,7 +204,8 @@ public class Customer_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnMyWalletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyWalletActionPerformed
-        new MyWallet(dtoCustomer);
+        Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
+        new MyWallet(dtoCustomer, dtoAccount);
         this.setVisible(false);
     }//GEN-LAST:event_btnMyWalletActionPerformed
 

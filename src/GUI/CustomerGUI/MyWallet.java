@@ -1,30 +1,60 @@
 package GUI.CustomerGUI;
 
+import BUS.Transaction_BUS;
+import DTO.Account_DTO;
 import DTO.Customer_DTO;
+import DTO.Transaction_DTO;
 import GUI.Customer_GUI;
 import GUI.LogIn;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class MyWallet extends javax.swing.JFrame 
 {
+    Transaction_BUS busTransaction = new Transaction_BUS();
+    
     Customer_DTO dtoCustomer = null; // Người đang đăng nhập
-    public MyWallet(Customer_DTO customer)
+    Account_DTO dtoAccount = null;
+    boolean currentBalanceIsShowed;
+            
+    public MyWallet(Customer_DTO customer, Account_DTO account)
     {
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
         setTitle("My Wallet");
-        TaoTable();
+        dtoAccount = account;
         dtoCustomer = customer; // customer này là từ form LogIn tryền vào cho form này
+        displayAccountInformation();
+        currentBalanceIsShowed = false;
+        String title[] = {"ID","Transaction Type","Time", "Amount"};
+        tblTransactionModel.setColumnIdentifiers(title);
+        tblTransactionHistory.setModel(tblTransactionModel);
+        
         setVisible(true);
     }
+    
+    private void displayAccountInformation()
+    {
+        txtAccountId.setText(String.valueOf(dtoAccount.getId()));
+        txtAccountOwner.setText(dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
+        txtOpenDay.setText(dtoAccount.getOpenDay().toString());
+        txtLatestTransactionDate.setText(busTransaction.getLatestTransactionDate(dtoAccount));
+    }
 
-    DefaultTableModel tblModelTT;
-    public void TaoTable () {
-        tblModelTT = new DefaultTableModel();
-        String title[] = {"Time","Amount of money","Transaction type"};
-        tblModelTT.setColumnIdentifiers(title);
-        tblBalanceAlert.setModel(tblModelTT);
+    DefaultTableModel tblTransactionModel = new DefaultTableModel();
+    public void createTable() 
+    {
+        ArrayList<Transaction_DTO> list = busTransaction.getTransactionHistory(dtoAccount);
+        
+        tblTransactionModel.setRowCount(0); 
+        for(int i = 0; i < list.size(); i++)
+        {
+            Transaction_DTO dtoTransaction = list.get(i);
+            String[] rows = {String.valueOf(dtoTransaction.getId()), dtoTransaction.getTransactionTypeID(), dtoTransaction.getTrasactionDate().toString(), String.valueOf(dtoTransaction.getTotalTransactionAmount())};
+            tblTransactionModel.addRow(rows);
+        }
+        tblTransactionHistory.setModel(tblTransactionModel);
         setVisible(true);
     }
 
@@ -38,13 +68,22 @@ public class MyWallet extends javax.swing.JFrame
         btnLogout = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         lblCurrentAccount = new javax.swing.JLabel();
-        lblCurrentAccountDatabase = new javax.swing.JLabel();
-        lblAvailableBalance1 = new javax.swing.JLabel();
-        lblAvailableBalanceDatabase = new javax.swing.JLabel();
-        lblVND = new javax.swing.JLabel();
-        llblBalanceAlert = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
-        tblBalanceAlert = new javax.swing.JTable();
+        tblTransactionHistory = new javax.swing.JTable();
+        lblCurrentAccount1 = new javax.swing.JLabel();
+        lblCurrentAccount2 = new javax.swing.JLabel();
+        lblCurrentAccount3 = new javax.swing.JLabel();
+        lblCurrentAccount4 = new javax.swing.JLabel();
+        lblCurrentAccount5 = new javax.swing.JLabel();
+        lblCurrentAccount6 = new javax.swing.JLabel();
+        lblCurrentAccount7 = new javax.swing.JLabel();
+        txtAccountOwner = new javax.swing.JTextField();
+        txtOpenDay = new javax.swing.JTextField();
+        txtLatestTransactionDate = new javax.swing.JTextField();
+        txtAccountId = new javax.swing.JTextField();
+        btnShowTransactionHistory = new javax.swing.JButton();
+        btnShowCurrentBalance = new javax.swing.JButton();
+        txtCurrentBalance = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -97,38 +136,13 @@ public class MyWallet extends javax.swing.JFrame
         lblTitle.setOpaque(true);
         jPanel1.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 30, 931, 58));
 
-        lblCurrentAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblCurrentAccount.setForeground(new java.awt.Color(51, 51, 51));
-        lblCurrentAccount.setText("Current account");
-        jPanel1.add(lblCurrentAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
+        lblCurrentAccount.setBackground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblCurrentAccount.setForeground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount.setText("Open day:");
+        jPanel1.add(lblCurrentAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, -1));
 
-        lblCurrentAccountDatabase.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblCurrentAccountDatabase.setForeground(new java.awt.Color(51, 51, 51));
-        lblCurrentAccountDatabase.setPreferredSize(new java.awt.Dimension(125, 25));
-        jPanel1.add(lblCurrentAccountDatabase, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 440, 25));
-
-        lblAvailableBalance1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblAvailableBalance1.setForeground(new java.awt.Color(51, 51, 51));
-        lblAvailableBalance1.setText("Available balance ");
-        jPanel1.add(lblAvailableBalance1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, 25));
-
-        lblAvailableBalanceDatabase.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblAvailableBalanceDatabase.setForeground(new java.awt.Color(51, 51, 51));
-        lblAvailableBalanceDatabase.setMinimumSize(new java.awt.Dimension(500, 25));
-        lblAvailableBalanceDatabase.setPreferredSize(new java.awt.Dimension(1, 1));
-        jPanel1.add(lblAvailableBalanceDatabase, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 360, 25));
-
-        lblVND.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblVND.setForeground(new java.awt.Color(51, 51, 51));
-        lblVND.setText("VNĐ");
-        jPanel1.add(lblVND, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, -1, 25));
-
-        llblBalanceAlert.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        llblBalanceAlert.setForeground(new java.awt.Color(51, 51, 51));
-        llblBalanceAlert.setText("Transaction History");
-        jPanel1.add(llblBalanceAlert, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, -1, -1));
-
-        tblBalanceAlert.setModel(new javax.swing.table.DefaultTableModel(
+        tblTransactionHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -139,11 +153,106 @@ public class MyWallet extends javax.swing.JFrame
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane.setViewportView(tblBalanceAlert);
+        jScrollPane.setViewportView(tblTransactionHistory);
 
-        jPanel1.add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 600, 170));
+        jPanel1.add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 700, 160));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 640));
+        lblCurrentAccount1.setBackground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        lblCurrentAccount1.setForeground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount1.setText("Transaction History:");
+        jPanel1.add(lblCurrentAccount1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, -1, -1));
+
+        lblCurrentAccount2.setBackground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount2.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblCurrentAccount2.setForeground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount2.setText("(VND)");
+        jPanel1.add(lblCurrentAccount2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 240, -1, -1));
+
+        lblCurrentAccount3.setBackground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount3.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblCurrentAccount3.setForeground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount3.setText("Current Balance:");
+        jPanel1.add(lblCurrentAccount3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, -1, -1));
+
+        lblCurrentAccount4.setBackground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount4.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblCurrentAccount4.setForeground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount4.setText("Account ID:");
+        jPanel1.add(lblCurrentAccount4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, -1, -1));
+
+        lblCurrentAccount5.setBackground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount5.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblCurrentAccount5.setForeground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount5.setText("Latest transaction date:");
+        jPanel1.add(lblCurrentAccount5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, -1, -1));
+
+        lblCurrentAccount6.setBackground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount6.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblCurrentAccount6.setForeground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount6.setText("Account owner:");
+        jPanel1.add(lblCurrentAccount6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, -1));
+
+        lblCurrentAccount7.setBackground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount7.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        lblCurrentAccount7.setForeground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount7.setText("Payment Account Information:");
+        jPanel1.add(lblCurrentAccount7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
+
+        txtAccountOwner.setEditable(false);
+        txtAccountOwner.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        txtAccountOwner.setForeground(new java.awt.Color(32, 172, 216));
+        txtAccountOwner.setText("jTextField1");
+        jPanel1.add(txtAccountOwner, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 240, 30));
+
+        txtOpenDay.setEditable(false);
+        txtOpenDay.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        txtOpenDay.setForeground(new java.awt.Color(32, 172, 216));
+        txtOpenDay.setText("jTextField1");
+        jPanel1.add(txtOpenDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 240, 30));
+
+        txtLatestTransactionDate.setEditable(false);
+        txtLatestTransactionDate.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        txtLatestTransactionDate.setForeground(new java.awt.Color(32, 172, 216));
+        txtLatestTransactionDate.setText("jTextField1");
+        jPanel1.add(txtLatestTransactionDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 240, 30));
+
+        txtAccountId.setEditable(false);
+        txtAccountId.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        txtAccountId.setForeground(new java.awt.Color(32, 172, 216));
+        txtAccountId.setText("jTextField1");
+        jPanel1.add(txtAccountId, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 240, 30));
+
+        btnShowTransactionHistory.setBackground(new java.awt.Color(32, 172, 216));
+        btnShowTransactionHistory.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnShowTransactionHistory.setForeground(new java.awt.Color(255, 255, 255));
+        btnShowTransactionHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/plus_25px.png"))); // NOI18N
+        btnShowTransactionHistory.setText("Show Transaction History");
+        btnShowTransactionHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowTransactionHistoryActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnShowTransactionHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 180, 240, -1));
+
+        btnShowCurrentBalance.setBackground(new java.awt.Color(32, 172, 216));
+        btnShowCurrentBalance.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnShowCurrentBalance.setForeground(new java.awt.Color(255, 255, 255));
+        btnShowCurrentBalance.setText("Show Current Balance");
+        btnShowCurrentBalance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowCurrentBalanceActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnShowCurrentBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 130, 240, -1));
+
+        txtCurrentBalance.setEditable(false);
+        txtCurrentBalance.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        txtCurrentBalance.setForeground(new java.awt.Color(32, 172, 216));
+        txtCurrentBalance.setText("*************");
+        jPanel1.add(txtCurrentBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 240, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -158,20 +267,49 @@ public class MyWallet extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    private void btnShowTransactionHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowTransactionHistoryActionPerformed
+        createTable();
+    }//GEN-LAST:event_btnShowTransactionHistoryActionPerformed
+    
+    
+    private void btnShowCurrentBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowCurrentBalanceActionPerformed
+        if(currentBalanceIsShowed == false)
+        {
+            txtCurrentBalance.setText(String.valueOf(dtoAccount.getCurrentBalance()));
+            btnShowCurrentBalance.setText("Show Current Balance");
+            currentBalanceIsShowed = true;
+        }
+        else
+        {
+            txtCurrentBalance.setText("*************");
+            btnShowCurrentBalance.setText("Hint Current Balance");
+            currentBalanceIsShowed = false;
+        }
+    }//GEN-LAST:event_btnShowCurrentBalanceActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnShowCurrentBalance;
+    private javax.swing.JButton btnShowTransactionHistory;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane;
-    private javax.swing.JLabel lblAvailableBalance1;
-    private javax.swing.JLabel lblAvailableBalanceDatabase;
     private javax.swing.JLabel lblCurrentAccount;
-    private javax.swing.JLabel lblCurrentAccountDatabase;
+    private javax.swing.JLabel lblCurrentAccount1;
+    private javax.swing.JLabel lblCurrentAccount2;
+    private javax.swing.JLabel lblCurrentAccount3;
+    private javax.swing.JLabel lblCurrentAccount4;
+    private javax.swing.JLabel lblCurrentAccount5;
+    private javax.swing.JLabel lblCurrentAccount6;
+    private javax.swing.JLabel lblCurrentAccount7;
     private javax.swing.JLabel lblImage_MyWalletCusGUI;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JLabel lblVND;
-    private javax.swing.JLabel llblBalanceAlert;
-    private javax.swing.JTable tblBalanceAlert;
+    private javax.swing.JTable tblTransactionHistory;
+    private javax.swing.JTextField txtAccountId;
+    private javax.swing.JTextField txtAccountOwner;
+    private javax.swing.JTextField txtCurrentBalance;
+    private javax.swing.JTextField txtLatestTransactionDate;
+    private javax.swing.JTextField txtOpenDay;
     // End of variables declaration//GEN-END:variables
 }
