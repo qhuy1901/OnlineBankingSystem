@@ -91,7 +91,7 @@ public class Supplier_Management extends javax.swing.JFrame
         lblImage_Supplier = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
-        lblTranfer = new javax.swing.JLabel();
+        lblSupplierManagement = new javax.swing.JLabel();
         lblSearch = new javax.swing.JLabel();
         txtPhoneNumber = new javax.swing.JTextField();
         lblSupplierName = new javax.swing.JLabel();
@@ -157,12 +157,12 @@ public class Supplier_Management extends javax.swing.JFrame
         });
         lblServiceType.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, 50, 57));
 
-        lblTranfer.setBackground(new java.awt.Color(32, 172, 216));
-        lblTranfer.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblTranfer.setForeground(new java.awt.Color(255, 255, 255));
-        lblTranfer.setText("         Supplier Management");
-        lblTranfer.setOpaque(true);
-        lblServiceType.add(lblTranfer, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 30, 931, 58));
+        lblSupplierManagement.setBackground(new java.awt.Color(32, 172, 216));
+        lblSupplierManagement.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblSupplierManagement.setForeground(new java.awt.Color(255, 255, 255));
+        lblSupplierManagement.setText("         Supplier Management");
+        lblSupplierManagement.setOpaque(true);
+        lblServiceType.add(lblSupplierManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 30, 931, 58));
 
         lblSearch.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblSearch.setForeground(new java.awt.Color(32, 172, 216));
@@ -430,8 +430,8 @@ public class Supplier_Management extends javax.swing.JFrame
     private javax.swing.JLabel lblPhoneNumber;
     private javax.swing.JLabel lblSearch;
     private javax.swing.JPanel lblServiceType;
+    private javax.swing.JLabel lblSupplierManagement;
     private javax.swing.JLabel lblSupplierName;
-    private javax.swing.JLabel lblTranfer;
     private javax.swing.JLabel lblTransaction_type;
     private javax.swing.JLabel lblTransaction_type1;
     private javax.swing.JTable tblSupplier;

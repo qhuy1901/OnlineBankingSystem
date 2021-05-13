@@ -22,7 +22,6 @@ public class MyWallet extends javax.swing.JFrame
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
-        setTitle("My Wallet");
         dtoAccount = account;
         dtoCustomer = customer; // customer này là từ form LogIn tryền vào cho form này
         displayAccountInformation();
