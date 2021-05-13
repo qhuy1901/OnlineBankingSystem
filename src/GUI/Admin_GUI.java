@@ -38,7 +38,7 @@ public class Admin_GUI extends javax.swing.JFrame
         btnSupplierManagement = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("NK Bank");
+        setTitle("Online Banking System");
         setBackground(new java.awt.Color(239, 250, 252));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

@@ -86,6 +86,7 @@ public class MyWallet extends javax.swing.JFrame
         txtCurrentBalance = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Online Banking System");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(239, 250, 252));
@@ -276,13 +277,13 @@ public class MyWallet extends javax.swing.JFrame
         if(currentBalanceIsShowed == false)
         {
             txtCurrentBalance.setText(String.valueOf(dtoAccount.getCurrentBalance()));
-            btnShowCurrentBalance.setText("Show Current Balance");
+            btnShowCurrentBalance.setText("Hide Current Balance");
             currentBalanceIsShowed = true;
         }
         else
         {
             txtCurrentBalance.setText("*************");
-            btnShowCurrentBalance.setText("Hint Current Balance");
+            btnShowCurrentBalance.setText("Show Current Balance");
             currentBalanceIsShowed = false;
         }
     }//GEN-LAST:event_btnShowCurrentBalanceActionPerformed

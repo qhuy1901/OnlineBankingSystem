@@ -113,6 +113,7 @@ public class Supplier_Management extends javax.swing.JFrame
         dcContractSingingDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Online Banking System");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblServiceType.setBackground(new java.awt.Color(239, 250, 252));

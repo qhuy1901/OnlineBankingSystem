@@ -28,20 +28,19 @@ public class LogIn extends javax.swing.JFrame
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        txtUsername = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel13 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
         jLabel14 = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,35 +77,18 @@ public class LogIn extends javax.swing.JFrame
         jPanel5.setName("Login"); // NOI18N
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtUsername.setBackground(new java.awt.Color(32, 172, 216));
-        txtUsername.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtUsername.setForeground(new java.awt.Color(239, 250, 252));
-        txtUsername.setBorder(null);
-        txtUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsernameActionPerformed(evt);
-            }
-        });
-        jPanel5.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 190, 30));
-
         jLabel11.setBackground(new java.awt.Color(239, 250, 252));
         jLabel11.setFont(new java.awt.Font("Javanese Text", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Password:");
-        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 110, 40));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Login_username.png"))); // NOI18N
-        jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Login_password.png"))); // NOI18N
-        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
-        jPanel5.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 190, 10));
-        jPanel5.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 190, -1));
+        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 110, 40));
+        jPanel5.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 210, 10));
+        jPanel5.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 210, 10));
 
         jLabel13.setFont(new java.awt.Font("Javanese Text", 1, 35)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Sign In ");
-        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 140, 50));
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 140, 50));
 
         btnLogin.setBackground(new java.awt.Color(239, 250, 252));
         btnLogin.setFont(new java.awt.Font("Javanese Text", 1, 18)); // NOI18N
@@ -117,11 +99,11 @@ public class LogIn extends javax.swing.JFrame
                 btnLoginActionPerformed(evt);
             }
         });
-        jPanel5.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 130, 40));
+        jPanel5.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 130, 40));
         btnLogin.getAccessibleContext().setAccessibleName("btnLogin");
 
         txtPassword.setBackground(new java.awt.Color(32, 172, 216));
-        txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        txtPassword.setFont(new java.awt.Font("Javanese Text", 0, 17)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(239, 250, 252));
         txtPassword.setBorder(null);
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -129,32 +111,47 @@ public class LogIn extends javax.swing.JFrame
                 txtPasswordActionPerformed(evt);
             }
         });
-        jPanel5.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 190, 30));
+        jPanel5.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 220, 30));
 
         jLabel14.setBackground(new java.awt.Color(239, 250, 252));
         jLabel14.setFont(new java.awt.Font("Javanese Text", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Username:");
-        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 110, 40));
+        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 110, 40));
+
+        txtUsername.setBackground(new java.awt.Color(32, 172, 216));
+        txtUsername.setFont(new java.awt.Font("Javanese Text", 0, 17)); // NOI18N
+        txtUsername.setForeground(new java.awt.Color(239, 250, 252));
+        txtUsername.setBorder(null);
+        txtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsernameActionPerformed(evt);
+            }
+        });
+        jPanel5.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 210, 30));
 
         jPanel2.setBackground(new java.awt.Color(239, 250, 252));
         jPanel2.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ACER\\Desktop\\Capture.PNG")); // NOI18N
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 150));
 
         jLabel16.setBackground(new java.awt.Color(32, 172, 210));
         jLabel16.setFont(new java.awt.Font("Javanese Text", 1, 48)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(32, 172, 210));
-        jLabel16.setText("Vietcombank");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 320, 80));
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Login_BankLogo.PNG"))); // NOI18N
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 100, 150));
 
         jLabel17.setBackground(new java.awt.Color(32, 172, 210));
         jLabel17.setFont(new java.awt.Font("Javanese Text", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(32, 172, 210));
         jLabel17.setText("T O G E T H E R   W E   G R O W");
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 290, 30));
+
+        jLabel18.setBackground(new java.awt.Color(32, 172, 210));
+        jLabel18.setFont(new java.awt.Font("Javanese Text", 1, 48)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(32, 172, 210));
+        jLabel18.setText("Vietcombank");
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 320, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,8 +160,7 @@ public class LogIn extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -222,9 +218,8 @@ public class LogIn extends javax.swing.JFrame
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

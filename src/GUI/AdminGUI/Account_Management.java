@@ -76,6 +76,7 @@ public class Account_Management extends javax.swing.JFrame
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Online Banking System");
 
         tbP_AccountManagement.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
