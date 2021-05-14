@@ -14,6 +14,13 @@ public class SavingDetail_DTO
     {
     }
 
+    public SavingDetail_DTO(Date maturityDate, long anticipatedInterest, long totalReceivedAmount) {
+        this.maturityDate = maturityDate;
+        this.anticipatedInterest = anticipatedInterest;
+        this.totalReceivedAmount = totalReceivedAmount;
+    }
+
+    
     public SavingDetail_DTO(int id, Date maturityDate, long anticipatedInterest, long totalReceivedAmount, int accountId) 
     {
         this.id = id;

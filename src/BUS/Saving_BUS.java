@@ -6,6 +6,7 @@ import DAL.Customer_DAL;
 import DTO.AccountType_DTO;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
+import DTO.SavingDetail_DTO;
 import DTO.UserLogin_DTO;
 import java.util.ArrayList;
 
@@ -34,14 +35,14 @@ public class Saving_BUS
     {
         return dalCustomer.getUserLogin(dtoCustomer);
     }
-    
-    public int openSavingsAccount2(Customer_DTO dtoCustomer, AccountType_DTO dtoAccountType, long amount)
-    {
-        return dalAccount.openSavingsAccount2(dtoCustomer, dtoAccountType,amount);
-    }
-    
+
     public ArrayList<Account_DTO> getSavingsAccountList(Customer_DTO dtoCustomer)
     {
         return dalAccount.getSavingsAccountList(dtoCustomer);
+    }
+    
+    public boolean openSavingsAccount2(SavingDetail_DTO dtoSavingDetail, Account_DTO dtoAccount)
+    {
+        return dalAccount.openSavingsAccount2(dtoSavingDetail, dtoAccount);
     }
 }

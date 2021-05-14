@@ -3,6 +3,7 @@ package DAL;
 import DTO.AccountType_DTO;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
+import DTO.SavingDetail_DTO;
 import DTO.TransferDetail_DTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -133,7 +134,7 @@ public class Account_DAL
         return false;
     }
     
-    public int openSavingsAccount2(Customer_DTO dtoCustomer, AccountType_DTO dtoAccountType, long amount)
+    public int openSavingsAccount3(Customer_DTO dtoCustomer, AccountType_DTO dtoAccountType, long amount)
     {
         int savingAccountId = 1;
         try{
@@ -154,6 +155,31 @@ public class Account_DAL
             JOptionPane.showMessageDialog(null, e);    
         }
         return savingAccountId;
+    }
+    
+    public boolean openSavingsAccount2(SavingDetail_DTO dtoSavingDetail, Account_DTO dtoAccount)
+    {
+        try{
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "BEGIN\n"
+                            + "OPEN_SAVINGS_ACCOUNT(?, ?, ?, ?, ?);\n" +
+                         "END;";
+            PreparedStatement prest = con.prepareStatement(SQL);
+            prest.setLong(1, dtoAccount.getCustomerID());
+            prest.setString(2, dtoAccount.getAccountTypeID());
+            prest.setLong(3, dtoAccount.getCurrentBalance());
+            Date sqlMaturityDate = new java.sql.Date(dtoSavingDetail.getMaturityDate().getTime());
+            prest.setDate(4, sqlMaturityDate);
+            prest.setLong(5, dtoSavingDetail.getAnticipatedInterest());
+            prest.executeUpdate();
+            
+            return true;
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e);    
+        }
+        return false;
     }
     
     

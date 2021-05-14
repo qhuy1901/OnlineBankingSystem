@@ -20,6 +20,13 @@ public class Account_DTO
     {
         this.id = id;
     }
+
+    public Account_DTO(long currentBalance, String accountTypeID, long CustomerID) {
+        this.currentBalance = currentBalance;
+        this.accountTypeID = accountTypeID;
+        this.CustomerID = CustomerID;
+    }
+    
     
     public Account_DTO(long id, long currentBalance, Date openDay, String accountTypeID, String Status, long CustomerID) 
     {

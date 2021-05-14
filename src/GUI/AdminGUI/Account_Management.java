@@ -39,7 +39,7 @@ public class Account_Management extends javax.swing.JFrame
         for(int i = 0; i < list.size(); i++)
         {
             Account_DTO dtoAccount = list.get(i);
-            String[] rows = {String.valueOf(dtoAccount.getId()),String.valueOf( dtoAccount.getCurrentBalance()),dtoAccount.getOpenDay().toString() , dtoAccount.getAccountTypeID(),dtoAccount.getStatus(),String.valueOf(dtoAccount.getCustomerID())};
+            String[] rows = {String.valueOf(dtoAccount.getId()), String.format("%,d", dtoAccount.getCurrentBalance()),dtoAccount.getOpenDay().toString() , dtoAccount.getAccountTypeID(),dtoAccount.getStatus(),String.valueOf(dtoAccount.getCustomerID())};
             tblAccountModel.addRow(rows);
         }
         tblAccountInformation_SearchAccount.setModel(tblAccountModel);
@@ -349,9 +349,18 @@ public class Account_Management extends javax.swing.JFrame
     
     int accountId = 0;
     private void btnLockAcc_SearchAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockAcc_SearchAccountActionPerformed
+        int row = tblAccountInformation_SearchAccount.getSelectedRow();
         if(accountId == 0)
         {
                 JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(!tblAccountInformation_SearchAccount.getModel().getValueAt(row, 3).toString().replaceAll("\\s+","").equals("PA")) // phải xóa các khoản trắng khi lấy data từ bảng xuống
+        {
+            JOptionPane.showMessageDialog(this, "Savings account cannot be locked .", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(tblAccountInformation_SearchAccount.getModel().getValueAt(row, 4).toString().replaceAll("\\s+","").equals("Locked"))
+        {
+            JOptionPane.showMessageDialog(this, "This account has been locked already.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
@@ -376,9 +385,14 @@ public class Account_Management extends javax.swing.JFrame
     }//GEN-LAST:event_txtSearch_SearchAccountKeyReleased
 
     private void btnUnlockAcc_SearchAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnlockAcc_SearchAccountActionPerformed
+        int row = tblAccountInformation_SearchAccount.getSelectedRow();
         if(accountId == 0)
         {
-                JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(tblAccountInformation_SearchAccount.getModel().getValueAt(row, 4).toString().replaceAll("\\s+","").equals("Active"))
+        {
+            JOptionPane.showMessageDialog(this, "This account is not locked.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
