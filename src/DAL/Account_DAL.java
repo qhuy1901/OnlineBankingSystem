@@ -3,6 +3,7 @@ package DAL;
 import DTO.AccountType_DTO;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
+import DTO.TransferDetail_DTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.CallableStatement;
@@ -155,6 +156,8 @@ public class Account_DAL
         return savingAccountId;
     }
     
+    
+    
     public boolean isValidAccount(Account_DTO dtoAccount)
     {
         try{
@@ -203,7 +206,7 @@ public class Account_DAL
         return totalSavingAccount;
     }
     
-    public boolean transfer(Account_DTO senderAccount, Account_DTO receiverAccount, String transactionType, long Amount)
+    /*public boolean transfer(Account_DTO senderAccount, Account_DTO receiverAccount, String transactionType, long Amount)
     {
         try{
             Connection con = DBConnection.ConnectDb();
@@ -215,6 +218,29 @@ public class Account_DAL
             prest.setLong(2, receiverAccount.getId());
             prest.setString(3, transactionType);
             prest.setLong(4, Amount);
+            prest.executeUpdate();
+            return true;
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e);    
+        }
+        return false;
+    }*/
+    
+    public boolean transfer(TransferDetail_DTO dtoTransferDetail)
+    {
+        try{
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "BEGIN\n"
+                            + "transfer2(?, ?, ?, ?, ?);\n" +
+                         "END;";
+            PreparedStatement prest = con.prepareStatement(SQL);
+            prest.setLong(1, dtoTransferDetail.getSenderAccount());
+            prest.setLong(2, dtoTransferDetail.getReceiverAccount());
+            prest.setString(3, dtoTransferDetail.getReceiverBank());
+            prest.setLong(4, dtoTransferDetail.getAmount());
+            prest.setString(5, dtoTransferDetail.getContent());
             prest.executeUpdate();
             return true;
         }

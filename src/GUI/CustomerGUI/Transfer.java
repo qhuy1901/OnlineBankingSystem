@@ -3,6 +3,7 @@ package GUI.CustomerGUI;
 import BUS.Transfer_BUS;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
+import DTO.TransferDetail_DTO;
 import DTO.UserLogin_DTO;
 import GUI.Customer_GUI;
 import GUI.LogIn;
@@ -20,9 +21,10 @@ public class Transfer extends javax.swing.JFrame
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
-        setVisible(true);
         dtoAccount = account;
         dtoCustomer = customer;
+        cboReceiverBank.setSelectedItem(null);
+        setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -38,7 +40,7 @@ public class Transfer extends javax.swing.JFrame
         lblBeneficiary_Account = new javax.swing.JLabel();
         lblAmount = new javax.swing.JLabel();
         lblDescription = new javax.swing.JLabel();
-        cbb_Bank = new javax.swing.JComboBox<>();
+        cboReceiverBank = new javax.swing.JComboBox<>();
         txtReceiverAccount = new javax.swing.JTextField();
         lbltienVND = new javax.swing.JLabel();
         btnContinue = new javax.swing.JButton();
@@ -120,12 +122,13 @@ public class Transfer extends javax.swing.JFrame
         lblDescription.setText("Content");
         jPanel1.add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
 
-        cbb_Bank.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        cbb_Bank.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACB Bank", "VP Bank", "Saccombank", " " }));
-        cbb_Bank.setSelectedIndex(-1);
-        jPanel1.add(cbb_Bank, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 422, -1));
+        cboReceiverBank.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        cboReceiverBank.setForeground(new java.awt.Color(32, 172, 216));
+        cboReceiverBank.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vietcombank", "ACB Bank", "VP Bank", "Saccombank" }));
+        jPanel1.add(cboReceiverBank, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 422, -1));
 
         txtReceiverAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtReceiverAccount.setForeground(new java.awt.Color(32, 172, 216));
         jPanel1.add(txtReceiverAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 422, -1));
 
         lbltienVND.setBackground(new java.awt.Color(32, 172, 216));
@@ -161,6 +164,8 @@ public class Transfer extends javax.swing.JFrame
         lblBank2.setText("Receiver Information");
         jPanel1.add(lblBank2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, 20));
 
+        txtContent.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtContent.setForeground(new java.awt.Color(32, 172, 216));
         jScrollPane1.setViewportView(txtContent);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, 430, 60));
@@ -171,6 +176,7 @@ public class Transfer extends javax.swing.JFrame
         jPanel1.add(lblBank3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, 20));
 
         txtAmount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtAmount.setForeground(new java.awt.Color(32, 172, 216));
         txtAmount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAmountActionPerformed(evt);
@@ -219,19 +225,19 @@ public class Transfer extends javax.swing.JFrame
         else
         {
             Account_DTO dtoReceiverAccount = new Account_DTO(Long.parseLong(txtReceiverAccount.getText())); // Tạo tài khoản của người nhận
-            JOptionPane.showConfirmDialog(null, txtReceiverAccount.getText()+ dtoReceiverAccount.getStatus(), "Please fill all required fields...!", JOptionPane.CLOSED_OPTION);
             if(busTransfer.isValidAccount(dtoReceiverAccount)) // Kiểm tra tài khoản người nhận có tồn tại hay không
             {
                 UserLogin_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); // Lấy password của người chuyển tiền
                 String EnteredPassword = confirmPassword();
                 if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
                 {
-                    if(busTransfer.transfer(dtoAccount, dtoReceiverAccount, "CT01", Long.parseLong(txtAmount.getText())))
+                    TransferDetail_DTO dtoTransferDetail = new TransferDetail_DTO(dtoAccount.getId(), dtoReceiverAccount.getId(), cboReceiverBank.getSelectedItem().toString(), Long.parseLong(txtAmount.getText()), txtContent.getText());
+                    if(busTransfer.transfer(dtoTransferDetail))
                     {
                         JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);
                         
                         //Clear Form
-                        cbb_Bank.setSelectedItem(null);
+                        cboReceiverBank.setSelectedItem(null);
                         txtReceiverAccount.setText("");
                         txtAmount.setText("");
                         txtContent.setText("");
@@ -246,11 +252,9 @@ public class Transfer extends javax.swing.JFrame
             }
             else       
                 JOptionPane.showConfirmDialog(null, "Receiver account is blocked or not exist", "Error", JOptionPane.CLOSED_OPTION);
-            
         }
     }//GEN-LAST:event_btnContinueActionPerformed
 
-    
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         new Customer_GUI(dtoCustomer);
         this.setVisible(false);
@@ -265,7 +269,7 @@ public class Transfer extends javax.swing.JFrame
     private javax.swing.JButton btnContinue;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JComboBox<String> cbb_Bank;
+    private javax.swing.JComboBox<String> cboReceiverBank;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

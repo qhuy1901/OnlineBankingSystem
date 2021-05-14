@@ -6,7 +6,13 @@ import DTO.Customer_DTO;
 import DTO.Transaction_DTO;
 import GUI.Customer_GUI;
 import GUI.LogIn;
+import java.awt.Image;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
 public class MyWallet extends javax.swing.JFrame 
@@ -238,6 +244,7 @@ public class MyWallet extends javax.swing.JFrame
         btnShowCurrentBalance.setBackground(new java.awt.Color(32, 172, 216));
         btnShowCurrentBalance.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnShowCurrentBalance.setForeground(new java.awt.Color(255, 255, 255));
+        btnShowCurrentBalance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/MyWallet_eye.png"))); // NOI18N
         btnShowCurrentBalance.setText("Show Current Balance");
         btnShowCurrentBalance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

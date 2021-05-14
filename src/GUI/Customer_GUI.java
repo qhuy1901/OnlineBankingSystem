@@ -200,7 +200,7 @@ public class Customer_GUI extends javax.swing.JFrame
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
-        LogIn guiLogIn= new LogIn();
+        LogIn guiLogIn = new LogIn();
         this.setVisible(false);
     }//GEN-LAST:event_btnLogOutActionPerformed
 

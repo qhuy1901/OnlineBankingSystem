@@ -5,6 +5,7 @@ import DAL.Account_DAL;
 import DAL.Customer_DAL;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
+import DTO.TransferDetail_DTO;
 import DTO.UserLogin_DTO;
 
 
@@ -24,9 +25,8 @@ public class Transfer_BUS
         return dalAccount.isValidAccount(dtoAccount);
     }
     
-    public boolean transfer(Account_DTO senderAccount, Account_DTO receiverAccount, String transactionType, long Amount)
+    public boolean transfer(TransferDetail_DTO dtoTransferDetail)
     {
-        return dalAccount.transfer(senderAccount, receiverAccount, transactionType, Amount);
+        return dalAccount.transfer(dtoTransferDetail);
     }
-   
 }
