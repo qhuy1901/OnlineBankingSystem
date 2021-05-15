@@ -363,7 +363,7 @@ public class Saving extends javax.swing.JFrame
         lblInterestRate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
         lblInterestRate.setForeground(new java.awt.Color(32, 172, 216));
         lblInterestRate.setText("(VND)");
-        jPanel1.add(lblInterestRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, -1, -1));
+        jPanel1.add(lblInterestRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, -1, -1));
 
         lblDebitAccount7.setBackground(new java.awt.Color(32, 172, 216));
         lblDebitAccount7.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
@@ -459,7 +459,7 @@ public class Saving extends javax.swing.JFrame
         lblInterestRate3.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
         lblInterestRate3.setForeground(new java.awt.Color(32, 172, 216));
         lblInterestRate3.setText("(VND)");
-        jPanel1.add(lblInterestRate3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, -1, -1));
+        jPanel1.add(lblInterestRate3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
 
         OpenOnlineSavings.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 710, 210));
 
@@ -606,34 +606,47 @@ public class Saving extends javax.swing.JFrame
         }
         else
         {
-            // Bus lấy loại tài khoản tiết kiệm, lãi xuất từ database
+            // Bus lấy loại tài khoản tiết kiệm, lãi suất từ database
             dtoSavingsAccountType = busSaving.getSavingsAccountType(cboSavingsAccountType.getSelectedItem().toString(), cboTerm.getSelectedItem().toString());
             
-            // Tính toán tiền lãi dự kiến, ngày đáo hạn dựa vào data bus vừa lấy
+            // Lấy lãi suất
             double interestRate = dtoSavingsAccountType.getInterestRate();
-            long anticipatedInterest = (long)(Long.parseLong(txtDeposits.getText()) * interestRate);
-            long total = (long)(Long.parseLong(txtDeposits.getText()) + anticipatedInterest);
-
+            
+            int numberOfMonth = 0;
+            //-- Tính ngày đáo hạn
             long millis = System.currentTimeMillis();
             java.sql.Date startDate = new java.sql.Date(millis);
-
             Calendar temp = Calendar.getInstance();
             temp.setTime(startDate);
             String term = cboTerm.getSelectedItem().toString();
             if(term.equals("6 months"))
-            temp.roll(Calendar.MONTH, 6);
+            {
+                numberOfMonth = 6;
+                temp.roll(Calendar.MONTH, 6);
+            }
             else if(term.equals("3 months"))
-            temp.roll(Calendar.MONTH, 3);
+            {
+                numberOfMonth = 3;
+                temp.roll(Calendar.MONTH, 3);
+            }
             else
-            temp.roll(Calendar.MONTH, 1);
+            {
+                numberOfMonth = 1;
+                temp.roll(Calendar.MONTH, 1);
+            }
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             String maturityDate = df.format(temp.getTime());
-
+            
+            //-- Tính tiền lãi dự kiến = số tiền gửi x  lãi suất (% năm)/ 12  x số tháng gửi
+            long anticipatedInterest = (long)(Long.parseLong(txtDeposits.getText()) * interestRate * numberOfMonth) / 12;
+            //-- Tính tổng số tiền nhận được khi tất toán tài khoản tiết kiệm
+            long total = (long)(Long.parseLong(txtDeposits.getText()) + anticipatedInterest);
+            
             // Hiển thị sản phẩm phù hợp lên form
             txtProductName.setText(dtoSavingsAccountType.getName());
-            txtInterestRate.setText(String.valueOf(Math.round(interestRate * 100.0 * 100.0) / 100.0) + "%");
-            txtAnticipatedInterest.setText(String.valueOf(anticipatedInterest));
-            txtTotal.setText(String.valueOf(total));
+            txtInterestRate.setText(String.valueOf(Math.round(interestRate * 100.0 * 100.0) / 100.0) + "%/year");
+            txtAnticipatedInterest.setText(String.format("%,d",anticipatedInterest));
+            txtTotal.setText(String.format("%,d",total));
             txtStartDate.setText(startDate.toString());
             txtMaturityDate.setText(maturityDate);
             btnOpenAccount.setVisible(true);
@@ -674,7 +687,7 @@ public class Saving extends javax.swing.JFrame
                 Logger.getLogger(Saving.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            Account_DTO dtoNewSavingAccount = new Account_DTO(dtoSavingsAccountType.getId(), Long.parseLong(txtDeposits.getText()), maturityDate, Long.parseLong(txtAnticipatedInterest.getText()) , dtoCustomer.getId());
+            Account_DTO dtoNewSavingAccount = new Account_DTO(dtoSavingsAccountType.getId(), Long.parseLong(txtDeposits.getText()), maturityDate, Long.parseLong(txtAnticipatedInterest.getText().replaceAll(",","")) , dtoCustomer.getId());
             if(busSaving.openSavingsAccount(dtoNewSavingAccount))
             {
                 JOptionPane.showConfirmDialog(null, "Open savings account is successful", "Successful", JOptionPane.CLOSED_OPTION);
