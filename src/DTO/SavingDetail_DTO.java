@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class SavingDetail_DTO 
 {
-    private int id;
+    /*private int id;
     private Date maturityDate;
     private long anticipatedInterest;
     private long totalReceivedAmount;
@@ -79,6 +79,6 @@ public class SavingDetail_DTO
     {
         this.accountId = accountId;
     }
-    
+    */
     
 }

@@ -3,10 +3,10 @@ package BUS;
 import DAL.AccountType_DAL;
 import DAL.Account_DAL;
 import DAL.Customer_DAL;
+import DAL.UserLogin_DAL;
 import DTO.AccountType_DTO;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
-import DTO.SavingDetail_DTO;
 import DTO.UserLogin_DTO;
 import java.util.ArrayList;
 
@@ -26,11 +26,6 @@ public class Saving_BUS
         return dalAccountType.getSavingsAccountType(savingsAccountType, term);
     }
     
-    public boolean openSavingsAccount(Customer_DTO dtoCustomer, AccountType_DTO dtoSavingsAccountType, long amount)
-    {
-        return dalAccount.openSavingsAccount(dtoCustomer, dtoSavingsAccountType, amount);
-    }
-    
     public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)
     {
         return dalCustomer.getUserLogin(dtoCustomer);
@@ -41,8 +36,14 @@ public class Saving_BUS
         return dalAccount.getSavingsAccountList(dtoCustomer);
     }
     
-    public boolean openSavingsAccount2(SavingDetail_DTO dtoSavingDetail, Account_DTO dtoAccount)
+    public boolean openSavingsAccount(Account_DTO dtoAccount)
     {
-        return dalAccount.openSavingsAccount2(dtoSavingDetail, dtoAccount);
+        return dalAccount.openSavingsAccount(dtoAccount);
     }
+    
+    public boolean settle(Account_DTO dtoSavingAccount)
+    {
+        return dalAccount.settle(dtoSavingAccount);
+    }
+    
 }

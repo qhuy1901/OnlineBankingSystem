@@ -107,13 +107,15 @@ public class Customer_DAL extends DBConnection
         try
         {
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT * FROM Account WHERE Customer_ID = ? AND Account_Type_ID = 'PA'";
+            String SQL = "SELECT ACCOUNT_ID, ACCOUNT_TYPE_ID, CURRENT_BALANCE, OPEN_DAY, STATUS, CUSTOMER_ID"
+                    + " FROM ACCOUNT "
+                    + "WHERE Customer_ID = ? AND Account_Type_ID = 'PA'";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setLong(1, dtoCustomer.getId());
             ResultSet rs = ps.executeQuery();
             Account_DTO dtoAccount = null;
             while(rs.next())
-                dtoAccount = new Account_DTO(rs.getLong(1), rs.getLong(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getLong(6));
+                dtoAccount = new Account_DTO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getDate(4), rs.getString(5), rs.getLong(6));
             con.close();
             return dtoAccount;
         }

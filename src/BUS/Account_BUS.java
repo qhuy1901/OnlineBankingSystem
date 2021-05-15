@@ -8,10 +8,10 @@ public class Account_BUS
 {
     Account_DAL dal = new Account_DAL();
 
-    public Account_DTO getInformation(long id)
+    /*public Account_DTO getInformation(long id)
     {
         return dal.getInformation(id);
-    }
+    }*/
     
     public ArrayList<Account_DTO> getAccountList()
     {
