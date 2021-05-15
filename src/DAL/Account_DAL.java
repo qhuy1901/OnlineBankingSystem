@@ -181,11 +181,11 @@ public class Account_DAL
     
     
     
-    public boolean isValidAccount(Account_DTO dtoAccount)
+    public boolean isValidPaymentAccount(Account_DTO dtoAccount)
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT Account_ID, Status FROM Account WHERE Account_ID = ?";
+            String SQL = "SELECT Account_ID, Status FROM Account WHERE Account_ID = ? AND Account_Type_ID = 'PA'";
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, dtoAccount.getId());
             ResultSet rs = prest.executeQuery();

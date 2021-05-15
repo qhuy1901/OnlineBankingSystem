@@ -20,9 +20,9 @@ public class Transfer_BUS
         return dalCusstomer.getUserLogin(dtoCustomer);
     }
     
-    public boolean isValidAccount(Account_DTO dtoAccount)
+    public boolean isValidPaymentAccount(Account_DTO dtoAccount)
     {
-        return dalAccount.isValidAccount(dtoAccount);
+        return dalAccount.isValidPaymentAccount(dtoAccount);
     }
     
     public boolean transfer(TransferDetail_DTO dtoTransferDetail)

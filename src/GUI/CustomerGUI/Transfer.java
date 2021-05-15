@@ -225,33 +225,38 @@ public class Transfer extends javax.swing.JFrame
         else
         {
             Account_DTO dtoReceiverAccount = new Account_DTO(Long.parseLong(txtReceiverAccount.getText())); // Tạo tài khoản của người nhận
-            if(busTransfer.isValidAccount(dtoReceiverAccount)) // Kiểm tra tài khoản người nhận có tồn tại hay không
+            if(busTransfer.isValidPaymentAccount(dtoReceiverAccount)) // Kiểm tra tài khoản người nhận có tồn tại hay không và kiểm tra tài khoản đó có phải là tk thanh toán không
             {
-                UserLogin_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); // Lấy password của người chuyển tiền
-                String EnteredPassword = confirmPassword();
-                if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
+                if(dtoAccount.getCurrentBalance() >= Long.parseLong(txtAmount.getText().replaceAll("\\s+",""))) // Kiểm tra số dư 
                 {
-                    TransferDetail_DTO dtoTransferDetail = new TransferDetail_DTO(dtoAccount.getId(), dtoReceiverAccount.getId(), cboReceiverBank.getSelectedItem().toString(), Long.parseLong(txtAmount.getText()), txtContent.getText());
-                    if(busTransfer.transfer(dtoTransferDetail))
+                    UserLogin_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); // Lấy password của người chuyển tiền
+                    String EnteredPassword = confirmPassword();
+                    if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
                     {
-                        JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);
-                        
-                        //Clear Form
-                        cboReceiverBank.setSelectedItem(null);
-                        txtReceiverAccount.setText("");
-                        txtAmount.setText("");
-                        txtContent.setText("");
+                        TransferDetail_DTO dtoTransferDetail = new TransferDetail_DTO(dtoAccount.getId(), dtoReceiverAccount.getId(), cboReceiverBank.getSelectedItem().toString(), Long.parseLong(txtAmount.getText()), txtContent.getText());
+                        if(busTransfer.transfer(dtoTransferDetail))
+                        {
+                            JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);
+
+                            //Clear Form
+                            cboReceiverBank.setSelectedItem(null);
+                            txtReceiverAccount.setText("");
+                            txtAmount.setText("");
+                            txtContent.setText("");
+                        }
                     }
-                }
-                else if(EnteredPassword.equals("cancel"))
-                {
-                    // Không làm gì hết
+                    else if(EnteredPassword.equals("cancel"))
+                    {
+                        // Không làm gì hết
+                    }
+                    else
+                        JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
                 }
                 else
-                    JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);
             }
             else       
-                JOptionPane.showConfirmDialog(null, "Receiver account is blocked or not exist", "Error", JOptionPane.CLOSED_OPTION);
+                JOptionPane.showConfirmDialog(null, "Receiver account is not exist or is blocked", "Error", JOptionPane.CLOSED_OPTION);
         }
     }//GEN-LAST:event_btnContinueActionPerformed
 

@@ -33,8 +33,8 @@ public class Account_BUS
         return dal.unlockAccount(accountId);
     }
     
-    public boolean isValidAccount(Account_DTO dtoAccount)
+    /*public boolean isValidAccount(Account_DTO dtoAccount)
     {
         return dal.isValidAccount(dtoAccount);
-    }
+    }*/
 }
