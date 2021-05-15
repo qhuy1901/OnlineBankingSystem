@@ -4,7 +4,7 @@ import BUS.Transaction_BUS;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.Transaction_DTO;
-import GUI.Customer_GUI;
+import GUI.Customer_Menu_GUI;
 import GUI.LogIn;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -271,7 +271,7 @@ public class MyWallet extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new Customer_GUI(dtoCustomer);
+        new Customer_Menu_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 

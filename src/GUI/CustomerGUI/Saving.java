@@ -5,7 +5,7 @@ import DTO.AccountType_DTO;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
-import GUI.Customer_GUI;
+import GUI.Customer_Menu_GUI;
 import GUI.LogIn;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -491,7 +491,7 @@ public class Saving extends javax.swing.JFrame
     }//GEN-LAST:event_btnLogout1ActionPerformed
 
     private void btnHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome1ActionPerformed
-        new Customer_GUI(dtoCustomer);
+        new Customer_Menu_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome1ActionPerformed
 
@@ -575,7 +575,7 @@ public class Saving extends javax.swing.JFrame
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
-        new Customer_GUI(dtoCustomer);
+        new Customer_Menu_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 

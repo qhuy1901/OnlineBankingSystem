@@ -5,7 +5,7 @@ import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.TransferDetail_DTO;
 import DTO.UserLogin_DTO;
-import GUI.Customer_GUI;
+import GUI.Customer_Menu_GUI;
 import GUI.LogIn;
 import javax.swing.*;
 
@@ -256,7 +256,7 @@ public class Transfer extends javax.swing.JFrame
     }//GEN-LAST:event_btnContinueActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new Customer_GUI(dtoCustomer);
+        new Customer_Menu_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 

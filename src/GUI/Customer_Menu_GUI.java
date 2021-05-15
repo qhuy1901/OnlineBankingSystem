@@ -9,12 +9,12 @@ import GUI.CustomerGUI.Saving;
 import GUI.CustomerGUI.Transfer;
 import javax.swing.JOptionPane;
 
-public class Customer_GUI extends javax.swing.JFrame 
+public class Customer_Menu_GUI extends javax.swing.JFrame 
 {
     Customer_BUS busCustomer = new Customer_BUS();
     Customer_DTO dtoCustomer = null; // Người đang đăng nhập hệ thống
    
-    public Customer_GUI(Customer_DTO customer) 
+    public Customer_Menu_GUI(Customer_DTO customer) 
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -223,9 +223,14 @@ public class Customer_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnTransferActionPerformed
 
     private void btnSavingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavingActionPerformed
-        
-        new Saving(dtoCustomer);
-        this.setVisible(false);
+        Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
+        if(dtoAccount.getStatus().equals("Active"))
+        {
+            new Saving(dtoCustomer);
+            this.setVisible(false);
+        }
+        else
+            JOptionPane.showMessageDialog(this, "Your payment account is locked. You cannot make any transactions", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnSavingActionPerformed
 
     private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed

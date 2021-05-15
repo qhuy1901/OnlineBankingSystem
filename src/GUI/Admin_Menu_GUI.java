@@ -6,12 +6,12 @@ import GUI.AdminGUI.Account_Management;
 import GUI.AdminGUI.Customer_Management;
 import GUI.AdminGUI.Supplier_Management;
 
-public class Admin_GUI extends javax.swing.JFrame 
+public class Admin_Menu_GUI extends javax.swing.JFrame 
 {
     Admin_BUS busAdmin = new Admin_BUS();
     Admin_DTO dtoAdmin = null;
     
-    public Admin_GUI(Admin_DTO admin) 
+    public Admin_Menu_GUI(Admin_DTO admin) 
     {
         initComponents();
         setLocationRelativeTo(null);

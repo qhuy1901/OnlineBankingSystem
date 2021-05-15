@@ -3,7 +3,7 @@ package GUI.AdminGUI;
 import BUS.Supplier_BUS;
 import DTO.Admin_DTO;
 import DTO.Supplier_DTO;
-import GUI.Admin_GUI;
+import GUI.Admin_Menu_GUI;
 import GUI.LogIn;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -401,7 +401,7 @@ public class Supplier_Management extends javax.swing.JFrame
     }//GEN-LAST:event_btnDelete_Supplier1ActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new Admin_GUI(dtoAdmin);
+        new Admin_Menu_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 

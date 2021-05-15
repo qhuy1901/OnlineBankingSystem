@@ -31,11 +31,12 @@ public class LogIn extends javax.swing.JFrame
         jLabel11 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel13 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
         jLabel14 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -85,11 +86,6 @@ public class LogIn extends javax.swing.JFrame
         jPanel5.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 210, 10));
         jPanel5.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 210, 10));
 
-        jLabel13.setFont(new java.awt.Font("Javanese Text", 1, 35)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Sign In ");
-        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 140, 50));
-
         btnLogin.setBackground(new java.awt.Color(239, 250, 252));
         btnLogin.setFont(new java.awt.Font("Javanese Text", 1, 18)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(32, 172, 210));
@@ -129,6 +125,16 @@ public class LogIn extends javax.swing.JFrame
             }
         });
         jPanel5.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 210, 30));
+
+        jLabel15.setFont(new java.awt.Font("Javanese Text", 1, 15)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Online Banking System");
+        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 160, 50));
+
+        jLabel13.setFont(new java.awt.Font("Javanese Text", 1, 28)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Login Here");
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 160, 50));
 
         jPanel2.setBackground(new java.awt.Color(239, 250, 252));
         jPanel2.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
@@ -187,12 +193,12 @@ public class LogIn extends javax.swing.JFrame
                 if(busUserLogin.checkRole(dtoUserLogin))
                 {
                     Admin_DTO dtoAdmin = busUserLogin.getAdminInfo(dtoUserLogin);
-                    Admin_GUI guiAdmin = new Admin_GUI(dtoAdmin);
+                    Admin_Menu_GUI guiAdmin = new Admin_Menu_GUI(dtoAdmin);
                 }
                 else
                 {
                     Customer_DTO dtoCustomer = busUserLogin.getCustomerInfo(dtoUserLogin);
-                    Customer_GUI guiCustomer = new Customer_GUI(dtoCustomer);
+                    Customer_Menu_GUI guiCustomer = new Customer_Menu_GUI(dtoCustomer);
                 }
                 this.setVisible(false);
             }
@@ -216,6 +222,7 @@ public class LogIn extends javax.swing.JFrame
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;

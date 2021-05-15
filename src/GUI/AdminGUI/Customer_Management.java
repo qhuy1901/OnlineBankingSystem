@@ -3,7 +3,7 @@ package GUI.AdminGUI;
 import BUS.Customer_BUS;
 import DTO.Admin_DTO;
 import DTO.Customer_DTO;
-import GUI.Admin_GUI;
+import GUI.Admin_Menu_GUI;
 import GUI.LogIn;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -552,7 +552,7 @@ public class Customer_Management extends javax.swing.JFrame
 
     private void btnHome_AddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_AddCustomerActionPerformed
         // TODO add your handling code here:
-        new Admin_GUI(dtoAdmin);
+        new Admin_Menu_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_AddCustomerActionPerformed
 
@@ -710,12 +710,12 @@ public class Customer_Management extends javax.swing.JFrame
     }//GEN-LAST:event_txtUpdateAddressActionPerformed
 
     private void btnHome_UpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_UpdateCustomerActionPerformed
-        new Admin_GUI(dtoAdmin);
+        new Admin_Menu_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_UpdateCustomerActionPerformed
 
     private void btnHome_ViewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_ViewCustomerActionPerformed
-        new Admin_GUI(dtoAdmin);
+        new Admin_Menu_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_ViewCustomerActionPerformed
 
