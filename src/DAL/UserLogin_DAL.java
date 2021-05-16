@@ -125,6 +125,28 @@ public class UserLogin_DAL extends DBConnection
         }
         return null; 
     }
+    
+    public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)
+    {
+        try
+        {
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "SELECT * FROM User_Login WHERE UserLogin_ID = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setLong(1, dtoCustomer.getUserLoginID());
+            ResultSet rs = ps.executeQuery();
+            UserLogin_DTO dtoUserLogin = null;
+            while(rs.next())
+                dtoUserLogin = new UserLogin_DTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+            con.close();
+            return dtoUserLogin;
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null; 
+    }
 }
 
 

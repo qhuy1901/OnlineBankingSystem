@@ -226,7 +226,7 @@ public class Customer_Menu_GUI extends javax.swing.JFrame
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
         if(dtoAccount.getStatus().equals("Active"))
         {
-            new Saving(dtoCustomer);
+            new Saving(dtoCustomer, dtoAccount);
             this.setVisible(false);
         }
         else

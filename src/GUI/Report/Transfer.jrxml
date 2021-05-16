@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8c0f03b3-13c2-42a2-ad0f-9bc27a8dfe48">
+	<property name="ireport.zoom" value="1.7715610000000013"/>
+	<property name="ireport.x" value="6"/>
+	<property name="ireport.y" value="192"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * 
+FROM (TRANSACTION_TYPE C JOIN TRANSACTION B ON C.TRANSACTION_TYPE_ID = B.TRANSACTION_TYPE_ID)
+	JOIN TRANSFER_DETAIL S ON S.TRANSACTION_ID = B.TRANSACTION_ID]]>
+	</queryString>
+	<field name="TRANSACTION_TYPE_ID" class="java.lang.String"/>
+	<field name="NAME" class="java.lang.String"/>
+	<field name="FEE" class="java.math.BigDecimal"/>
+	<field name="TRANSACTION_ID" class="java.math.BigDecimal"/>
+	<field name="TRANSACTION_DATE" class="java.sql.Timestamp"/>
+	<field name="TOTAL_TRANSACTION_AMOUNT" class="java.math.BigDecimal"/>
+	<field name="ACCOUNT_ID" class="java.math.BigDecimal"/>
+	<field name="TRANSFER_DETAIL_ID" class="java.math.BigDecimal"/>
+	<field name="SENDER_ACCOUNT" class="java.math.BigDecimal"/>
+	<field name="RECEIVER_ACCOUNT" class="java.math.BigDecimal"/>
+	<field name="RECEIVER_BANK" class="java.lang.String"/>
+	<field name="AMOUNT" class="java.math.BigDecimal"/>
+	<field name="CONTENT" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="106" splitType="Stretch">
+			<staticText>
+				<reportElement x="121" y="14" width="315" height="20" uuid="2c2cfb88-7565-43ef-b4c6-e982eeed49a7"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[NGÂN HÀNG NGOẠI THƯƠNG VIỆT NAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="103" y="34" width="333" height="23" uuid="5dc844be-e268-42b9-8635-5a5642e31a7b"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VIETCOMBANK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="70" width="345" height="32" uuid="d8bdecdd-6c8a-4e54-8359-307356ab283d"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BIEN LAI CHUYEN TIEN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="13" width="70" height="20" uuid="cbd3cc74-c177-4fb5-88af-37dc9d29bd32"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã giao dịch:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="81" y="13" width="110" height="20" uuid="0443a956-4429-4d01-8862-2bda193e75bc"/>
+				<textFieldExpression><![CDATA[$F{TRANSACTION_ID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="268" y="13" width="81" height="20" uuid="d0aa87f8-2e62-432f-9dcf-542907c4d0b8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày giao dịch:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="365" y="13" width="124" height="20" uuid="0e14f673-1951-4594-a513-4f51a07ea12b"/>
+				<textFieldExpression><![CDATA[$F{TRANSACTION_DATE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="33" width="555" height="1" uuid="d0e3440d-4e6e-4818-883e-4785e64535a7"/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="311" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="17" width="130" height="20" uuid="615a61eb-747f-4565-b439-c23b17f47b5c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thông tin người chuyển:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="134" y="37" width="122" height="20" uuid="a3092eda-8b12-4c54-9c1e-390e6248227d"/>
+				<textFieldExpression><![CDATA[$F{SENDER_ACCOUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="37" width="100" height="20" uuid="1617fb89-538d-4a2d-ba6d-3f6d1c64a4a1"/>
+				<text><![CDATA[ID người chuyển:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="17" width="117" height="20" uuid="0bfb898f-a6ff-4765-8495-c184bbcc0eee"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thông tin người nhận:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="37" width="100" height="20" uuid="25d2233a-999a-4082-8ab7-0f7978ac3fe8"/>
+				<text><![CDATA[ID người nhận:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="57" width="100" height="20" uuid="ca2f2a96-2f15-4310-8278-ee1eb4acc6b4"/>
+				<text><![CDATA[Ngân hàng:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="436" y="37" width="109" height="20" uuid="294ad5ba-fe42-46a7-bb27-db9716e29935"/>
+				<textFieldExpression><![CDATA[$F{RECEIVER_ACCOUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="57" width="109" height="20" uuid="f1ab74af-ed85-44ec-8e0f-aebdc42dc1d9"/>
+				<textFieldExpression><![CDATA[$F{RECEIVER_BANK}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="89" width="100" height="20" uuid="e1fd3a86-1897-401e-b7ed-0bf6d0012ae9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thông tin hóa đơn:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="141" width="555" height="1" uuid="0c9babed-285e-44e3-b851-1e627a50a50a"/>
+			</line>
+			<staticText>
+				<reportElement x="21" y="121" width="100" height="20" uuid="9c920d54-fa7b-4423-abb7-8c3e72a90419"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Loại giao dịch]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="121" width="100" height="20" uuid="a3a67e1a-fc1b-41cd-a575-2c0e4bb314f7"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Phí giao dịch]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="121" width="100" height="20" uuid="f08f2088-ba6e-4b3b-8044-85471e5c4a7c"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Số tiền chuyển]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="21" y="152" width="170" height="20" uuid="133e5a05-65d9-4ccb-aa4b-6668dfafdad2"/>
+				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="152" width="100" height="20" uuid="06b586b4-3cdd-4462-a6cf-13d973b66433"/>
+				<textFieldExpression><![CDATA[$F{FEE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="152" width="100" height="20" uuid="12478254-12f0-4d28-a4e0-b632e518159b"/>
+				<textFieldExpression><![CDATA[$F{AMOUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="21" y="190" width="49" height="20" uuid="b781a6f4-d7ca-461e-8d7c-1627513cb8e1"/>
+				<text><![CDATA[Nội dung:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="21" y="220" width="216" height="33" uuid="88b24411-09d2-416c-88da-0976986328c6"/>
+				<textFieldExpression><![CDATA[$F{CONTENT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="349" y="253" width="68" height="20" uuid="5928fa35-2bf4-4e77-9314-63c3c0e24234"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng cộng:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="436" y="253" width="109" height="20" uuid="69aadff0-fda7-4347-9a72-eb7352b7d838"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_TRANSACTION_AMOUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="151" y="291" width="249" height="20" uuid="55cba9f4-765a-4910-b1eb-60188612a337"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

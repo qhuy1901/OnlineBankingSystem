@@ -30,6 +30,9 @@ public class Payment extends javax.swing.JFrame
         cboServiceType.setSelectedItem(null);
         dtoCustomer = customer;
         dtoAccount = account; 
+        cboMonth.setSelectedItem(null);
+        cboYear.setSelectedItem(null);
+        btnPayment.setVisible(false);
     }
     
     private String confirmPassword()
@@ -52,6 +55,17 @@ public class Payment extends javax.swing.JFrame
             return "cancel";
         return password;
     }
+    
+    private void clearBillLookupInformation()
+    {
+        txtBillID_BillLookup.setText("");
+        txtCustomerID_BillLookup.setText("");
+        txtSupplier_BillLookup.setText("");
+        txtBillDate_BillLookup.setText("");
+        txtBillAmount_BillLookup.setText("");
+        txtStatus_BillLookup.setText("");
+        btnPayment.setVisible(false);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -66,9 +80,29 @@ public class Payment extends javax.swing.JFrame
         cboServiceType = new javax.swing.JComboBox<>();
         lblSupplier1 = new javax.swing.JLabel();
         cboSupplierName = new javax.swing.JComboBox<>();
-        txtCustomerID_Water = new javax.swing.JTextField();
+        txtCustomerID = new javax.swing.JTextField();
+        btnPayment = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        btnConfirm_Water = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        txtSupplier_BillLookup = new javax.swing.JTextField();
+        txtBillID_BillLookup = new javax.swing.JTextField();
+        txtCustomerID_BillLookup = new javax.swing.JTextField();
+        txtBillDate_BillLookup = new javax.swing.JTextField();
+        txtBillAmount_BillLookup = new javax.swing.JTextField();
+        txtStatus_BillLookup = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        btnBillLoopup = new javax.swing.JButton();
+        lblSupplier2 = new javax.swing.JLabel();
+        cboYear = new javax.swing.JComboBox<>();
+        lblSupplier3 = new javax.swing.JLabel();
+        cboMonth = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Online Banking System");
@@ -119,10 +153,10 @@ public class Payment extends javax.swing.JFrame
         jLabel1.setOpaque(true);
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 30, 931, 58));
 
-        lblSupplier.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblSupplier.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblSupplier.setForeground(new java.awt.Color(32, 172, 216));
         lblSupplier.setText("Service Type:");
-        jPanel1.add(lblSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
+        jPanel1.add(lblSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
 
         cboServiceType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cboServiceType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Water bill payment", "Internet bill payment", "Electricity bill payment" }));
@@ -131,35 +165,203 @@ public class Payment extends javax.swing.JFrame
                 cboServiceTypeActionPerformed(evt);
             }
         });
-        jPanel1.add(cboServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 270, -1));
+        jPanel1.add(cboServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 270, -1));
 
-        lblSupplier1.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblSupplier1.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblSupplier1.setForeground(new java.awt.Color(32, 172, 216));
-        lblSupplier1.setText("Supplier Name:");
-        jPanel1.add(lblSupplier1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, -1));
+        lblSupplier1.setText("Year:");
+        jPanel1.add(lblSupplier1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, -1, -1));
 
         cboSupplierName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cboSupplierName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dong Nai Water Supplier", "Thu Duc Water Supplier", "Ben Thanh Water Supplier", "Da Nang Water Supplier", "Clean Water Ha Noi (Hawacom)" }));
-        jPanel1.add(cboSupplierName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 270, -1));
-
-        txtCustomerID_Water.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(txtCustomerID_Water, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 270, -1));
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel19.setText("Customer ID:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
-
-        btnConfirm_Water.setBackground(new java.awt.Color(32, 172, 216));
-        btnConfirm_Water.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnConfirm_Water.setForeground(new java.awt.Color(255, 255, 255));
-        btnConfirm_Water.setText("Payment");
-        btnConfirm_Water.addActionListener(new java.awt.event.ActionListener() {
+        cboSupplierName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirm_WaterActionPerformed(evt);
+                cboSupplierNameActionPerformed(evt);
             }
         });
-        jPanel1.add(btnConfirm_Water, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, -1, -1));
+        jPanel1.add(cboSupplierName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 270, -1));
+
+        txtCustomerID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCustomerID.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCustomerIDMouseClicked(evt);
+            }
+        });
+        txtCustomerID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCustomerIDActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 270, -1));
+
+        btnPayment.setBackground(new java.awt.Color(32, 172, 216));
+        btnPayment.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnPayment.setForeground(new java.awt.Color(255, 255, 255));
+        btnPayment.setText("Payment");
+        btnPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPaymentActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 180, 140, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 302, 600, 10));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(32, 172, 216));
+        jLabel19.setText("Bill Lookup Information");
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(32, 172, 216));
+        jLabel21.setText("Bill ID:");
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(32, 172, 216));
+        jLabel22.setText("Supplier:");
+
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(32, 172, 216));
+        jLabel23.setText("Customer ID:");
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(32, 172, 216));
+        jLabel24.setText("Bill Date:");
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 3, 17)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(32, 172, 216));
+        jLabel25.setText("Bill Amount:");
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(32, 172, 216));
+        jLabel26.setText("Status:");
+
+        txtSupplier_BillLookup.setEditable(false);
+        txtSupplier_BillLookup.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        txtSupplier_BillLookup.setForeground(new java.awt.Color(32, 172, 216));
+
+        txtBillID_BillLookup.setEditable(false);
+        txtBillID_BillLookup.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        txtBillID_BillLookup.setForeground(new java.awt.Color(32, 172, 216));
+
+        txtCustomerID_BillLookup.setEditable(false);
+        txtCustomerID_BillLookup.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        txtCustomerID_BillLookup.setForeground(new java.awt.Color(32, 172, 216));
+
+        txtBillDate_BillLookup.setEditable(false);
+        txtBillDate_BillLookup.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        txtBillDate_BillLookup.setForeground(new java.awt.Color(32, 172, 216));
+
+        txtBillAmount_BillLookup.setEditable(false);
+        txtBillAmount_BillLookup.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        txtBillAmount_BillLookup.setForeground(new java.awt.Color(32, 172, 216));
+
+        txtStatus_BillLookup.setEditable(false);
+        txtStatus_BillLookup.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        txtStatus_BillLookup.setForeground(new java.awt.Color(32, 172, 216));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(jLabel19))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel26)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel21))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtStatus_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBillAmount_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBillID_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCustomerID_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSupplier_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBillDate_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(174, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel19)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(txtBillID_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCustomerID_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSupplier_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBillDate_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(txtBillAmount_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtStatus_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26))
+                .addContainerGap())
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 600, 270));
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(32, 172, 216));
+        jLabel20.setText("Customer ID:");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
+
+        btnBillLoopup.setBackground(new java.awt.Color(32, 172, 216));
+        btnBillLoopup.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBillLoopup.setForeground(new java.awt.Color(255, 255, 255));
+        btnBillLoopup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Search.png"))); // NOI18N
+        btnBillLoopup.setText("Lookup Bill");
+        btnBillLoopup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBillLoopupActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBillLoopup, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 130, 140, -1));
+
+        lblSupplier2.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        lblSupplier2.setForeground(new java.awt.Color(32, 172, 216));
+        lblSupplier2.setText("Supplier Name:");
+        jPanel1.add(lblSupplier2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
+
+        cboYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2017", "2018", "2019", "2020", "2021" }));
+        cboYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboYearActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cboYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 90, 30));
+
+        lblSupplier3.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        lblSupplier3.setForeground(new java.awt.Color(32, 172, 216));
+        lblSupplier3.setText("Month:");
+        jPanel1.add(lblSupplier3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
+
+        cboMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cboMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboMonthActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cboMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 90, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,39 +391,38 @@ public class Payment extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void btnConfirm_WaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirm_WaterActionPerformed
-        long customerId = Long.parseLong(txtCustomerID_Water.getText());
+    private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
+        long customerId = Long.parseLong(txtCustomerID.getText());
         String supplierName = cboSupplierName.getSelectedItem().toString();
-        Bill_DTO dtoWaterBill = busPayment.getBill(new Customer_DTO(customerId), new Supplier_DTO(supplierName));
-        if(dtoWaterBill != null) // Hóa đơn tồn tại
+        Bill_DTO dtoBill = busPayment.getBill(new Customer_DTO(customerId), new Supplier_DTO(supplierName), Integer.parseInt(cboMonth.getSelectedItem().toString()), Integer.parseInt(cboYear.getSelectedItem().toString()));
+        UserLogin_DTO dtoUserLogIn = busPayment.getUserLogin(dtoCustomer); // Lấy password người dùng
+        String EnteredPassword = confirmPassword();
+        if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
         {
-            UserLogin_DTO dtoUserLogIn = busPayment.getUserLogin(dtoCustomer); // Lấy password người dùng
-            String EnteredPassword = confirmPassword();
-            if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
+            if(busPayment.payment(dtoBill, dtoAccount))
             {
-                if(busPayment.payment(dtoWaterBill, dtoAccount))
-                {
-                    JOptionPane.showConfirmDialog(null, "Payment is successful", "Successful", JOptionPane.CLOSED_OPTION);
+                JOptionPane.showConfirmDialog(null, "Payment is successful", "Successful", JOptionPane.CLOSED_OPTION);
 
-                    Report r = new Report();
-                    r.showPaymentBill(dtoWaterBill.getId());
-                    //Clear form
-                    cboServiceType.setSelectedItem(null);
-                    txtCustomerID_Water.setText("");
-                }
+                Report r = new Report();
+                r.showPaymentBill(dtoBill.getId());
+                //Clear form
+                cboServiceType.setSelectedItem(null);
+                txtCustomerID.setText("");
+                cboMonth.setSelectedItem(null);
+                cboYear.setSelectedItem(null);
+                clearBillLookupInformation();
             }
-            else if(EnteredPassword.equals("cancel"))
-            {
-                // Không làm gì hết
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(EnteredPassword.equals("cancel"))
+        {
+            // Không làm gì hết
         }
         else
-            JOptionPane.showMessageDialog(this, "This bill is not exist", "Error", JOptionPane.ERROR_MESSAGE);
-    }//GEN-LAST:event_btnConfirm_WaterActionPerformed
+            JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_btnPaymentActionPerformed
 
     private void cboServiceTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboServiceTypeActionPerformed
+         clearBillLookupInformation();
         //Chọn loại dịch vụ cần thanh toán
         if(cboServiceType.getSelectedItem() == null)
             cboSupplierName.setSelectedItem(null);
@@ -245,19 +446,90 @@ public class Payment extends javax.swing.JFrame
         }
     }//GEN-LAST:event_cboServiceTypeActionPerformed
 
+    private void btnBillLoopupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillLoopupActionPerformed
+        if(cboServiceType.getSelectedItem() == null || cboSupplierName.getSelectedItem() == null || txtCustomerID.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            long customerId = Long.parseLong(txtCustomerID.getText());
+            String supplierName = cboSupplierName.getSelectedItem().toString();
+            Bill_DTO dtoBill = busPayment.getBill(new Customer_DTO(customerId), new Supplier_DTO(supplierName), Integer.parseInt(cboMonth.getSelectedItem().toString()), Integer.parseInt(cboYear.getSelectedItem().toString()));
+            if(dtoBill != null) // Hóa đơn tồn tại
+            {
+                if(dtoBill.getStatus().equals("Unpaid"))
+                {
+                    txtBillID_BillLookup.setText(String.valueOf(dtoBill.getId()));
+                    txtCustomerID_BillLookup.setText(String.valueOf(dtoBill.getCustomerID()));
+                    txtSupplier_BillLookup.setText(cboSupplierName.getSelectedItem().toString());
+                    txtBillDate_BillLookup.setText(dtoBill.getInvoiceDate().toString());
+                    txtStatus_BillLookup.setText(dtoBill.getStatus());
+                    txtBillAmount_BillLookup.setText(String.format("%,d", dtoBill.getBillAmount()) + "VND");
+                    btnPayment.setVisible(true);
+                    
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "This bill has been paid", "Paid", JOptionPane.CLOSED_OPTION);
+            }
+            else
+                JOptionPane.showMessageDialog(this, "This bill is not exist", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnBillLoopupActionPerformed
+
+    private void cboSupplierNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSupplierNameActionPerformed
+        clearBillLookupInformation();
+    }//GEN-LAST:event_cboSupplierNameActionPerformed
+
+    private void txtCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCustomerIDActionPerformed
+
+    private void cboMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMonthActionPerformed
+        clearBillLookupInformation();
+    }//GEN-LAST:event_cboMonthActionPerformed
+
+    private void cboYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboYearActionPerformed
+        clearBillLookupInformation();
+    }//GEN-LAST:event_cboYearActionPerformed
+
+    private void txtCustomerIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCustomerIDMouseClicked
+        clearBillLookupInformation();
+    }//GEN-LAST:event_txtCustomerIDMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfirm_Water;
+    private javax.swing.JButton btnBillLoopup;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnPayment;
+    private javax.swing.JComboBox<String> cboMonth;
     private javax.swing.JComboBox<String> cboServiceType;
     private javax.swing.JComboBox<String> cboSupplierName;
+    private javax.swing.JComboBox<String> cboYear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblImage_Transfer;
     private javax.swing.JLabel lblSupplier;
     private javax.swing.JLabel lblSupplier1;
-    private javax.swing.JTextField txtCustomerID_Water;
+    private javax.swing.JLabel lblSupplier2;
+    private javax.swing.JLabel lblSupplier3;
+    private javax.swing.JTextField txtBillAmount_BillLookup;
+    private javax.swing.JTextField txtBillDate_BillLookup;
+    private javax.swing.JTextField txtBillID_BillLookup;
+    private javax.swing.JTextField txtCustomerID;
+    private javax.swing.JTextField txtCustomerID_BillLookup;
+    private javax.swing.JTextField txtStatus_BillLookup;
+    private javax.swing.JTextField txtSupplier_BillLookup;
     // End of variables declaration//GEN-END:variables
 }

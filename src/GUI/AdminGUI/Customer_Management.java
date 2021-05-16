@@ -632,8 +632,8 @@ public class Customer_Management extends javax.swing.JFrame
         // TODO add your handling code here:
         if(isTxtUpdateIDIsFilled())
         {
-            Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtUpdateID.getText()));
-            if(customer_BUS.delete(ct))
+            Customer_DTO dtoCustomer = new Customer_DTO(Integer.parseInt(txtUpdateID.getText()));
+            if(customer_BUS.delete(dtoCustomer))
             {
                 JOptionPane.showMessageDialog(this, "Customer deleted susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 createTable();
@@ -689,16 +689,16 @@ public class Customer_Management extends javax.swing.JFrame
         // TODO add your handling code here:
         if(isTxtUpdateIDIsFilled())
         {
-            Customer_DTO ct = customer_BUS.getInformation(Integer.parseInt(txtUpdateID.getText()));
-            if(ct != null)
+            Customer_DTO dtoCustomer = customer_BUS.getInformation(Integer.parseInt(txtUpdateID.getText()));
+            if(dtoCustomer != null)
             {
-                txtFirstName_UpdateCustomer.setText(ct.getFirstName());
-                txtLastName_UpdateCustomer.setText(ct.getLastName());
-                cbbUpdateGender.setSelectedItem(ct.getGender());
-                dcDateOfBirth_UpdateCustomer.setDate(ct.getDateOfBirth());
-                txtUpdateAddress.setText(ct.getAddress());
-                txtUpdatePhoneNumber.setText(ct.getPhoneNumber());
-                txtUpdateIDCard.setText(ct.getIDCard());
+                txtFirstName_UpdateCustomer.setText(dtoCustomer.getFirstName());
+                txtLastName_UpdateCustomer.setText(dtoCustomer.getLastName());
+                cbbUpdateGender.setSelectedItem(dtoCustomer.getGender());
+                dcDateOfBirth_UpdateCustomer.setDate(dtoCustomer.getDateOfBirth());
+                txtUpdateAddress.setText(dtoCustomer.getAddress());
+                txtUpdatePhoneNumber.setText(dtoCustomer.getPhoneNumber());
+                txtUpdateIDCard.setText(dtoCustomer.getIDCard());
             }
             else
                 JOptionPane.showMessageDialog(this, "No customer information found!", "Error", JOptionPane.ERROR_MESSAGE);

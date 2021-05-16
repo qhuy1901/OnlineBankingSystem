@@ -29,8 +29,9 @@ public class Saving extends javax.swing.JFrame
     
     Customer_DTO dtoCustomer = null;
     AccountType_DTO dtoSavingsAccountType = null;
+    Account_DTO dtoPaymentAccount = null;
     
-    public Saving(Customer_DTO customer) 
+    public Saving(Customer_DTO customer, Account_DTO account) 
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -39,6 +40,7 @@ public class Saving extends javax.swing.JFrame
         cboSavingsAccountType.setSelectedItem(null);
         cboTerm.setSelectedItem(null);
         dtoCustomer = customer;
+        dtoPaymentAccount = account;
         btnOpenAccount.setVisible(false);
         txtTotalSavingAccount.setText(String.format("%,d",busSaving.getTotalSavingAccount(dtoCustomer)) + " VND");
         createTable();
@@ -310,6 +312,11 @@ public class Saving extends javax.swing.JFrame
                 txtDepositsMousePressed(evt);
             }
         });
+        txtDeposits.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDepositsActionPerformed(evt);
+            }
+        });
         OpenOnlineSavings.add(txtDeposits, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 320, -1));
 
         cboTerm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -414,7 +421,7 @@ public class Saving extends javax.swing.JFrame
                 txtAnticipatedInterestActionPerformed(evt);
             }
         });
-        jPanel1.add(txtAnticipatedInterest, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 140, -1));
+        jPanel1.add(txtAnticipatedInterest, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 140, -1));
 
         lblInterestRate1.setBackground(new java.awt.Color(32, 172, 216));
         lblInterestRate1.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
@@ -600,6 +607,10 @@ public class Saving extends javax.swing.JFrame
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
         }
+        else if(Long.parseLong(txtDeposits.getText()) > dtoPaymentAccount.getCurrentBalance())
+        {
+            JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+        }
         else if(Long.parseLong(txtDeposits.getText()) < 1000000)
         {
             JOptionPane.showMessageDialog(this, "The deposit amount must be more than 1,000,000 VND", "Error", JOptionPane.ERROR_MESSAGE);
@@ -754,7 +765,6 @@ public class Saving extends javax.swing.JFrame
     }//GEN-LAST:event_cboSavingsAccountTypeActionPerformed
 
     private void txtDepositsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDepositsMousePressed
-        txtDeposits.setText("");
         txtInterestRate.setText("");
         txtAnticipatedInterest.setText("");
         txtTotal.setText("");
@@ -763,6 +773,10 @@ public class Saving extends javax.swing.JFrame
         txtProductName.setText("");
         btnOpenAccount.setVisible(false);
     }//GEN-LAST:event_txtDepositsMousePressed
+
+    private void txtDepositsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepositsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDepositsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

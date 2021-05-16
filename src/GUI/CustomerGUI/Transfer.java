@@ -229,8 +229,8 @@ public class Transfer extends javax.swing.JFrame
             {
                 if(dtoAccount.getCurrentBalance() >= Long.parseLong(txtAmount.getText().replaceAll("\\s+",""))) // Kiểm tra số dư 
                 {
-                    UserLogin_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); // Lấy password của người chuyển tiền
                     String EnteredPassword = confirmPassword();
+                    UserLogin_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); // Lấy password của người chuyển tiềnT
                     if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
                     {
                         TransferDetail_DTO dtoTransferDetail = new TransferDetail_DTO(dtoAccount.getId(), dtoReceiverAccount.getId(), cboReceiverBank.getSelectedItem().toString(), Long.parseLong(txtAmount.getText()), txtContent.getText());

@@ -12,8 +12,7 @@ import javax.swing.JOptionPane;
 
 public class Supplier_DAL 
 {
-    //Có thể bỏ
-    /*public Supplier_DTO getInformation(String name)
+    public Supplier_DTO getInformation(String name) // dùng cho form thanh toán
     {
         Supplier_DTO dotSupplier = null;
         try
@@ -33,7 +32,8 @@ public class Supplier_DAL
             JOptionPane.showMessageDialog(null, e);
         }
         return dotSupplier; 
-    }*/
+    }
+    
     public boolean insert(Supplier_DTO dtoSupplier)
     {
         try{

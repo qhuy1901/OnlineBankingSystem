@@ -33,9 +33,16 @@ public class Bill_DTO
         this.paymentDate = paymentDate;
         this.status = status;
     }
-    
-    
 
+    public void setInvoiceDate(Date invoiceDate) {
+        this.invoiceDate = invoiceDate;
+    }
+
+    public Date getInvoiceDate() {
+        return invoiceDate;
+    }
+    
+    
     public long getId() {
         return id;
     }

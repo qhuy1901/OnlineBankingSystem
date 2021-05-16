@@ -2,7 +2,6 @@ package DAL;
 
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
-import DTO.UserLogin_DTO;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -126,7 +125,7 @@ public class Customer_DAL extends DBConnection
         return null; 
     }
     
-    public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)
+    /*public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)
     {
         try
         {
@@ -146,7 +145,7 @@ public class Customer_DAL extends DBConnection
             JOptionPane.showMessageDialog(null, e);
         }
         return null; 
-    }
+    }*/
     
     public ArrayList<Customer_DTO> getCustomersList()
     {
