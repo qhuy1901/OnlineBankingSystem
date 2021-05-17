@@ -6,7 +6,7 @@ import DTO.Bill_DTO;
 import DTO.Customer_DTO;
 import DTO.Supplier_DTO;
 import DTO.UserLogin_DTO;
-import GUI.Customer_Menu_GUI;
+import GUI.CustomerMenu_GUI;
 import GUI.LogIn;
 import GUI.Report.Report;
 import javax.swing.DefaultComboBoxModel;
@@ -15,13 +15,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
-public class Payment extends javax.swing.JFrame 
+public class Payment_GUI extends javax.swing.JFrame 
 {
     Payment_BUS busPayment = new Payment_BUS();
     Account_DTO dtoAccount = null; // Tài khoản của người chuyển tiền
     Customer_DTO dtoCustomer = null;
     
-    public Payment(Customer_DTO customer, Account_DTO account) 
+    public Payment_GUI(Customer_DTO customer, Account_DTO account) 
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -308,9 +308,9 @@ public class Payment extends javax.swing.JFrame
                     .addComponent(txtBillDate_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(txtBillAmount_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtBillAmount_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtStatus_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -342,7 +342,7 @@ public class Payment extends javax.swing.JFrame
         lblSupplier2.setText("Supplier Name:");
         jPanel1.add(lblSupplier2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
 
-        cboYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2017", "2018", "2019", "2020", "2021" }));
+        cboYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021" }));
         cboYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboYearActionPerformed(evt);
@@ -382,7 +382,7 @@ public class Payment extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new Customer_Menu_GUI(dtoCustomer);
+        new CustomerMenu_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
@@ -392,33 +392,41 @@ public class Payment extends javax.swing.JFrame
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
-        long customerId = Long.parseLong(txtCustomerID.getText());
-        String supplierName = cboSupplierName.getSelectedItem().toString();
-        Bill_DTO dtoBill = busPayment.getBill(new Customer_DTO(customerId), new Supplier_DTO(supplierName), Integer.parseInt(cboMonth.getSelectedItem().toString()), Integer.parseInt(cboYear.getSelectedItem().toString()));
-        UserLogin_DTO dtoUserLogIn = busPayment.getUserLogin(dtoCustomer); // Lấy password người dùng
-        String EnteredPassword = confirmPassword();
-        if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
+        if(dtoAccount.getCurrentBalance() > Long.parseLong(txtBillAmount_BillLookup.getText().replace(",", "").replace(" VND", "")))
         {
-            if(busPayment.payment(dtoBill, dtoAccount))
+            long customerId = Long.parseLong(txtCustomerID.getText());
+            String supplierName = cboSupplierName.getSelectedItem().toString();
+            Bill_DTO dtoBill = busPayment.getBill(new Customer_DTO(customerId), new Supplier_DTO(supplierName), Integer.parseInt(cboMonth.getSelectedItem().toString()), Integer.parseInt(cboYear.getSelectedItem().toString()));
+            UserLogin_DTO dtoUserLogIn = busPayment.getUserLogin(dtoCustomer); // Lấy password người dùng
+            String EnteredPassword = confirmPassword();
+            if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
             {
-                JOptionPane.showConfirmDialog(null, "Payment is successful", "Successful", JOptionPane.CLOSED_OPTION);
+                if(busPayment.payment(dtoBill, dtoAccount))
+                {
+                    JOptionPane.showConfirmDialog(null, "Payment is successful", "Successful", JOptionPane.CLOSED_OPTION);
 
-                Report r = new Report();
-                r.showPaymentBill(dtoBill.getId());
-                //Clear form
-                cboServiceType.setSelectedItem(null);
-                txtCustomerID.setText("");
-                cboMonth.setSelectedItem(null);
-                cboYear.setSelectedItem(null);
-                clearBillLookupInformation();
+                    Report r = new Report();
+                    r.showPaymentBill(dtoBill.getId());
+                    //Clear form
+                    cboServiceType.setSelectedItem(null);
+                    txtCustomerID.setText("");
+                    cboMonth.setSelectedItem(null);
+                    cboYear.setSelectedItem(null);
+                    clearBillLookupInformation();
+                }
             }
-        }
-        else if(EnteredPassword.equals("cancel"))
-        {
-            // Không làm gì hết
+            else if(EnteredPassword.equals("cancel"))
+            {
+                // Không làm gì hết
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
         }
         else
-            JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+        {
+            JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "This bill is not exist", "Error", JOptionPane.ERROR_MESSAGE);
+        }   
     }//GEN-LAST:event_btnPaymentActionPerformed
 
     private void cboServiceTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboServiceTypeActionPerformed
@@ -453,7 +461,7 @@ public class Payment extends javax.swing.JFrame
         }
         else
         {
-            long customerId = Long.parseLong(txtCustomerID.getText());
+            long customerId = Long.parseLong(txtCustomerID.getText().replace(" ", ""));
             String supplierName = cboSupplierName.getSelectedItem().toString();
             Bill_DTO dtoBill = busPayment.getBill(new Customer_DTO(customerId), new Supplier_DTO(supplierName), Integer.parseInt(cboMonth.getSelectedItem().toString()), Integer.parseInt(cboYear.getSelectedItem().toString()));
             if(dtoBill != null) // Hóa đơn tồn tại
@@ -465,7 +473,7 @@ public class Payment extends javax.swing.JFrame
                     txtSupplier_BillLookup.setText(cboSupplierName.getSelectedItem().toString());
                     txtBillDate_BillLookup.setText(dtoBill.getInvoiceDate().toString());
                     txtStatus_BillLookup.setText(dtoBill.getStatus());
-                    txtBillAmount_BillLookup.setText(String.format("%,d", dtoBill.getBillAmount()) + "VND");
+                    txtBillAmount_BillLookup.setText(String.format("%,d", dtoBill.getBillAmount()) + " VND");
                     btnPayment.setVisible(true);
                     
                 }

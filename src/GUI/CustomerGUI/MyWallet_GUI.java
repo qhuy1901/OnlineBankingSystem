@@ -4,13 +4,18 @@ import BUS.Transaction_BUS;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.Transaction_DTO;
-import GUI.Customer_Menu_GUI;
+import GUI.CustomerMenu_GUI;
 import GUI.LogIn;
 import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
-public class MyWallet extends javax.swing.JFrame 
+public class MyWallet_GUI extends javax.swing.JFrame 
 {
     Transaction_BUS busTransaction = new Transaction_BUS();
     
@@ -18,7 +23,7 @@ public class MyWallet extends javax.swing.JFrame
     Account_DTO dtoAccount = null;
     boolean currentBalanceIsShowed;
             
-    public MyWallet(Customer_DTO customer, Account_DTO account)
+    public MyWallet_GUI(Customer_DTO customer, Account_DTO account)
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -55,11 +60,42 @@ public class MyWallet extends javax.swing.JFrame
         for(int i = 0; i < list.size(); i++)
         {
             Transaction_DTO dtoTransaction = list.get(i);
-            String[] rows = {String.valueOf(dtoTransaction.getId()), dtoTransaction.getTransactionTypeID(), dtoTransaction.getTrasactionDate().toString(), String.format("%,d", dtoTransaction.getTotalTransactionAmount())};
+            String transactionId = String.valueOf(dtoTransaction.getId());
+            String transactionTypeID = dtoTransaction.getTransactionTypeID();
+            String transactionDate =  dtoTransaction.getTrasactionDate().toString();
+            String totalTransactionAmount = String.format("%,d", dtoTransaction.getTotalTransactionAmount());
+            if(transactionTypeID.equals("NT01") || transactionTypeID.equals("TK02")) // nếu là giao dịch nhận tiền
+                totalTransactionAmount = "+" + totalTransactionAmount + " VND";
+            else // nếu là giao dịch trừ tiền tài khoản
+                totalTransactionAmount = "-" + totalTransactionAmount + " VND";
+            String[] rows = {transactionId, transactionTypeID , transactionDate, totalTransactionAmount};
             tblTransactionModel.addRow(rows);
         }
         tblTransactionHistory.setModel(tblTransactionModel);
+        
+        
+        //Set size for table
+        resizeColumnWidth(tblTransactionHistory);
         setVisible(true);
+    }
+    
+    // Hàm tự động điều chỉnh kích thước cho các cột trong bảng
+    public void resizeColumnWidth(JTable table) 
+    {
+        final TableColumnModel columnModel = table.getColumnModel();
+        for (int column = 0; column < table.getColumnCount(); column++) 
+        {
+            int width = 15; // Min width
+            for (int row = 0; row < table.getRowCount(); row++) 
+            {
+                TableCellRenderer renderer = table.getCellRenderer(row, column);
+                Component comp = table.prepareRenderer(renderer, row, column);
+                width = Math.max(comp.getPreferredSize().width + 1 , width);
+            }
+            if(width > 300)
+                width = 300;
+            columnModel.getColumn(column).setPreferredWidth(width);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -77,7 +113,6 @@ public class MyWallet extends javax.swing.JFrame
         lblCurrentAccount1 = new javax.swing.JLabel();
         lblCurrentAccount3 = new javax.swing.JLabel();
         lblCurrentAccount4 = new javax.swing.JLabel();
-        lblCurrentAccount5 = new javax.swing.JLabel();
         lblCurrentAccount6 = new javax.swing.JLabel();
         lblCurrentAccount7 = new javax.swing.JLabel();
         txtAccountOwner = new javax.swing.JTextField();
@@ -89,6 +124,8 @@ public class MyWallet extends javax.swing.JFrame
         txtCurrentBalance = new javax.swing.JTextField();
         lblCurrentAccount8 = new javax.swing.JLabel();
         txtStatus = new javax.swing.JTextField();
+        lblCurrentAccount9 = new javax.swing.JLabel();
+        lblCurrentAccount10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Online Banking System");
@@ -166,7 +203,7 @@ public class MyWallet extends javax.swing.JFrame
         lblCurrentAccount1.setBackground(new java.awt.Color(32, 172, 216));
         lblCurrentAccount1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         lblCurrentAccount1.setForeground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount1.setText("Transaction History:");
+        lblCurrentAccount1.setText("Transaction History");
         jPanel1.add(lblCurrentAccount1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, -1, -1));
 
         lblCurrentAccount3.setBackground(new java.awt.Color(32, 172, 216));
@@ -180,12 +217,6 @@ public class MyWallet extends javax.swing.JFrame
         lblCurrentAccount4.setForeground(new java.awt.Color(32, 172, 216));
         lblCurrentAccount4.setText("Account ID:");
         jPanel1.add(lblCurrentAccount4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
-
-        lblCurrentAccount5.setBackground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount5.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblCurrentAccount5.setForeground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount5.setText("Status:");
-        jPanel1.add(lblCurrentAccount5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, -1, -1));
 
         lblCurrentAccount6.setBackground(new java.awt.Color(32, 172, 216));
         lblCurrentAccount6.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -265,13 +296,25 @@ public class MyWallet extends javax.swing.JFrame
         txtStatus.setText("jTextField1");
         jPanel1.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 240, 30));
 
+        lblCurrentAccount9.setBackground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount9.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblCurrentAccount9.setForeground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount9.setText("Status:");
+        jPanel1.add(lblCurrentAccount9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, -1, -1));
+
+        lblCurrentAccount10.setBackground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount10.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblCurrentAccount10.setForeground(new java.awt.Color(32, 172, 216));
+        lblCurrentAccount10.setText("(15 most recent transactions)");
+        jPanel1.add(lblCurrentAccount10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new Customer_Menu_GUI(dtoCustomer);
+        new CustomerMenu_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
@@ -282,6 +325,7 @@ public class MyWallet extends javax.swing.JFrame
 
     private void btnShowTransactionHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowTransactionHistoryActionPerformed
         createTable();
+        btnShowTransactionHistory.setVisible(false);
     }//GEN-LAST:event_btnShowTransactionHistoryActionPerformed
     
     
@@ -310,12 +354,13 @@ public class MyWallet extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JLabel lblCurrentAccount;
     private javax.swing.JLabel lblCurrentAccount1;
+    private javax.swing.JLabel lblCurrentAccount10;
     private javax.swing.JLabel lblCurrentAccount3;
     private javax.swing.JLabel lblCurrentAccount4;
-    private javax.swing.JLabel lblCurrentAccount5;
     private javax.swing.JLabel lblCurrentAccount6;
     private javax.swing.JLabel lblCurrentAccount7;
     private javax.swing.JLabel lblCurrentAccount8;
+    private javax.swing.JLabel lblCurrentAccount9;
     private javax.swing.JLabel lblImage_MyWalletCusGUI;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblTransactionHistory;

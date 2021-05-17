@@ -2,16 +2,16 @@ package GUI;
 
 import BUS.Admin_BUS;
 import DTO.Admin_DTO;
-import GUI.AdminGUI.Account_Management;
-import GUI.AdminGUI.Customer_Management;
-import GUI.AdminGUI.Supplier_Management;
+import GUI.AdminGUI.AccountManagement_GUI;
+import GUI.AdminGUI.CustomerManagement_GUI;
+import GUI.AdminGUI.SupplierManagement_GUI;
 
-public class Admin_Menu_GUI extends javax.swing.JFrame 
+public class AdminMenu_GUI extends javax.swing.JFrame 
 {
     Admin_BUS busAdmin = new Admin_BUS();
     Admin_DTO dtoAdmin = null;
     
-    public Admin_Menu_GUI(Admin_DTO admin) 
+    public AdminMenu_GUI(Admin_DTO admin) 
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -160,17 +160,17 @@ public class Admin_Menu_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnSupplierManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierManagementActionPerformed
-        new Supplier_Management(dtoAdmin);
+        new SupplierManagement_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnSupplierManagementActionPerformed
 
     private void btnAccountManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountManagementActionPerformed
-        new Account_Management(dtoAdmin);
+        new AccountManagement_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnAccountManagementActionPerformed
 
     private void btnCustomerManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerManagementActionPerformed
-        new Customer_Management(dtoAdmin);
+        new CustomerManagement_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnCustomerManagementActionPerformed
 

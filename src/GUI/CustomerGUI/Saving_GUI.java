@@ -5,7 +5,7 @@ import DTO.AccountType_DTO;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
-import GUI.Customer_Menu_GUI;
+import GUI.CustomerMenu_GUI;
 import GUI.LogIn;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -23,7 +23,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-public class Saving extends javax.swing.JFrame 
+public class Saving_GUI extends javax.swing.JFrame 
 {
     Saving_BUS busSaving = new Saving_BUS();
     
@@ -31,7 +31,7 @@ public class Saving extends javax.swing.JFrame
     AccountType_DTO dtoSavingsAccountType = null;
     Account_DTO dtoPaymentAccount = null;
     
-    public Saving(Customer_DTO customer, Account_DTO account) 
+    public Saving_GUI(Customer_DTO customer, Account_DTO account) 
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -498,7 +498,7 @@ public class Saving extends javax.swing.JFrame
     }//GEN-LAST:event_btnLogout1ActionPerformed
 
     private void btnHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome1ActionPerformed
-        new Customer_Menu_GUI(dtoCustomer);
+        new CustomerMenu_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome1ActionPerformed
 
@@ -518,7 +518,7 @@ public class Saving extends javax.swing.JFrame
                 openDay = new SimpleDateFormat("yyyy-MM-dd").parse(tblSavingsAccount.getModel().getValueAt(row, 3).toString().replaceAll("\\s+",""));
                 maturityDate = new SimpleDateFormat("yyyy-MM-dd").parse(tblSavingsAccount.getModel().getValueAt(row, 4).toString().replaceAll("\\s+",""));
             } catch (ParseException ex) {
-                Logger.getLogger(Saving.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Saving_GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             if(maturityDate.compareTo(openDay) > 0) // Nếu chưa đến ngày đáo hạn
@@ -582,7 +582,7 @@ public class Saving extends javax.swing.JFrame
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
-        new Customer_Menu_GUI(dtoCustomer);
+        new CustomerMenu_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
@@ -695,7 +695,7 @@ public class Saving extends javax.swing.JFrame
             try {
                 maturityDate = new SimpleDateFormat("yyyy-MM-dd").parse(txtMaturityDate.getText());
             } catch (ParseException ex) {
-                Logger.getLogger(Saving.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Saving_GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             Account_DTO dtoNewSavingAccount = new Account_DTO(dtoSavingsAccountType.getId(), Long.parseLong(txtDeposits.getText()), maturityDate, Long.parseLong(txtAnticipatedInterest.getText().replaceAll(",","")) , dtoCustomer.getId());

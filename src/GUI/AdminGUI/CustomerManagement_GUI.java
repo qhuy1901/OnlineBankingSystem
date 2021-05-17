@@ -3,21 +3,25 @@ package GUI.AdminGUI;
 import BUS.Customer_BUS;
 import DTO.Admin_DTO;
 import DTO.Customer_DTO;
-import GUI.Admin_Menu_GUI;
+import GUI.AdminMenu_GUI;
 import GUI.LogIn;
 import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 
-public class Customer_Management extends javax.swing.JFrame 
+public class CustomerManagement_GUI extends javax.swing.JFrame 
 {
     Customer_BUS customer_BUS = new Customer_BUS();
     Admin_DTO dtoAdmin = null;
     
-    public Customer_Management(Admin_DTO admin) 
+    public CustomerManagement_GUI(Admin_DTO admin) 
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -42,9 +46,28 @@ public class Customer_Management extends javax.swing.JFrame
             tblCustomerModel.addRow(rows);
         }
         tblViewCustomer.setModel(tblCustomerModel);
+        resizeColumnWidth(tblViewCustomer);
         setVisible(true);
     }
 
+    // Hàm tự động điều chỉnh kích thước cho các cột trong bảng
+    public void resizeColumnWidth(JTable table) 
+    {
+        final TableColumnModel columnModel = table.getColumnModel();
+        for (int column = 0; column < table.getColumnCount(); column++) 
+        {
+            int width = 15; // Min width
+            for (int row = 0; row < table.getRowCount(); row++) 
+            {
+                TableCellRenderer renderer = table.getCellRenderer(row, column);
+                Component comp = table.prepareRenderer(renderer, row, column);
+                width = Math.max(comp.getPreferredSize().width + 1 , width);
+            }
+            if(width > 300)
+                width = 300;
+            columnModel.getColumn(column).setPreferredWidth(width);
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -552,7 +575,7 @@ public class Customer_Management extends javax.swing.JFrame
 
     private void btnHome_AddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_AddCustomerActionPerformed
         // TODO add your handling code here:
-        new Admin_Menu_GUI(dtoAdmin);
+        new AdminMenu_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_AddCustomerActionPerformed
 
@@ -710,12 +733,12 @@ public class Customer_Management extends javax.swing.JFrame
     }//GEN-LAST:event_txtUpdateAddressActionPerformed
 
     private void btnHome_UpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_UpdateCustomerActionPerformed
-        new Admin_Menu_GUI(dtoAdmin);
+        new AdminMenu_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_UpdateCustomerActionPerformed
 
     private void btnHome_ViewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_ViewCustomerActionPerformed
-        new Admin_Menu_GUI(dtoAdmin);
+        new AdminMenu_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_ViewCustomerActionPerformed
 

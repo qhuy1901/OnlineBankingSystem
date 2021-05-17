@@ -3,7 +3,7 @@ package GUI.AdminGUI;
 import BUS.Account_BUS;
 import DTO.Account_DTO;
 import DTO.Admin_DTO;
-import GUI.Admin_Menu_GUI;
+import GUI.AdminMenu_GUI;
 import GUI.LogIn;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -13,12 +13,12 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-public class Account_Management extends javax.swing.JFrame 
+public class AccountManagement_GUI extends javax.swing.JFrame 
 {
     Account_BUS busAccount = new Account_BUS();
     Admin_DTO dtoAdmin = null;
     
-    public Account_Management(Admin_DTO admin) 
+    public AccountManagement_GUI(Admin_DTO admin) 
     {
         initComponents();
         setSize(1064,650);
@@ -281,7 +281,7 @@ public class Account_Management extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHome_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_OpenAccountActionPerformed
-        new Admin_Menu_GUI(dtoAdmin);
+        new AdminMenu_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_OpenAccountActionPerformed
 
@@ -322,7 +322,7 @@ public class Account_Management extends javax.swing.JFrame
     }//GEN-LAST:event_btnLogout_SearchAccountActionPerformed
 
     private void btnHome_SearchAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_SearchAccountActionPerformed
-        new Admin_Menu_GUI(dtoAdmin);
+        new AdminMenu_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_SearchAccountActionPerformed
 

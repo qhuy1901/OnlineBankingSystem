@@ -3,18 +3,18 @@ package GUI;
 import BUS.Customer_BUS;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
-import GUI.CustomerGUI.MyWallet;
-import GUI.CustomerGUI.Payment;
-import GUI.CustomerGUI.Saving;
-import GUI.CustomerGUI.Transfer;
+import GUI.CustomerGUI.MyWallet_GUI;
+import GUI.CustomerGUI.Payment_GUI;
+import GUI.CustomerGUI.Saving_GUI;
+import GUI.CustomerGUI.Transfer_GUI;
 import javax.swing.JOptionPane;
 
-public class Customer_Menu_GUI extends javax.swing.JFrame 
+public class CustomerMenu_GUI extends javax.swing.JFrame 
 {
     Customer_BUS busCustomer = new Customer_BUS();
     Customer_DTO dtoCustomer = null; // Người đang đăng nhập hệ thống
    
-    public Customer_Menu_GUI(Customer_DTO customer) 
+    public CustomerMenu_GUI(Customer_DTO customer) 
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -207,7 +207,7 @@ public class Customer_Menu_GUI extends javax.swing.JFrame
 
     private void btnMyWalletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyWalletActionPerformed
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
-        new MyWallet(dtoCustomer, dtoAccount);
+        new MyWallet_GUI(dtoCustomer, dtoAccount);
         this.setVisible(false);
     }//GEN-LAST:event_btnMyWalletActionPerformed
 
@@ -215,7 +215,7 @@ public class Customer_Menu_GUI extends javax.swing.JFrame
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
         if(dtoAccount.getStatus().equals("Active"))
         {
-            new Transfer(dtoCustomer, dtoAccount);
+            new Transfer_GUI(dtoCustomer, dtoAccount);
             this.setVisible(false);
         }
         else
@@ -226,7 +226,7 @@ public class Customer_Menu_GUI extends javax.swing.JFrame
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
         if(dtoAccount.getStatus().equals("Active"))
         {
-            new Saving(dtoCustomer, dtoAccount);
+            new Saving_GUI(dtoCustomer, dtoAccount);
             this.setVisible(false);
         }
         else
@@ -237,7 +237,7 @@ public class Customer_Menu_GUI extends javax.swing.JFrame
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
         if(dtoAccount.getStatus().equals("Active"))
         {
-            new Payment(dtoCustomer, dtoAccount);
+            new Payment_GUI(dtoCustomer, dtoAccount);
             this.setVisible(false);
         }
         else

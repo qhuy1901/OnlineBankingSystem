@@ -5,18 +5,18 @@ import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.TransferDetail_DTO;
 import DTO.UserLogin_DTO;
-import GUI.Customer_Menu_GUI;
+import GUI.CustomerMenu_GUI;
 import GUI.LogIn;
 import javax.swing.*;
 
-public class Transfer extends javax.swing.JFrame 
+public class Transfer_GUI extends javax.swing.JFrame 
 {
     Transfer_BUS busTransfer = new Transfer_BUS();
     
     Account_DTO dtoAccount = null; // Tài khoản của người chuyển tiền
     Customer_DTO dtoCustomer = null; //Người chuyển tiền
     
-    public Transfer(Customer_DTO customer, Account_DTO account) 
+    public Transfer_GUI(Customer_DTO customer, Account_DTO account) 
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -261,7 +261,7 @@ public class Transfer extends javax.swing.JFrame
     }//GEN-LAST:event_btnContinueActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new Customer_Menu_GUI(dtoCustomer);
+        new CustomerMenu_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 

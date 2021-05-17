@@ -1,14 +1,12 @@
 package DAL;
 
 import DTO.Account_DTO;
-import DTO.Supplier_DTO;
 import DTO.Transaction_DTO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -68,7 +66,11 @@ public class Transaction_DAL extends DBConnection
         try
         {
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT * FROM TRANSACTION WHERE ACCOUNT_ID = ? ORDER BY TRANSACTION_ID";
+            String SQL = "SELECT * \n" +
+                        "FROM TRANSACTION \n" +
+                        "WHERE ACCOUNT_ID = ?\n" +
+                        "AND ROWNUM <= 15\n" + //Hiển thị 15 giao dịch gần nhất
+                        "ORDER BY TRANSACTION_ID";
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, dtoAccount.getId());
             ResultSet rs = prest.executeQuery();

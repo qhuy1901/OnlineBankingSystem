@@ -3,7 +3,7 @@ package GUI.AdminGUI;
 import BUS.Supplier_BUS;
 import DTO.Admin_DTO;
 import DTO.Supplier_DTO;
-import GUI.Admin_Menu_GUI;
+import GUI.AdminMenu_GUI;
 import GUI.LogIn;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -19,12 +19,12 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-public class Supplier_Management extends javax.swing.JFrame 
+public class SupplierManagement_GUI extends javax.swing.JFrame 
 {
     Supplier_BUS busSupplier = new Supplier_BUS();
     Admin_DTO dtoAdmin = null;
     
-    public Supplier_Management(Admin_DTO admin) 
+    public SupplierManagement_GUI(Admin_DTO admin) 
     {
         initComponents();
         setSize(1064,650);
@@ -72,7 +72,7 @@ public class Supplier_Management extends javax.swing.JFrame
                         try { 
                             contractSingingDate = df.parse(contractSingingDateString);
                         } catch (ParseException ex) {
-                            Logger.getLogger(Supplier_Management.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(SupplierManagement_GUI.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         dcContractSingingDate.setDate(contractSingingDate);
                         txtAddress.setText(tblSupplier.getModel().getValueAt(row, 4).toString());
@@ -401,7 +401,7 @@ public class Supplier_Management extends javax.swing.JFrame
     }//GEN-LAST:event_btnDelete_Supplier1ActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new Admin_Menu_GUI(dtoAdmin);
+        new AdminMenu_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
