@@ -35,21 +35,21 @@ public class Transfer_GUI extends javax.swing.JFrame
         lblImage_Transfer = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         lblImage_Description = new javax.swing.JLabel();
-        lblBeneficiary_Account = new javax.swing.JLabel();
+        lblReceiverAccount = new javax.swing.JLabel();
         lblAmount = new javax.swing.JLabel();
-        lblDescription = new javax.swing.JLabel();
+        lblContent = new javax.swing.JLabel();
         cboReceiverBank = new javax.swing.JComboBox<>();
         txtReceiverAccount = new javax.swing.JTextField();
         lbltienVND = new javax.swing.JLabel();
         btnContinue = new javax.swing.JButton();
         lblImage_Bank = new javax.swing.JLabel();
         lblImage_BAccount = new javax.swing.JLabel();
-        lblBank2 = new javax.swing.JLabel();
+        lblReceiverInformation = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtContent = new javax.swing.JTextPane();
-        lblBank3 = new javax.swing.JLabel();
+        lblReceiverBank = new javax.swing.JLabel();
         txtAmount = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,32 +95,32 @@ public class Transfer_GUI extends javax.swing.JFrame
         });
         jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 50, 57));
 
-        jLabel1.setBackground(new java.awt.Color(32, 172, 216));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("         Transfer");
-        jLabel1.setOpaque(true);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 30, 931, 58));
+        lblTitle.setBackground(new java.awt.Color(32, 172, 216));
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setText("         Transfer");
+        lblTitle.setOpaque(true);
+        jPanel1.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 30, 931, 58));
 
         lblImage_Description.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblImage_Description.setForeground(new java.awt.Color(51, 51, 51));
         lblImage_Description.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Transfer_Description.png"))); // NOI18N
         jPanel1.add(lblImage_Description, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 400, 40, -1));
 
-        lblBeneficiary_Account.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblBeneficiary_Account.setForeground(new java.awt.Color(32, 172, 216));
-        lblBeneficiary_Account.setText("Receiver account ");
-        jPanel1.add(lblBeneficiary_Account, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, -1, -1));
+        lblReceiverAccount.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblReceiverAccount.setForeground(new java.awt.Color(32, 172, 216));
+        lblReceiverAccount.setText("Receiver account ");
+        jPanel1.add(lblReceiverAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, -1, -1));
 
         lblAmount.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblAmount.setForeground(new java.awt.Color(32, 172, 216));
         lblAmount.setText("Amount");
         jPanel1.add(lblAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, -1));
 
-        lblDescription.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblDescription.setForeground(new java.awt.Color(32, 172, 216));
-        lblDescription.setText("Content");
-        jPanel1.add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
+        lblContent.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblContent.setForeground(new java.awt.Color(32, 172, 216));
+        lblContent.setText("Content");
+        jPanel1.add(lblContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
 
         cboReceiverBank.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         cboReceiverBank.setForeground(new java.awt.Color(32, 172, 216));
@@ -159,10 +159,10 @@ public class Transfer_GUI extends javax.swing.JFrame
         lblImage_BAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Transfer_BeneficiaryAccount.png"))); // NOI18N
         jPanel1.add(lblImage_BAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 260, 40, -1));
 
-        lblBank2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblBank2.setForeground(new java.awt.Color(32, 172, 216));
-        lblBank2.setText("Receiver Information");
-        jPanel1.add(lblBank2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, 20));
+        lblReceiverInformation.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblReceiverInformation.setForeground(new java.awt.Color(32, 172, 216));
+        lblReceiverInformation.setText("Receiver Information");
+        jPanel1.add(lblReceiverInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, 20));
 
         txtContent.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtContent.setForeground(new java.awt.Color(32, 172, 216));
@@ -170,10 +170,10 @@ public class Transfer_GUI extends javax.swing.JFrame
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, 430, 60));
 
-        lblBank3.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblBank3.setForeground(new java.awt.Color(32, 172, 216));
-        lblBank3.setText("Bank");
-        jPanel1.add(lblBank3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, 20));
+        lblReceiverBank.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblReceiverBank.setForeground(new java.awt.Color(32, 172, 216));
+        lblReceiverBank.setText("Bank");
+        jPanel1.add(lblReceiverBank, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, 20));
 
         txtAmount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtAmount.setForeground(new java.awt.Color(32, 172, 216));
@@ -275,18 +275,18 @@ public class Transfer_GUI extends javax.swing.JFrame
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogout;
     private javax.swing.JComboBox<String> cboReceiverBank;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAmount;
-    private javax.swing.JLabel lblBank2;
-    private javax.swing.JLabel lblBank3;
-    private javax.swing.JLabel lblBeneficiary_Account;
-    private javax.swing.JLabel lblDescription;
+    private javax.swing.JLabel lblContent;
     private javax.swing.JLabel lblImage_BAccount;
     private javax.swing.JLabel lblImage_Bank;
     private javax.swing.JLabel lblImage_Description;
     private javax.swing.JLabel lblImage_Transfer;
+    private javax.swing.JLabel lblReceiverAccount;
+    private javax.swing.JLabel lblReceiverBank;
+    private javax.swing.JLabel lblReceiverInformation;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lbltienVND;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextPane txtContent;

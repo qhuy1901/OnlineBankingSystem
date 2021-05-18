@@ -75,33 +75,33 @@ public class Payment_GUI extends javax.swing.JFrame
         lblImage_Transfer = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        lblSupplier = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        lblServiceType = new javax.swing.JLabel();
         cboServiceType = new javax.swing.JComboBox<>();
-        lblSupplier1 = new javax.swing.JLabel();
+        lblYear = new javax.swing.JLabel();
         cboSupplierName = new javax.swing.JComboBox<>();
         txtCustomerID = new javax.swing.JTextField();
         btnPayment = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
+        pnlBillLookupInformation = new javax.swing.JPanel();
+        lblBillLookupInformation = new javax.swing.JLabel();
+        lblBillID_BillLookup = new javax.swing.JLabel();
+        lblSupplier_BillLookup = new javax.swing.JLabel();
+        lblCustomerID_BillLookup = new javax.swing.JLabel();
+        lblBillDate_BillLookup = new javax.swing.JLabel();
+        lblBillAmount_BillLookup = new javax.swing.JLabel();
+        lblStatus_BillLookup = new javax.swing.JLabel();
         txtSupplier_BillLookup = new javax.swing.JTextField();
         txtBillID_BillLookup = new javax.swing.JTextField();
         txtCustomerID_BillLookup = new javax.swing.JTextField();
         txtBillDate_BillLookup = new javax.swing.JTextField();
         txtBillAmount_BillLookup = new javax.swing.JTextField();
         txtStatus_BillLookup = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
+        lblCustomerID = new javax.swing.JLabel();
         btnBillLoopup = new javax.swing.JButton();
-        lblSupplier2 = new javax.swing.JLabel();
+        lblSupplierName = new javax.swing.JLabel();
         cboYear = new javax.swing.JComboBox<>();
-        lblSupplier3 = new javax.swing.JLabel();
+        lblMonth = new javax.swing.JLabel();
         cboMonth = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -146,17 +146,17 @@ public class Payment_GUI extends javax.swing.JFrame
         });
         jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 50, 57));
 
-        jLabel1.setBackground(new java.awt.Color(32, 172, 216));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("         Bill Payment");
-        jLabel1.setOpaque(true);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 30, 931, 58));
+        lblTitle.setBackground(new java.awt.Color(32, 172, 216));
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setText("         Bill Payment");
+        lblTitle.setOpaque(true);
+        jPanel1.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 30, 931, 58));
 
-        lblSupplier.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        lblSupplier.setForeground(new java.awt.Color(32, 172, 216));
-        lblSupplier.setText("Service Type:");
-        jPanel1.add(lblSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
+        lblServiceType.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        lblServiceType.setForeground(new java.awt.Color(32, 172, 216));
+        lblServiceType.setText("Service Type:");
+        jPanel1.add(lblServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
 
         cboServiceType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cboServiceType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Water bill payment", "Internet bill payment", "Electricity bill payment" }));
@@ -167,10 +167,10 @@ public class Payment_GUI extends javax.swing.JFrame
         });
         jPanel1.add(cboServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 270, -1));
 
-        lblSupplier1.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        lblSupplier1.setForeground(new java.awt.Color(32, 172, 216));
-        lblSupplier1.setText("Year:");
-        jPanel1.add(lblSupplier1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, -1, -1));
+        lblYear.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        lblYear.setForeground(new java.awt.Color(32, 172, 216));
+        lblYear.setText("Year:");
+        jPanel1.add(lblYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, -1, -1));
 
         cboSupplierName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cboSupplierName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dong Nai Water Supplier", "Thu Duc Water Supplier", "Ben Thanh Water Supplier", "Da Nang Water Supplier", "Clean Water Ha Noi (Hawacom)" }));
@@ -206,33 +206,33 @@ public class Payment_GUI extends javax.swing.JFrame
         jPanel1.add(btnPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 180, 140, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 302, 600, 10));
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel19.setText("Bill Lookup Information");
+        lblBillLookupInformation.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        lblBillLookupInformation.setForeground(new java.awt.Color(32, 172, 216));
+        lblBillLookupInformation.setText("Bill Lookup Information");
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel21.setText("Bill ID:");
+        lblBillID_BillLookup.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblBillID_BillLookup.setForeground(new java.awt.Color(32, 172, 216));
+        lblBillID_BillLookup.setText("Bill ID:");
 
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel22.setText("Supplier:");
+        lblSupplier_BillLookup.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblSupplier_BillLookup.setForeground(new java.awt.Color(32, 172, 216));
+        lblSupplier_BillLookup.setText("Supplier:");
 
-        jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel23.setText("Customer ID:");
+        lblCustomerID_BillLookup.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblCustomerID_BillLookup.setForeground(new java.awt.Color(32, 172, 216));
+        lblCustomerID_BillLookup.setText("Customer ID:");
 
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel24.setText("Bill Date:");
+        lblBillDate_BillLookup.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblBillDate_BillLookup.setForeground(new java.awt.Color(32, 172, 216));
+        lblBillDate_BillLookup.setText("Bill Date:");
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 3, 17)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel25.setText("Bill Amount:");
+        lblBillAmount_BillLookup.setFont(new java.awt.Font("Segoe UI", 3, 17)); // NOI18N
+        lblBillAmount_BillLookup.setForeground(new java.awt.Color(32, 172, 216));
+        lblBillAmount_BillLookup.setText("Bill Amount:");
 
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel26.setText("Status:");
+        lblStatus_BillLookup.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblStatus_BillLookup.setForeground(new java.awt.Color(32, 172, 216));
+        lblStatus_BillLookup.setText("Status:");
 
         txtSupplier_BillLookup.setEditable(false);
         txtSupplier_BillLookup.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
@@ -258,26 +258,26 @@ public class Payment_GUI extends javax.swing.JFrame
         txtStatus_BillLookup.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
         txtStatus_BillLookup.setForeground(new java.awt.Color(32, 172, 216));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlBillLookupInformationLayout = new javax.swing.GroupLayout(pnlBillLookupInformation);
+        pnlBillLookupInformation.setLayout(pnlBillLookupInformationLayout);
+        pnlBillLookupInformationLayout.setHorizontalGroup(
+            pnlBillLookupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBillLookupInformationLayout.createSequentialGroup()
+                .addGroup(pnlBillLookupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlBillLookupInformationLayout.createSequentialGroup()
                         .addGap(194, 194, 194)
-                        .addComponent(jLabel19))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblBillLookupInformation))
+                    .addGroup(pnlBillLookupInformationLayout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel25)
-                            .addComponent(jLabel26)
-                            .addComponent(jLabel24)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel23)
-                            .addComponent(jLabel21))
+                        .addGroup(pnlBillLookupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblBillAmount_BillLookup)
+                            .addComponent(lblStatus_BillLookup)
+                            .addComponent(lblBillDate_BillLookup)
+                            .addComponent(lblSupplier_BillLookup)
+                            .addComponent(lblCustomerID_BillLookup)
+                            .addComponent(lblBillID_BillLookup))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlBillLookupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtStatus_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtBillAmount_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtBillID_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,44 +286,44 @@ public class Payment_GUI extends javax.swing.JFrame
                             .addComponent(txtBillDate_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(174, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnlBillLookupInformationLayout.setVerticalGroup(
+            pnlBillLookupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBillLookupInformationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel19)
+                .addComponent(lblBillLookupInformation)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
+                .addGroup(pnlBillLookupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblBillID_BillLookup)
                     .addComponent(txtBillID_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlBillLookupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCustomerID_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23))
+                    .addComponent(lblCustomerID_BillLookup))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlBillLookupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSupplier_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel22))
+                    .addComponent(lblSupplier_BillLookup))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlBillLookupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBillDate_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24))
+                    .addComponent(lblBillDate_BillLookup))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBillLookupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBillAmount_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25))
+                    .addComponent(lblBillAmount_BillLookup))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlBillLookupInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtStatus_BillLookup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel26))
+                    .addComponent(lblStatus_BillLookup))
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 600, 270));
+        jPanel1.add(pnlBillLookupInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 600, 270));
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(32, 172, 216));
-        jLabel20.setText("Customer ID:");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
+        lblCustomerID.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        lblCustomerID.setForeground(new java.awt.Color(32, 172, 216));
+        lblCustomerID.setText("Customer ID:");
+        jPanel1.add(lblCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
 
         btnBillLoopup.setBackground(new java.awt.Color(32, 172, 216));
         btnBillLoopup.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -337,10 +337,10 @@ public class Payment_GUI extends javax.swing.JFrame
         });
         jPanel1.add(btnBillLoopup, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 130, 140, -1));
 
-        lblSupplier2.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        lblSupplier2.setForeground(new java.awt.Color(32, 172, 216));
-        lblSupplier2.setText("Supplier Name:");
-        jPanel1.add(lblSupplier2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
+        lblSupplierName.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        lblSupplierName.setForeground(new java.awt.Color(32, 172, 216));
+        lblSupplierName.setText("Supplier Name:");
+        jPanel1.add(lblSupplierName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
 
         cboYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021" }));
         cboYear.addActionListener(new java.awt.event.ActionListener() {
@@ -350,10 +350,10 @@ public class Payment_GUI extends javax.swing.JFrame
         });
         jPanel1.add(cboYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 90, 30));
 
-        lblSupplier3.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        lblSupplier3.setForeground(new java.awt.Color(32, 172, 216));
-        lblSupplier3.setText("Month:");
-        jPanel1.add(lblSupplier3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
+        lblMonth.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        lblMonth.setForeground(new java.awt.Color(32, 172, 216));
+        lblMonth.setText("Month");
+        jPanel1.add(lblMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
 
         cboMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         cboMonth.addActionListener(new java.awt.event.ActionListener() {
@@ -515,23 +515,23 @@ public class Payment_GUI extends javax.swing.JFrame
     private javax.swing.JComboBox<String> cboServiceType;
     private javax.swing.JComboBox<String> cboSupplierName;
     private javax.swing.JComboBox<String> cboYear;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblBillAmount_BillLookup;
+    private javax.swing.JLabel lblBillDate_BillLookup;
+    private javax.swing.JLabel lblBillID_BillLookup;
+    private javax.swing.JLabel lblBillLookupInformation;
+    private javax.swing.JLabel lblCustomerID;
+    private javax.swing.JLabel lblCustomerID_BillLookup;
     private javax.swing.JLabel lblImage_Transfer;
-    private javax.swing.JLabel lblSupplier;
-    private javax.swing.JLabel lblSupplier1;
-    private javax.swing.JLabel lblSupplier2;
-    private javax.swing.JLabel lblSupplier3;
+    private javax.swing.JLabel lblMonth;
+    private javax.swing.JLabel lblServiceType;
+    private javax.swing.JLabel lblStatus_BillLookup;
+    private javax.swing.JLabel lblSupplierName;
+    private javax.swing.JLabel lblSupplier_BillLookup;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblYear;
+    private javax.swing.JPanel pnlBillLookupInformation;
     private javax.swing.JTextField txtBillAmount_BillLookup;
     private javax.swing.JTextField txtBillDate_BillLookup;
     private javax.swing.JTextField txtBillID_BillLookup;

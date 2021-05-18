@@ -102,21 +102,21 @@ public class Saving_GUI extends javax.swing.JFrame
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         WithdrawOnlineSavings = new javax.swing.JPanel();
-        btnLogout1 = new javax.swing.JButton();
-        btnHome1 = new javax.swing.JButton();
+        btnLogout_ViewAccount = new javax.swing.JButton();
+        btnHome_ViewAccount = new javax.swing.JButton();
         lblIcon = new javax.swing.JLabel();
-        lblTit = new javax.swing.JLabel();
+        lblTitle_ViewAccount = new javax.swing.JLabel();
         btnSettlement = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSavingsAccount = new javax.swing.JTable();
-        lblDebitAccount6 = new javax.swing.JLabel();
+        lblTotalSavingAccount = new javax.swing.JLabel();
         txtTotalSavingAccount = new javax.swing.JFormattedTextField();
         lblCurrentSavingAccountsList = new javax.swing.JLabel();
         OpenOnlineSavings = new javax.swing.JPanel();
-        btnHome = new javax.swing.JButton();
-        btnLogout = new javax.swing.JButton();
+        btnHome_OpenAccount = new javax.swing.JButton();
+        btnLogout_OpenAccount = new javax.swing.JButton();
         lblIcon1 = new javax.swing.JLabel();
-        lblTit1 = new javax.swing.JLabel();
+        lblTitle_OpenAccount = new javax.swing.JLabel();
         lblDebitAccount = new javax.swing.JLabel();
         lblTerm = new javax.swing.JLabel();
         lblVND = new javax.swing.JLabel();
@@ -126,21 +126,21 @@ public class Saving_GUI extends javax.swing.JFrame
         btnFindSuitableProduct = new javax.swing.JButton();
         btnOpenAccount = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jPanel1 = new javax.swing.JPanel();
-        lblDebitAccount3 = new javax.swing.JLabel();
+        pnlSuitableProductDetails = new javax.swing.JPanel();
+        lblMaturityDate = new javax.swing.JLabel();
         lblDebitAccount5 = new javax.swing.JLabel();
-        lblInterestRate = new javax.swing.JLabel();
-        lblDebitAccount7 = new javax.swing.JLabel();
+        lblVND3 = new javax.swing.JLabel();
+        lblTotalReceivedAmount = new javax.swing.JLabel();
         lblStartDate = new javax.swing.JLabel();
         lblAnticipatedInterest = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
         txtInterestRate = new javax.swing.JTextField();
         txtAnticipatedInterest = new javax.swing.JTextField();
-        lblInterestRate1 = new javax.swing.JLabel();
+        lblInterestRate = new javax.swing.JLabel();
         txtStartDate = new javax.swing.JTextField();
         txtMaturityDate = new javax.swing.JTextField();
         txtProductName = new javax.swing.JTextField();
-        lblInterestRate3 = new javax.swing.JLabel();
+        lblVND2 = new javax.swing.JLabel();
         lblDebitAccount4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -151,50 +151,50 @@ public class Saving_GUI extends javax.swing.JFrame
         WithdrawOnlineSavings.setBackground(new java.awt.Color(239, 250, 252));
         WithdrawOnlineSavings.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnLogout1.setBackground(new java.awt.Color(32, 172, 216));
-        btnLogout1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnLogout1.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
-        btnLogout1.setText("Logout");
-        btnLogout1.setToolTipText("");
-        btnLogout1.setBorder(null);
-        btnLogout1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLogout1.setIconTextGap(0);
-        btnLogout1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLogout1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout_ViewAccount.setBackground(new java.awt.Color(32, 172, 216));
+        btnLogout_ViewAccount.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnLogout_ViewAccount.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout_ViewAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
+        btnLogout_ViewAccount.setText("Logout");
+        btnLogout_ViewAccount.setToolTipText("");
+        btnLogout_ViewAccount.setBorder(null);
+        btnLogout_ViewAccount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogout_ViewAccount.setIconTextGap(0);
+        btnLogout_ViewAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLogout_ViewAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogout1ActionPerformed(evt);
+                btnLogout_ViewAccountActionPerformed(evt);
             }
         });
-        WithdrawOnlineSavings.add(btnLogout1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 77, 58));
+        WithdrawOnlineSavings.add(btnLogout_ViewAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 77, 58));
 
-        btnHome1.setBackground(new java.awt.Color(32, 172, 216));
-        btnHome1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnHome1.setForeground(new java.awt.Color(255, 255, 255));
-        btnHome1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Home.png"))); // NOI18N
-        btnHome1.setText("Home");
-        btnHome1.setToolTipText("");
-        btnHome1.setBorder(null);
-        btnHome1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnHome1.setIconTextGap(1);
-        btnHome1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnHome1.addActionListener(new java.awt.event.ActionListener() {
+        btnHome_ViewAccount.setBackground(new java.awt.Color(32, 172, 216));
+        btnHome_ViewAccount.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnHome_ViewAccount.setForeground(new java.awt.Color(255, 255, 255));
+        btnHome_ViewAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Home.png"))); // NOI18N
+        btnHome_ViewAccount.setText("Home");
+        btnHome_ViewAccount.setToolTipText("");
+        btnHome_ViewAccount.setBorder(null);
+        btnHome_ViewAccount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHome_ViewAccount.setIconTextGap(1);
+        btnHome_ViewAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHome_ViewAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHome1ActionPerformed(evt);
+                btnHome_ViewAccountActionPerformed(evt);
             }
         });
-        WithdrawOnlineSavings.add(btnHome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 76, 58));
+        WithdrawOnlineSavings.add(btnHome_ViewAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 76, 58));
 
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/customergui_tietkiem.png"))); // NOI18N
         WithdrawOnlineSavings.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 120, 110));
 
-        lblTit.setBackground(new java.awt.Color(32, 172, 216));
-        lblTit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTit.setForeground(new java.awt.Color(255, 255, 255));
-        lblTit.setText("                 View Online Savings Accounts");
-        lblTit.setOpaque(true);
-        lblTit.setPreferredSize(new java.awt.Dimension(34, 50));
-        WithdrawOnlineSavings.add(lblTit, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 940, 66));
+        lblTitle_ViewAccount.setBackground(new java.awt.Color(32, 172, 216));
+        lblTitle_ViewAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTitle_ViewAccount.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle_ViewAccount.setText("                 View Online Savings Accounts");
+        lblTitle_ViewAccount.setOpaque(true);
+        lblTitle_ViewAccount.setPreferredSize(new java.awt.Dimension(34, 50));
+        WithdrawOnlineSavings.add(lblTitle_ViewAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 940, 66));
 
         btnSettlement.setBackground(new java.awt.Color(32, 172, 216));
         btnSettlement.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -222,11 +222,11 @@ public class Saving_GUI extends javax.swing.JFrame
 
         WithdrawOnlineSavings.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 230, 760, 240));
 
-        lblDebitAccount6.setBackground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount6.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        lblDebitAccount6.setForeground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount6.setText("Total Saving Account:");
-        WithdrawOnlineSavings.add(lblDebitAccount6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
+        lblTotalSavingAccount.setBackground(new java.awt.Color(32, 172, 216));
+        lblTotalSavingAccount.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        lblTotalSavingAccount.setForeground(new java.awt.Color(32, 172, 216));
+        lblTotalSavingAccount.setText("Total Saving Account:");
+        WithdrawOnlineSavings.add(lblTotalSavingAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
 
         txtTotalSavingAccount.setEditable(false);
         txtTotalSavingAccount.setBackground(new java.awt.Color(239, 250, 252));
@@ -247,50 +247,50 @@ public class Saving_GUI extends javax.swing.JFrame
         OpenOnlineSavings.setBackground(new java.awt.Color(239, 250, 252));
         OpenOnlineSavings.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnHome.setBackground(new java.awt.Color(32, 172, 216));
-        btnHome.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnHome.setForeground(new java.awt.Color(255, 255, 255));
-        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Home.png"))); // NOI18N
-        btnHome.setText("Home");
-        btnHome.setToolTipText("");
-        btnHome.setBorder(null);
-        btnHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnHome.setIconTextGap(1);
-        btnHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
+        btnHome_OpenAccount.setBackground(new java.awt.Color(32, 172, 216));
+        btnHome_OpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnHome_OpenAccount.setForeground(new java.awt.Color(255, 255, 255));
+        btnHome_OpenAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Home.png"))); // NOI18N
+        btnHome_OpenAccount.setText("Home");
+        btnHome_OpenAccount.setToolTipText("");
+        btnHome_OpenAccount.setBorder(null);
+        btnHome_OpenAccount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHome_OpenAccount.setIconTextGap(1);
+        btnHome_OpenAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHome_OpenAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
+                btnHome_OpenAccountActionPerformed(evt);
             }
         });
-        OpenOnlineSavings.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, 76, 58));
+        OpenOnlineSavings.add(btnHome_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, 76, 58));
 
-        btnLogout.setBackground(new java.awt.Color(32, 172, 216));
-        btnLogout.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
-        btnLogout.setText("Logout");
-        btnLogout.setToolTipText("");
-        btnLogout.setBorder(null);
-        btnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLogout.setIconTextGap(0);
-        btnLogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout_OpenAccount.setBackground(new java.awt.Color(32, 172, 216));
+        btnLogout_OpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnLogout_OpenAccount.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout_OpenAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
+        btnLogout_OpenAccount.setText("Logout");
+        btnLogout_OpenAccount.setToolTipText("");
+        btnLogout_OpenAccount.setBorder(null);
+        btnLogout_OpenAccount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogout_OpenAccount.setIconTextGap(0);
+        btnLogout_OpenAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLogout_OpenAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
+                btnLogout_OpenAccountActionPerformed(evt);
             }
         });
-        OpenOnlineSavings.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, 77, 58));
+        OpenOnlineSavings.add(btnLogout_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, 77, 58));
 
         lblIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/customergui_tietkiem.png"))); // NOI18N
         OpenOnlineSavings.add(lblIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 110, 110));
 
-        lblTit1.setBackground(new java.awt.Color(32, 172, 216));
-        lblTit1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTit1.setForeground(new java.awt.Color(255, 255, 255));
-        lblTit1.setText("         Open Online Savings Account");
-        lblTit1.setOpaque(true);
-        lblTit1.setPreferredSize(new java.awt.Dimension(34, 50));
-        OpenOnlineSavings.add(lblTit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 940, 66));
+        lblTitle_OpenAccount.setBackground(new java.awt.Color(32, 172, 216));
+        lblTitle_OpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTitle_OpenAccount.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle_OpenAccount.setText("         Open Online Savings Account");
+        lblTitle_OpenAccount.setOpaque(true);
+        lblTitle_OpenAccount.setPreferredSize(new java.awt.Dimension(34, 50));
+        OpenOnlineSavings.add(lblTitle_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 940, 66));
 
         lblDebitAccount.setBackground(new java.awt.Color(32, 172, 216));
         lblDebitAccount.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
@@ -365,43 +365,43 @@ public class Saving_GUI extends javax.swing.JFrame
         OpenOnlineSavings.add(btnOpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 170, 170, -1));
         OpenOnlineSavings.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 710, 10));
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlSuitableProductDetails.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblDebitAccount3.setBackground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount3.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblDebitAccount3.setForeground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount3.setText("Maturity date:");
-        jPanel1.add(lblDebitAccount3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, -1, -1));
+        lblMaturityDate.setBackground(new java.awt.Color(32, 172, 216));
+        lblMaturityDate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblMaturityDate.setForeground(new java.awt.Color(32, 172, 216));
+        lblMaturityDate.setText("Maturity date:");
+        pnlSuitableProductDetails.add(lblMaturityDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, -1, -1));
 
         lblDebitAccount5.setBackground(new java.awt.Color(32, 172, 216));
         lblDebitAccount5.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblDebitAccount5.setForeground(new java.awt.Color(32, 172, 216));
         lblDebitAccount5.setText("Suitable Product Details:");
-        jPanel1.add(lblDebitAccount5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        pnlSuitableProductDetails.add(lblDebitAccount5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        lblInterestRate.setBackground(new java.awt.Color(32, 172, 216));
-        lblInterestRate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblInterestRate.setForeground(new java.awt.Color(32, 172, 216));
-        lblInterestRate.setText("(VND)");
-        jPanel1.add(lblInterestRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, -1, -1));
+        lblVND3.setBackground(new java.awt.Color(32, 172, 216));
+        lblVND3.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblVND3.setForeground(new java.awt.Color(32, 172, 216));
+        lblVND3.setText("(VND)");
+        pnlSuitableProductDetails.add(lblVND3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, -1, -1));
 
-        lblDebitAccount7.setBackground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount7.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblDebitAccount7.setForeground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount7.setText("Total received amount: ");
-        jPanel1.add(lblDebitAccount7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        lblTotalReceivedAmount.setBackground(new java.awt.Color(32, 172, 216));
+        lblTotalReceivedAmount.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblTotalReceivedAmount.setForeground(new java.awt.Color(32, 172, 216));
+        lblTotalReceivedAmount.setText("Total received amount: ");
+        pnlSuitableProductDetails.add(lblTotalReceivedAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
         lblStartDate.setBackground(new java.awt.Color(32, 172, 216));
         lblStartDate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
         lblStartDate.setForeground(new java.awt.Color(32, 172, 216));
         lblStartDate.setText("Start date:");
-        jPanel1.add(lblStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, -1, -1));
+        pnlSuitableProductDetails.add(lblStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, -1, -1));
 
         lblAnticipatedInterest.setBackground(new java.awt.Color(32, 172, 216));
         lblAnticipatedInterest.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
         lblAnticipatedInterest.setForeground(new java.awt.Color(32, 172, 216));
         lblAnticipatedInterest.setText("Anticipated Interest:");
-        jPanel1.add(lblAnticipatedInterest, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        pnlSuitableProductDetails.add(lblAnticipatedInterest, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         txtTotal.setEditable(false);
         txtTotal.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
@@ -412,7 +412,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 txtTotalActionPerformed(evt);
             }
         });
-        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 140, -1));
+        pnlSuitableProductDetails.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 140, -1));
 
         txtInterestRate.setEditable(false);
         txtInterestRate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
@@ -423,7 +423,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 txtInterestRateActionPerformed(evt);
             }
         });
-        jPanel1.add(txtInterestRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 140, -1));
+        pnlSuitableProductDetails.add(txtInterestRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 140, -1));
 
         txtAnticipatedInterest.setEditable(false);
         txtAnticipatedInterest.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
@@ -434,13 +434,13 @@ public class Saving_GUI extends javax.swing.JFrame
                 txtAnticipatedInterestActionPerformed(evt);
             }
         });
-        jPanel1.add(txtAnticipatedInterest, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 140, -1));
+        pnlSuitableProductDetails.add(txtAnticipatedInterest, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 140, -1));
 
-        lblInterestRate1.setBackground(new java.awt.Color(32, 172, 216));
-        lblInterestRate1.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblInterestRate1.setForeground(new java.awt.Color(32, 172, 216));
-        lblInterestRate1.setText("Interest rate:");
-        jPanel1.add(lblInterestRate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        lblInterestRate.setBackground(new java.awt.Color(32, 172, 216));
+        lblInterestRate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblInterestRate.setForeground(new java.awt.Color(32, 172, 216));
+        lblInterestRate.setText("Interest rate:");
+        pnlSuitableProductDetails.add(lblInterestRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         txtStartDate.setEditable(false);
         txtStartDate.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
@@ -451,7 +451,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 txtStartDateActionPerformed(evt);
             }
         });
-        jPanel1.add(txtStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 140, -1));
+        pnlSuitableProductDetails.add(txtStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 140, -1));
 
         txtMaturityDate.setEditable(false);
         txtMaturityDate.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
@@ -462,7 +462,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 txtMaturityDateActionPerformed(evt);
             }
         });
-        jPanel1.add(txtMaturityDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 150, -1));
+        pnlSuitableProductDetails.add(txtMaturityDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 150, -1));
 
         txtProductName.setEditable(false);
         txtProductName.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
@@ -473,15 +473,15 @@ public class Saving_GUI extends javax.swing.JFrame
                 txtProductNameActionPerformed(evt);
             }
         });
-        jPanel1.add(txtProductName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 470, -1));
+        pnlSuitableProductDetails.add(txtProductName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 470, -1));
 
-        lblInterestRate3.setBackground(new java.awt.Color(32, 172, 216));
-        lblInterestRate3.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblInterestRate3.setForeground(new java.awt.Color(32, 172, 216));
-        lblInterestRate3.setText("(VND)");
-        jPanel1.add(lblInterestRate3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
+        lblVND2.setBackground(new java.awt.Color(32, 172, 216));
+        lblVND2.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblVND2.setForeground(new java.awt.Color(32, 172, 216));
+        lblVND2.setText("(VND)");
+        pnlSuitableProductDetails.add(lblVND2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
 
-        OpenOnlineSavings.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 710, 210));
+        OpenOnlineSavings.add(pnlSuitableProductDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 710, 210));
 
         lblDebitAccount4.setBackground(new java.awt.Color(32, 172, 216));
         lblDebitAccount4.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
@@ -505,15 +505,15 @@ public class Saving_GUI extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLogout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout1ActionPerformed
+    private void btnLogout_ViewAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_ViewAccountActionPerformed
         LogIn guiLogIn= new LogIn();
         this.setVisible(false);
-    }//GEN-LAST:event_btnLogout1ActionPerformed
+    }//GEN-LAST:event_btnLogout_ViewAccountActionPerformed
 
-    private void btnHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome1ActionPerformed
+    private void btnHome_ViewAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_ViewAccountActionPerformed
         new CustomerMenu_GUI(dtoCustomer);
         this.setVisible(false);
-    }//GEN-LAST:event_btnHome1ActionPerformed
+    }//GEN-LAST:event_btnHome_ViewAccountActionPerformed
 
     private void btnSettlementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettlementActionPerformed
         // Xử lý tất toán tài khoản tiết kiệm
@@ -594,16 +594,16 @@ public class Saving_GUI extends javax.swing.JFrame
         }
     }//GEN-LAST:event_btnSettlementActionPerformed
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+    private void btnHome_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_OpenAccountActionPerformed
         // TODO add your handling code here:
         new CustomerMenu_GUI(dtoCustomer);
         this.setVisible(false);
-    }//GEN-LAST:event_btnHomeActionPerformed
+    }//GEN-LAST:event_btnHome_OpenAccountActionPerformed
 
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+    private void btnLogout_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_OpenAccountActionPerformed
         LogIn guiLogIn= new LogIn();
         this.setVisible(false);
-    }//GEN-LAST:event_btnLogoutActionPerformed
+    }//GEN-LAST:event_btnLogout_OpenAccountActionPerformed
 
     private void cboTermActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTermActionPerformed
         //Clear form
@@ -797,36 +797,36 @@ public class Saving_GUI extends javax.swing.JFrame
     private javax.swing.JPanel OpenOnlineSavings;
     private javax.swing.JPanel WithdrawOnlineSavings;
     private javax.swing.JButton btnFindSuitableProduct;
-    private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnHome1;
-    private javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnLogout1;
+    private javax.swing.JButton btnHome_OpenAccount;
+    private javax.swing.JButton btnHome_ViewAccount;
+    private javax.swing.JButton btnLogout_OpenAccount;
+    private javax.swing.JButton btnLogout_ViewAccount;
     private javax.swing.JButton btnOpenAccount;
     private javax.swing.JButton btnSettlement;
     private javax.swing.JComboBox<String> cboSavingsAccountType;
     private javax.swing.JComboBox<String> cboTerm;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblAnticipatedInterest;
     private javax.swing.JLabel lblCurrentSavingAccountsList;
     private javax.swing.JLabel lblDebitAccount;
-    private javax.swing.JLabel lblDebitAccount3;
     private javax.swing.JLabel lblDebitAccount4;
     private javax.swing.JLabel lblDebitAccount5;
-    private javax.swing.JLabel lblDebitAccount6;
-    private javax.swing.JLabel lblDebitAccount7;
     private javax.swing.JLabel lblIcon;
     private javax.swing.JLabel lblIcon1;
     private javax.swing.JLabel lblInterestRate;
-    private javax.swing.JLabel lblInterestRate1;
-    private javax.swing.JLabel lblInterestRate3;
+    private javax.swing.JLabel lblMaturityDate;
     private javax.swing.JLabel lblStartDate;
     private javax.swing.JLabel lblTerm;
-    private javax.swing.JLabel lblTit;
-    private javax.swing.JLabel lblTit1;
+    private javax.swing.JLabel lblTitle_OpenAccount;
+    private javax.swing.JLabel lblTitle_ViewAccount;
+    private javax.swing.JLabel lblTotalReceivedAmount;
+    private javax.swing.JLabel lblTotalSavingAccount;
     private javax.swing.JLabel lblVND;
+    private javax.swing.JLabel lblVND2;
+    private javax.swing.JLabel lblVND3;
+    private javax.swing.JPanel pnlSuitableProductDetails;
     private javax.swing.JTable tblSavingsAccount;
     private javax.swing.JTextField txtAnticipatedInterest;
     private javax.swing.JTextField txtDeposits;

@@ -106,14 +106,14 @@ public class MyWallet_GUI extends javax.swing.JFrame
         btnHome = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
-        lblCurrentAccount = new javax.swing.JLabel();
+        lblOpenDay = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
         tblTransactionHistory = new javax.swing.JTable();
-        lblCurrentAccount1 = new javax.swing.JLabel();
-        lblCurrentAccount3 = new javax.swing.JLabel();
-        lblCurrentAccount4 = new javax.swing.JLabel();
-        lblCurrentAccount6 = new javax.swing.JLabel();
-        lblCurrentAccount7 = new javax.swing.JLabel();
+        lblTransactionHistory = new javax.swing.JLabel();
+        lblCurrentBalance = new javax.swing.JLabel();
+        lbllAccountId = new javax.swing.JLabel();
+        lblAccountOwner = new javax.swing.JLabel();
+        lblPaymentAccountInformation = new javax.swing.JLabel();
         txtAccountOwner = new javax.swing.JTextField();
         txtOpenDay = new javax.swing.JTextField();
         txtLatestTransactionDate = new javax.swing.JTextField();
@@ -121,10 +121,10 @@ public class MyWallet_GUI extends javax.swing.JFrame
         btnShowTransactionHistory = new javax.swing.JButton();
         btnShowCurrentBalance = new javax.swing.JButton();
         txtCurrentBalance = new javax.swing.JTextField();
-        lblCurrentAccount8 = new javax.swing.JLabel();
+        lblLatestTransactionDate = new javax.swing.JLabel();
         txtStatus = new javax.swing.JTextField();
-        lblCurrentAccount9 = new javax.swing.JLabel();
-        lblCurrentAccount10 = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
+        lblTransactionHistoryNote = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Online Banking System");
@@ -178,11 +178,11 @@ public class MyWallet_GUI extends javax.swing.JFrame
         lblTitle.setOpaque(true);
         jPanel1.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 30, 931, 58));
 
-        lblCurrentAccount.setBackground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblCurrentAccount.setForeground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount.setText("Open day:");
-        jPanel1.add(lblCurrentAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, -1));
+        lblOpenDay.setBackground(new java.awt.Color(32, 172, 216));
+        lblOpenDay.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblOpenDay.setForeground(new java.awt.Color(32, 172, 216));
+        lblOpenDay.setText("Open day:");
+        jPanel1.add(lblOpenDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, -1));
 
         tblTransactionHistory.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblTransactionHistory.setModel(new javax.swing.table.DefaultTableModel(
@@ -200,35 +200,35 @@ public class MyWallet_GUI extends javax.swing.JFrame
 
         jPanel1.add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 700, 160));
 
-        lblCurrentAccount1.setBackground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        lblCurrentAccount1.setForeground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount1.setText("Transaction History");
-        jPanel1.add(lblCurrentAccount1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, -1, -1));
+        lblTransactionHistory.setBackground(new java.awt.Color(32, 172, 216));
+        lblTransactionHistory.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        lblTransactionHistory.setForeground(new java.awt.Color(32, 172, 216));
+        lblTransactionHistory.setText("Transaction History");
+        jPanel1.add(lblTransactionHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, -1, -1));
 
-        lblCurrentAccount3.setBackground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount3.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblCurrentAccount3.setForeground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount3.setText("Current Balance:");
-        jPanel1.add(lblCurrentAccount3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
+        lblCurrentBalance.setBackground(new java.awt.Color(32, 172, 216));
+        lblCurrentBalance.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblCurrentBalance.setForeground(new java.awt.Color(32, 172, 216));
+        lblCurrentBalance.setText("Current Balance:");
+        jPanel1.add(lblCurrentBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
 
-        lblCurrentAccount4.setBackground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount4.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblCurrentAccount4.setForeground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount4.setText("Account ID:");
-        jPanel1.add(lblCurrentAccount4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
+        lbllAccountId.setBackground(new java.awt.Color(32, 172, 216));
+        lbllAccountId.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lbllAccountId.setForeground(new java.awt.Color(32, 172, 216));
+        lbllAccountId.setText("Account ID:");
+        jPanel1.add(lbllAccountId, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
 
-        lblCurrentAccount6.setBackground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount6.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblCurrentAccount6.setForeground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount6.setText("Account owner:");
-        jPanel1.add(lblCurrentAccount6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
+        lblAccountOwner.setBackground(new java.awt.Color(32, 172, 216));
+        lblAccountOwner.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblAccountOwner.setForeground(new java.awt.Color(32, 172, 216));
+        lblAccountOwner.setText("Account owner:");
+        jPanel1.add(lblAccountOwner, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
 
-        lblCurrentAccount7.setBackground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount7.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        lblCurrentAccount7.setForeground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount7.setText("Payment Account Information:");
-        jPanel1.add(lblCurrentAccount7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
+        lblPaymentAccountInformation.setBackground(new java.awt.Color(32, 172, 216));
+        lblPaymentAccountInformation.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        lblPaymentAccountInformation.setForeground(new java.awt.Color(32, 172, 216));
+        lblPaymentAccountInformation.setText("Payment Account Information:");
+        jPanel1.add(lblPaymentAccountInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
         txtAccountOwner.setEditable(false);
         txtAccountOwner.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
@@ -284,11 +284,11 @@ public class MyWallet_GUI extends javax.swing.JFrame
         txtCurrentBalance.setText("*************");
         jPanel1.add(txtCurrentBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 240, 30));
 
-        lblCurrentAccount8.setBackground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount8.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblCurrentAccount8.setForeground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount8.setText("Latest transaction date:");
-        jPanel1.add(lblCurrentAccount8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
+        lblLatestTransactionDate.setBackground(new java.awt.Color(32, 172, 216));
+        lblLatestTransactionDate.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblLatestTransactionDate.setForeground(new java.awt.Color(32, 172, 216));
+        lblLatestTransactionDate.setText("Latest transaction date:");
+        jPanel1.add(lblLatestTransactionDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
 
         txtStatus.setEditable(false);
         txtStatus.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
@@ -296,17 +296,17 @@ public class MyWallet_GUI extends javax.swing.JFrame
         txtStatus.setText("jTextField1");
         jPanel1.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 240, 30));
 
-        lblCurrentAccount9.setBackground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount9.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblCurrentAccount9.setForeground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount9.setText("Status:");
-        jPanel1.add(lblCurrentAccount9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, -1, -1));
+        lblStatus.setBackground(new java.awt.Color(32, 172, 216));
+        lblStatus.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblStatus.setForeground(new java.awt.Color(32, 172, 216));
+        lblStatus.setText("Status:");
+        jPanel1.add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, -1, -1));
 
-        lblCurrentAccount10.setBackground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount10.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblCurrentAccount10.setForeground(new java.awt.Color(32, 172, 216));
-        lblCurrentAccount10.setText("(15 most recent transactions)");
-        jPanel1.add(lblCurrentAccount10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
+        lblTransactionHistoryNote.setBackground(new java.awt.Color(32, 172, 216));
+        lblTransactionHistoryNote.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblTransactionHistoryNote.setForeground(new java.awt.Color(32, 172, 216));
+        lblTransactionHistoryNote.setText("(15 most recent transactions)");
+        jPanel1.add(lblTransactionHistoryNote, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 650));
 
@@ -352,17 +352,17 @@ public class MyWallet_GUI extends javax.swing.JFrame
     private javax.swing.JButton btnShowTransactionHistory;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane;
-    private javax.swing.JLabel lblCurrentAccount;
-    private javax.swing.JLabel lblCurrentAccount1;
-    private javax.swing.JLabel lblCurrentAccount10;
-    private javax.swing.JLabel lblCurrentAccount3;
-    private javax.swing.JLabel lblCurrentAccount4;
-    private javax.swing.JLabel lblCurrentAccount6;
-    private javax.swing.JLabel lblCurrentAccount7;
-    private javax.swing.JLabel lblCurrentAccount8;
-    private javax.swing.JLabel lblCurrentAccount9;
+    private javax.swing.JLabel lblAccountOwner;
+    private javax.swing.JLabel lblCurrentBalance;
     private javax.swing.JLabel lblImage_MyWalletCusGUI;
+    private javax.swing.JLabel lblLatestTransactionDate;
+    private javax.swing.JLabel lblOpenDay;
+    private javax.swing.JLabel lblPaymentAccountInformation;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTransactionHistory;
+    private javax.swing.JLabel lblTransactionHistoryNote;
+    private javax.swing.JLabel lbllAccountId;
     private javax.swing.JTable tblTransactionHistory;
     private javax.swing.JTextField txtAccountId;
     private javax.swing.JTextField txtAccountOwner;
