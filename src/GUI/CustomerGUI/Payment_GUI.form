@@ -168,11 +168,7 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Water bill payment"/>
-                <StringItem index="1" value="Internet bill payment"/>
-                <StringItem index="2" value="Electricity bill payment"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
@@ -209,13 +205,7 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="Dong Nai Water Supplier"/>
-                <StringItem index="1" value="Thu Duc Water Supplier"/>
-                <StringItem index="2" value="Ben Thanh Water Supplier"/>
-                <StringItem index="3" value="Da Nang Water Supplier"/>
-                <StringItem index="4" value="Clean Water Ha Noi (Hawacom)"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>

@@ -9,6 +9,7 @@ import DTO.UserLogin_DTO;
 import GUI.CustomerMenu_GUI;
 import GUI.LogIn;
 import GUI.Report.Report;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,7 +19,7 @@ import javax.swing.JPasswordField;
 public class Payment_GUI extends javax.swing.JFrame 
 {
     Payment_BUS busPayment = new Payment_BUS();
-    Account_DTO dtoAccount = null; // Tài khoản của người chuyển tiền
+    Account_DTO dtoAccount = null; 
     Customer_DTO dtoCustomer = null;
     
     public Payment_GUI(Customer_DTO customer, Account_DTO account) 
@@ -27,12 +28,13 @@ public class Payment_GUI extends javax.swing.JFrame
         setLocationRelativeTo(null);
         setSize(1064, 650);
         setVisible(true);
-        cboServiceType.setSelectedItem(null);
         dtoCustomer = customer;
         dtoAccount = account; 
         cboMonth.setSelectedItem(null);
         cboYear.setSelectedItem(null);
         btnPayment.setVisible(false);
+        loadServiceTypeToCbo();
+        cboServiceType.setSelectedItem(null);
     }
     
     private String confirmPassword()
@@ -65,6 +67,15 @@ public class Payment_GUI extends javax.swing.JFrame
         txtBillAmount_BillLookup.setText("");
         txtStatus_BillLookup.setText("");
         btnPayment.setVisible(false);
+    }
+    
+    private void loadServiceTypeToCbo()
+    {
+        ArrayList<String> serviceTypeList = busPayment.getServiceTypeList();
+        for(String serviceType : serviceTypeList)
+        {
+            cboServiceType.addItem(serviceType);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -159,7 +170,6 @@ public class Payment_GUI extends javax.swing.JFrame
         jPanel1.add(lblServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
 
         cboServiceType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cboServiceType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Water bill payment", "Internet bill payment", "Electricity bill payment" }));
         cboServiceType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboServiceTypeActionPerformed(evt);
@@ -173,7 +183,6 @@ public class Payment_GUI extends javax.swing.JFrame
         jPanel1.add(lblYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, -1, -1));
 
         cboSupplierName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cboSupplierName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dong Nai Water Supplier", "Thu Duc Water Supplier", "Ben Thanh Water Supplier", "Da Nang Water Supplier", "Clean Water Ha Noi (Hawacom)" }));
         cboSupplierName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboSupplierNameActionPerformed(evt);
@@ -431,8 +440,9 @@ public class Payment_GUI extends javax.swing.JFrame
 
     private void cboServiceTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboServiceTypeActionPerformed
          clearBillLookupInformation();
+         cboSupplierName.removeAllItems();
         //Chọn loại dịch vụ cần thanh toán
-        if(cboServiceType.getSelectedItem() == null)
+        /*if(cboServiceType.getSelectedItem() == null)
             cboSupplierName.setSelectedItem(null);
         else if(cboServiceType.getSelectedItem().toString().equals("Water bill payment"))
         {
@@ -451,6 +461,16 @@ public class Payment_GUI extends javax.swing.JFrame
             cboSupplierName.setModel(new DefaultComboBoxModel<>(new String[]{
                 "FPT Telecom", "Viettel", "VNPT"
             }));
+        }*/
+        if(cboServiceType.getSelectedItem() == null)
+            cboSupplierName.setSelectedItem(null);
+        else
+        {
+            ArrayList<String> supplierNameList = busPayment.getSupplierNameList(cboServiceType.getSelectedItem().toString());
+            for(String supplierName : supplierNameList)
+            {
+                cboSupplierName.addItem(supplierName);
+            }
         }
     }//GEN-LAST:event_cboServiceTypeActionPerformed
 

@@ -7,6 +7,7 @@ import DTO.Supplier_DTO;
 
 import javax.swing.JOptionPane;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Bill_DAL 
 {
@@ -19,6 +20,7 @@ public class Bill_DAL
             caSt.setLong(1, dtoAccount.getId());
             caSt.setLong(2, dtoBill.getId());
             caSt.execute();
+            con.close();
             return true;
         }
         catch(SQLException e)
@@ -59,4 +61,5 @@ public class Bill_DAL
         }
         return dotBill;
     }
+
 }

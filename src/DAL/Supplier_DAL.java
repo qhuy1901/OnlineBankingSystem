@@ -103,7 +103,7 @@ public class Supplier_DAL
         return false;
     }
     
-     
+    
     public ArrayList<Supplier_DTO> getSupplierList()
     {
         ArrayList<Supplier_DTO> supplierList = new ArrayList<Supplier_DTO>();
@@ -125,5 +125,47 @@ public class Supplier_DAL
             JOptionPane.showMessageDialog(null, e);
         }
         return supplierList; 
+    }
+    
+    // Work for Payment_GUI
+    public ArrayList<String> getServiceTypeList()
+    {
+        ArrayList<String> serviceTypeList = new ArrayList<String>();
+        try
+        {
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "SELECT DISTINCT(SERVICE_TYPE) FROM SUPPLIER";
+            Statement stat = con.createStatement();
+            ResultSet rs = stat.executeQuery(SQL);
+            while(rs.next())
+                serviceTypeList.add(rs.getString(1));
+            con.close();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return serviceTypeList; 
+    }
+    
+    public ArrayList<String> getSupplierNameList(String serviceType)
+    {
+        ArrayList<String> supplierNameList = new ArrayList<String>();
+        try
+        {
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "SELECT SUPPLIER_NAME FROM SUPPLIER WHERE SERVICE_TYPE = ?";
+            PreparedStatement prest = con.prepareStatement(SQL);
+            prest.setString(1, serviceType);
+            ResultSet rs = prest.executeQuery();
+            while(rs.next())
+                supplierNameList.add(rs.getString(1));
+            con.close();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return supplierNameList; 
     }
 }
