@@ -96,69 +96,6 @@ public class Saving_GUI extends javax.swing.JFrame
         });
     }
     
-    public void findSuitableProduct()
-    {
-        if(cboSavingsAccountType.getSelectedItem() != null ||cboTerm.getSelectedItem() != null || !txtDeposits.getText().equals(""))
-        {
-            JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
-        }
-        else if(Long.parseLong(txtDeposits.getText()) > dtoPaymentAccount.getCurrentBalance())
-        {
-            JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);
-        }
-        else if(Long.parseLong(txtDeposits.getText()) < 1000000)
-        {
-            JOptionPane.showMessageDialog(this, "The deposit amount must be more than 1,000,000 VND", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else
-        {
-            // Bus lấy loại tài khoản tiết kiệm, lãi suất từ database
-            dtoSavingsAccountType = busSaving.getSavingsAccountType(cboSavingsAccountType.getSelectedItem().toString(), cboTerm.getSelectedItem().toString());
-            
-            // Lấy lãi suất
-            double interestRate = dtoSavingsAccountType.getInterestRate();
-            
-            int numberOfMonth = 0;
-            //-- Tính ngày đáo hạn
-            long millis = System.currentTimeMillis();
-            java.sql.Date startDate = new java.sql.Date(millis);
-            Calendar temp = Calendar.getInstance();
-            temp.setTime(startDate);
-            String term = cboTerm.getSelectedItem().toString();
-            if(term.equals("6 months"))
-            {
-                numberOfMonth = 6;
-                temp.roll(Calendar.MONTH, 6);
-            }
-            else if(term.equals("3 months"))
-            {
-                numberOfMonth = 3;
-                temp.roll(Calendar.MONTH, 3);
-            }
-            else
-            {
-                numberOfMonth = 1;
-                temp.roll(Calendar.MONTH, 1);
-            }
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            String maturityDate = df.format(temp.getTime());
-            
-            //-- Tính tiền lãi dự kiến = số tiền gửi x  lãi suất (% năm)/ 12  x số tháng gửi
-            long anticipatedInterest = (long)(Long.parseLong(txtDeposits.getText()) * interestRate * numberOfMonth) / 12;
-            //-- Tính tổng số tiền nhận được khi tất toán tài khoản tiết kiệm
-            long total = (long)(Long.parseLong(txtDeposits.getText()) + anticipatedInterest);
-            
-            // Hiển thị sản phẩm phù hợp lên form
-            txtProductName.setText(dtoSavingsAccountType.getName());
-            txtInterestRate.setText(String.valueOf(Math.round(interestRate * 100.0 * 100.0) / 100.0) + "%/year");
-            txtAnticipatedInterest.setText(String.format("%,d",anticipatedInterest));
-            txtTotal.setText(String.format("%,d",total));
-            txtStartDate.setText(startDate.toString());
-            txtMaturityDate.setText(maturityDate);
-            btnOpenAccount.setVisible(true);
-        }
-    }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
