@@ -31,7 +31,7 @@ public class CustomerMenu_GUI extends javax.swing.JFrame
         lblIcon = new javax.swing.JLabel();
         btnLogOut = new javax.swing.JButton();
         lblHelloCustomer = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        pnlBackground_Customer = new javax.swing.JPanel();
         btnMyWallet = new javax.swing.JButton();
         btnTransfer = new javax.swing.JButton();
         btnSaving = new javax.swing.JButton();
@@ -66,7 +66,7 @@ public class CustomerMenu_GUI extends javax.swing.JFrame
         lblHelloCustomer.setOpaque(true);
         getContentPane().add(lblHelloCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 35, 980, 80));
 
-        jPanel1.setBackground(new java.awt.Color(239, 250, 252));
+        pnlBackground_Customer.setBackground(new java.awt.Color(239, 250, 252));
 
         btnMyWallet.setBackground(new java.awt.Color(255, 255, 255));
         btnMyWallet.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -160,41 +160,41 @@ public class CustomerMenu_GUI extends javax.swing.JFrame
         jLabel6.setPreferredSize(new java.awt.Dimension(250, 44));
         jPanel2.add(jLabel6);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlBackground_CustomerLayout = new javax.swing.GroupLayout(pnlBackground_Customer);
+        pnlBackground_Customer.setLayout(pnlBackground_CustomerLayout);
+        pnlBackground_CustomerLayout.setHorizontalGroup(
+            pnlBackground_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBackground_CustomerLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBackground_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnMyWallet, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSaving, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(78, 78, 78)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBackground_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlBackground_CustomerLayout.setVerticalGroup(
+            pnlBackground_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBackground_CustomerLayout.createSequentialGroup()
                 .addGap(192, 192, 192)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(pnlBackground_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlBackground_CustomerLayout.createSequentialGroup()
+                        .addGroup(pnlBackground_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnMyWallet, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlBackground_CustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSaving, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(26, 26, 26))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 1064, 680));
+        getContentPane().add(pnlBackground_Customer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 1064, 680));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -253,9 +253,9 @@ public class CustomerMenu_GUI extends javax.swing.JFrame
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblHelloCustomer;
     private javax.swing.JLabel lblIcon;
+    private javax.swing.JPanel pnlBackground_Customer;
     // End of variables declaration//GEN-END:variables
 }

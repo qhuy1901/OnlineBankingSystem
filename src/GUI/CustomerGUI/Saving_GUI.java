@@ -96,6 +96,69 @@ public class Saving_GUI extends javax.swing.JFrame
         });
     }
     
+    public void findSuitableProduct()
+    {
+        if(cboSavingsAccountType.getSelectedItem() != null ||cboTerm.getSelectedItem() != null || !txtDeposits.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(Long.parseLong(txtDeposits.getText()) > dtoPaymentAccount.getCurrentBalance())
+        {
+            JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(Long.parseLong(txtDeposits.getText()) < 1000000)
+        {
+            JOptionPane.showMessageDialog(this, "The deposit amount must be more than 1,000,000 VND", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            // Bus lấy loại tài khoản tiết kiệm, lãi suất từ database
+            dtoSavingsAccountType = busSaving.getSavingsAccountType(cboSavingsAccountType.getSelectedItem().toString(), cboTerm.getSelectedItem().toString());
+            
+            // Lấy lãi suất
+            double interestRate = dtoSavingsAccountType.getInterestRate();
+            
+            int numberOfMonth = 0;
+            //-- Tính ngày đáo hạn
+            long millis = System.currentTimeMillis();
+            java.sql.Date startDate = new java.sql.Date(millis);
+            Calendar temp = Calendar.getInstance();
+            temp.setTime(startDate);
+            String term = cboTerm.getSelectedItem().toString();
+            if(term.equals("6 months"))
+            {
+                numberOfMonth = 6;
+                temp.roll(Calendar.MONTH, 6);
+            }
+            else if(term.equals("3 months"))
+            {
+                numberOfMonth = 3;
+                temp.roll(Calendar.MONTH, 3);
+            }
+            else
+            {
+                numberOfMonth = 1;
+                temp.roll(Calendar.MONTH, 1);
+            }
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String maturityDate = df.format(temp.getTime());
+            
+            //-- Tính tiền lãi dự kiến = số tiền gửi x  lãi suất (% năm)/ 12  x số tháng gửi
+            long anticipatedInterest = (long)(Long.parseLong(txtDeposits.getText()) * interestRate * numberOfMonth) / 12;
+            //-- Tính tổng số tiền nhận được khi tất toán tài khoản tiết kiệm
+            long total = (long)(Long.parseLong(txtDeposits.getText()) + anticipatedInterest);
+            
+            // Hiển thị sản phẩm phù hợp lên form
+            txtProductName.setText(dtoSavingsAccountType.getName());
+            txtInterestRate.setText(String.valueOf(Math.round(interestRate * 100.0 * 100.0) / 100.0) + "%/year");
+            txtAnticipatedInterest.setText(String.format("%,d",anticipatedInterest));
+            txtTotal.setText(String.format("%,d",total));
+            txtStartDate.setText(startDate.toString());
+            txtMaturityDate.setText(maturityDate);
+            btnOpenAccount.setVisible(true);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -296,18 +359,18 @@ public class Saving_GUI extends javax.swing.JFrame
         lblDebitAccount.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblDebitAccount.setForeground(new java.awt.Color(32, 172, 216));
         lblDebitAccount.setText("Deposits:");
-        OpenOnlineSavings.add(lblDebitAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
+        OpenOnlineSavings.add(lblDebitAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
 
         lblTerm.setBackground(new java.awt.Color(32, 172, 216));
         lblTerm.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblTerm.setForeground(new java.awt.Color(32, 172, 216));
         lblTerm.setText("Term:");
-        OpenOnlineSavings.add(lblTerm, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, -1, -1));
+        OpenOnlineSavings.add(lblTerm, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
 
         lblVND.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblVND.setForeground(new java.awt.Color(32, 172, 216));
         lblVND.setText("VND");
-        OpenOnlineSavings.add(lblVND, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, -1, -1));
+        OpenOnlineSavings.add(lblVND, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 180, -1, -1));
 
         cboSavingsAccountType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cboSavingsAccountType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Term Savings Account", "Non-term Savings Account" }));
@@ -316,7 +379,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 cboSavingsAccountTypeActionPerformed(evt);
             }
         });
-        OpenOnlineSavings.add(cboSavingsAccountType, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 210, -1));
+        OpenOnlineSavings.add(cboSavingsAccountType, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 320, -1));
 
         txtDeposits.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtDeposits.setForeground(new java.awt.Color(1, 1, 1));
@@ -330,7 +393,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 txtDepositsActionPerformed(evt);
             }
         });
-        OpenOnlineSavings.add(txtDeposits, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 320, -1));
+        OpenOnlineSavings.add(txtDeposits, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 320, -1));
 
         cboTerm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cboTerm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 month", "3 months", "6 months" }));
@@ -339,7 +402,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 cboTermActionPerformed(evt);
             }
         });
-        OpenOnlineSavings.add(cboTerm, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 170, -1));
+        OpenOnlineSavings.add(cboTerm, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 320, -1));
 
         btnFindSuitableProduct.setBackground(new java.awt.Color(32, 172, 216));
         btnFindSuitableProduct.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -350,7 +413,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 btnFindSuitableProductActionPerformed(evt);
             }
         });
-        OpenOnlineSavings.add(btnFindSuitableProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 120, -1, 30));
+        OpenOnlineSavings.add(btnFindSuitableProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, 40));
 
         btnOpenAccount.setBackground(new java.awt.Color(32, 172, 216));
         btnOpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -362,8 +425,8 @@ public class Saving_GUI extends javax.swing.JFrame
                 btnOpenAccountActionPerformed(evt);
             }
         });
-        OpenOnlineSavings.add(btnOpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 170, 170, -1));
-        OpenOnlineSavings.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 710, 10));
+        OpenOnlineSavings.add(btnOpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, 170, 40));
+        OpenOnlineSavings.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 710, 10));
 
         pnlSuitableProductDetails.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -481,13 +544,13 @@ public class Saving_GUI extends javax.swing.JFrame
         lblVND2.setText("(VND)");
         pnlSuitableProductDetails.add(lblVND2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
 
-        OpenOnlineSavings.add(pnlSuitableProductDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 710, 210));
+        OpenOnlineSavings.add(pnlSuitableProductDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 710, 210));
 
         lblDebitAccount4.setBackground(new java.awt.Color(32, 172, 216));
         lblDebitAccount4.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblDebitAccount4.setForeground(new java.awt.Color(32, 172, 216));
         lblDebitAccount4.setText("Saving Account Type:");
-        OpenOnlineSavings.add(lblDebitAccount4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, -1, -1));
+        OpenOnlineSavings.add(lblDebitAccount4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
         jTabbedPane1.addTab("Open Online Savings", OpenOnlineSavings);
 

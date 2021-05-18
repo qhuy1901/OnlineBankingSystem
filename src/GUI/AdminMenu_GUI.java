@@ -25,7 +25,7 @@ public class AdminMenu_GUI extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlBackground = new javax.swing.JPanel();
+        pnlBackground_Admin = new javax.swing.JPanel();
         pnlWelcome = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -42,10 +42,10 @@ public class AdminMenu_GUI extends javax.swing.JFrame
         setBackground(new java.awt.Color(239, 250, 252));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlBackground.setBackground(new java.awt.Color(239, 250, 252));
-        pnlBackground.setMinimumSize(new java.awt.Dimension(1060, 650));
-        pnlBackground.setPreferredSize(new java.awt.Dimension(1060, 650));
-        pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlBackground_Admin.setBackground(new java.awt.Color(239, 250, 252));
+        pnlBackground_Admin.setMinimumSize(new java.awt.Dimension(1060, 650));
+        pnlBackground_Admin.setPreferredSize(new java.awt.Dimension(1060, 650));
+        pnlBackground_Admin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlWelcome.setBackground(new java.awt.Color(32, 172, 210));
 
@@ -71,10 +71,10 @@ public class AdminMenu_GUI extends javax.swing.JFrame
         jLabel6.setPreferredSize(new java.awt.Dimension(250, 44));
         pnlWelcome.add(jLabel6);
 
-        pnlBackground.add(pnlWelcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 330, 400));
+        pnlBackground_Admin.add(pnlWelcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 330, 400));
 
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/MenuIcon_118px.png"))); // NOI18N
-        pnlBackground.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 120, 130));
+        pnlBackground_Admin.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 120, 130));
 
         btnLogOut.setBackground(new java.awt.Color(239, 250, 252));
         btnLogOut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -85,14 +85,14 @@ public class AdminMenu_GUI extends javax.swing.JFrame
                 btnLogOutActionPerformed(evt);
             }
         });
-        pnlBackground.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 60, 150, 40));
+        pnlBackground_Admin.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 60, 150, 40));
 
         lblHelloAdmin.setBackground(new java.awt.Color(32, 172, 210));
         lblHelloAdmin.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblHelloAdmin.setForeground(new java.awt.Color(239, 250, 252));
         lblHelloAdmin.setText("            Admin Portal");
         lblHelloAdmin.setOpaque(true);
-        pnlBackground.add(lblHelloAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 35, 1010, 80));
+        pnlBackground_Admin.add(lblHelloAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 35, 1010, 80));
 
         btnAccountManagement.setBackground(new java.awt.Color(255, 255, 255));
         btnAccountManagement.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -110,7 +110,7 @@ public class AdminMenu_GUI extends javax.swing.JFrame
                 btnAccountManagementActionPerformed(evt);
             }
         });
-        pnlBackground.add(btnAccountManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 170, 270, -1));
+        pnlBackground_Admin.add(btnAccountManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 170, 270, -1));
 
         btnCustomerManagement.setBackground(new java.awt.Color(255, 255, 255));
         btnCustomerManagement.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -128,7 +128,7 @@ public class AdminMenu_GUI extends javax.swing.JFrame
                 btnCustomerManagementActionPerformed(evt);
             }
         });
-        pnlBackground.add(btnCustomerManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 270, -1));
+        pnlBackground_Admin.add(btnCustomerManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 270, -1));
 
         btnSupplierManagement.setBackground(new java.awt.Color(255, 255, 255));
         btnSupplierManagement.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -146,9 +146,9 @@ public class AdminMenu_GUI extends javax.swing.JFrame
                 btnSupplierManagementActionPerformed(evt);
             }
         });
-        pnlBackground.add(btnSupplierManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 270, -1));
+        pnlBackground_Admin.add(btnSupplierManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 270, -1));
 
-        getContentPane().add(pnlBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 650));
+        getContentPane().add(pnlBackground_Admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -184,7 +184,7 @@ public class AdminMenu_GUI extends javax.swing.JFrame
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblHelloAdmin;
     private javax.swing.JLabel lblIcon;
-    private javax.swing.JPanel pnlBackground;
+    private javax.swing.JPanel pnlBackground_Admin;
     private javax.swing.JPanel pnlWelcome;
     // End of variables declaration//GEN-END:variables
 }
