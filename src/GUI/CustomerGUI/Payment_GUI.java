@@ -455,7 +455,7 @@ public class Payment_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_cboServiceTypeActionPerformed
 
     private void btnBillLoopupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillLoopupActionPerformed
-        if(cboServiceType.getSelectedItem() == null || cboSupplierName.getSelectedItem() == null || txtCustomerID.getText().equals(""))
+        if(cboServiceType.getSelectedItem() == null || cboSupplierName.getSelectedItem() == null || txtCustomerID.getText().equals("") || cboMonth.getSelectedItem() == null || cboYear.getSelectedItem() == null)
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
         }

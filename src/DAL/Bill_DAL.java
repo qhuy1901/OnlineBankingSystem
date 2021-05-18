@@ -4,11 +4,9 @@ import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.Bill_DTO;
 import DTO.Supplier_DTO;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
+import java.sql.*;
 
 public class Bill_DAL 
 {
@@ -16,13 +14,11 @@ public class Bill_DAL
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "BEGIN\n"
-                            + "payment(? , ?);\n" +
-                         "END;";
-            PreparedStatement prest = con.prepareStatement(SQL);
-            prest.setLong(1, dtoAccount.getId());
-            prest.setLong(2, dtoBill.getId());
-            prest.executeUpdate();
+            String strCall = "{call payment(? , ?)}";
+            CallableStatement caSt = con.prepareCall(strCall);
+            caSt.setLong(1, dtoAccount.getId());
+            caSt.setLong(2, dtoBill.getId());
+            caSt.execute();
             return true;
         }
         catch(SQLException e)

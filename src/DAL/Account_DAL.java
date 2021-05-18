@@ -21,6 +21,7 @@ public class Account_DAL
             prest.setLong(1, initialAmount);
             prest.setLong(2, customerId);
             prest.executeUpdate();
+            con.close();
             return true;
         }
         catch(SQLException e)
@@ -38,6 +39,7 @@ public class Account_DAL
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, accountId);
             prest.executeUpdate();
+            con.close();
             return true;
         }
         catch(SQLException e)
@@ -55,6 +57,7 @@ public class Account_DAL
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, accountId);
             prest.executeUpdate();
+            con.close();
             return true;
         }
         catch(SQLException e)
@@ -158,18 +161,16 @@ public class Account_DAL
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "BEGIN\n"
-                            + "OPEN_SAVINGS_ACCOUNT(?, ?, ?, ?, ?);\n" +
-                         "END;";
-            PreparedStatement prest = con.prepareStatement(SQL);
-            prest.setLong(1, dtoNewSavingAccount.getCustomerID());
-            prest.setString(2, dtoNewSavingAccount.getAccountTypeID());
-            prest.setLong(3, dtoNewSavingAccount.getCurrentBalance());
+            String strCall = "{call OPEN_SAVINGS_ACCOUNT(?, ?, ?, ?, ?)}";
+            CallableStatement caSt = con.prepareCall(strCall);
+            caSt.setLong(1, dtoNewSavingAccount.getCustomerID());
+            caSt.setString(2, dtoNewSavingAccount.getAccountTypeID());
+            caSt.setLong(3, dtoNewSavingAccount.getCurrentBalance());
             Date sqlMaturityDate = new java.sql.Date(dtoNewSavingAccount.getMaturityDate().getTime());
-            prest.setDate(4, sqlMaturityDate);
-            prest.setLong(5, dtoNewSavingAccount.getAnticipatedInterest());
-            prest.executeUpdate();
-            
+            caSt.setDate(4, sqlMaturityDate);
+            caSt.setLong(5, dtoNewSavingAccount.getAnticipatedInterest());
+            caSt.execute();
+            con.close();
             return true;
         }
         catch(SQLException e)
@@ -178,8 +179,6 @@ public class Account_DAL
         }
         return false;
     }
-    
-    
     
     public boolean isValidPaymentAccount(Account_DTO dtoAccount)
     {
@@ -228,43 +227,20 @@ public class Account_DAL
         }
         return totalSavingAccount;
     }
-    
-    /*public boolean transfer(Account_DTO senderAccount, Account_DTO receiverAccount, String transactionType, long Amount)
-    {
-        try{
-            Connection con = DBConnection.ConnectDb();
-            String SQL = "BEGIN\n"
-                            + "transfer(?, ?, ?, ?);\n" +
-                         "END;";
-            PreparedStatement prest = con.prepareStatement(SQL);
-            prest.setLong(1, senderAccount.getId());
-            prest.setLong(2, receiverAccount.getId());
-            prest.setString(3, transactionType);
-            prest.setLong(4, Amount);
-            prest.executeUpdate();
-            return true;
-        }
-        catch(SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, e);    
-        }
-        return false;
-    }*/
-    
+
     public boolean transfer(TransferDetail_DTO dtoTransferDetail)
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "BEGIN\n"
-                            + "transfer2(?, ?, ?, ?, ?);\n" +
-                         "END;";
-            PreparedStatement prest = con.prepareStatement(SQL);
-            prest.setLong(1, dtoTransferDetail.getSenderAccount());
-            prest.setLong(2, dtoTransferDetail.getReceiverAccount());
-            prest.setString(3, dtoTransferDetail.getReceiverBank());
-            prest.setLong(4, dtoTransferDetail.getAmount());
-            prest.setString(5, dtoTransferDetail.getContent());
-            prest.executeUpdate();
+            String strCall = "{call transfer(?, ?, ?, ?, ?)}";
+            CallableStatement caSt = con.prepareCall(strCall);
+            caSt.setLong(1, dtoTransferDetail.getSenderAccount());
+            caSt.setLong(2, dtoTransferDetail.getReceiverAccount());
+            caSt.setString(3, dtoTransferDetail.getReceiverBank());
+            caSt.setLong(4, dtoTransferDetail.getAmount());
+            caSt.setString(5, dtoTransferDetail.getContent());
+            caSt.execute();
+            con.close();
             return true;
         }
         catch(SQLException e)
@@ -302,12 +278,11 @@ public class Account_DAL
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "BEGIN\n"
-                            + "settlement(?);\n" +
-                         "END;";
-            PreparedStatement prest = con.prepareStatement(SQL);
-            prest.setLong(1, dtoSavingAccount.getId());
-            prest.executeUpdate();
+            String strCall = "{call settlement(?)}";
+            CallableStatement caSt = con.prepareCall(strCall);
+            caSt.setLong(1, dtoSavingAccount.getId());
+            caSt.execute();
+            con.close();
             return true;
         }
         catch(SQLException e)

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 public class MyWallet_GUI extends javax.swing.JFrame 
@@ -185,6 +184,7 @@ public class MyWallet_GUI extends javax.swing.JFrame
         lblCurrentAccount.setText("Open day:");
         jPanel1.add(lblCurrentAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, -1));
 
+        tblTransactionHistory.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblTransactionHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -52,13 +53,25 @@ public class Saving_GUI extends javax.swing.JFrame
     {
         ArrayList<Account_DTO> list = busSaving.getSavingsAccountList(dtoCustomer);
         tblAccountModel = new DefaultTableModel();
-        String title[] = {"Account No", "Name", "Amount", "Open Date", "Maturity Date"};
+        String title[] = {"Account No", "Name", "Amount", "Open Date", "Maturity Date", "Remaining days"};
         tblAccountModel.setColumnIdentifiers(title);
         tblAccountModel.setRowCount(0); 
         for(int i = 0; i < list.size(); i++)
         {
             Account_DTO dtoAccount = list.get(i);
-            String[] rows = {String.valueOf(dtoAccount.getId()), dtoAccount.getAccountTypeID(), String.format("%,d", dtoAccount.getCurrentBalance()), String.valueOf(dtoAccount.getOpenDay()), String.valueOf(dtoAccount.getMaturityDate())};
+            
+            // Tính số ngày còn lại
+            Date currentDate = new Date();
+            long remainingDays =  TimeUnit.MILLISECONDS.toDays(dtoAccount.getMaturityDate().getTime() - currentDate.getTime()) + 1; 
+            String strRemainingDays = "";
+            if(remainingDays > 1)
+                strRemainingDays = remainingDays + " days";
+            else if(remainingDays == 1)
+                strRemainingDays = "1 day";
+            else
+                strRemainingDays = "0 day";
+            // Show data to table
+            String[] rows = {String.valueOf(dtoAccount.getId()), dtoAccount.getAccountTypeID(), String.format("%,d", dtoAccount.getCurrentBalance()) + " VND", String.valueOf(dtoAccount.getOpenDay()), String.valueOf(dtoAccount.getMaturityDate()), strRemainingDays};
             tblAccountModel.addRow(rows);
         }
         tblSavingsAccount.setModel(tblAccountModel);
@@ -512,16 +525,17 @@ public class Saving_GUI extends javax.swing.JFrame
         else
         {
             // Lấy ngày bắt đầu và ngày đáo hạn từ bảng đã chọn ra để so sánh
-            Date openDay = null;
+            /*Date openDay = null;
             Date maturityDate = null;
             try {
                 openDay = new SimpleDateFormat("yyyy-MM-dd").parse(tblSavingsAccount.getModel().getValueAt(row, 3).toString().replaceAll("\\s+",""));
                 maturityDate = new SimpleDateFormat("yyyy-MM-dd").parse(tblSavingsAccount.getModel().getValueAt(row, 4).toString().replaceAll("\\s+",""));
             } catch (ParseException ex) {
                 Logger.getLogger(Saving_GUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
 
-            if(maturityDate.compareTo(openDay) > 0) // Nếu chưa đến ngày đáo hạn
+            //if(maturityDate.compareTo(openDay) > 0) 
+            if(tblSavingsAccount.getModel().getValueAt(row, 5).toString().equals("0 day") == false) // Nếu chưa đến ngày đáo hạn
             {
                 String accountSavingType = tblSavingsAccount.getModel().getValueAt(row, 1).toString().replaceAll("\\s+","");
                 if(accountSavingType.contains("TSA")) // Đối với tiết kiệm có kỳ hạn thì không được tất toán

@@ -45,7 +45,7 @@ public class Transaction_DAL extends DBConnection
                         "FROM TRANSACTION\n" +
                         "WHERE ACCOUNT_ID = ?\n" +
                         "AND ROWNUM = 1\n" +
-                        "ORDER BY TRANSACTION_DATE DESC";
+                        "ORDER BY TRANSACTION_ID DESC";
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, dtoAccount.getId());
             ResultSet rs = prest.executeQuery();
@@ -66,11 +66,9 @@ public class Transaction_DAL extends DBConnection
         try
         {
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT * \n" +
-                        "FROM TRANSACTION \n" +
-                        "WHERE ACCOUNT_ID = ?\n" +
-                        "AND ROWNUM <= 15\n" + //Hiển thị 15 giao dịch gần nhất
-                        "ORDER BY TRANSACTION_ID";
+            String SQL = "SELECT *\n" +
+                        "FROM (SELECT * FROM TRANSACTION WHERE account_id = ? ORDER BY transaction_id DESC)\n" +
+                        "WHERE ROWNUM <= 15 "; //Hiển thị 15 giao dịch gần nhất
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, dtoAccount.getId());
             ResultSet rs = prest.executeQuery();
