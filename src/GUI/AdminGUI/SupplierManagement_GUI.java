@@ -5,6 +5,7 @@ import DTO.Admin_DTO;
 import DTO.Supplier_DTO;
 import GUI.AdminMenu_GUI;
 import GUI.LogIn;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -111,6 +112,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         txtAddress = new javax.swing.JTextField();
         lblTransaction_type1 = new javax.swing.JLabel();
         dcContractSingingDate = new com.toedter.calendar.JDateChooser();
+        lxlInputError_PhoneNumber = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Online Banking System");
@@ -171,6 +173,11 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
 
         txtPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtPhoneNumber.setForeground(new java.awt.Color(32, 172, 216));
+        txtPhoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPhoneNumberKeyTyped(evt);
+            }
+        });
         lblServiceType.add(txtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 310, -1));
 
         lblSupplierName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -299,6 +306,10 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         dcContractSingingDate.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblServiceType.add(dcContractSingingDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 180, 170, 30));
 
+        lxlInputError_PhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lxlInputError_PhoneNumber.setForeground(new java.awt.Color(255, 102, 102));
+        lblServiceType.add(lxlInputError_PhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 170, 20));
+
         getContentPane().add(lblServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1064, 650));
 
         pack();
@@ -317,6 +328,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         dcContractSingingDate.setDate(null);
         cboServiceType.setSelectedItem(null);
         txtSearch.setText("");
+        lxlInputError_PhoneNumber.setText("");
 
     }//GEN-LAST:event_btnClear_SupplierActionPerformed
 
@@ -339,6 +351,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
                 txtAddress.setText("");
                 dcContractSingingDate.setDate(null);
                 cboServiceType.setSelectedItem(null);
+                lxlInputError_PhoneNumber.setText("");
             }
             else
                 JOptionPane.showMessageDialog(this, "Cannot add supplier!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -373,6 +386,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
                 txtAddress.setText("");
                 dcContractSingingDate.setDate(null);
                 cboServiceType.setSelectedItem(null);
+                lxlInputError_PhoneNumber.setText("");
             }
         }
     }//GEN-LAST:event_btnUpdate_SupplierActionPerformed
@@ -394,6 +408,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
                 txtAddress.setText("");
                 dcContractSingingDate.setDate(null);
                 cboServiceType.setSelectedItem(null);
+                lxlInputError_PhoneNumber.setText("");
             }
             else
                 JOptionPane.showMessageDialog(this, "Cannot delete supplier!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -412,6 +427,19 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         tblSupplier.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void txtPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
+            //getToolkit().beep();
+            evt.consume();
+            lxlInputError_PhoneNumber.setText("This field only accepts numbers");
+        }
+        else 
+        {
+            lxlInputError_PhoneNumber.setText("");
+        }
+    }//GEN-LAST:event_txtPhoneNumberKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -434,6 +462,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
     private javax.swing.JLabel lblSupplierName;
     private javax.swing.JLabel lblTransaction_type;
     private javax.swing.JLabel lblTransaction_type1;
+    private javax.swing.JLabel lxlInputError_PhoneNumber;
     private javax.swing.JTable tblSupplier;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtPhoneNumber;

@@ -153,7 +153,7 @@ public class Customer_DAL extends DBConnection
         try
         {
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT * FROM CUSTOMER";
+            String SQL = "SELECT * FROM CUSTOMER ORDER BY CUSTOMER_ID DESC";
             Statement stat = con.createStatement();
             ResultSet rs = stat.executeQuery(SQL);
             while(rs.next())

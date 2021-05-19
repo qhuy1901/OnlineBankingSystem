@@ -5,6 +5,7 @@ import DTO.Account_DTO;
 import DTO.Admin_DTO;
 import GUI.AdminMenu_GUI;
 import GUI.LogIn;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -28,6 +29,7 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         tblAccountSelectRow();
         setVisible(true);
     }
+    
     DefaultTableModel tblAccountModel;
     public void createTable()
     {
@@ -72,6 +74,8 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         btnActivate_OpenAccount = new javax.swing.JButton();
         lbIcon_OpenAccount = new javax.swing.JLabel();
         lbOpenAccount = new javax.swing.JLabel();
+        lxlInputError_CustomerID = new javax.swing.JLabel();
+        lxlInputError_Amount = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -235,9 +239,19 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         Panel_OpenAccount.add(lbAmount_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
 
         txtCustomerID_OpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCustomerID_OpenAccount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCustomerID_OpenAccountKeyTyped(evt);
+            }
+        });
         Panel_OpenAccount.add(txtCustomerID_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 350, -1));
 
         txtAmount_OpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAmount_OpenAccount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAmount_OpenAccountKeyTyped(evt);
+            }
+        });
         Panel_OpenAccount.add(txtAmount_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 350, -1));
 
         btnActivate_OpenAccount.setBackground(new java.awt.Color(32, 172, 216));
@@ -261,6 +275,14 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         lbOpenAccount.setOpaque(true);
         lbOpenAccount.setPreferredSize(new java.awt.Dimension(34, 50));
         Panel_OpenAccount.add(lbOpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 970, 66));
+
+        lxlInputError_CustomerID.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lxlInputError_CustomerID.setForeground(new java.awt.Color(255, 102, 102));
+        Panel_OpenAccount.add(lxlInputError_CustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 170, -1));
+
+        lxlInputError_Amount.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lxlInputError_Amount.setForeground(new java.awt.Color(255, 102, 102));
+        Panel_OpenAccount.add(lxlInputError_Amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 170, -1));
 
         tbP_AccountManagement.addTab("Open Account", Panel_OpenAccount);
 
@@ -308,6 +330,8 @@ public class AccountManagement_GUI extends javax.swing.JFrame
                     // Clear Form
                     txtCustomerID_OpenAccount.setText("");
                     txtAmount_OpenAccount.setText("");
+                    lxlInputError_CustomerID.setText("");
+                    lxlInputError_Amount.setText("");
                 }
                 else
                     JOptionPane.showMessageDialog(this, "Cannot active", "Error", JOptionPane.ERROR_MESSAGE);
@@ -408,6 +432,32 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         }
     }//GEN-LAST:event_btnUnlockAcc_SearchAccountActionPerformed
 
+    private void txtCustomerID_OpenAccountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerID_OpenAccountKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
+            //getToolkit().beep();
+            evt.consume();
+            lxlInputError_CustomerID.setText("This field only accepts numbers");
+        }
+        else 
+        {
+            lxlInputError_CustomerID.setText("");
+        }
+    }//GEN-LAST:event_txtCustomerID_OpenAccountKeyTyped
+
+    private void txtAmount_OpenAccountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmount_OpenAccountKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
+            //getToolkit().beep();
+            evt.consume();
+            lxlInputError_Amount.setText("This field only accepts numbers");
+        }
+        else 
+        {
+            lxlInputError_Amount.setText("");
+        }
+    }//GEN-LAST:event_txtAmount_OpenAccountKeyTyped
+
 
     
     
@@ -430,6 +480,8 @@ public class AccountManagement_GUI extends javax.swing.JFrame
     private javax.swing.JLabel lbOpenAccount;
     private javax.swing.JLabel lbSearchAccount;
     private javax.swing.JLabel lbSearch_SearchAccount;
+    private javax.swing.JLabel lxlInputError_Amount;
+    private javax.swing.JLabel lxlInputError_CustomerID;
     private javax.swing.JTabbedPane tbP_AccountManagement;
     private javax.swing.JTable tblAccountInformation_SearchAccount;
     private javax.swing.JTextField txtAmount_OpenAccount;

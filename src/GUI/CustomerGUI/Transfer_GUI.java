@@ -7,6 +7,7 @@ import DTO.TransferDetail_DTO;
 import DTO.UserLogin_DTO;
 import GUI.CustomerMenu_GUI;
 import GUI.LogIn;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 public class Transfer_GUI extends javax.swing.JFrame 
@@ -51,6 +52,8 @@ public class Transfer_GUI extends javax.swing.JFrame
         txtContent = new javax.swing.JTextPane();
         lblReceiverBank = new javax.swing.JLabel();
         txtAmount = new javax.swing.JTextField();
+        lxlInputError_Amount = new javax.swing.JLabel();
+        lxlInputError_ReceiverAccount = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Online Banking System");
@@ -129,6 +132,11 @@ public class Transfer_GUI extends javax.swing.JFrame
 
         txtReceiverAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtReceiverAccount.setForeground(new java.awt.Color(32, 172, 216));
+        txtReceiverAccount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtReceiverAccountKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtReceiverAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 422, -1));
 
         lbltienVND.setBackground(new java.awt.Color(32, 172, 216));
@@ -182,7 +190,20 @@ public class Transfer_GUI extends javax.swing.JFrame
                 txtAmountActionPerformed(evt);
             }
         });
+        txtAmount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAmountKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 250, -1));
+
+        lxlInputError_Amount.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lxlInputError_Amount.setForeground(new java.awt.Color(255, 102, 102));
+        jPanel1.add(lxlInputError_Amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, 170, 20));
+
+        lxlInputError_ReceiverAccount.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lxlInputError_ReceiverAccount.setForeground(new java.awt.Color(255, 102, 102));
+        jPanel1.add(lxlInputError_ReceiverAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 170, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 650));
 
@@ -190,7 +211,7 @@ public class Transfer_GUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        LogIn guiLogIn = new LogIn();
+        new LogIn();
         this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
@@ -218,6 +239,8 @@ public class Transfer_GUI extends javax.swing.JFrame
     
     
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
+        lxlInputError_Amount.setText("");
+        lxlInputError_ReceiverAccount.setText("");
         if(txtReceiverAccount.getText().equals("")||  txtAmount.getText().equals("")|| txtContent.getText().equals(""))
         {
             JOptionPane.showConfirmDialog(null, "Required fields are empty", "Please fill all required fields...!", JOptionPane.CLOSED_OPTION);
@@ -269,6 +292,32 @@ public class Transfer_GUI extends javax.swing.JFrame
 
     }//GEN-LAST:event_txtAmountActionPerformed
 
+    private void txtReceiverAccountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReceiverAccountKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
+            //getToolkit().beep();
+            evt.consume();
+            lxlInputError_ReceiverAccount.setText("This field only accepts numbers");
+        }
+        else 
+        {
+            lxlInputError_ReceiverAccount.setText("");
+        }
+    }//GEN-LAST:event_txtReceiverAccountKeyTyped
+
+    private void txtAmountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmountKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
+            //getToolkit().beep();
+            evt.consume();
+            lxlInputError_Amount.setText("This field only accepts numbers");
+        }
+        else 
+        {
+            lxlInputError_Amount.setText("");
+        }
+    }//GEN-LAST:event_txtAmountKeyTyped
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContinue;
@@ -288,6 +337,8 @@ public class Transfer_GUI extends javax.swing.JFrame
     private javax.swing.JLabel lblReceiverInformation;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lbltienVND;
+    private javax.swing.JLabel lxlInputError_Amount;
+    private javax.swing.JLabel lxlInputError_ReceiverAccount;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextPane txtContent;
     private javax.swing.JTextField txtReceiverAccount;

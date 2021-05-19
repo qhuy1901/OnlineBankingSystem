@@ -7,6 +7,7 @@ import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
 import GUI.CustomerMenu_GUI;
 import GUI.LogIn;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -142,6 +143,7 @@ public class Saving_GUI extends javax.swing.JFrame
         txtProductName = new javax.swing.JTextField();
         lblVND2 = new javax.swing.JLabel();
         lblDebitAccount4 = new javax.swing.JLabel();
+        lxlInputError_Deposits = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Online Banking System");
@@ -302,7 +304,7 @@ public class Saving_GUI extends javax.swing.JFrame
         lblTerm.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblTerm.setForeground(new java.awt.Color(32, 172, 216));
         lblTerm.setText("Term:");
-        OpenOnlineSavings.add(lblTerm, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
+        OpenOnlineSavings.add(lblTerm, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, -1, -1));
 
         lblVND.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblVND.setForeground(new java.awt.Color(32, 172, 216));
@@ -330,6 +332,11 @@ public class Saving_GUI extends javax.swing.JFrame
                 txtDepositsActionPerformed(evt);
             }
         });
+        txtDeposits.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDepositsKeyTyped(evt);
+            }
+        });
         OpenOnlineSavings.add(txtDeposits, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 320, -1));
 
         cboTerm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -339,7 +346,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 cboTermActionPerformed(evt);
             }
         });
-        OpenOnlineSavings.add(cboTerm, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 320, -1));
+        OpenOnlineSavings.add(cboTerm, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 320, -1));
 
         btnFindSuitableProduct.setBackground(new java.awt.Color(32, 172, 216));
         btnFindSuitableProduct.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -489,6 +496,10 @@ public class Saving_GUI extends javax.swing.JFrame
         lblDebitAccount4.setText("Saving Account Type:");
         OpenOnlineSavings.add(lblDebitAccount4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
+        lxlInputError_Deposits.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lxlInputError_Deposits.setForeground(new java.awt.Color(255, 102, 102));
+        OpenOnlineSavings.add(lxlInputError_Deposits, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 170, -1));
+
         jTabbedPane1.addTab("Open Online Savings", OpenOnlineSavings);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -617,6 +628,7 @@ public class Saving_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_cboTermActionPerformed
 
     private void btnFindSuitableProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindSuitableProductActionPerformed
+        lxlInputError_Deposits.setText("");
         if(cboSavingsAccountType.getSelectedItem() == null ||cboTerm.getSelectedItem() == null || txtDeposits.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
@@ -700,6 +712,7 @@ public class Saving_GUI extends javax.swing.JFrame
     }
     
     private void btnOpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenAccountActionPerformed
+        lxlInputError_Deposits.setText("");
         UserLogin_DTO dtoUserLogIn = busSaving.getUserLogin(dtoCustomer); // Lấy password người dùng
         String EnteredPassword = confirmPassword();
         if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
@@ -792,6 +805,19 @@ public class Saving_GUI extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDepositsActionPerformed
 
+    private void txtDepositsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepositsKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
+            //getToolkit().beep();
+            evt.consume();
+            lxlInputError_Deposits.setText("This field only accepts numbers");
+        }
+        else 
+        {
+            lxlInputError_Deposits.setText("");
+        }
+    }//GEN-LAST:event_txtDepositsKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel OpenOnlineSavings;
@@ -826,6 +852,7 @@ public class Saving_GUI extends javax.swing.JFrame
     private javax.swing.JLabel lblVND;
     private javax.swing.JLabel lblVND2;
     private javax.swing.JLabel lblVND3;
+    private javax.swing.JLabel lxlInputError_Deposits;
     private javax.swing.JPanel pnlSuitableProductDetails;
     private javax.swing.JTable tblSavingsAccount;
     private javax.swing.JTextField txtAnticipatedInterest;

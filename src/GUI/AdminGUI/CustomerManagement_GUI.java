@@ -7,6 +7,7 @@ import GUI.AdminMenu_GUI;
 import GUI.LogIn;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -68,6 +69,33 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
             columnModel.getColumn(column).setPreferredWidth(width);
         }
     }
+    
+    private void clearForm()
+    {
+        txtFirstName_AddCustomer.setText("");
+        txtLastName_AddCustomer.setText("");
+        cbGender_AddCustomer.setSelectedItem(null);
+        dcDateOfBirth_AddCustomer.setCalendar(null);
+        txtAddress.setText("");
+        txtPhoneNumber.setText("");
+        txtIDCard.setText("");
+        
+        txtUpdateID.setText("");
+        txtFirstName_UpdateCustomer.setText("");
+        txtLastName_UpdateCustomer.setText("");
+        cbbUpdateGender.setSelectedItem(null);
+        dcDateOfBirth_UpdateCustomer.setDate(null);
+        txtUpdateAddress.setText("");
+        txtUpdatePhoneNumber.setText("");
+        txtUpdateIDCard.setText("");
+        
+        lxlInputError_IDCard.setText("");
+        lxlInputError_PhoneNumber.setText("");
+        lxlInputError_UpdateIDCard.setText("");
+        lxlInputError_UpdatePhoneNumber.setText("");
+        lxlInputError_UpdateID.setText("");
+        createTable();
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -106,6 +134,8 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         dcDateOfBirth_AddCustomer = new com.toedter.calendar.JDateChooser();
         lblFirstName = new javax.swing.JLabel();
         txtFirstName_AddCustomer = new javax.swing.JTextField();
+        lxlInputError_PhoneNumber = new javax.swing.JLabel();
+        lxlInputError_IDCard = new javax.swing.JLabel();
         pnlUpdateCustomer = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lblIcon_UpdateCustomer = new javax.swing.JLabel();
@@ -134,6 +164,9 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         dcDateOfBirth_UpdateCustomer = new com.toedter.calendar.JDateChooser();
         lblFirstName_UpdateCustomer = new javax.swing.JLabel();
         txtFirstName_UpdateCustomer = new javax.swing.JTextField();
+        lxlInputError_UpdateID = new javax.swing.JLabel();
+        lxlInputError_UpdatePhoneNumber = new javax.swing.JLabel();
+        lxlInputError_UpdateIDCard = new javax.swing.JLabel();
 
         btnUpdate2.setBackground(new java.awt.Color(32, 172, 216));
         btnUpdate2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -276,7 +309,13 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         lblPhoneNo.setForeground(new java.awt.Color(32, 172, 216));
         lblPhoneNo.setText("Phone No.");
         pnlAddCustomer.add(lblPhoneNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
-        pnlAddCustomer.add(txtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 320, 32));
+
+        txtPhoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPhoneNumberKeyTyped(evt);
+            }
+        });
+        pnlAddCustomer.add(txtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 320, 32));
 
         btnAdd.setBackground(new java.awt.Color(32, 172, 216));
         btnAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -362,7 +401,13 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         lblIDCard.setForeground(new java.awt.Color(32, 172, 216));
         lblIDCard.setText("ID Card");
         pnlAddCustomer.add(lblIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, -1, -1));
-        pnlAddCustomer.add(txtIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 320, 32));
+
+        txtIDCard.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIDCardKeyTyped(evt);
+            }
+        });
+        pnlAddCustomer.add(txtIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 320, 32));
 
         dcDateOfBirth_AddCustomer.setDateFormatString("dd/MM/yyyy");
         pnlAddCustomer.add(dcDateOfBirth_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 200, 32));
@@ -372,6 +417,14 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         lblFirstName.setText("First Name");
         pnlAddCustomer.add(lblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 94, -1));
         pnlAddCustomer.add(txtFirstName_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 200, 32));
+
+        lxlInputError_PhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lxlInputError_PhoneNumber.setForeground(new java.awt.Color(255, 102, 102));
+        pnlAddCustomer.add(lxlInputError_PhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 170, 20));
+
+        lxlInputError_IDCard.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lxlInputError_IDCard.setForeground(new java.awt.Color(255, 102, 102));
+        pnlAddCustomer.add(lxlInputError_IDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 170, 20));
 
         jTabbedPane1.addTab("Add Customer", pnlAddCustomer);
 
@@ -396,6 +449,12 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         lblDateOfBirth_UpdateCustomer.setText("Date of birth");
         jPanel3.add(lblDateOfBirth_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, -1, -1));
         jPanel3.add(txtLastName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 180, 32));
+
+        txtUpdateID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUpdateIDKeyTyped(evt);
+            }
+        });
         jPanel3.add(txtUpdateID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 230, 32));
 
         lblGender_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
@@ -429,6 +488,12 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         lblPhoneNumber_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblPhoneNumber_UpdateCustomer.setText("Phone No.");
         jPanel3.add(lblPhoneNumber_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 410, -1, -1));
+
+        txtUpdatePhoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUpdatePhoneNumberKeyTyped(evt);
+            }
+        });
         jPanel3.add(txtUpdatePhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 330, 32));
 
         btnUpdate.setBackground(new java.awt.Color(32, 172, 216));
@@ -537,6 +602,12 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         lblIDCard_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblIDCard_UpdateCustomer.setText("ID Card");
         jPanel3.add(lblIDCard_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 488, -1, -1));
+
+        txtUpdateIDCard.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUpdateIDCardKeyTyped(evt);
+            }
+        });
         jPanel3.add(txtUpdateIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 488, 330, 32));
         jPanel3.add(dcDateOfBirth_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 178, 32));
 
@@ -545,6 +616,18 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         lblFirstName_UpdateCustomer.setText("First Name");
         jPanel3.add(lblFirstName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 193, 80, -1));
         jPanel3.add(txtFirstName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 193, 220, 32));
+
+        lxlInputError_UpdateID.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lxlInputError_UpdateID.setForeground(new java.awt.Color(255, 102, 102));
+        jPanel3.add(lxlInputError_UpdateID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 170, 20));
+
+        lxlInputError_UpdatePhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lxlInputError_UpdatePhoneNumber.setForeground(new java.awt.Color(255, 102, 102));
+        jPanel3.add(lxlInputError_UpdatePhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 170, 20));
+
+        lxlInputError_UpdateIDCard.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lxlInputError_UpdateIDCard.setForeground(new java.awt.Color(255, 102, 102));
+        jPanel3.add(lxlInputError_UpdateIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, 170, 20));
 
         javax.swing.GroupLayout pnlUpdateCustomerLayout = new javax.swing.GroupLayout(pnlUpdateCustomer);
         pnlUpdateCustomer.setLayout(pnlUpdateCustomerLayout);
@@ -587,16 +670,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
             if(customer_BUS.insert(ct))
             {
                 JOptionPane.showMessageDialog(this, "Customer added susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                createTable();
-                
-                // Clear Form
-                txtFirstName_AddCustomer.setText("");
-                txtLastName_AddCustomer.setText("");
-                cbGender_AddCustomer.setSelectedItem(null);
-                dcDateOfBirth_AddCustomer.setCalendar(null);
-                txtAddress.setText("");
-                txtPhoneNumber.setText("");
-                txtIDCard.setText("");
+                clearForm();
             }
             else
                 JOptionPane.showMessageDialog(this, "Cannot add customers!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -659,16 +733,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
             if(customer_BUS.delete(dtoCustomer))
             {
                 JOptionPane.showMessageDialog(this, "Customer deleted susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                createTable();
-                // Clear Form
-                txtUpdateID.setText("");
-                txtFirstName_UpdateCustomer.setText("");
-                txtLastName_UpdateCustomer.setText("");
-                cbbUpdateGender.setSelectedItem(null);
-                dcDateOfBirth_UpdateCustomer.setDate(null);
-                txtUpdateAddress.setText("");
-                txtUpdatePhoneNumber.setText("");
-                txtUpdateIDCard.setText("");
+                clearForm();
             }
             else
                 JOptionPane.showMessageDialog(this, "Cannot delete customers!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -700,7 +765,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
             if(customer_BUS.update(ct))
             {
                 JOptionPane.showMessageDialog(this, "Customer updated susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                createTable();
+                clearForm();
             }
             else
                 JOptionPane.showMessageDialog(this, "Cannot update customers!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -756,6 +821,71 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         LogIn guiLogIn = new LogIn();
         this.setVisible(false);
     }//GEN-LAST:event_btnLogout_ViewCustomerActionPerformed
+
+    private void txtPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyTyped
+       char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
+            //getToolkit().beep();
+            evt.consume();
+            lxlInputError_PhoneNumber.setText("This field only accepts numbers");
+        }
+        else 
+        {
+            lxlInputError_PhoneNumber.setText("");
+        }
+    }//GEN-LAST:event_txtPhoneNumberKeyTyped
+
+    private void txtIDCardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDCardKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
+            //getToolkit().beep();
+            evt.consume();
+            lxlInputError_IDCard.setText("This field only accepts numbers");
+        }
+        else 
+        {
+            lxlInputError_IDCard.setText("");
+        }
+    }//GEN-LAST:event_txtIDCardKeyTyped
+
+    private void txtUpdatePhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUpdatePhoneNumberKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
+            //getToolkit().beep();
+            evt.consume();
+            lxlInputError_UpdatePhoneNumber.setText("This field only accepts numbers");
+        }
+        else 
+        {
+            lxlInputError_UpdatePhoneNumber.setText("");
+        }
+    }//GEN-LAST:event_txtUpdatePhoneNumberKeyTyped
+
+    private void txtUpdateIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUpdateIDKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
+            //getToolkit().beep();
+            evt.consume();
+            lxlInputError_UpdateID.setText("This field only accepts numbers");
+        }
+        else 
+        {
+            lxlInputError_UpdateID.setText("");
+        }
+    }//GEN-LAST:event_txtUpdateIDKeyTyped
+
+    private void txtUpdateIDCardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUpdateIDCardKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
+            //getToolkit().beep();
+            evt.consume();
+            lxlInputError_UpdateIDCard.setText("This field only accepts numbers");
+        }
+        else 
+        {
+            lxlInputError_UpdateIDCard.setText("");
+        }
+    }//GEN-LAST:event_txtUpdateIDCardKeyTyped
 
     private boolean isFormValid()
     {
@@ -815,6 +945,11 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     private javax.swing.JLabel lblSearch;
     private javax.swing.JLabel lblUpdateCustomer;
     private javax.swing.JLabel lblViewCustomer;
+    private javax.swing.JLabel lxlInputError_IDCard;
+    private javax.swing.JLabel lxlInputError_PhoneNumber;
+    private javax.swing.JLabel lxlInputError_UpdateID;
+    private javax.swing.JLabel lxlInputError_UpdateIDCard;
+    private javax.swing.JLabel lxlInputError_UpdatePhoneNumber;
     private javax.swing.JPanel pnlAddCustomer;
     private javax.swing.JPanel pnlUpdateCustomer;
     private javax.swing.JPanel pnlViewCustomer;

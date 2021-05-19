@@ -9,8 +9,8 @@ import DTO.UserLogin_DTO;
 import GUI.CustomerMenu_GUI;
 import GUI.LogIn;
 import GUI.Report.Report;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -67,6 +67,7 @@ public class Payment_GUI extends javax.swing.JFrame
         txtBillAmount_BillLookup.setText("");
         txtStatus_BillLookup.setText("");
         btnPayment.setVisible(false);
+        lxlInputError_CustomerID.setText("");
     }
     
     private void loadServiceTypeToCbo()
@@ -114,6 +115,7 @@ public class Payment_GUI extends javax.swing.JFrame
         cboYear = new javax.swing.JComboBox<>();
         lblMonth = new javax.swing.JLabel();
         cboMonth = new javax.swing.JComboBox<>();
+        lxlInputError_CustomerID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Online Banking System");
@@ -201,6 +203,11 @@ public class Payment_GUI extends javax.swing.JFrame
                 txtCustomerIDActionPerformed(evt);
             }
         });
+        txtCustomerID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCustomerIDKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 270, -1));
 
         btnPayment.setBackground(new java.awt.Color(32, 172, 216));
@@ -213,7 +220,7 @@ public class Payment_GUI extends javax.swing.JFrame
             }
         });
         jPanel1.add(btnPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 180, 140, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 302, 600, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 600, 10));
 
         lblBillLookupInformation.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblBillLookupInformation.setForeground(new java.awt.Color(32, 172, 216));
@@ -372,6 +379,10 @@ public class Payment_GUI extends javax.swing.JFrame
         });
         jPanel1.add(cboMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 90, 30));
 
+        lxlInputError_CustomerID.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lxlInputError_CustomerID.setForeground(new java.awt.Color(255, 102, 102));
+        jPanel1.add(lxlInputError_CustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 170, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -401,6 +412,7 @@ public class Payment_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
+        lxlInputError_CustomerID.setText("");
         if(dtoAccount.getCurrentBalance() > Long.parseLong(txtBillAmount_BillLookup.getText().replace(",", "").replace(" VND", "")))
         {
             long customerId = Long.parseLong(txtCustomerID.getText());
@@ -421,6 +433,7 @@ public class Payment_GUI extends javax.swing.JFrame
                     txtCustomerID.setText("");
                     cboMonth.setSelectedItem(null);
                     cboYear.setSelectedItem(null);
+                    txtCustomerID.setText("");
                     clearBillLookupInformation();
                 }
             }
@@ -475,6 +488,7 @@ public class Payment_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_cboServiceTypeActionPerformed
 
     private void btnBillLoopupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillLoopupActionPerformed
+        lxlInputError_CustomerID.setText("");
         if(cboServiceType.getSelectedItem() == null || cboSupplierName.getSelectedItem() == null || txtCustomerID.getText().equals("") || cboMonth.getSelectedItem() == null || cboYear.getSelectedItem() == null)
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
@@ -525,6 +539,19 @@ public class Payment_GUI extends javax.swing.JFrame
         clearBillLookupInformation();
     }//GEN-LAST:event_txtCustomerIDMouseClicked
 
+    private void txtCustomerIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIDKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
+            //getToolkit().beep();
+            evt.consume();
+            lxlInputError_CustomerID.setText("This field only accepts numbers");
+        }
+        else 
+        {
+            lxlInputError_CustomerID.setText("");
+        }
+    }//GEN-LAST:event_txtCustomerIDKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBillLoopup;
@@ -551,6 +578,7 @@ public class Payment_GUI extends javax.swing.JFrame
     private javax.swing.JLabel lblSupplier_BillLookup;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblYear;
+    private javax.swing.JLabel lxlInputError_CustomerID;
     private javax.swing.JPanel pnlBillLookupInformation;
     private javax.swing.JTextField txtBillAmount_BillLookup;
     private javax.swing.JTextField txtBillDate_BillLookup;
