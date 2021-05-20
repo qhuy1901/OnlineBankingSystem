@@ -113,6 +113,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         lblTransaction_type1 = new javax.swing.JLabel();
         dcContractSingingDate = new com.toedter.calendar.JDateChooser();
         lxlInputError_PhoneNumber = new javax.swing.JLabel();
+        btnExportReport_Supplier = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Online Banking System");
@@ -221,7 +222,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
                 btnClear_SupplierActionPerformed(evt);
             }
         });
-        lblServiceType.add(btnClear_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 570, 111, 30));
+        lblServiceType.add(btnClear_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(891, 570, 110, 30));
 
         btnAdd_Supplier.setBackground(new java.awt.Color(32, 172, 216));
         btnAdd_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -236,7 +237,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
                 btnAdd_SupplierActionPerformed(evt);
             }
         });
-        lblServiceType.add(btnAdd_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 570, 111, 30));
+        lblServiceType.add(btnAdd_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 570, 111, 30));
 
         btnUpdate_Supplier.setBackground(new java.awt.Color(32, 172, 216));
         btnUpdate_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -250,7 +251,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
                 btnUpdate_SupplierActionPerformed(evt);
             }
         });
-        lblServiceType.add(btnUpdate_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 570, 113, 30));
+        lblServiceType.add(btnUpdate_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 570, 113, 30));
 
         cboServiceType.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cboServiceType.setForeground(new java.awt.Color(32, 172, 216));
@@ -269,7 +270,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
                 btnDelete_Supplier1ActionPerformed(evt);
             }
         });
-        lblServiceType.add(btnDelete_Supplier1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 570, 111, 30));
+        lblServiceType.add(btnDelete_Supplier1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 570, 111, 30));
 
         lblAddress.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblAddress.setForeground(new java.awt.Color(32, 172, 216));
@@ -309,6 +310,20 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         lxlInputError_PhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         lxlInputError_PhoneNumber.setForeground(new java.awt.Color(255, 102, 102));
         lblServiceType.add(lxlInputError_PhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 170, 20));
+
+        btnExportReport_Supplier.setBackground(new java.awt.Color(32, 172, 216));
+        btnExportReport_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnExportReport_Supplier.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportReport_Supplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnClear.png"))); // NOI18N
+        btnExportReport_Supplier.setText("EXPORT SUPPLIER REPORT");
+        btnExportReport_Supplier.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnExportReport_Supplier.setIconTextGap(1);
+        btnExportReport_Supplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportReport_SupplierActionPerformed(evt);
+            }
+        });
+        lblServiceType.add(btnExportReport_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 570, 240, 30));
 
         getContentPane().add(lblServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1064, 650));
 
@@ -441,11 +456,16 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         }
     }//GEN-LAST:event_txtPhoneNumberKeyTyped
 
+    private void btnExportReport_SupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportReport_SupplierActionPerformed
+        busSupplier.showSupplierList();
+    }//GEN-LAST:event_btnExportReport_SupplierActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd_Supplier;
     private javax.swing.JButton btnClear_Supplier;
     private javax.swing.JButton btnDelete_Supplier1;
+    private javax.swing.JButton btnExportReport_Supplier;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnUpdate_Supplier;

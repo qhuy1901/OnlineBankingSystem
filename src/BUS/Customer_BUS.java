@@ -4,11 +4,13 @@ package BUS;
 import DAL.Customer_DAL;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
+import GUI.Report.Report;
 import java.util.ArrayList;
 
 public class Customer_BUS 
 {
     Customer_DAL dal = new Customer_DAL();
+    Report report = new Report();
     
     public boolean insert(Customer_DTO dtoCustomer)
     {
@@ -43,5 +45,10 @@ public class Customer_BUS
     public ArrayList<Customer_DTO> getCustomersList()
     {
         return dal.getCustomersList();
+    }
+    
+    public void showCustomerList() 
+    {
+        report.showCustomerList();
     }
 }

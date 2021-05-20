@@ -2,12 +2,13 @@ package BUS;
 
 import DAL.Supplier_DAL;
 import DTO.Supplier_DTO;
+import GUI.Report.Report;
 import java.util.ArrayList;
 
 public class Supplier_BUS 
 {
     Supplier_DAL dal = new Supplier_DAL();
-    
+    Report report = new Report();
     /*public Supplier_DTO getInformation(String name)
     {
         return dal.getInformation(name);
@@ -31,5 +32,10 @@ public class Supplier_BUS
     public boolean delete(long supplierId)
     {
         return dal.delete(supplierId);
+    }
+    
+    public void showSupplierList() 
+    {
+        report.showSupplierList();
     }
 }

@@ -104,6 +104,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         jComboBox1 = new javax.swing.JComboBox<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         pnlViewCustomer = new javax.swing.JPanel();
+        btnExportCustomerListReport = new javax.swing.JButton();
         txtSearch = new javax.swing.JTextField();
         btnHome_ViewCustomer = new javax.swing.JButton();
         btnLogout_ViewCustomer = new javax.swing.JButton();
@@ -185,6 +186,18 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
 
         pnlViewCustomer.setBackground(new java.awt.Color(239, 250, 252));
         pnlViewCustomer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnExportCustomerListReport.setBackground(new java.awt.Color(32, 172, 216));
+        btnExportCustomerListReport.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnExportCustomerListReport.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportCustomerListReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Saving_Settlement.png"))); // NOI18N
+        btnExportCustomerListReport.setText("Export customer list report");
+        btnExportCustomerListReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportCustomerListReportActionPerformed(evt);
+            }
+        });
+        pnlViewCustomer.add(btnExportCustomerListReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 520, 270, 40));
 
         txtSearch.setForeground(new java.awt.Color(204, 204, 204));
         txtSearch.setText("Enter ID, Name, ID Card,... to search");
@@ -271,7 +284,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         ));
         jScrollPane2.setViewportView(tblViewCustomer);
 
-        pnlViewCustomer.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 960, 350));
+        pnlViewCustomer.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 960, 300));
 
         jTabbedPane1.addTab("View Customer", pnlViewCustomer);
 
@@ -506,7 +519,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel3.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(934, 104, -1, -1));
+        jPanel3.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 110, -1, -1));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -596,7 +609,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 btnDeleteCustomerActionPerformed(evt);
             }
         });
-        jPanel3.add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(815, 104, -1, -1));
+        jPanel3.add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 110, -1, -1));
 
         lblIDCard_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblIDCard_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
@@ -887,6 +900,10 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         }
     }//GEN-LAST:event_txtUpdateIDCardKeyTyped
 
+    private void btnExportCustomerListReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportCustomerListReportActionPerformed
+        customer_BUS.showCustomerList();
+    }//GEN-LAST:event_btnExportCustomerListReportActionPerformed
+
     private boolean isFormValid()
     {
             if(txtLastName_AddCustomer.getText().equals("") || txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || txtIDCard.getText().equals(""))
@@ -900,7 +917,10 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnAdd_Supplier;
+    private javax.swing.JButton btnAdd_Supplier1;
     private javax.swing.JButton btnDeleteCustomer;
+    private javax.swing.JButton btnExportCustomerListReport;
     private javax.swing.JButton btnHome_AddCustomer;
     private javax.swing.JButton btnHome_UpdateCustomer;
     private javax.swing.JButton btnHome_ViewCustomer;
@@ -908,6 +928,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     private javax.swing.JButton btnLogout_UpdateCustomer;
     private javax.swing.JButton btnLogout_ViewCustomer;
     private javax.swing.JButton btnShowInformation;
+    private javax.swing.JButton btnShowTransactionHistory;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdate2;
     private javax.swing.JComboBox<String> cbGender_AddCustomer;

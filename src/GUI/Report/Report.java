@@ -25,4 +25,21 @@ public class Report extends JasperReports
                     "WHERE T.TRANSACTION_ID = " + transactionID;
         showReport();
     }
+    
+    public void showCustomerList() 
+    {
+        m_report_source = "CustomerReport.jrxml";
+        m_sql_stmt = "SELECT C.CUSTOMER_ID, FIRST_NAME || ' ' || LAST_NAME FULL_NAME, C.GENDER, C.DATE_OF_BIRTH, C.ADDRESS, C.PHONE_NUMBER, C.ID_CARD, A.ACCOUNT_ID, STATUS\n" +
+                    "FROM CUSTOMER C JOIN ACCOUNT A ON C.CUSTOMER_ID = A.CUSTOMER_ID\n" +
+                    "WHERE A.ACCOUNT_TYPE_ID = 'PA'";
+        showReport();
+    }
+    
+    
+    public void showSupplierList() 
+    {
+        m_report_source = "SupplierReport.jrxml";
+        m_sql_stmt = "SELECT * FROM SUPPLIER";
+        showReport();
+    }
 }
