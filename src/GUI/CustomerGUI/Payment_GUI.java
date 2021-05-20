@@ -213,6 +213,7 @@ public class Payment_GUI extends javax.swing.JFrame
         btnPayment.setBackground(new java.awt.Color(32, 172, 216));
         btnPayment.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPayment.setForeground(new java.awt.Color(255, 255, 255));
+        btnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Payment_Icon.png"))); // NOI18N
         btnPayment.setText("Payment");
         btnPayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

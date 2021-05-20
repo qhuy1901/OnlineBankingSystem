@@ -228,7 +228,7 @@ public class Account_DAL
         return totalSavingAccount;
     }
 
-    public boolean transfer(TransferDetail_DTO dtoTransferDetail)
+    /*public boolean transfer(TransferDetail_DTO dtoTransferDetail)
     {
         try{
             Connection con = DBConnection.ConnectDb();
@@ -248,6 +248,30 @@ public class Account_DAL
             JOptionPane.showMessageDialog(null, e);    
         }
         return false;
+    }*/
+    
+    public int transfer(TransferDetail_DTO dtoTransferDetail)
+    {
+        int transactionID = 0;
+        try{
+            Connection con = DBConnection.ConnectDb();
+            String strCall = "{call transfer2(?, ?, ?, ?, ?, ?)}";
+            CallableStatement caSt = con.prepareCall(strCall);
+            caSt.setLong(1, dtoTransferDetail.getSenderAccount());
+            caSt.setLong(2, dtoTransferDetail.getReceiverAccount());
+            caSt.setString(3, dtoTransferDetail.getReceiverBank());
+            caSt.setLong(4, dtoTransferDetail.getAmount());
+            caSt.setString(5, dtoTransferDetail.getContent());
+            caSt.registerOutParameter(6, java.sql.Types.NUMERIC);
+            caSt.executeUpdate();
+            transactionID = caSt.getInt(6);
+            con.close();
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e);    
+        }
+        return transactionID;
     }
     
     public ArrayList<Account_DTO> getSavingsAccountList(Customer_DTO dtoCustomer)

@@ -257,10 +257,12 @@ public class Transfer_GUI extends javax.swing.JFrame
                     if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
                     {
                         TransferDetail_DTO dtoTransferDetail = new TransferDetail_DTO(dtoAccount.getId(), dtoReceiverAccount.getId(), cboReceiverBank.getSelectedItem().toString(), Long.parseLong(txtAmount.getText()), txtContent.getText());
-                        if(busTransfer.transfer(dtoTransferDetail))
+                        int transactionId = busTransfer.transfer(dtoTransferDetail); // Thực hiện giao dịch
+                        if(transactionId != 0) // Thực hiện giao dịch thành công
                         {
                             JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);
-
+                            busTransfer.showTransferReceipt(transactionId);
+                            
                             //Clear Form
                             cboReceiverBank.setSelectedItem(null);
                             txtReceiverAccount.setText("");

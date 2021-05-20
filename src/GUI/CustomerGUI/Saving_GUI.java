@@ -201,13 +201,14 @@ public class Saving_GUI extends javax.swing.JFrame
         btnSettlement.setBackground(new java.awt.Color(32, 172, 216));
         btnSettlement.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnSettlement.setForeground(new java.awt.Color(255, 255, 255));
+        btnSettlement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Saving_Settlement.png"))); // NOI18N
         btnSettlement.setText("Settlement");
         btnSettlement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSettlementActionPerformed(evt);
             }
         });
-        WithdrawOnlineSavings.add(btnSettlement, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 520, 130, 40));
+        WithdrawOnlineSavings.add(btnSettlement, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 520, 150, 40));
 
         tblSavingsAccount.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -7,12 +7,13 @@ import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.TransferDetail_DTO;
 import DTO.UserLogin_DTO;
-
+import GUI.Report.Report;
 
 public class Transfer_BUS 
 {
     Account_DAL dalAccount = new Account_DAL();
     UserLogin_DAL dalUserLogin = new UserLogin_DAL();
+    Report report = new Report();
     
     public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)
     {
@@ -24,8 +25,13 @@ public class Transfer_BUS
         return dalAccount.isValidPaymentAccount(dtoAccount);
     }
     
-    public boolean transfer(TransferDetail_DTO dtoTransferDetail)
+    public int transfer(TransferDetail_DTO dtoTransferDetail)
     {
         return dalAccount.transfer(dtoTransferDetail);
+    }
+    
+    public void showTransferReceipt(long transactionID) 
+    {
+        report.showTransferReceipt(transactionID);
     }
 }
