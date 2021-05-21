@@ -255,7 +255,7 @@ public class Account_DAL
         int transactionID = 0;
         try{
             Connection con = DBConnection.ConnectDb();
-            String strCall = "{call transfer2(?, ?, ?, ?, ?, ?)}";
+            String strCall = "{call transfer(?, ?, ?, ?, ?, ?)}";
             CallableStatement caSt = con.prepareCall(strCall);
             caSt.setLong(1, dtoTransferDetail.getSenderAccount());
             caSt.setLong(2, dtoTransferDetail.getReceiverAccount());
@@ -314,5 +314,29 @@ public class Account_DAL
             JOptionPane.showMessageDialog(null, e);    
         }
         return false;
+    }
+    
+    public Account_DTO getPaymentAccount(Customer_DTO dtoCustomer)
+    {
+        try
+        {
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "SELECT ACCOUNT_ID, ACCOUNT_TYPE_ID, CURRENT_BALANCE, OPEN_DAY, STATUS, CUSTOMER_ID"
+                    + " FROM ACCOUNT "
+                    + "WHERE Customer_ID = ? AND Account_Type_ID = 'PA'";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setLong(1, dtoCustomer.getId());
+            ResultSet rs = ps.executeQuery();
+            Account_DTO dtoAccount = null;
+            while(rs.next())
+                dtoAccount = new Account_DTO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getDate(4), rs.getString(5), rs.getLong(6));
+            con.close();
+            return dtoAccount;
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null; 
     }
 }

@@ -4,8 +4,8 @@ import BUS.Transaction_BUS;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.Transaction_DTO;
-import GUI.CustomerMenu_GUI;
-import GUI.LogIn;
+import GUI.CustomerHome_GUI;
+import GUI.LogIn_GUI;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -104,7 +104,6 @@ public class MyWallet_GUI extends javax.swing.JFrame
         jPanel1 = new javax.swing.JPanel();
         lblImage_MyWalletCusGUI = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
-        btnLogout = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         lblOpenDay = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
@@ -153,23 +152,7 @@ public class MyWallet_GUI extends javax.swing.JFrame
                 btnHomeActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 30, 50, 57));
-
-        btnLogout.setBackground(new java.awt.Color(32, 172, 216));
-        btnLogout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
-        btnLogout.setText("Logout");
-        btnLogout.setBorder(null);
-        btnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLogout.setIconTextGap(0);
-        btnLogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, 50, 57));
+        jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 50, 57));
 
         lblTitle.setBackground(new java.awt.Color(32, 172, 216));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N
@@ -314,14 +297,9 @@ public class MyWallet_GUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new CustomerMenu_GUI(dtoCustomer);
+        new CustomerHome_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
-
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        LogIn guiLogIn = new LogIn();
-        this.setVisible(false);
-    }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnShowTransactionHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowTransactionHistoryActionPerformed
         createTable();
@@ -347,7 +325,6 @@ public class MyWallet_GUI extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnShowCurrentBalance;
     private javax.swing.JButton btnShowTransactionHistory;
     private javax.swing.JPanel jPanel1;

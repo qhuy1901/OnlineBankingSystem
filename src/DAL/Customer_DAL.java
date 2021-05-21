@@ -87,7 +87,8 @@ public class Customer_DAL extends DBConnection
         try
         {
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID = " + id;
+            String SQL = "SELECT CUSTOMER_ID, FIRST_NAME, LAST_NAME, GENDER, DATE_OF_BIRTH, ADDRESS, PHONE_NUMBER, ID_CARD"
+                    + " FROM CUSTOMER WHERE CUSTOMER_ID = " + id;
             Statement stat = con.createStatement();
             ResultSet rs = stat.executeQuery(SQL);
             while(rs.next())
@@ -101,7 +102,7 @@ public class Customer_DAL extends DBConnection
         return dotCustomer; 
     }
     
-    public Account_DTO getPaymentAccount(Customer_DTO dtoCustomer)
+    /*public Account_DTO getPaymentAccount(Customer_DTO dtoCustomer)
     {
         try
         {
@@ -123,28 +124,6 @@ public class Customer_DAL extends DBConnection
             JOptionPane.showMessageDialog(null, e);
         }
         return null; 
-    }
-    
-    /*public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)
-    {
-        try
-        {
-            Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT * FROM User_Login WHERE UserLogin_ID = ?";
-            PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setLong(1, dtoCustomer.getUserLoginID());
-            ResultSet rs = ps.executeQuery();
-            UserLogin_DTO dtoUserLogin = null;
-            while(rs.next())
-                dtoUserLogin = new UserLogin_DTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
-            con.close();
-            return dtoUserLogin;
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return null; 
     }*/
     
     public ArrayList<Customer_DTO> getCustomersList()
@@ -153,7 +132,8 @@ public class Customer_DAL extends DBConnection
         try
         {
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT * FROM CUSTOMER ORDER BY CUSTOMER_ID DESC";
+            String SQL = "SELECT CUSTOMER_ID, FIRST_NAME, LAST_NAME, GENDER, DATE_OF_BIRTH, ADDRESS, PHONE_NUMBER, ID_CARD"
+                    + " FROM CUSTOMER ORDER BY CUSTOMER_ID DESC";
             Statement stat = con.createStatement();
             ResultSet rs = stat.executeQuery(SQL);
             while(rs.next())

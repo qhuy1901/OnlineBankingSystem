@@ -3,8 +3,8 @@ package GUI.AdminGUI;
 import BUS.Supplier_BUS;
 import DTO.Admin_DTO;
 import DTO.Supplier_DTO;
-import GUI.AdminMenu_GUI;
-import GUI.LogIn;
+import GUI.AdminHome_GUI;
+import GUI.LogIn_GUI;
 import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -314,7 +314,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         btnExportReport_Supplier.setBackground(new java.awt.Color(32, 172, 216));
         btnExportReport_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnExportReport_Supplier.setForeground(new java.awt.Color(255, 255, 255));
-        btnExportReport_Supplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnClear.png"))); // NOI18N
+        btnExportReport_Supplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Export.png"))); // NOI18N
         btnExportReport_Supplier.setText("EXPORT SUPPLIER REPORT");
         btnExportReport_Supplier.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnExportReport_Supplier.setIconTextGap(1);
@@ -331,7 +331,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        LogIn guiLogIn = new LogIn();
+        LogIn_GUI guiLogIn = new LogIn_GUI();
         this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
@@ -431,7 +431,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnDelete_Supplier1ActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new AdminMenu_GUI(dtoAdmin);
+        new AdminHome_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 

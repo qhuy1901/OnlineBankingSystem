@@ -5,8 +5,8 @@ import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.TransferDetail_DTO;
 import DTO.UserLogin_DTO;
-import GUI.CustomerMenu_GUI;
-import GUI.LogIn;
+import GUI.CustomerHome_GUI;
+import GUI.LogIn_GUI;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 
@@ -35,7 +35,6 @@ public class Transfer_GUI extends javax.swing.JFrame
         jPanel1 = new javax.swing.JPanel();
         lblImage_Transfer = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
-        btnLogout = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         lblImage_Description = new javax.swing.JLabel();
         lblReceiverAccount = new javax.swing.JLabel();
@@ -80,23 +79,7 @@ public class Transfer_GUI extends javax.swing.JFrame
                 btnHomeActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 30, 50, 57));
-
-        btnLogout.setBackground(new java.awt.Color(32, 172, 216));
-        btnLogout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
-        btnLogout.setText("Logout");
-        btnLogout.setBorder(null);
-        btnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLogout.setIconTextGap(0);
-        btnLogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 50, 57));
+        jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 30, 50, 57));
 
         lblTitle.setBackground(new java.awt.Color(32, 172, 216));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N
@@ -210,11 +193,6 @@ public class Transfer_GUI extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        new LogIn();
-        this.setVisible(false);
-    }//GEN-LAST:event_btnLogoutActionPerformed
-
     // Hàm này chỉ có chức năng tạo ra 1 window để nhập mật khẩu và trả về mật khẩu của khách hàng đã nhập
     private String confirmPassword()
     {
@@ -286,7 +264,7 @@ public class Transfer_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnContinueActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new CustomerMenu_GUI(dtoCustomer);
+        new CustomerHome_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
@@ -324,7 +302,6 @@ public class Transfer_GUI extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContinue;
     private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnLogout;
     private javax.swing.JComboBox<String> cboReceiverBank;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

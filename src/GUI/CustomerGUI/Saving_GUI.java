@@ -5,8 +5,8 @@ import DTO.AccountType_DTO;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
-import GUI.CustomerMenu_GUI;
-import GUI.LogIn;
+import GUI.CustomerHome_GUI;
+import GUI.LogIn_GUI;
 import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -103,7 +103,6 @@ public class Saving_GUI extends javax.swing.JFrame
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         WithdrawOnlineSavings = new javax.swing.JPanel();
-        btnLogout_ViewAccount = new javax.swing.JButton();
         btnHome_ViewAccount = new javax.swing.JButton();
         lblIcon = new javax.swing.JLabel();
         lblTitle_ViewAccount = new javax.swing.JLabel();
@@ -115,7 +114,6 @@ public class Saving_GUI extends javax.swing.JFrame
         lblCurrentSavingAccountsList = new javax.swing.JLabel();
         OpenOnlineSavings = new javax.swing.JPanel();
         btnHome_OpenAccount = new javax.swing.JButton();
-        btnLogout_OpenAccount = new javax.swing.JButton();
         lblIcon1 = new javax.swing.JLabel();
         lblTitle_OpenAccount = new javax.swing.JLabel();
         lblDebitAccount = new javax.swing.JLabel();
@@ -153,23 +151,6 @@ public class Saving_GUI extends javax.swing.JFrame
         WithdrawOnlineSavings.setBackground(new java.awt.Color(239, 250, 252));
         WithdrawOnlineSavings.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnLogout_ViewAccount.setBackground(new java.awt.Color(32, 172, 216));
-        btnLogout_ViewAccount.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnLogout_ViewAccount.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout_ViewAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
-        btnLogout_ViewAccount.setText("Logout");
-        btnLogout_ViewAccount.setToolTipText("");
-        btnLogout_ViewAccount.setBorder(null);
-        btnLogout_ViewAccount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLogout_ViewAccount.setIconTextGap(0);
-        btnLogout_ViewAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLogout_ViewAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogout_ViewAccountActionPerformed(evt);
-            }
-        });
-        WithdrawOnlineSavings.add(btnLogout_ViewAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 77, 58));
-
         btnHome_ViewAccount.setBackground(new java.awt.Color(32, 172, 216));
         btnHome_ViewAccount.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnHome_ViewAccount.setForeground(new java.awt.Color(255, 255, 255));
@@ -185,9 +166,9 @@ public class Saving_GUI extends javax.swing.JFrame
                 btnHome_ViewAccountActionPerformed(evt);
             }
         });
-        WithdrawOnlineSavings.add(btnHome_ViewAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 76, 58));
+        WithdrawOnlineSavings.add(btnHome_ViewAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 20, 76, 58));
 
-        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/customergui_tietkiem.png"))); // NOI18N
+        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Saving_money_125px.png"))); // NOI18N
         WithdrawOnlineSavings.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 120, 110));
 
         lblTitle_ViewAccount.setBackground(new java.awt.Color(32, 172, 216));
@@ -201,7 +182,7 @@ public class Saving_GUI extends javax.swing.JFrame
         btnSettlement.setBackground(new java.awt.Color(32, 172, 216));
         btnSettlement.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnSettlement.setForeground(new java.awt.Color(255, 255, 255));
-        btnSettlement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Saving_Settlement.png"))); // NOI18N
+        btnSettlement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Saving_request_money_20px.png"))); // NOI18N
         btnSettlement.setText("Settlement");
         btnSettlement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,24 +246,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 btnHome_OpenAccountActionPerformed(evt);
             }
         });
-        OpenOnlineSavings.add(btnHome_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, 76, 58));
-
-        btnLogout_OpenAccount.setBackground(new java.awt.Color(32, 172, 216));
-        btnLogout_OpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnLogout_OpenAccount.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout_OpenAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
-        btnLogout_OpenAccount.setText("Logout");
-        btnLogout_OpenAccount.setToolTipText("");
-        btnLogout_OpenAccount.setBorder(null);
-        btnLogout_OpenAccount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLogout_OpenAccount.setIconTextGap(0);
-        btnLogout_OpenAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLogout_OpenAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogout_OpenAccountActionPerformed(evt);
-            }
-        });
-        OpenOnlineSavings.add(btnLogout_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, 77, 58));
+        OpenOnlineSavings.add(btnHome_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 20, 76, 58));
 
         lblIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/customergui_tietkiem.png"))); // NOI18N
         OpenOnlineSavings.add(lblIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 110, 110));
@@ -517,13 +481,8 @@ public class Saving_GUI extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLogout_ViewAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_ViewAccountActionPerformed
-        LogIn guiLogIn= new LogIn();
-        this.setVisible(false);
-    }//GEN-LAST:event_btnLogout_ViewAccountActionPerformed
-
     private void btnHome_ViewAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_ViewAccountActionPerformed
-        new CustomerMenu_GUI(dtoCustomer);
+        new CustomerHome_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_ViewAccountActionPerformed
 
@@ -608,14 +567,9 @@ public class Saving_GUI extends javax.swing.JFrame
 
     private void btnHome_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_OpenAccountActionPerformed
         // TODO add your handling code here:
-        new CustomerMenu_GUI(dtoCustomer);
+        new CustomerHome_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_OpenAccountActionPerformed
-
-    private void btnLogout_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout_OpenAccountActionPerformed
-        LogIn guiLogIn= new LogIn();
-        this.setVisible(false);
-    }//GEN-LAST:event_btnLogout_OpenAccountActionPerformed
 
     private void cboTermActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTermActionPerformed
         //Clear form
@@ -826,8 +780,6 @@ public class Saving_GUI extends javax.swing.JFrame
     private javax.swing.JButton btnFindSuitableProduct;
     private javax.swing.JButton btnHome_OpenAccount;
     private javax.swing.JButton btnHome_ViewAccount;
-    private javax.swing.JButton btnLogout_OpenAccount;
-    private javax.swing.JButton btnLogout_ViewAccount;
     private javax.swing.JButton btnOpenAccount;
     private javax.swing.JButton btnSettlement;
     private javax.swing.JComboBox<String> cboSavingsAccountType;

@@ -6,8 +6,8 @@ import DTO.Bill_DTO;
 import DTO.Customer_DTO;
 import DTO.Supplier_DTO;
 import DTO.UserLogin_DTO;
-import GUI.CustomerMenu_GUI;
-import GUI.LogIn;
+import GUI.CustomerHome_GUI;
+import GUI.LogIn_GUI;
 import GUI.Report.Report;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -213,7 +213,7 @@ public class Payment_GUI extends javax.swing.JFrame
         btnPayment.setBackground(new java.awt.Color(32, 172, 216));
         btnPayment.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPayment.setForeground(new java.awt.Color(255, 255, 255));
-        btnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Payment_Icon.png"))); // NOI18N
+        btnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Payment_cash_in_hand.png"))); // NOI18N
         btnPayment.setText("Payment");
         btnPayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -403,12 +403,12 @@ public class Payment_GUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new CustomerMenu_GUI(dtoCustomer);
+        new CustomerHome_GUI(dtoCustomer);
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        LogIn guiLogIn = new LogIn();
+        LogIn_GUI guiLogIn = new LogIn_GUI();
         this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
 

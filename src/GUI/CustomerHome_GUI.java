@@ -9,12 +9,12 @@ import GUI.CustomerGUI.Saving_GUI;
 import GUI.CustomerGUI.Transfer_GUI;
 import javax.swing.JOptionPane;
 
-public class CustomerMenu_GUI extends javax.swing.JFrame 
+public class CustomerHome_GUI extends javax.swing.JFrame 
 {
     Customer_BUS busCustomer = new Customer_BUS();
     Customer_DTO dtoCustomer = null; // Người đang đăng nhập hệ thống
    
-    public CustomerMenu_GUI(Customer_DTO customer) 
+    public CustomerHome_GUI(Customer_DTO customer) 
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -201,22 +201,22 @@ public class CustomerMenu_GUI extends javax.swing.JFrame
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
-        LogIn guiLogIn = new LogIn();
         this.setVisible(false);
+        LogIn_GUI guiLogIn = new LogIn_GUI();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnMyWalletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyWalletActionPerformed
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
-        new MyWallet_GUI(dtoCustomer, dtoAccount);
         this.setVisible(false);
+        new MyWallet_GUI(dtoCustomer, dtoAccount);
     }//GEN-LAST:event_btnMyWalletActionPerformed
 
     private void btnTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferActionPerformed
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
         if(dtoAccount.getStatus().equals("Active"))
         {
-            new Transfer_GUI(dtoCustomer, dtoAccount);
             this.setVisible(false);
+            new Transfer_GUI(dtoCustomer, dtoAccount);
         }
         else
             JOptionPane.showMessageDialog(this, "Your payment account is locked. You cannot make any transactions", "Error", JOptionPane.ERROR_MESSAGE);
@@ -226,8 +226,8 @@ public class CustomerMenu_GUI extends javax.swing.JFrame
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
         if(dtoAccount.getStatus().equals("Active"))
         {
-            new Saving_GUI(dtoCustomer, dtoAccount);
             this.setVisible(false);
+            new Saving_GUI(dtoCustomer, dtoAccount);
         }
         else
             JOptionPane.showMessageDialog(this, "Your payment account is locked. You cannot make any transactions", "Error", JOptionPane.ERROR_MESSAGE);
@@ -237,8 +237,8 @@ public class CustomerMenu_GUI extends javax.swing.JFrame
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
         if(dtoAccount.getStatus().equals("Active"))
         {
-            new Payment_GUI(dtoCustomer, dtoAccount);
             this.setVisible(false);
+            new Payment_GUI(dtoCustomer, dtoAccount);
         }
         else
             JOptionPane.showMessageDialog(this, "Your payment account is locked. You cannot make any transactions", "Error", JOptionPane.ERROR_MESSAGE);

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2fa0cd80-cbde-40a6-b9c3-74d6a3e363d7">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="499"/>
+	<property name="ireport.y" value="325"/>
 	<queryString language="SQL">
 		<![CDATA[select T.TRANSACTION_ID, T.TRANSACTION_DATE, T.TOTAL_TRANSACTION_AMOUNT, TP.NAME, TP.FEE, TD.AMOUNT, TD.SENDER_ACCOUNT, TD.RECEIVER_ACCOUNT, TD.CONTENT , C.FIRST_NAME || ' ' || C.LAST_NAME FULL_NAME
 from (((TRANSACTION T JOIN TRANSACTION_TYPE TP USING(TRANSACTION_TYPE_ID))
@@ -63,15 +63,15 @@ from (((TRANSACTION T JOIN TRANSACTION_TYPE TP USING(TRANSACTION_TYPE_ID))
 		</band>
 	</title>
 	<detail>
-		<band height="405" splitType="Stretch">
+		<band height="454" splitType="Stretch">
 			<line>
 				<reportElement x="1" y="0" width="571" height="1" uuid="2f269d73-ac2f-4331-8d3a-099887dda7a3"/>
 			</line>
 			<line>
-				<reportElement x="1" y="1" width="1" height="395" uuid="dfb59099-9117-4af6-a6dd-3fe0c7cf0ca6"/>
+				<reportElement x="1" y="1" width="1" height="433" uuid="dfb59099-9117-4af6-a6dd-3fe0c7cf0ca6"/>
 			</line>
 			<line>
-				<reportElement x="571" y="0" width="1" height="396" uuid="f01f582e-dcac-427a-8a5f-075fe21f380f"/>
+				<reportElement x="571" y="0" width="1" height="433" uuid="f01f582e-dcac-427a-8a5f-075fe21f380f"/>
 			</line>
 			<line>
 				<reportElement x="2" y="52" width="568" height="1" uuid="5e847433-f847-4dc6-a05c-03220b43f0b6"/>
@@ -122,7 +122,7 @@ from (((TRANSACTION T JOIN TRANSACTION_TYPE TP USING(TRANSACTION_TYPE_ID))
 				<reportElement x="2" y="99" width="568" height="1" uuid="aa9cb6fc-b14a-49a7-b327-c56a20b65f14"/>
 			</line>
 			<line>
-				<reportElement x="154" y="0" width="1" height="396" uuid="6a10dbb2-1d04-4a6a-accc-f876fc68a1de"/>
+				<reportElement x="154" y="0" width="1" height="433" uuid="6a10dbb2-1d04-4a6a-accc-f876fc68a1de"/>
 			</line>
 			<staticText>
 				<reportElement x="18" y="111" width="130" height="20" uuid="88f6b468-9d8d-412b-a235-6290d1d7d258"/>
@@ -197,14 +197,14 @@ from (((TRANSACTION T JOIN TRANSACTION_TYPE TP USING(TRANSACTION_TYPE_ID))
 				<textFieldExpression><![CDATA[$F{RECEIVER_ACCOUNT}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="295" y="165" width="106" height="20" uuid="2bbd10a0-5c61-4313-a15f-b2873f17e1ca"/>
+				<reportElement x="301" y="165" width="106" height="20" uuid="2bbd10a0-5c61-4313-a15f-b2873f17e1ca"/>
 				<textElement>
 					<font fontName="Serif" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Số tiền ghi có]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="295" y="186" width="100" height="20" uuid="0fb7f2c0-9781-40e5-84d8-41780b12fd86"/>
+				<reportElement x="301" y="185" width="100" height="20" uuid="0fb7f2c0-9781-40e5-84d8-41780b12fd86"/>
 				<textElement>
 					<font fontName="Serif" isItalic="true"/>
 				</textElement>
@@ -238,21 +238,21 @@ from (((TRANSACTION T JOIN TRANSACTION_TYPE TP USING(TRANSACTION_TYPE_ID))
 				<reportElement x="2" y="263" width="568" height="1" uuid="0adab5ac-1fe7-4ad6-a196-f8401ad81840"/>
 			</line>
 			<staticText>
-				<reportElement x="18" y="268" width="130" height="20" uuid="0b68f340-614b-446f-950f-b3df85ecfe95"/>
+				<reportElement x="18" y="288" width="130" height="20" uuid="0b68f340-614b-446f-950f-b3df85ecfe95"/>
 				<textElement>
 					<font fontName="Serif" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Loại phí]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="18" y="288" width="100" height="20" uuid="7012675f-efd6-43ac-919a-9c30140a1459"/>
+				<reportElement x="18" y="308" width="100" height="20" uuid="7012675f-efd6-43ac-919a-9c30140a1459"/>
 				<textElement>
 					<font fontName="Serif" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[(Charge Code)]]></text>
 			</staticText>
 			<line>
-				<reportElement x="289" y="264" width="1" height="51" uuid="c3261e7b-e940-436f-b039-4f55fceca994"/>
+				<reportElement x="289" y="264" width="1" height="89" uuid="c3261e7b-e940-436f-b039-4f55fceca994"/>
 			</line>
 			<textField>
 				<reportElement x="170" y="218" width="338" height="20" uuid="cb268914-6b99-46fc-a0a4-d91f82f7cc76"/>
@@ -262,62 +262,62 @@ from (((TRANSACTION T JOIN TRANSACTION_TYPE TP USING(TRANSACTION_TYPE_ID))
 				<textFieldExpression><![CDATA[$F{FULL_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="170" y="268" width="100" height="40" uuid="2b99cc53-95f4-4dad-a681-0e593237d26a"/>
+				<reportElement x="173" y="277" width="105" height="66" uuid="2b99cc53-95f4-4dad-a681-0e593237d26a"/>
 				<textElement>
 					<font fontName="Serif" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="295" y="268" width="95" height="20" uuid="391a5b4b-28d5-4dfb-ae0b-f6a0426fe158"/>
+				<reportElement x="301" y="287" width="95" height="20" uuid="391a5b4b-28d5-4dfb-ae0b-f6a0426fe158"/>
 				<textElement>
 					<font fontName="Serif" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Số tiền phí]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="295" y="288" width="100" height="20" uuid="a210cd6c-aa19-4362-a9a9-724d92eb0280"/>
+				<reportElement x="301" y="307" width="100" height="20" uuid="a210cd6c-aa19-4362-a9a9-724d92eb0280"/>
 				<textElement>
 					<font fontName="Serif" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[(Charge Amount)]]></text>
 			</staticText>
 			<line>
-				<reportElement x="407" y="262" width="1" height="53" uuid="59d69841-97c0-4895-a410-bb5ff9c23759"/>
+				<reportElement x="407" y="262" width="1" height="91" uuid="59d69841-97c0-4895-a410-bb5ff9c23759"/>
 			</line>
 			<textField pattern="#,##0">
-				<reportElement x="419" y="268" width="100" height="20" uuid="611eed2c-196c-456d-bdbd-fdd585c9c18b"/>
+				<reportElement x="419" y="287" width="100" height="20" uuid="611eed2c-196c-456d-bdbd-fdd585c9c18b"/>
 				<textElement>
 					<font fontName="Serif" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{FEE}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="2" y="315" width="568" height="1" uuid="1c23e839-d26a-43ca-a7e8-a75922312502"/>
+				<reportElement x="2" y="353" width="568" height="1" uuid="1c23e839-d26a-43ca-a7e8-a75922312502"/>
 			</line>
 			<staticText>
-				<reportElement x="18" y="327" width="130" height="23" uuid="b5638330-bb7a-4ffb-b07e-db8c4302c186"/>
+				<reportElement x="18" y="365" width="130" height="23" uuid="b5638330-bb7a-4ffb-b07e-db8c4302c186"/>
 				<textElement>
 					<font fontName="Serif" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nội dung chuyển tiền]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="18" y="350" width="100" height="20" uuid="15309318-e104-4479-9200-7572bd3136ad"/>
+				<reportElement x="18" y="388" width="100" height="20" uuid="15309318-e104-4479-9200-7572bd3136ad"/>
 				<textElement>
 					<font fontName="Serif" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[(Detail of Transfer)]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="170" y="327" width="388" height="53" uuid="65bff290-e256-4f84-8637-6044b07c02b2"/>
+				<reportElement x="170" y="365" width="388" height="63" uuid="65bff290-e256-4f84-8637-6044b07c02b2"/>
 				<textElement>
 					<font fontName="Serif" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{CONTENT}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="2" y="395" width="570" height="1" uuid="97d193b9-32e0-4492-bcda-218360d36fa4"/>
+				<reportElement x="2" y="433" width="570" height="1" uuid="97d193b9-32e0-4492-bcda-218360d36fa4"/>
 			</line>
 			<staticText>
 				<reportElement x="520" y="111" width="38" height="20" uuid="98c45de5-d203-4bd1-969d-33a17e361a98"/>
@@ -334,7 +334,7 @@ from (((TRANSACTION T JOIN TRANSACTION_TYPE TP USING(TRANSACTION_TYPE_ID))
 				<text><![CDATA[VND]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="520" y="268" width="38" height="20" uuid="31e7394c-693d-442d-a67f-bf573be49fe2"/>
+				<reportElement x="520" y="287" width="38" height="20" uuid="31e7394c-693d-442d-a67f-bf573be49fe2"/>
 				<textElement>
 					<font fontName="Serif" size="14" isBold="false"/>
 				</textElement>

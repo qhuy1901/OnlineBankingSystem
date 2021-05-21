@@ -6,11 +6,11 @@ import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
 import javax.swing.JOptionPane;
 
-public class LogIn extends javax.swing.JFrame 
+public class LogIn_GUI extends javax.swing.JFrame 
 {
     UserLogin_BUS busUserLogin = new UserLogin_BUS();
     
-    public LogIn() 
+    public LogIn_GUI() 
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -193,12 +193,12 @@ public class LogIn extends javax.swing.JFrame
                 if(busUserLogin.checkRole(dtoUserLogin))
                 {
                     Admin_DTO dtoAdmin = busUserLogin.getAdminInfo(dtoUserLogin);
-                    AdminMenu_GUI guiAdmin = new AdminMenu_GUI(dtoAdmin);
+                    AdminHome_GUI guiAdmin = new AdminHome_GUI(dtoAdmin);
                 }
                 else
                 {
                     Customer_DTO dtoCustomer = busUserLogin.getCustomerInfo(dtoUserLogin);
-                    CustomerMenu_GUI guiCustomer = new CustomerMenu_GUI(dtoCustomer);
+                    CustomerHome_GUI guiCustomer = new CustomerHome_GUI(dtoCustomer);
                 }
                 this.setVisible(false);
             }
