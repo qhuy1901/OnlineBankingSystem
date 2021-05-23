@@ -90,7 +90,7 @@ public class Saving_GUI extends javax.swing.JFrame
                     int row = tblSavingsAccount.getSelectedRow();
                     if(row >= 0)
                     {
-                        savingAccountId = Integer.parseInt(tblSavingsAccount.getModel().getValueAt(row, 0).toString());
+                        savingAccountId = Integer.parseInt(tblSavingsAccount.getValueAt(row, 0).toString());
                     }
                 }
             }
@@ -495,17 +495,6 @@ public class Saving_GUI extends javax.swing.JFrame
         }
         else
         {
-            // Lấy ngày bắt đầu và ngày đáo hạn từ bảng đã chọn ra để so sánh
-            /*Date openDay = null;
-            Date maturityDate = null;
-            try {
-                openDay = new SimpleDateFormat("yyyy-MM-dd").parse(tblSavingsAccount.getModel().getValueAt(row, 3).toString().replaceAll("\\s+",""));
-                maturityDate = new SimpleDateFormat("yyyy-MM-dd").parse(tblSavingsAccount.getModel().getValueAt(row, 4).toString().replaceAll("\\s+",""));
-            } catch (ParseException ex) {
-                Logger.getLogger(Saving_GUI.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
-
-            //if(maturityDate.compareTo(openDay) > 0) 
             if(tblSavingsAccount.getValueAt(row, 5).toString().equals("0 day") == false) // Nếu chưa đến ngày đáo hạn
             {
                 String accountSavingType = tblSavingsAccount.getModel().getValueAt(row, 1).toString().replaceAll("\\s+","");

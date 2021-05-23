@@ -144,7 +144,7 @@ public class AccountManagement_GUI extends javax.swing.JFrame
                 btnLockAcc_SearchAccountActionPerformed(evt);
             }
         });
-        Panel_SearchAccount.add(btnLockAcc_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 130, -1, -1));
+        Panel_SearchAccount.add(btnLockAcc_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, -1, -1));
 
         lbIcon_SearchAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AccountManagement_SearchAccount.png"))); // NOI18N
         Panel_SearchAccount.add(lbIcon_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 110, 120));
@@ -167,7 +167,7 @@ public class AccountManagement_GUI extends javax.swing.JFrame
                 btnUnlockAcc_SearchAccountActionPerformed(evt);
             }
         });
-        Panel_SearchAccount.add(btnUnlockAcc_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, -1, -1));
+        Panel_SearchAccount.add(btnUnlockAcc_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 140, -1, -1));
 
         tbP_AccountManagement.addTab("Search Account", Panel_SearchAccount);
 
@@ -321,7 +321,7 @@ public class AccountManagement_GUI extends javax.swing.JFrame
                     int row = tblAccountInformation_SearchAccount.getSelectedRow();
                     if(row >= 0)
                     {
-                        accountId = Integer.parseInt(tblAccountInformation_SearchAccount.getModel().getValueAt(row, 0).toString());
+                        accountId = Integer.parseInt(tblAccountInformation_SearchAccount.getValueAt(row, 0).toString());
                     }
                 }
             }
@@ -394,11 +394,6 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
             //getToolkit().beep();
             evt.consume();
-            lxlInputError_CustomerID.setText("This field only accepts numbers");
-        }
-        else 
-        {
-            lxlInputError_CustomerID.setText("");
         }
     }//GEN-LAST:event_txtCustomerID_OpenAccountKeyTyped
 
@@ -407,11 +402,6 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
             //getToolkit().beep();
             evt.consume();
-            lxlInputError_Amount.setText("This field only accepts numbers");
-        }
-        else 
-        {
-            lxlInputError_Amount.setText("");
         }
     }//GEN-LAST:event_txtAmount_OpenAccountKeyTyped
 
