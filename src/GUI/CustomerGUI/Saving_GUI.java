@@ -6,7 +6,7 @@ import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
 import GUI.CustomerHome_GUI;
-import GUI.LogIn_GUI;
+
 import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -506,7 +506,7 @@ public class Saving_GUI extends javax.swing.JFrame
             }*/
 
             //if(maturityDate.compareTo(openDay) > 0) 
-            if(tblSavingsAccount.getModel().getValueAt(row, 5).toString().equals("0 day") == false) // Nếu chưa đến ngày đáo hạn
+            if(tblSavingsAccount.getValueAt(row, 5).toString().equals("0 day") == false) // Nếu chưa đến ngày đáo hạn
             {
                 String accountSavingType = tblSavingsAccount.getModel().getValueAt(row, 1).toString().replaceAll("\\s+","");
                 if(accountSavingType.contains("TSA")) // Đối với tiết kiệm có kỳ hạn thì không được tất toán

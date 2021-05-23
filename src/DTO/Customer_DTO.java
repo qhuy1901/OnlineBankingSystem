@@ -4,9 +4,10 @@ import java.util.Date;
 
 public class Customer_DTO
 {
-    private long id, userLoginID;
+    private long id;
     private String firstName, lastName , gender, address, phoneNumber, idCard;
     private Date dateOfBirth;
+    private long userLoginID;
 
     public Customer_DTO()
     {

@@ -4,7 +4,6 @@ import BUS.Account_BUS;
 import DTO.Account_DTO;
 import DTO.Admin_DTO;
 import GUI.AdminHome_GUI;
-import GUI.LogIn_GUI;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -279,23 +278,27 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         }
         else
         {
-            int reply = JOptionPane.showConfirmDialog(null, "Are you sure to open this payment account for customer?", "Confirm", JOptionPane.YES_NO_OPTION);
-            if (reply == JOptionPane.YES_OPTION) 
+            if(Long.parseLong(txtAmount_OpenAccount.getText()) > 50000)
             {
-                if(busAccount.openPaymentAccount(Long.parseLong(txtCustomerID_OpenAccount.getText()), Long.parseLong(txtAmount_OpenAccount.getText())))
+                int reply = JOptionPane.showConfirmDialog(null, "Are you sure to open this payment account for customer?", "Confirm", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) 
                 {
-                    JOptionPane.showMessageDialog(this, "Successful Activation" , "Notification", JOptionPane.INFORMATION_MESSAGE);  
-                    createTable();
-                    // Clear Form
-                    txtCustomerID_OpenAccount.setText("");
-                    txtAmount_OpenAccount.setText("");
-                    lxlInputError_CustomerID.setText("");
-                    lxlInputError_Amount.setText("");
+                    if(busAccount.openPaymentAccount(Long.parseLong(txtCustomerID_OpenAccount.getText()), Long.parseLong(txtAmount_OpenAccount.getText())))
+                    {
+                        JOptionPane.showMessageDialog(this, "Successful Activation" , "Notification", JOptionPane.INFORMATION_MESSAGE);  
+                        createTable();
+                        // Clear Form
+                        txtCustomerID_OpenAccount.setText("");
+                        txtAmount_OpenAccount.setText("");
+                        lxlInputError_CustomerID.setText("");
+                        lxlInputError_Amount.setText("");
+                    }
+                    else
+                        JOptionPane.showMessageDialog(this, "Cannot active", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                else
-                    JOptionPane.showMessageDialog(this, "Cannot active", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            
+            else
+               JOptionPane.showMessageDialog(this, "The initial aount must be more than 50,000 VND", "Error", JOptionPane.ERROR_MESSAGE);  
         }
     }//GEN-LAST:event_btnActivate_OpenAccountActionPerformed
 
@@ -332,11 +335,11 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         {
                 JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else if(!tblAccountInformation_SearchAccount.getModel().getValueAt(row, 3).toString().replaceAll("\\s+","").equals("PA")) // phải xóa các khoản trắng khi lấy data từ bảng xuống
+        else if(!tblAccountInformation_SearchAccount.getValueAt(row, 3).toString().replaceAll("\\s+","").equals("PA")) // phải xóa các khoản trắng khi lấy data từ bảng xuống
         {
             JOptionPane.showMessageDialog(this, "Savings account cannot be locked .", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else if(tblAccountInformation_SearchAccount.getModel().getValueAt(row, 4).toString().replaceAll("\\s+","").equals("Locked"))
+        else if(tblAccountInformation_SearchAccount.getValueAt(row, 4).toString().replaceAll("\\s+","").equals("Locked"))
         {
             JOptionPane.showMessageDialog(this, "This account has been locked already.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -368,7 +371,7 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         {
             JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else if(tblAccountInformation_SearchAccount.getModel().getValueAt(row, 4).toString().replaceAll("\\s+","").equals("Active"))
+        else if(tblAccountInformation_SearchAccount.getValueAt(row, 4).toString().replaceAll("\\s+","").equals("Active"))
         {
             JOptionPane.showMessageDialog(this, "This account is not locked.", "Error", JOptionPane.ERROR_MESSAGE);
         }

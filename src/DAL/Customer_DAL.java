@@ -1,7 +1,7 @@
 package DAL;
 
-import DTO.Account_DTO;
 import DTO.Customer_DTO;
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -29,6 +29,7 @@ public class Customer_DAL extends DBConnection
             prest.setString(6, ct.getPhoneNumber());
             prest.setString(7, ct.getIDCard());
             prest.executeUpdate();
+            con.close();
             return true;
             
         }
@@ -43,10 +44,12 @@ public class Customer_DAL extends DBConnection
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "DELETE FROM CUSTOMER WHERE CUSTOMER_ID = ?";
-            PreparedStatement prest = con.prepareStatement(SQL);
-            prest.setLong(1, ct.getId());
-            prest.executeUpdate();
+            String strCall = "{call DELETE_CUSTOMER(?)}";
+            CallableStatement caSt = con.prepareCall(strCall);
+            caSt.setLong(1, ct.getId());
+           
+            caSt.execute();
+            con.close();
             return true;
         }
         catch(SQLException e)
@@ -72,6 +75,7 @@ public class Customer_DAL extends DBConnection
             prest.setString(7, ct.getIDCard());
             prest.setLong(8, ct.getId());
             prest.executeUpdate();
+            con.close();
             return true;
         }
         catch(SQLException e)

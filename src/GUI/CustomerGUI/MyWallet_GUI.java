@@ -1,11 +1,10 @@
 package GUI.CustomerGUI;
 
-import BUS.Transaction_BUS;
+import BUS.MyWallet_BUS;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.Transaction_DTO;
 import GUI.CustomerHome_GUI;
-import GUI.LogIn_GUI;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import javax.swing.table.TableColumnModel;
 
 public class MyWallet_GUI extends javax.swing.JFrame 
 {
-    Transaction_BUS busTransaction = new Transaction_BUS();
+    MyWallet_BUS busTransaction = new MyWallet_BUS();
     
     Customer_DTO dtoCustomer = null; // Người đang đăng nhập
     Account_DTO dtoAccount = null;
