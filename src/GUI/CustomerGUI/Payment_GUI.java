@@ -118,7 +118,7 @@ public class Payment_GUI extends javax.swing.JFrame
         lxlInputError_CustomerID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Online Banking System");
+        setTitle("Payment");
 
         jPanel1.setBackground(new java.awt.Color(239, 250, 252));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

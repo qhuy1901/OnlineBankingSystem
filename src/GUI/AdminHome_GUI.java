@@ -38,7 +38,7 @@ public class AdminHome_GUI extends javax.swing.JFrame
         btnSupplierManagement = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Online Banking System");
+        setTitle("Admin Home");
         setBackground(new java.awt.Color(239, 250, 252));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -67,7 +67,7 @@ public class AdminHome_GUI extends javax.swing.JFrame
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel6.setText("Admin Portal!");
+        jLabel6.setText("Admin Home!");
         jLabel6.setPreferredSize(new java.awt.Dimension(250, 44));
         pnlWelcome.add(jLabel6);
 
@@ -161,17 +161,17 @@ public class AdminHome_GUI extends javax.swing.JFrame
 
     private void btnSupplierManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierManagementActionPerformed
         this.setVisible(false);
-        new SupplierManagement_GUI(dtoAdmin);
+        busAdmin.displaySupplierManagement_GUI(dtoAdmin);
     }//GEN-LAST:event_btnSupplierManagementActionPerformed
 
     private void btnAccountManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountManagementActionPerformed
         this.setVisible(false);
-        new AccountManagement_GUI(dtoAdmin);
+        busAdmin.displayAccountManagement_GUI(dtoAdmin);
     }//GEN-LAST:event_btnAccountManagementActionPerformed
 
     private void btnCustomerManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerManagementActionPerformed
         this.setVisible(false);
-        new CustomerManagement_GUI(dtoAdmin);
+        busAdmin.displayCustomerManagement_GUI(dtoAdmin);
     }//GEN-LAST:event_btnCustomerManagementActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

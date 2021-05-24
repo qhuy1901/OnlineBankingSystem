@@ -125,7 +125,7 @@ public class MyWallet_GUI extends javax.swing.JFrame
         lblTransactionHistoryNote = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Online Banking System");
+        setTitle("My Wallet");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(239, 250, 252));

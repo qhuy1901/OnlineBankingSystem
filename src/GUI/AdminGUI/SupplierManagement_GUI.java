@@ -114,7 +114,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         btnExportReport_Supplier = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Online Banking System");
+        setTitle("Supplier Management");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblServiceType.setBackground(new java.awt.Color(239, 250, 252));

@@ -90,73 +90,6 @@ public class Account_DAL
         return accountList; 
     }
      
-    /*public Account_DTO getInformation(long id)
-      {
-        Account_DTO dotAccount = null;
-        try
-        {
-            Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT * , AT.NAME"
-                    + "FROM ACCOUNT A JOIN ACCOUNT_TYPE AT ON A.ACCOUNT_TYPE_ID = AT.ACCOUNT_TYPE_ID"
-                    + " WHERE ACCOUNT _ID = " + id;
-            Statement stat = con.createStatement();
-            ResultSet rs = stat.executeQuery(SQL);
-            while(rs.next())
-                 dotAccount = new Account_DTO(rs.getLong(1), rs.getLong(2), rs.getDate(3), rs.getString(4),rs.getString(5), rs.getLong(6));
-            con.close();
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return dotAccount;
-    }*/
-
-    /*public boolean openSavingsAccount(Customer_DTO dtoCustomer, AccountType_DTO dtoAccountType, long amount)
-    {
-        try{
-            Connection con = DBConnection.ConnectDb();
-            String SQL = "BEGIN\n"
-                            + "SAVINGS_ACCOUNT(?, ?, ?);\n" +
-                         "END;";
-            PreparedStatement prest = con.prepareStatement(SQL);
-            prest.setLong(1, dtoCustomer.getId());
-            prest.setString(2, dtoAccountType.getId());
-            prest.setLong(3, amount);
-            prest.executeUpdate();
-            
-            return true;
-        }
-        catch(SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, e);    
-        }
-        return false;
-    }
-    
-    public int openSavingsAccount3(Customer_DTO dtoCustomer, AccountType_DTO dtoAccountType, long amount)
-    {
-        int savingAccountId = 1;
-        try{
-            Connection con = DBConnection.ConnectDb();
-            String SQL = "{call SAVINGS_ACCOUNT2(?, ?, ?, ?)}";
-            CallableStatement cstmt = con.prepareCall(SQL);
-            cstmt.setLong(1, dtoCustomer.getId());
-            cstmt.setString(2, dtoAccountType.getId());
-            cstmt.setLong(3, amount);
-            cstmt.registerOutParameter(4, java.sql.Types.NUMERIC);
-            cstmt.execute();
-            JOptionPane.showConfirmDialog(null, dtoAccountType.getId() + " " + cstmt.getInt(4), "hi", JOptionPane.CLOSED_OPTION);
-            savingAccountId = cstmt.getInt(4);
-            
-        }
-        catch(SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, e);    
-        }
-        return savingAccountId;
-    }*/
-    
     public boolean openSavingsAccount(Account_DTO dtoNewSavingAccount)
     {
         try{
@@ -228,28 +161,6 @@ public class Account_DAL
         return totalSavingAccount;
     }
 
-    /*public boolean transfer(TransferDetail_DTO dtoTransferDetail)
-    {
-        try{
-            Connection con = DBConnection.ConnectDb();
-            String strCall = "{call transfer(?, ?, ?, ?, ?)}";
-            CallableStatement caSt = con.prepareCall(strCall);
-            caSt.setLong(1, dtoTransferDetail.getSenderAccount());
-            caSt.setLong(2, dtoTransferDetail.getReceiverAccount());
-            caSt.setString(3, dtoTransferDetail.getReceiverBank());
-            caSt.setLong(4, dtoTransferDetail.getAmount());
-            caSt.setString(5, dtoTransferDetail.getContent());
-            caSt.execute();
-            con.close();
-            return true;
-        }
-        catch(SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, e);    
-        }
-        return false;
-    }*/
-    
     public int transfer(TransferDetail_DTO dtoTransferDetail)
     {
         int transactionID = 0;
