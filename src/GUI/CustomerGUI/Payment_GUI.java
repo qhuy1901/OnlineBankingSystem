@@ -418,7 +418,7 @@ public class Payment_GUI extends javax.swing.JFrame
         {
             long customerId = Long.parseLong(txtCustomerID.getText());
             String supplierName = cboSupplierName.getSelectedItem().toString();
-            Bill_DTO dtoBill = busPayment.getBill(new Customer_DTO(customerId), new Supplier_DTO(supplierName), Integer.parseInt(cboMonth.getSelectedItem().toString()), Integer.parseInt(cboYear.getSelectedItem().toString()));
+            Bill_DTO dtoBill = busPayment.getBillInformation(new Customer_DTO(customerId), new Supplier_DTO(supplierName), Integer.parseInt(cboMonth.getSelectedItem().toString()), Integer.parseInt(cboYear.getSelectedItem().toString()));
             UserLogin_DTO dtoUserLogIn = busPayment.getUserLogin(dtoCustomer); // Lấy password người dùng
             String EnteredPassword = confirmPassword();
             if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
@@ -498,7 +498,7 @@ public class Payment_GUI extends javax.swing.JFrame
         {
             long customerId = Long.parseLong(txtCustomerID.getText().replace(" ", ""));
             String supplierName = cboSupplierName.getSelectedItem().toString();
-            Bill_DTO dtoBill = busPayment.getBill(new Customer_DTO(customerId), new Supplier_DTO(supplierName), Integer.parseInt(cboMonth.getSelectedItem().toString()), Integer.parseInt(cboYear.getSelectedItem().toString()));
+            Bill_DTO dtoBill = busPayment.getBillInformation(new Customer_DTO(customerId), new Supplier_DTO(supplierName), Integer.parseInt(cboMonth.getSelectedItem().toString()), Integer.parseInt(cboYear.getSelectedItem().toString()));
             if(dtoBill != null) // Hóa đơn tồn tại
             {
                 if(dtoBill.getStatus().equals("Unpaid"))

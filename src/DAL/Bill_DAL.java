@@ -7,7 +7,6 @@ import DTO.Supplier_DTO;
 
 import javax.swing.JOptionPane;
 import java.sql.*;
-import java.util.ArrayList;
 
 public class Bill_DAL 
 {
@@ -30,7 +29,7 @@ public class Bill_DAL
         return false;
     }
     
-    public Bill_DTO getBill(Customer_DTO dtoCustomer, Supplier_DTO dtoSupplier, int month, int year)
+    public Bill_DTO getBillInformation(Customer_DTO dtoCustomer, Supplier_DTO dtoSupplier, int month, int year)
     {
         Bill_DTO dotBill = null;
         try

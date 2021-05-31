@@ -5,15 +5,11 @@ import DTO.Supplier_DTO;
 import GUI.Report.Report;
 import java.util.ArrayList;
 
-public class Supplier_BUS 
+public class SupplierManagment_BUS 
 {
     Supplier_DAL dal = new Supplier_DAL();
     Report report = new Report();
-    /*public Supplier_DTO getInformation(String name)
-    {
-        return dal.getInformation(name);
-    }*/
-    
+
     public ArrayList<Supplier_DTO> getSupplierList()
     {
         return dal.getSupplierList();

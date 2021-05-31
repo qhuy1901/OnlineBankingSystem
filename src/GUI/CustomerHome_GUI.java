@@ -1,6 +1,6 @@
 package GUI;
 
-import BUS.Customer_BUS;
+import BUS.CustomerHome_BUS;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import GUI.CustomerGUI.MyWallet_GUI;
@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 public class CustomerHome_GUI extends javax.swing.JFrame 
 {
-    Customer_BUS busCustomer = new Customer_BUS();
+    CustomerHome_BUS busCustomer = new CustomerHome_BUS();
     Customer_DTO dtoCustomer = null; // Người đang đăng nhập hệ thống
    
     public CustomerHome_GUI(Customer_DTO customer) 

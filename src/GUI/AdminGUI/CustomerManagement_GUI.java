@@ -1,6 +1,6 @@
 package GUI.AdminGUI;
 
-import BUS.Customer_BUS;
+import BUS.CustomerManagement_BUS;
 import DTO.Admin_DTO;
 import DTO.Customer_DTO;
 import GUI.AdminHome_GUI;
@@ -18,7 +18,7 @@ import javax.swing.table.TableRowSorter;
 
 public class CustomerManagement_GUI extends javax.swing.JFrame 
 {
-    Customer_BUS customer_BUS = new Customer_BUS();
+    CustomerManagement_BUS customer_BUS = new CustomerManagement_BUS();
     Admin_DTO dtoAdmin = null;
     
     public CustomerManagement_GUI(Admin_DTO admin) 

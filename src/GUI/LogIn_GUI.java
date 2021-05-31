@@ -1,6 +1,6 @@
 package GUI;
 
-import BUS.UserLogin_BUS;
+import BUS.Login_BUS;
 import DTO.Admin_DTO;
 import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 public class LogIn_GUI extends javax.swing.JFrame 
 {
-    UserLogin_BUS busUserLogin = new UserLogin_BUS();
+    Login_BUS busUserLogin = new Login_BUS();
     
     public LogIn_GUI() 
     {

@@ -21,9 +21,9 @@ public class Payment_BUS
         return dalPaymentBill.payment(dtoBill, dtoAccount);
     }
     
-    public Bill_DTO getBill(Customer_DTO dtoCustomer, Supplier_DTO dtoSupplier, int month, int year)
+    public Bill_DTO getBillInformation(Customer_DTO dtoCustomer, Supplier_DTO dtoSupplier, int month, int year)
     {
-        return dalPaymentBill.getBill(dtoCustomer, dtoSupplier, month, year);
+        return dalPaymentBill.getBillInformation(dtoCustomer, dtoSupplier, month, year);
     }
      
     public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)

@@ -1,17 +1,15 @@
 package BUS;
 
 // Bus này dùng cho form menu của Customer (Customer_GUI) và Customer_Mangagement
-import DAL.Account_DAL;
 import DAL.Customer_DAL;
-import DTO.Account_DTO;
+
 import DTO.Customer_DTO;
 import GUI.Report.Report;
 import java.util.ArrayList;
 
-public class Customer_BUS 
+public class CustomerManagement_BUS 
 {
     Customer_DAL dalCustomer = new Customer_DAL();
-    Account_DAL dalAccount = new Account_DAL();
     Report report = new Report();
     
     public boolean insert(Customer_DTO dtoCustomer)
@@ -34,15 +32,6 @@ public class Customer_BUS
         return dalCustomer.getInformation(id);
     }
     
-    public Account_DTO getPaymentAccount(Customer_DTO dtoCustomer)
-    {
-        return dalAccount.getPaymentAccount(dtoCustomer);
-    }
-    
-    /*public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)
-    {
-        return dal.getUserLogin(dtoCustomer);
-    }*/
     
     public ArrayList<Customer_DTO> getCustomersList()
     {

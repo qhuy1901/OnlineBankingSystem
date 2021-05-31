@@ -4,14 +4,9 @@ import DAL.Account_DAL;
 import DTO.Account_DTO;
 import java.util.ArrayList;
 
-public class Account_BUS 
+public class AccountManagement_BUS 
 {
     Account_DAL dal = new Account_DAL();
-
-    /*public Account_DTO getInformation(long id)
-    {
-        return dal.getInformation(id);
-    }*/
     
     public ArrayList<Account_DTO> getAccountList()
     {
@@ -32,9 +27,4 @@ public class Account_BUS
     {
         return dal.unlockAccount(accountId);
     }
-    
-    /*public boolean isValidAccount(Account_DTO dtoAccount)
-    {
-        return dal.isValidAccount(dtoAccount);
-    }*/
 }

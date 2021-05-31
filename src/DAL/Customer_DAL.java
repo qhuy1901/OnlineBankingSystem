@@ -1,6 +1,7 @@
 package DAL;
 
 import DTO.Customer_DTO;
+import DTO.UserLogin_DTO;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
@@ -105,31 +106,7 @@ public class Customer_DAL extends DBConnection
         }
         return dotCustomer; 
     }
-    
-    /*public Account_DTO getPaymentAccount(Customer_DTO dtoCustomer)
-    {
-        try
-        {
-            Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT ACCOUNT_ID, ACCOUNT_TYPE_ID, CURRENT_BALANCE, OPEN_DAY, STATUS, CUSTOMER_ID"
-                    + " FROM ACCOUNT "
-                    + "WHERE Customer_ID = ? AND Account_Type_ID = 'PA'";
-            PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setLong(1, dtoCustomer.getId());
-            ResultSet rs = ps.executeQuery();
-            Account_DTO dtoAccount = null;
-            while(rs.next())
-                dtoAccount = new Account_DTO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getDate(4), rs.getString(5), rs.getLong(6));
-            con.close();
-            return dtoAccount;
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return null; 
-    }*/
-    
+
     public ArrayList<Customer_DTO> getCustomersList()
     {
         ArrayList<Customer_DTO> customersList = new ArrayList<Customer_DTO>();
@@ -152,5 +129,38 @@ public class Customer_DAL extends DBConnection
             JOptionPane.showMessageDialog(null, e);
         }
         return customersList; 
+    }
+    
+    public Customer_DTO getCustomerInfo(UserLogin_DTO dtoUserLogin) // Từ password và username --> trả về thông tin người dùng
+    {
+        try{
+            Connection con = DBConnection.ConnectDb();
+            
+            // Lấy userID từ username và password
+            String SQL1 = "SELECT UserLogin_ID FROM User_Login WHERE Username = ? AND Password = ?"; 
+            PreparedStatement ps1 = con.prepareStatement(SQL1);
+            ps1.setString(1, dtoUserLogin.getUsername());
+            ps1.setString(2, dtoUserLogin.getPassword());
+            ResultSet rs1 = ps1.executeQuery();
+            long UserLoginID = 0;
+            while(rs1.next())
+                UserLoginID = rs1.getLong(1);
+            
+            // Tạo người dùng, lấy thông tin thông qua userID và return thông tin người dùng
+            Customer_DTO dtoCustomer = null;
+            String SQL2 = "SELECT * FROM Customer WHERE UserLogin_ID = ?"; 
+            PreparedStatement ps2 = con.prepareStatement(SQL2);
+            ps2.setLong(1, UserLoginID);
+            ResultSet rs2 = ps2.executeQuery();
+            while(rs2.next())
+                dtoCustomer = new Customer_DTO(rs2.getLong(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getDate(5),rs2.getString(6), rs2.getString(7), rs2.getString(8), rs2.getLong(9)); 
+            con.close();
+            return dtoCustomer;
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null; 
     }
 }

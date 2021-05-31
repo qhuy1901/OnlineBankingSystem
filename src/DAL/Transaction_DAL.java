@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class Transaction_DAL extends DBConnection
 {
-    public boolean insert(Transaction_DTO dtoTransaction)
+   /* public boolean insert(Transaction_DTO dtoTransaction)
     {
         try{
             Connection con = DBConnection.ConnectDb();
@@ -33,7 +33,7 @@ public class Transaction_DAL extends DBConnection
             JOptionPane.showMessageDialog(null, e);    
         }
         return false;
-    }
+    }*/
     
     public String getLatestTransactionDate(Account_DTO dtoAccount)
     {

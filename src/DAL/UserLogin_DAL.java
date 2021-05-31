@@ -1,6 +1,5 @@
 package DAL;
 
-import DTO.Admin_DTO;
 import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
 import java.sql.Connection;
@@ -60,7 +59,7 @@ public class UserLogin_DAL extends DBConnection
         return false; 
     }
     
-    public Customer_DTO getCustomerInfo(UserLogin_DTO dtoUserLogin) // Từ password và username --> trả về thông tin người dùng
+    /*public Customer_DTO getCustomerInfo(UserLogin_DTO dtoUserLogin) // Từ password và username --> trả về thông tin người dùng
     {
         try{
             Connection con = DBConnection.ConnectDb();
@@ -124,7 +123,7 @@ public class UserLogin_DAL extends DBConnection
             JOptionPane.showMessageDialog(null, e);
         }
         return null; 
-    }
+    }*/
     
     public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)
     {

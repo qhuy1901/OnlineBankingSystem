@@ -1,6 +1,6 @@
 package GUI;
 
-import BUS.Admin_BUS;
+import BUS.AdminHome_BUS;
 import DTO.Admin_DTO;
 import GUI.AdminGUI.AccountManagement_GUI;
 import GUI.AdminGUI.CustomerManagement_GUI;
@@ -8,7 +8,7 @@ import GUI.AdminGUI.SupplierManagement_GUI;
 
 public class AdminHome_GUI extends javax.swing.JFrame 
 {
-    Admin_BUS busAdmin = new Admin_BUS();
+    AdminHome_BUS busAdmin = new AdminHome_BUS();
     Admin_DTO dtoAdmin = null;
     
     public AdminHome_GUI(Admin_DTO admin) 
@@ -161,17 +161,17 @@ public class AdminHome_GUI extends javax.swing.JFrame
 
     private void btnSupplierManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierManagementActionPerformed
         this.setVisible(false);
-        busAdmin.displaySupplierManagement_GUI(dtoAdmin);
+        new SupplierManagement_GUI(dtoAdmin);
     }//GEN-LAST:event_btnSupplierManagementActionPerformed
 
     private void btnAccountManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountManagementActionPerformed
         this.setVisible(false);
-        busAdmin.displayAccountManagement_GUI(dtoAdmin);
+        new AccountManagement_GUI(dtoAdmin);
     }//GEN-LAST:event_btnAccountManagementActionPerformed
 
     private void btnCustomerManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerManagementActionPerformed
         this.setVisible(false);
-        busAdmin.displayCustomerManagement_GUI(dtoAdmin);
+        new CustomerManagement_GUI(dtoAdmin);
     }//GEN-LAST:event_btnCustomerManagementActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
