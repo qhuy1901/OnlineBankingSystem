@@ -3,10 +3,6 @@ package GUI;
 import BUS.CustomerHome_BUS;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
-import GUI.CustomerGUI.MyWallet_GUI;
-import GUI.CustomerGUI.Payment_GUI;
-import GUI.CustomerGUI.Saving_GUI;
-import GUI.CustomerGUI.Transfer_GUI;
 import javax.swing.JOptionPane;
 
 public class CustomerHome_GUI extends javax.swing.JFrame 

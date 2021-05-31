@@ -1,4 +1,4 @@
-package GUI.CustomerGUI;
+package GUI;
 
 import BUS.Transfer_BUS;
 import DTO.Account_DTO;

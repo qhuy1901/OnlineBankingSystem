@@ -1,4 +1,4 @@
-package GUI.AdminGUI;
+package GUI;
 
 import BUS.CustomerManagement_BUS;
 import DTO.Admin_DTO;

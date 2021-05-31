@@ -1,4 +1,4 @@
-package GUI.CustomerGUI;
+package GUI;
 
 import BUS.MyWallet_BUS;
 import DTO.Account_DTO;

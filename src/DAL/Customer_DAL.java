@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class Customer_DAL extends DBConnection
+public class Customer_DAL 
 {
     public boolean insert(Customer_DTO ct)
     {

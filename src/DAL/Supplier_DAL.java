@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class Supplier_DAL 
 {
-    public Supplier_DTO getInformation(String name) // dùng cho form thanh toán
+    public Supplier_DTO getInformation(String name)
     {
         Supplier_DTO dotSupplier = null;
         try
@@ -25,7 +25,6 @@ public class Supplier_DAL
             while(rs.next())
                 dotSupplier = new Supplier_DTO(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getDate(4), rs.getString(5), rs.getString(6));
             con.close();
-            
         }
         catch(Exception e)
         {
@@ -56,18 +55,18 @@ public class Supplier_DAL
         return false;
     }
     
-    public boolean delete(long supplierId)
+    public boolean delete(Supplier_DTO dtoSupplier)
     {
         try{
             Connection con = DBConnection.ConnectDb();
             String sqlDeleteBill = "DELETE FROM BILL WHERE SUPPLIER_ID = ?";
             PreparedStatement prest = con.prepareStatement(sqlDeleteBill);
-            prest.setLong(1, supplierId);
+            prest.setLong(1, dtoSupplier.getId());
             prest.executeUpdate();
             
             String sqlDeleteSupplier = "DELETE FROM SUPPLIER WHERE SUPPLIER_ID = ?";
             PreparedStatement prest1 = con.prepareStatement(sqlDeleteSupplier);
-            prest1.setLong(1, supplierId);
+            prest1.setLong(1, dtoSupplier.getId());
             prest1.executeUpdate();
             return true;
         }
@@ -103,7 +102,6 @@ public class Supplier_DAL
         return false;
     }
     
-    
     public ArrayList<Supplier_DTO> getSupplierList()
     {
         ArrayList<Supplier_DTO> supplierList = new ArrayList<Supplier_DTO>();
@@ -127,7 +125,6 @@ public class Supplier_DAL
         return supplierList; 
     }
     
-    // Work for Payment_GUI
     public ArrayList<String> getServiceTypeList()
     {
         ArrayList<String> serviceTypeList = new ArrayList<String>();

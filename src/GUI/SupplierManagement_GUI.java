@@ -1,4 +1,4 @@
-package GUI.AdminGUI;
+package GUI;
 
 import BUS.SupplierManagment_BUS;
 import DTO.Admin_DTO;
@@ -14,8 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -29,11 +27,18 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         initComponents();
         setSize(1064,650);
         setLocationRelativeTo(null);
+        
         dtoAdmin = admin;
+        loadCboServiceType();
         createTable();
         setVisible(true);
-        cboServiceType.setSelectedItem(null);
-        tblSupplierSelectRow();
+    }
+    
+    public void loadCboServiceType()
+    {
+        ArrayList<String> serviceList = busSupplier.getServiceTypeList();
+        for(String service: serviceList)
+            cboServiceType.addItem(service);
     }
     
     DefaultTableModel tblSupplierModel;
@@ -53,42 +58,25 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         tblSupplier.setModel(tblSupplierModel);
         setVisible(true);
     }
-    
-    public void tblSupplierSelectRow()
-    {
-        tblSupplier.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            @Override
-            public void valueChanged(ListSelectionEvent lse) {
-                if(!lse.getValueIsAdjusting())
-                {
-                    int row = tblSupplier.getSelectedRow();
-                    if(row >= 0)
-                    {
-                        //txtSupplierName.setText(tblSupplier.getModel().getValueAt(row, 1).toString());
-                        txtSupplierName.setText(tblSupplier.getValueAt(row, 1).toString());
-                        cboServiceType.setSelectedItem(tblSupplier.getValueAt(row, 2).toString());
-                        String contractSingingDateString = tblSupplier.getValueAt(row, 3).toString();
-                        Date contractSingingDate = null;
-                        DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
-                        try { 
-                            contractSingingDate = df.parse(contractSingingDateString);
-                        } catch (ParseException ex) {
-                            Logger.getLogger(SupplierManagement_GUI.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        dcContractSingingDate.setDate(contractSingingDate);
-                        txtAddress.setText(tblSupplier.getValueAt(row, 4).toString());
-                        txtPhoneNumber.setText(tblSupplier.getValueAt(row, 5).toString());
-                    }
-                }
-            }
-        });
-    }
 
+    public void clearForm()
+    {
+        txtSupplierName.setText("");
+        txtPhoneNumber.setText("");
+        txtAddress.setText("");
+        datContractSingingDate.setDate(null);
+        cboServiceType.setSelectedItem(null);
+        txtSearch.setText("");
+        createTable();
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lblServiceType = new javax.swing.JPanel();
+        txtSearch = new javax.swing.JTextField();
+        btnAdd_Supplier = new javax.swing.JButton();
         lblImage_Supplier = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
         lblSupplierManagement = new javax.swing.JLabel();
@@ -100,17 +88,15 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         tblSupplier = new javax.swing.JTable();
         lblTransaction_type = new javax.swing.JLabel();
         btnClear_Supplier = new javax.swing.JButton();
-        btnAdd_Supplier = new javax.swing.JButton();
         btnUpdate_Supplier = new javax.swing.JButton();
         cboServiceType = new javax.swing.JComboBox<>();
         btnDelete_Supplier1 = new javax.swing.JButton();
         lblAddress = new javax.swing.JLabel();
-        txtSearch = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         lblPhoneNumber = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
         lblTransaction_type1 = new javax.swing.JLabel();
-        dcContractSingingDate = new com.toedter.calendar.JDateChooser();
+        datContractSingingDate = new com.toedter.calendar.JDateChooser();
         btnExportReport_Supplier = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,6 +107,30 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         lblServiceType.setForeground(new java.awt.Color(32, 172, 216));
         lblServiceType.setPreferredSize(new java.awt.Dimension(1064, 650));
         lblServiceType.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtSearch.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtSearch.setForeground(new java.awt.Color(32, 172, 216));
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+        lblServiceType.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 270, -1));
+
+        btnAdd_Supplier.setBackground(new java.awt.Color(32, 172, 216));
+        btnAdd_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAdd_Supplier.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdd_Supplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnADD.png"))); // NOI18N
+        btnAdd_Supplier.setText("ADD");
+        btnAdd_Supplier.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAdd_Supplier.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAdd_Supplier.setIconTextGap(7);
+        btnAdd_Supplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdd_SupplierActionPerformed(evt);
+            }
+        });
+        lblServiceType.add(btnAdd_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 570, 111, 30));
 
         lblImage_Supplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management.png"))); // NOI18N
         lblServiceType.add(lblImage_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 100));
@@ -183,6 +193,11 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblSupplier.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSupplierMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblSupplier);
 
         lblServiceType.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 890, 210));
@@ -206,21 +221,6 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         });
         lblServiceType.add(btnClear_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(891, 570, 110, 30));
 
-        btnAdd_Supplier.setBackground(new java.awt.Color(32, 172, 216));
-        btnAdd_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAdd_Supplier.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdd_Supplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnADD.png"))); // NOI18N
-        btnAdd_Supplier.setText("ADD");
-        btnAdd_Supplier.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnAdd_Supplier.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnAdd_Supplier.setIconTextGap(7);
-        btnAdd_Supplier.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd_SupplierActionPerformed(evt);
-            }
-        });
-        lblServiceType.add(btnAdd_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 570, 111, 30));
-
         btnUpdate_Supplier.setBackground(new java.awt.Color(32, 172, 216));
         btnUpdate_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnUpdate_Supplier.setForeground(new java.awt.Color(255, 255, 255));
@@ -237,7 +237,6 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
 
         cboServiceType.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cboServiceType.setForeground(new java.awt.Color(32, 172, 216));
-        cboServiceType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Water", "Internet", "Electricity", "Phone card" }));
         lblServiceType.add(cboServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 130, 240, 30));
 
         btnDelete_Supplier1.setBackground(new java.awt.Color(32, 172, 216));
@@ -258,20 +257,6 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         lblAddress.setForeground(new java.awt.Color(32, 172, 216));
         lblAddress.setText("Address:");
         lblServiceType.add(lblAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
-
-        txtSearch.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtSearch.setForeground(new java.awt.Color(32, 172, 216));
-        txtSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchActionPerformed(evt);
-            }
-        });
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearchKeyReleased(evt);
-            }
-        });
-        lblServiceType.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 270, -1));
         lblServiceType.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 278, 890, 20));
 
         lblPhoneNumber.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -288,11 +273,11 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         lblTransaction_type1.setText("Contract Signing Date:");
         lblServiceType.add(lblTransaction_type1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, -1, -1));
 
-        dcContractSingingDate.setBackground(new java.awt.Color(32, 172, 216));
-        dcContractSingingDate.setForeground(new java.awt.Color(32, 172, 216));
-        dcContractSingingDate.setDateFormatString("dd/MM/yyyy");
-        dcContractSingingDate.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblServiceType.add(dcContractSingingDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 180, 170, 30));
+        datContractSingingDate.setBackground(new java.awt.Color(32, 172, 216));
+        datContractSingingDate.setForeground(new java.awt.Color(32, 172, 216));
+        datContractSingingDate.setDateFormatString("dd/MM/yyyy");
+        datContractSingingDate.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblServiceType.add(datContractSingingDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 180, 170, 30));
 
         btnExportReport_Supplier.setBackground(new java.awt.Color(32, 172, 216));
         btnExportReport_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -314,14 +299,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnClear_SupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClear_SupplierActionPerformed
-        // Clear Form
-        txtSupplierName.setText("");
-        txtPhoneNumber.setText("");
-        txtAddress.setText("");
-        dcContractSingingDate.setDate(null);
-        cboServiceType.setSelectedItem(null);
-        txtSearch.setText("");
-
+        clearForm();
     }//GEN-LAST:event_btnClear_SupplierActionPerformed
 
     private void btnAdd_SupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_SupplierActionPerformed
@@ -331,18 +309,11 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         }
         else
         {
-            Supplier_DTO dtoSupplier = new Supplier_DTO(0, txtSupplierName.getText(), cboServiceType.getSelectedItem().toString(), dcContractSingingDate.getDate(), txtAddress.getText(), txtPhoneNumber.getText());
+            Supplier_DTO dtoSupplier = new Supplier_DTO(0, txtSupplierName.getText(), cboServiceType.getSelectedItem().toString(), datContractSingingDate.getDate(), txtAddress.getText(), txtPhoneNumber.getText());
             if(busSupplier.insert(dtoSupplier))
             {
                 JOptionPane.showMessageDialog(this, "Supplier added susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                createTable();
-                
-                // Clear Form
-                txtSupplierName.setText("");
-                txtPhoneNumber.setText("");
-                txtAddress.setText("");
-                dcContractSingingDate.setDate(null);
-                cboServiceType.setSelectedItem(null);
+                clearForm();
             }
             else
                 JOptionPane.showMessageDialog(this, "Cannot add supplier!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -360,23 +331,15 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
             int ret = JOptionPane.showConfirmDialog(null, "Are you sure to update this supplier information?", "Confirm", JOptionPane.YES_NO_OPTION);
             if(ret == JOptionPane.YES_OPTION)
             {
-                // Lấy dữ liệu từ form xuống
                 int id = Integer.parseInt(tblSupplier.getValueAt(index, 0).toString());
-                Supplier_DTO dtoSupplier = new Supplier_DTO(id, txtSupplierName.getText(), cboServiceType.getSelectedItem().toString(), dcContractSingingDate.getDate(), txtAddress.getText(), txtPhoneNumber.getText());
+                Supplier_DTO dtoSupplier = new Supplier_DTO(id, txtSupplierName.getText(), cboServiceType.getSelectedItem().toString(), datContractSingingDate.getDate(), txtAddress.getText(), txtPhoneNumber.getText());
                 if(busSupplier.update(dtoSupplier))
                 {
-                    createTable();
                     JOptionPane.showConfirmDialog(null, "Supplier updated susccessfully...!", "Success", JOptionPane.CLOSED_OPTION);
+                    clearForm();
                 }
                 else
                     JOptionPane.showMessageDialog(this, "Cannot update supplier!", "Error", JOptionPane.ERROR_MESSAGE);
-
-                // Clear Form
-                txtSupplierName.setText("");
-                txtPhoneNumber.setText("");
-                txtAddress.setText("");
-                dcContractSingingDate.setDate(null);
-                cboServiceType.setSelectedItem(null);
             }
         }
     }//GEN-LAST:event_btnUpdate_SupplierActionPerformed
@@ -390,20 +353,15 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         else
         {
             int ret = JOptionPane.showConfirmDialog(null, "Are you sure to delete this supplier and all bills associated with this supplier?", "Confirm", JOptionPane.YES_NO_OPTION);
-            if(ret == JOptionPane.YES_OPTION) // phải chọn r ms nhập đc làm lại
+            if(ret == JOptionPane.YES_OPTION) 
             {
-                int supplierId = Integer.parseInt(tblSupplier.getValueAt(index, 0).toString());
-                if(busSupplier.delete(supplierId))
+                int id = Integer.parseInt(tblSupplier.getValueAt(index, 0).toString());
+                Supplier_DTO dtoSupplier = new Supplier_DTO(id, txtSupplierName.getText(), cboServiceType.getSelectedItem().toString(), datContractSingingDate.getDate(), txtAddress.getText(), txtPhoneNumber.getText());
+                if(busSupplier.delete(dtoSupplier))
                 {
                     tblSupplierModel.removeRow(index);
                     JOptionPane.showConfirmDialog(null, "Supplier deleted susccessfully...!", "Success", JOptionPane.CLOSED_OPTION);
-
-                    // Clear Form
-                    txtSupplierName.setText("");
-                    txtPhoneNumber.setText("");
-                    txtAddress.setText("");
-                    dcContractSingingDate.setDate(null);
-                    cboServiceType.setSelectedItem(null);
+                    clearForm();
                 }
                 else
                     JOptionPane.showMessageDialog(this, "Cannot delete supplier!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -413,10 +371,10 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         new AdminHome_GUI(dtoAdmin);
-        this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+
         DefaultTableModel SearchTable = (DefaultTableModel) tblSupplier.getModel();
         String search = txtSearch.getText();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(SearchTable);
@@ -425,20 +383,36 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void txtPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyTyped
+        // Đoạn code này không cho người dùng nhập chữ vào ô txtPhoneNumber
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
-            //getToolkit().beep();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-        }
     }//GEN-LAST:event_txtPhoneNumberKeyTyped
 
     private void btnExportReport_SupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportReport_SupplierActionPerformed
         busSupplier.showSupplierList();
     }//GEN-LAST:event_btnExportReport_SupplierActionPerformed
 
-    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchActionPerformed
+    private void tblSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSupplierMouseClicked
+        int row = tblSupplier.getSelectedRow();
+        if(row  < tblSupplierModel.getRowCount() && row  >= 0)
+        {
+            //txtSupplierName.setText(tblSupplier.getModel().getValueAt(row, 1).toString());
+            txtSupplierName.setText(tblSupplier.getValueAt(row, 1).toString());
+            cboServiceType.setSelectedItem(tblSupplier.getValueAt(row, 2).toString());
+            String contractSingingDateString = tblSupplier.getValueAt(row, 3).toString();
+            Date contractSingingDate = null;
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
+            try { 
+                contractSingingDate = df.parse(contractSingingDateString);
+            } catch (ParseException ex) {
+                Logger.getLogger(SupplierManagement_GUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            datContractSingingDate.setDate(contractSingingDate);
+            txtAddress.setText(tblSupplier.getValueAt(row, 4).toString());
+            txtPhoneNumber.setText(tblSupplier.getValueAt(row, 5).toString());
+        }
+    }//GEN-LAST:event_tblSupplierMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -449,7 +423,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnUpdate_Supplier;
     private javax.swing.JComboBox<String> cboServiceType;
-    private com.toedter.calendar.JDateChooser dcContractSingingDate;
+    private com.toedter.calendar.JDateChooser datContractSingingDate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblAddress;

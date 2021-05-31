@@ -15,6 +15,11 @@ public class SupplierManagment_BUS
         return dal.getSupplierList();
     }
     
+    public ArrayList<String> getServiceTypeList()
+    {
+        return dal.getServiceTypeList();
+    }
+    
     public boolean insert(Supplier_DTO dtoSupplier)
     {
         return dal.insert(dtoSupplier);
@@ -25,9 +30,9 @@ public class SupplierManagment_BUS
         return dal.update(dtoSupplier);
     }
     
-    public boolean delete(long supplierId)
+    public boolean delete(Supplier_DTO dtoSupplier)
     {
-        return dal.delete(supplierId);
+        return dal.delete(dtoSupplier);
     }
     
     public void showSupplierList() 

@@ -1,4 +1,4 @@
-package GUI.CustomerGUI;
+package GUI;
 
 import BUS.Saving_BUS;
 import DTO.AccountType_DTO;
