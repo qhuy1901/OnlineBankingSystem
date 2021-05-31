@@ -193,12 +193,12 @@ public class LogIn_GUI extends javax.swing.JFrame
                 if(busUserLogin.checkRole(dtoUserLogin))
                 {
                     Admin_DTO dtoAdmin = busUserLogin.getAdminInfo(dtoUserLogin);
-                    AdminHome_GUI guiAdmin = new AdminHome_GUI(dtoAdmin);
+                    new AdminHome_GUI(dtoAdmin);
                 }
                 else
                 {
                     Customer_DTO dtoCustomer = busUserLogin.getCustomerInfo(dtoUserLogin);
-                    CustomerHome_GUI guiCustomer = new CustomerHome_GUI(dtoCustomer);
+                    new CustomerHome_GUI(dtoCustomer);
                 }
                 this.setVisible(false);
             }
