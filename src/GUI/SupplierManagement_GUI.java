@@ -370,6 +370,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         new AdminHome_GUI(dtoAdmin);
+        setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased

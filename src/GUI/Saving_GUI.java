@@ -6,7 +6,6 @@ import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
 import GUI.CustomerHome_GUI;
-
 import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -21,8 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 public class Saving_GUI extends javax.swing.JFrame 
@@ -46,7 +43,7 @@ public class Saving_GUI extends javax.swing.JFrame
         btnOpenAccount.setVisible(false);
         txtTotalSavingAccount.setText(String.format("%,d",busSaving.getTotalSavingAccount(dtoCustomer)) + " VND");
         createTable();
-        tblSavingsAccountSelectRow();
+        //tblSavingsAccountSelectRow();
     }
 
     DefaultTableModel tblAccountModel;
@@ -80,7 +77,7 @@ public class Saving_GUI extends javax.swing.JFrame
     }
     
     int savingAccountId = 0;
-    public void tblSavingsAccountSelectRow()
+    /*public void tblSavingsAccountSelectRow()
     {
         tblSavingsAccount.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             @Override
@@ -95,7 +92,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 }
             }
         });
-    }
+    }*/
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -202,6 +199,11 @@ public class Saving_GUI extends javax.swing.JFrame
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblSavingsAccount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSavingsAccountMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblSavingsAccount);
 
         WithdrawOnlineSavings.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 230, 760, 240));
@@ -507,9 +509,7 @@ public class Saving_GUI extends javax.swing.JFrame
                     int reply = JOptionPane.showConfirmDialog(null, "The maturity date hasn't come yet, are you sure to settle this saving account?", "Confirm", JOptionPane.YES_NO_OPTION);
                     if (reply == JOptionPane.YES_OPTION) 
                     {
-                        String enteredPassword = confirmPassword();
-                        UserLogin_DTO dtoUserLogIn = busSaving.getUserLogin(dtoCustomer);
-                        if(enteredPassword.equals(dtoUserLogIn.getPassword()))
+                        if(confirmPassword())
                         {
                             // Nếu password đúng thì thực hiện tất toán
                             Account_DTO dtoSavingAccount= new Account_DTO(savingAccountId);
@@ -520,20 +520,12 @@ public class Saving_GUI extends javax.swing.JFrame
                                 txtTotalSavingAccount.setText(String.format("%,d",busSaving.getTotalSavingAccount(dtoCustomer)) + " VND");
                             }
                         }
-                        else if(enteredPassword.equals("cancel"))
-                        {
-                            // Không làm gì hết
-                        }
-                        else
-                            JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
             else // Đã tới hoặc qua ngày đáo hạn thì cả 2 loại tiết kiệm đều có thể tất toán
             {
-                String enteredPassword = confirmPassword();
-                UserLogin_DTO dtoUserLogIn = busSaving.getUserLogin(dtoCustomer);
-                if(enteredPassword.equals(dtoUserLogIn.getPassword()))
+                if(confirmPassword())
                 {
                     Account_DTO dtoSavingAccount= new Account_DTO(savingAccountId);
                     if(busSaving.settle(dtoSavingAccount))
@@ -543,14 +535,7 @@ public class Saving_GUI extends javax.swing.JFrame
                         txtTotalSavingAccount.setText(String.format("%,d",busSaving.getTotalSavingAccount(dtoCustomer)) + " VND");
                     }
                 }
-                else if(enteredPassword.equals("cancel"))
-                {
-                    // Không làm gì hết
-                }
-                else
-                    JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
             }
-            
         }
     }//GEN-LAST:event_btnSettlementActionPerformed
 
@@ -572,7 +557,6 @@ public class Saving_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_cboTermActionPerformed
 
     private void btnFindSuitableProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindSuitableProductActionPerformed
-        lxlInputError_Deposits.setText("");
         if(cboSavingsAccountType.getSelectedItem() == null ||cboTerm.getSelectedItem() == null || txtDeposits.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
@@ -634,9 +618,9 @@ public class Saving_GUI extends javax.swing.JFrame
         }
     }//GEN-LAST:event_btnFindSuitableProductActionPerformed
 
-    private String confirmPassword()
+    private boolean confirmPassword()
     {
-        // Create Password JOptionPane
+        // Hiển thị form nhập mật khẩu
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Please enter your password:");
         JPasswordField pass = new JPasswordField(10);
@@ -644,22 +628,21 @@ public class Saving_GUI extends javax.swing.JFrame
         panel.add(pass);
         String[] options = new String[]{"Confirm", "Cancel"};
         int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
-        String password = "";
-        if(option == 0) // pressing OK button
+
+        if(option == 0) // Customer pressing OK button
         {
-            char[] pw = pass.getPassword();
-            password = new String(pw);
+            String password = pass.getText();
+            UserLogin_DTO dtoUserLogIn = busSaving.getUserLogin(dtoCustomer); // Get customer password in database
+            if(password.equals(dtoUserLogIn.getPassword()))
+                return true;
+            else
+                JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
         }
-        else
-            return "cancel";
-        return password;
+        return false;
     }
     
     private void btnOpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenAccountActionPerformed
-        lxlInputError_Deposits.setText("");
-        UserLogin_DTO dtoUserLogIn = busSaving.getUserLogin(dtoCustomer); // Lấy password người dùng
-        String EnteredPassword = confirmPassword();
-        if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
+        if(confirmPassword())
         {
             // Lấy ngày đáo hạn từ form xuống
             Date maturityDate = null;
@@ -689,15 +672,8 @@ public class Saving_GUI extends javax.swing.JFrame
                 btnOpenAccount.setVisible(false);
             }
             else
-            JOptionPane.showConfirmDialog(null, "Cannot open savings account.", "Error", JOptionPane.CLOSED_OPTION);
+                JOptionPane.showConfirmDialog(null, "Cannot open savings account.", "Error", JOptionPane.CLOSED_OPTION);
         }
-        else if(EnteredPassword.equals("cancel"))
-        {
-            // Không làm gì hết
-        }
-        else
-        JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
-
     }//GEN-LAST:event_btnOpenAccountActionPerformed
 
     private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
@@ -751,16 +727,16 @@ public class Saving_GUI extends javax.swing.JFrame
 
     private void txtDepositsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepositsKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
-            //getToolkit().beep();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-            lxlInputError_Deposits.setText("This field only accepts numbers");
-        }
-        else 
-        {
-            lxlInputError_Deposits.setText("");
-        }
+
     }//GEN-LAST:event_txtDepositsKeyTyped
+
+    private void tblSavingsAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSavingsAccountMouseClicked
+        int row = tblSavingsAccount.getSelectedRow();
+        if(row  < tblAccountModel.getRowCount() && row  >= 0)
+            savingAccountId = Integer.parseInt(tblSavingsAccount.getValueAt(row, 0).toString());
+    }//GEN-LAST:event_tblSavingsAccountMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -46,11 +46,11 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
             tblCustomerModel.addRow(rows);
         }
         tblViewCustomer.setModel(tblCustomerModel);
-        resizeColumnWidth(tblViewCustomer);
+        //resizeColumnWidth(tblViewCustomer);
         setVisible(true);
     }
 
-    // Hàm tự động điều chỉnh kích thước cho các cột trong bảng
+    /*// Hàm tự động điều chỉnh kích thước cho các cột trong bảng
     public void resizeColumnWidth(JTable table) 
     {
         final TableColumnModel columnModel = table.getColumnModel();
@@ -67,7 +67,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 width = 300;
             columnModel.getColumn(column).setPreferredWidth(width);
         }
-    }
+    }*/
     
     private void clearForm()
     {
@@ -189,21 +189,12 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         pnlViewCustomer.add(btnExportCustomerListReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 530, 250, 40));
 
         txtSearch.setForeground(new java.awt.Color(204, 204, 204));
-        txtSearch.setText("Enter ID, Name, ID Card,... to search");
-        txtSearch.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtSearchMouseClicked(evt);
-            }
-        });
         txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSearchActionPerformed(evt);
             }
         });
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtSearchKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchKeyReleased(evt);
             }
@@ -614,7 +605,6 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHome_AddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_AddCustomerActionPerformed
-        // TODO add your handling code here:
         new AdminHome_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_AddCustomerActionPerformed
@@ -643,33 +633,9 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_txtSearchKeyReleased
 
-    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
-        // TODO add your handling code here:
-        if(txtSearch.getForeground() != Color.BLACK)
-        {
-            if(txtSearch.getText().equals("Enter ID, Name, ID Card,... to search"))
-            {
-                txtSearch.setText("");
-            }
-            txtSearch.setForeground(Color.BLACK);
-        }
-    }//GEN-LAST:event_txtSearchKeyPressed
-
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
-
-    private void txtSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchMouseClicked
-        // TODO add your handling code here:
-        if(txtSearch.getForeground() != Color.BLACK)
-        {
-            if(txtSearch.getText().equals("Enter ID, Name, ID Card,... to search"))
-            {
-                txtSearch.setText("");
-            }
-            txtSearch.setForeground(Color.BLACK);
-        }
-    }//GEN-LAST:event_txtSearchMouseClicked
     
     private boolean isTxtUpdateIDIsFilled()
     {
@@ -788,47 +754,32 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
 
     private void txtPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyTyped
        char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
-            //getToolkit().beep();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-        }
     }//GEN-LAST:event_txtPhoneNumberKeyTyped
 
     private void txtIDCardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDCardKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
-            //getToolkit().beep();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-        }
     }//GEN-LAST:event_txtIDCardKeyTyped
 
     private void txtUpdatePhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUpdatePhoneNumberKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
-            //getToolkit().beep();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-        }
     }//GEN-LAST:event_txtUpdatePhoneNumberKeyTyped
 
     private void txtUpdateIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUpdateIDKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
-            //getToolkit().beep();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-        }
     }//GEN-LAST:event_txtUpdateIDKeyTyped
 
     private void txtUpdateIDCardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUpdateIDCardKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
-            //getToolkit().beep();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-            lxlInputError_UpdateIDCard.setText("This field only accepts numbers");
-        }
-        else 
-        {
-            lxlInputError_UpdateIDCard.setText("");
-        }
     }//GEN-LAST:event_txtUpdateIDCardKeyTyped
 
     private void btnExportCustomerListReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportCustomerListReportActionPerformed

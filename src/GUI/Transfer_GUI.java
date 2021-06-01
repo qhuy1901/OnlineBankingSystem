@@ -246,8 +246,6 @@ public class Transfer_GUI extends javax.swing.JFrame
                         busTransfer.showTransferReceipt(transactionId);
                     }
                 }
-                else
-                    JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
             }
             else
                 JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);     
