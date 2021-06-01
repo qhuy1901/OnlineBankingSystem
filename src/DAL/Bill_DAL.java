@@ -20,6 +20,7 @@ public class Bill_DAL
             caSt.setLong(2, dtoBill.getId());
             caSt.execute();
             con.close();
+            caSt.close();
             return true;
         }
         catch(SQLException e)
@@ -53,6 +54,8 @@ public class Bill_DAL
             }
                 
             con.close();
+            rs.close();
+            prest.close();
         }
         catch(Exception e)
         {

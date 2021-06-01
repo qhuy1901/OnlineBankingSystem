@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class Supplier_DAL 
 {
-    public Supplier_DTO getInformation(String name)
+    /*public Supplier_DTO getInformation(String name)
     {
         Supplier_DTO dotSupplier = null;
         try
@@ -31,7 +31,7 @@ public class Supplier_DAL
             JOptionPane.showMessageDialog(null, e);
         }
         return dotSupplier; 
-    }
+    }*/
     
     public boolean insert(Supplier_DTO dtoSupplier)
     {
@@ -145,18 +145,21 @@ public class Supplier_DAL
         return serviceTypeList; 
     }
     
-    public ArrayList<String> getSupplierNameList(String serviceType)
+    public ArrayList<Supplier_DTO> getSupplierNameList(String serviceType)
     {
-        ArrayList<String> supplierNameList = new ArrayList<String>();
+        ArrayList<Supplier_DTO> supplierNameList = new ArrayList<Supplier_DTO>();
         try
         {
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT SUPPLIER_NAME FROM SUPPLIER WHERE SERVICE_TYPE = ?";
+            String SQL = "SELECT * FROM SUPPLIER WHERE SERVICE_TYPE = ?";
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setString(1, serviceType);
             ResultSet rs = prest.executeQuery();
             while(rs.next())
-                supplierNameList.add(rs.getString(1));
+            {
+                Supplier_DTO dtoSupplier = new Supplier_DTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getString(6));
+                supplierNameList.add(dtoSupplier);
+            }
             con.close();
         }
         catch(Exception e)

@@ -8,6 +8,7 @@ import DTO.Customer_DTO;
 import DTO.Bill_DTO;
 import DTO.Supplier_DTO;
 import DTO.UserLogin_DTO;
+import GUI.Report.Report;
 import java.util.ArrayList;
 
 public class Payment_BUS 
@@ -15,6 +16,7 @@ public class Payment_BUS
     Bill_DAL dalPaymentBill = new Bill_DAL();
     Supplier_DAL dalSupplier = new Supplier_DAL();
     UserLogin_DAL dalUserLogin = new UserLogin_DAL();
+    Report report = new Report();
     
     public boolean payment(Bill_DTO dtoBill, Account_DTO dtoAccount)
     {
@@ -36,8 +38,13 @@ public class Payment_BUS
         return dalSupplier.getServiceTypeList();
     }
     
-    public ArrayList<String> getSupplierNameList(String serviceType)
+    public ArrayList<Supplier_DTO> getSupplierNameList(String serviceType)
     {
         return dalSupplier.getSupplierNameList(serviceType);
+    }
+    
+    public void showTransferReceipt(long billID) 
+    {
+        report.showPaymentReceipt(billID);
     }
 }

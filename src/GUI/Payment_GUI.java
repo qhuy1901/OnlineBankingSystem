@@ -7,7 +7,6 @@ import DTO.Customer_DTO;
 import DTO.Supplier_DTO;
 import DTO.UserLogin_DTO;
 import GUI.CustomerHome_GUI;
-import GUI.LogIn_GUI;
 import GUI.Report.Report;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -25,37 +24,28 @@ public class Payment_GUI extends javax.swing.JFrame
     public Payment_GUI(Customer_DTO customer, Account_DTO account) 
     {
         initComponents();
+        
+        // Set default form
         setLocationRelativeTo(null);
         setSize(1064, 650);
-        setVisible(true);
         dtoCustomer = customer;
         dtoAccount = account; 
         cboMonth.setSelectedItem(null);
         cboYear.setSelectedItem(null);
-        btnPayment.setVisible(false);
-        loadServiceTypeToCbo();
+        btnPayment.setEnabled(true);
+        setVisible(true);
+        
+        loadCboServiceType();
         cboServiceType.setSelectedItem(null);
     }
     
-    private String confirmPassword()
+    private void loadCboServiceType()
     {
-        // Create Password JOptionPane
-        JPanel panel = new JPanel();
-        JLabel label = new JLabel("Please enter your password:");
-        JPasswordField pass = new JPasswordField(10);
-        panel.add(label);
-        panel.add(pass);
-        String[] options = new String[]{"Confirm", "Cancel"};
-        int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
-        String password = "";
-        if(option == 0) // pressing OK button
+        ArrayList<String> serviceTypeList = busPayment.getServiceTypeList();
+        for(String serviceType : serviceTypeList)
         {
-            char[] pw = pass.getPassword();
-            password = new String(pw);
+            cboServiceType.addItem(serviceType);
         }
-        else
-            return "cancel";
-        return password;
     }
     
     private void clearBillLookupInformation()
@@ -67,31 +57,20 @@ public class Payment_GUI extends javax.swing.JFrame
         txtBillAmount_BillLookup.setText("");
         txtStatus_BillLookup.setText("");
         btnPayment.setVisible(false);
-        lxlInputError_CustomerID.setText("");
     }
     
-    private void loadServiceTypeToCbo()
-    {
-        ArrayList<String> serviceTypeList = busPayment.getServiceTypeList();
-        for(String serviceType : serviceTypeList)
-        {
-            cboServiceType.addItem(serviceType);
-        }
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        cboServiceType = new javax.swing.JComboBox<>();
+        cboSupplierName = new javax.swing.JComboBox<>();
         lblImage_Transfer = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
-        btnLogout = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         lblServiceType = new javax.swing.JLabel();
-        cboServiceType = new javax.swing.JComboBox<>();
         lblYear = new javax.swing.JLabel();
-        cboSupplierName = new javax.swing.JComboBox<>();
         txtCustomerID = new javax.swing.JTextField();
         btnPayment = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -115,13 +94,28 @@ public class Payment_GUI extends javax.swing.JFrame
         cboYear = new javax.swing.JComboBox<>();
         lblMonth = new javax.swing.JLabel();
         cboMonth = new javax.swing.JComboBox<>();
-        lxlInputError_CustomerID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Payment");
 
         jPanel1.setBackground(new java.awt.Color(239, 250, 252));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cboServiceType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cboServiceType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboServiceTypeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cboServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 270, -1));
+
+        cboSupplierName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cboSupplierName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboSupplierNameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cboSupplierName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 270, -1));
 
         lblImage_Transfer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Payment_Water.png"))); // NOI18N
         jPanel1.add(lblImage_Transfer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 100));
@@ -141,23 +135,7 @@ public class Payment_GUI extends javax.swing.JFrame
                 btnHomeActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 30, 50, 57));
-
-        btnLogout.setBackground(new java.awt.Color(32, 172, 216));
-        btnLogout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Logout.png"))); // NOI18N
-        btnLogout.setText("Logout");
-        btnLogout.setBorder(null);
-        btnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLogout.setIconTextGap(0);
-        btnLogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 50, 57));
+        jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 30, 50, 57));
 
         lblTitle.setBackground(new java.awt.Color(32, 172, 216));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N
@@ -171,36 +149,15 @@ public class Payment_GUI extends javax.swing.JFrame
         lblServiceType.setText("Service Type:");
         jPanel1.add(lblServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
 
-        cboServiceType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cboServiceType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboServiceTypeActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cboServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 270, -1));
-
         lblYear.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblYear.setForeground(new java.awt.Color(32, 172, 216));
         lblYear.setText("Year:");
         jPanel1.add(lblYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, -1, -1));
 
-        cboSupplierName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cboSupplierName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboSupplierNameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cboSupplierName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 270, -1));
-
         txtCustomerID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtCustomerID.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtCustomerIDMouseClicked(evt);
-            }
-        });
-        txtCustomerID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCustomerIDActionPerformed(evt);
             }
         });
         txtCustomerID.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -380,10 +337,6 @@ public class Payment_GUI extends javax.swing.JFrame
         });
         jPanel1.add(cboMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 90, 30));
 
-        lxlInputError_CustomerID.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        lxlInputError_CustomerID.setForeground(new java.awt.Color(255, 102, 102));
-        jPanel1.add(lxlInputError_CustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 170, -1));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -407,28 +360,39 @@ public class Payment_GUI extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        LogIn_GUI guiLogIn = new LogIn_GUI();
-        this.setVisible(false);
-    }//GEN-LAST:event_btnLogoutActionPerformed
+    private boolean confirmPassword()
+    {
+        // Hiển thị form nhập mật khẩu
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Please enter your password:");
+        JPasswordField pass = new JPasswordField(10);
+        panel.add(label);
+        panel.add(pass);
+        String[] options = new String[]{"Confirm", "Cancel"};
+        int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
 
+        if(option == 0) // Customer pressing OK button
+        {
+            String password = pass.getText();
+            UserLogin_DTO dtoUserLogIn = busPayment.getUserLogin(dtoCustomer); // Get customer password in database
+            if(password.equals(dtoUserLogIn.getPassword()))
+                return true;
+            else
+                JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+    }
+    
+    Bill_DTO dtoBill = null;
     private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
-        lxlInputError_CustomerID.setText("");
         if(dtoAccount.getCurrentBalance() > Long.parseLong(txtBillAmount_BillLookup.getText().replace(",", "").replace(" VND", "")))
         {
-            long customerId = Long.parseLong(txtCustomerID.getText());
-            String supplierName = cboSupplierName.getSelectedItem().toString();
-            Bill_DTO dtoBill = busPayment.getBillInformation(new Customer_DTO(customerId), new Supplier_DTO(supplierName), Integer.parseInt(cboMonth.getSelectedItem().toString()), Integer.parseInt(cboYear.getSelectedItem().toString()));
-            UserLogin_DTO dtoUserLogIn = busPayment.getUserLogin(dtoCustomer); // Lấy password người dùng
-            String EnteredPassword = confirmPassword();
-            if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
+            if(confirmPassword())
             {
                 if(busPayment.payment(dtoBill, dtoAccount))
                 {
                     JOptionPane.showConfirmDialog(null, "Payment is successful", "Successful", JOptionPane.CLOSED_OPTION);
 
-                    Report r = new Report();
-                    r.showPaymentBill(dtoBill.getId());
                     //Clear form
                     cboServiceType.setSelectedItem(null);
                     txtCustomerID.setText("");
@@ -436,60 +400,35 @@ public class Payment_GUI extends javax.swing.JFrame
                     cboYear.setSelectedItem(null);
                     txtCustomerID.setText("");
                     clearBillLookupInformation();
+                    
+                    busPayment.showTransferReceipt(dtoBill.getId());
                 }
             }
-            else if(EnteredPassword.equals("cancel"))
-            {
-                // Không làm gì hết
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
-            JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);
-            JOptionPane.showMessageDialog(this, "This bill is not exist", "Error", JOptionPane.ERROR_MESSAGE);
-        }   
+            JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE); 
+            clearBillLookupInformation();
+        }  
     }//GEN-LAST:event_btnPaymentActionPerformed
 
     private void cboServiceTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboServiceTypeActionPerformed
-         clearBillLookupInformation();
-         cboSupplierName.removeAllItems();
-        //Chọn loại dịch vụ cần thanh toán
-        /*if(cboServiceType.getSelectedItem() == null)
-            cboSupplierName.setSelectedItem(null);
-        else if(cboServiceType.getSelectedItem().toString().equals("Water bill payment"))
-        {
-            cboSupplierName.setModel(new DefaultComboBoxModel<>(new String[]{
-                "Dong Nai Water Supplier", "Thu Duc Water Supplier", "Ben Thanh Water Supplier", "Da Nang Water Supplier", "Clean Water Ha Noi"
-            }));
-        }
-        else if(cboServiceType.getSelectedItem().toString().equals("Electricity bill payment"))
-        {
-            cboSupplierName.setModel(new DefaultComboBoxModel<>(new String[]{
-                "Nothern Power Corp", "Southern Power Corp", "Central Power Corp"
-            }));
-        }
-        else // (cboServiceType.getSelectedItem().toString().equals("Internet bill payment"))
-        {
-            cboSupplierName.setModel(new DefaultComboBoxModel<>(new String[]{
-                "FPT Telecom", "Viettel", "VNPT"
-            }));
-        }*/
+        clearBillLookupInformation();
+        cboSupplierName.removeAllItems();
+        
         if(cboServiceType.getSelectedItem() == null)
             cboSupplierName.setSelectedItem(null);
         else
         {
-            ArrayList<String> supplierNameList = busPayment.getSupplierNameList(cboServiceType.getSelectedItem().toString());
-            for(String supplierName : supplierNameList)
+            ArrayList<Supplier_DTO> supplierNameList = supplierNameList = busPayment.getSupplierNameList(cboServiceType.getSelectedItem().toString());
+            for(Supplier_DTO supplier : supplierNameList)
             {
-                cboSupplierName.addItem(supplierName);
+                cboSupplierName.addItem(supplier.getName());
             }
         }
     }//GEN-LAST:event_cboServiceTypeActionPerformed
 
     private void btnBillLoopupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillLoopupActionPerformed
-        lxlInputError_CustomerID.setText("");
         if(cboServiceType.getSelectedItem() == null || cboSupplierName.getSelectedItem() == null || txtCustomerID.getText().equals("") || cboMonth.getSelectedItem() == null || cboYear.getSelectedItem() == null)
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
@@ -498,10 +437,12 @@ public class Payment_GUI extends javax.swing.JFrame
         {
             long customerId = Long.parseLong(txtCustomerID.getText().replace(" ", ""));
             String supplierName = cboSupplierName.getSelectedItem().toString();
-            Bill_DTO dtoBill = busPayment.getBillInformation(new Customer_DTO(customerId), new Supplier_DTO(supplierName), Integer.parseInt(cboMonth.getSelectedItem().toString()), Integer.parseInt(cboYear.getSelectedItem().toString()));
+            int month = Integer.parseInt(cboMonth.getSelectedItem().toString());
+            int year = Integer.parseInt(cboYear.getSelectedItem().toString());
+            dtoBill = busPayment.getBillInformation(new Customer_DTO(customerId), new Supplier_DTO(supplierName),month , year);
             if(dtoBill != null) // Hóa đơn tồn tại
             {
-                if(dtoBill.getStatus().equals("Unpaid"))
+                if(dtoBill.getStatus().equals("Unpaid")) // Hóa đơn chưa được thanh toán
                 {
                     txtBillID_BillLookup.setText(String.valueOf(dtoBill.getId()));
                     txtCustomerID_BillLookup.setText(String.valueOf(dtoBill.getCustomerID()));
@@ -510,10 +451,12 @@ public class Payment_GUI extends javax.swing.JFrame
                     txtStatus_BillLookup.setText(dtoBill.getStatus());
                     txtBillAmount_BillLookup.setText(String.format("%,d", dtoBill.getBillAmount()) + " VND");
                     btnPayment.setVisible(true);
-                    
                 }
                 else
+                {
                     JOptionPane.showMessageDialog(this, "This bill has been paid", "Paid", JOptionPane.CLOSED_OPTION);
+                    clearBillLookupInformation();
+                }
             }
             else
                 JOptionPane.showMessageDialog(this, "This bill is not exist", "Error", JOptionPane.ERROR_MESSAGE);
@@ -523,10 +466,6 @@ public class Payment_GUI extends javax.swing.JFrame
     private void cboSupplierNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSupplierNameActionPerformed
         clearBillLookupInformation();
     }//GEN-LAST:event_cboSupplierNameActionPerformed
-
-    private void txtCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCustomerIDActionPerformed
 
     private void cboMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMonthActionPerformed
         clearBillLookupInformation();
@@ -542,22 +481,14 @@ public class Payment_GUI extends javax.swing.JFrame
 
     private void txtCustomerIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIDKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
-            //getToolkit().beep();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-            lxlInputError_CustomerID.setText("This field only accepts numbers");
-        }
-        else 
-        {
-            lxlInputError_CustomerID.setText("");
-        }
     }//GEN-LAST:event_txtCustomerIDKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBillLoopup;
     private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPayment;
     private javax.swing.JComboBox<String> cboMonth;
     private javax.swing.JComboBox<String> cboServiceType;
@@ -579,7 +510,6 @@ public class Payment_GUI extends javax.swing.JFrame
     private javax.swing.JLabel lblSupplier_BillLookup;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblYear;
-    private javax.swing.JLabel lxlInputError_CustomerID;
     private javax.swing.JPanel pnlBillLookupInformation;
     private javax.swing.JTextField txtBillAmount_BillLookup;
     private javax.swing.JTextField txtBillDate_BillLookup;

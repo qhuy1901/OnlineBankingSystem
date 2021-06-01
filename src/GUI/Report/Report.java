@@ -3,7 +3,7 @@ package GUI.Report;
 
 public class Report extends JasperReports 
 {
-    public void showPaymentBill(long billID) 
+    public void showPaymentReceipt(long billID) 
     {
         m_report_source = "PaymentReceipt.jrxml";
         m_sql_stmt = "SELECT B.BILL_ID, B.BILL_AMOUNT, B.INVOICE_DATE, B.PAYMENT_DATE, C.CUSTOMER_ID, C.FIRST_NAME || ' ' || C.LAST_NAME FULL_NAME, B.SUPPLIER_ID, S.SUPPLIER_NAME, S.SERVICE_TYPE\n" +

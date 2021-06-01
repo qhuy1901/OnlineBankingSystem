@@ -359,7 +359,6 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
                 Supplier_DTO dtoSupplier = new Supplier_DTO(id, txtSupplierName.getText(), cboServiceType.getSelectedItem().toString(), datContractSingingDate.getDate(), txtAddress.getText(), txtPhoneNumber.getText());
                 if(busSupplier.delete(dtoSupplier))
                 {
-                    tblSupplierModel.removeRow(index);
                     JOptionPane.showConfirmDialog(null, "Supplier deleted susccessfully...!", "Success", JOptionPane.CLOSED_OPTION);
                     clearForm();
                 }
