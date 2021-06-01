@@ -151,23 +151,22 @@ public class AdminHome_GUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
+        setVisible(false);
         new LogIn_GUI();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnSupplierManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierManagementActionPerformed
-        this.setVisible(false);
+        setVisible(false);
         new SupplierManagement_GUI(dtoAdmin);
     }//GEN-LAST:event_btnSupplierManagementActionPerformed
 
     private void btnAccountManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountManagementActionPerformed
-        this.setVisible(false);
+        setVisible(false);
         new AccountManagement_GUI(dtoAdmin);
     }//GEN-LAST:event_btnAccountManagementActionPerformed
 
     private void btnCustomerManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerManagementActionPerformed
-        this.setVisible(false);
+        setVisible(false);
         new CustomerManagement_GUI(dtoAdmin);
     }//GEN-LAST:event_btnCustomerManagementActionPerformed
 

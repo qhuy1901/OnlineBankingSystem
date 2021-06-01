@@ -8,8 +8,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -25,25 +23,24 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         setLocationRelativeTo(null);
         dtoAdmin = admin;
         createTable();
-        tblAccountSelectRow();
         setVisible(true);
     }
     
     DefaultTableModel tblAccountModel;
     public void createTable()
     {
-        ArrayList<Account_DTO> list = busAccount.getAccountList();
+        ArrayList<Account_DTO> accountList = busAccount.getAccountList();
         tblAccountModel = new DefaultTableModel();
         String title[] = {"ID", "CurrentBalance", "Open Day","AccountType", "Status", "CustomerID"};
         tblAccountModel.setColumnIdentifiers(title);
         tblAccountModel.setRowCount(0); 
-        for(int i = 0; i < list.size(); i++)
+        for(int i = 0; i < accountList.size(); i++)
         {
-            Account_DTO dtoAccount = list.get(i);
+            Account_DTO dtoAccount = accountList.get(i);
             String[] rows = {String.valueOf(dtoAccount.getId()), String.format("%,d", dtoAccount.getCurrentBalance()),dtoAccount.getOpenDay().toString() , dtoAccount.getAccountTypeID(),dtoAccount.getStatus(),String.valueOf(dtoAccount.getCustomerID())};
             tblAccountModel.addRow(rows);
         }
-        tblAccountInformation_SearchAccount.setModel(tblAccountModel);
+        tblAccount.setModel(tblAccountModel);
         setVisible(true);
     }
     @SuppressWarnings("unchecked")
@@ -54,14 +51,14 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         tbP_AccountManagement = new javax.swing.JTabbedPane();
         Panel_SearchAccount = new javax.swing.JPanel();
         btnHome_SearchAccount = new javax.swing.JButton();
-        lbSearch_SearchAccount = new javax.swing.JLabel();
-        txtSearch_SearchAccount = new javax.swing.JTextField();
+        lbSearch = new javax.swing.JLabel();
+        txtSearch = new javax.swing.JTextField();
         ScroPane_SearchAccount = new javax.swing.JScrollPane();
-        tblAccountInformation_SearchAccount = new javax.swing.JTable();
-        btnLockAcc_SearchAccount = new javax.swing.JButton();
+        tblAccount = new javax.swing.JTable();
+        btnLockAccount = new javax.swing.JButton();
         lbIcon_SearchAccount = new javax.swing.JLabel();
         lbSearchAccount = new javax.swing.JLabel();
-        btnUnlockAcc_SearchAccount = new javax.swing.JButton();
+        btnUnlockAccount = new javax.swing.JButton();
         Panel_OpenAccount = new javax.swing.JPanel();
         btnHome_OpenAccount = new javax.swing.JButton();
         lbCustomerID_OpenAccount = new javax.swing.JLabel();
@@ -101,25 +98,20 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         });
         Panel_SearchAccount.add(btnHome_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 76, 58));
 
-        lbSearch_SearchAccount.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        lbSearch_SearchAccount.setForeground(new java.awt.Color(32, 172, 216));
-        lbSearch_SearchAccount.setText("Search: ");
-        Panel_SearchAccount.add(lbSearch_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, -1));
+        lbSearch.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lbSearch.setForeground(new java.awt.Color(32, 172, 216));
+        lbSearch.setText("Search: ");
+        Panel_SearchAccount.add(lbSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, -1));
 
-        txtSearch_SearchAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtSearch_SearchAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearch_SearchAccountActionPerformed(evt);
-            }
-        });
-        txtSearch_SearchAccount.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearch_SearchAccountKeyReleased(evt);
+                txtSearchKeyReleased(evt);
             }
         });
-        Panel_SearchAccount.add(txtSearch_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 330, -1));
+        Panel_SearchAccount.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 330, -1));
 
-        tblAccountInformation_SearchAccount.setModel(new javax.swing.table.DefaultTableModel(
+        tblAccount.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -130,21 +122,21 @@ public class AccountManagement_GUI extends javax.swing.JFrame
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        ScroPane_SearchAccount.setViewportView(tblAccountInformation_SearchAccount);
+        ScroPane_SearchAccount.setViewportView(tblAccount);
 
         Panel_SearchAccount.add(ScroPane_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 870, 340));
 
-        btnLockAcc_SearchAccount.setBackground(new java.awt.Color(32, 172, 216));
-        btnLockAcc_SearchAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnLockAcc_SearchAccount.setForeground(new java.awt.Color(255, 255, 255));
-        btnLockAcc_SearchAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AccountManagement_Lock.png"))); // NOI18N
-        btnLockAcc_SearchAccount.setText("Lock Account");
-        btnLockAcc_SearchAccount.addActionListener(new java.awt.event.ActionListener() {
+        btnLockAccount.setBackground(new java.awt.Color(32, 172, 216));
+        btnLockAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnLockAccount.setForeground(new java.awt.Color(255, 255, 255));
+        btnLockAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AccountManagement_Lock.png"))); // NOI18N
+        btnLockAccount.setText("Lock Account");
+        btnLockAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLockAcc_SearchAccountActionPerformed(evt);
+                btnLockAccountActionPerformed(evt);
             }
         });
-        Panel_SearchAccount.add(btnLockAcc_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, -1, -1));
+        Panel_SearchAccount.add(btnLockAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, -1, -1));
 
         lbIcon_SearchAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AccountManagement_SearchAccount.png"))); // NOI18N
         Panel_SearchAccount.add(lbIcon_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 110, 120));
@@ -157,17 +149,17 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         lbSearchAccount.setPreferredSize(new java.awt.Dimension(34, 50));
         Panel_SearchAccount.add(lbSearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 930, 66));
 
-        btnUnlockAcc_SearchAccount.setBackground(new java.awt.Color(32, 172, 216));
-        btnUnlockAcc_SearchAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnUnlockAcc_SearchAccount.setForeground(new java.awt.Color(255, 255, 255));
-        btnUnlockAcc_SearchAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AccountManagement_Unlock.png"))); // NOI18N
-        btnUnlockAcc_SearchAccount.setText("Unlock Account");
-        btnUnlockAcc_SearchAccount.addActionListener(new java.awt.event.ActionListener() {
+        btnUnlockAccount.setBackground(new java.awt.Color(32, 172, 216));
+        btnUnlockAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnUnlockAccount.setForeground(new java.awt.Color(255, 255, 255));
+        btnUnlockAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AccountManagement_Unlock.png"))); // NOI18N
+        btnUnlockAccount.setText("Unlock Account");
+        btnUnlockAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUnlockAcc_SearchAccountActionPerformed(evt);
+                btnUnlockAccountActionPerformed(evt);
             }
         });
-        Panel_SearchAccount.add(btnUnlockAcc_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 140, -1, -1));
+        Panel_SearchAccount.add(btnUnlockAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 140, -1, -1));
 
         tbP_AccountManagement.addTab("Search Account", Panel_SearchAccount);
 
@@ -267,11 +259,10 @@ public class AccountManagement_GUI extends javax.swing.JFrame
 
     private void btnHome_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_OpenAccountActionPerformed
         new AdminHome_GUI(dtoAdmin);
-        this.setVisible(false);
+        setVisible(false);
     }//GEN-LAST:event_btnHome_OpenAccountActionPerformed
 
     private void btnActivate_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivate_OpenAccountActionPerformed
-        // TODO add your handling code here:
         if(txtCustomerID_OpenAccount.getText().equals("") || txtAmount_OpenAccount.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
@@ -307,39 +298,18 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_SearchAccountActionPerformed
 
-    private void txtSearch_SearchAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearch_SearchAccountActionPerformed
-
-    }//GEN-LAST:event_txtSearch_SearchAccountActionPerformed
-    
-    public void tblAccountSelectRow()
-    {
-        tblAccountInformation_SearchAccount.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            @Override
-            public void valueChanged(ListSelectionEvent lse) {
-                if(!lse.getValueIsAdjusting())
-                {
-                    int row = tblAccountInformation_SearchAccount.getSelectedRow();
-                    if(row >= 0)
-                    {
-                        accountId = Integer.parseInt(tblAccountInformation_SearchAccount.getValueAt(row, 0).toString());
-                    }
-                }
-            }
-        });
-    }
-    
-    int accountId = 0;
-    private void btnLockAcc_SearchAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockAcc_SearchAccountActionPerformed
-        int row = tblAccountInformation_SearchAccount.getSelectedRow();
-        if(accountId == 0)
+    private void btnLockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockAccountActionPerformed
+        int row = tblAccount.getSelectedRow();
+        int accountId = Integer.parseInt(tblAccount.getValueAt(row, 0).toString().replaceAll("\\s+",""));
+        if(accountId == -1)
         {
                 JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else if(!tblAccountInformation_SearchAccount.getValueAt(row, 3).toString().replaceAll("\\s+","").equals("PA")) // phải xóa các khoản trắng khi lấy data từ bảng xuống
+        else if(tblAccount.getValueAt(row, 3).toString().replaceAll("\\s+","").equals("PA") == false) // phải xóa các khoản trắng khi lấy data từ bảng xuống
         {
             JOptionPane.showMessageDialog(this, "Savings account cannot be locked .", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else if(tblAccountInformation_SearchAccount.getValueAt(row, 4).toString().replaceAll("\\s+","").equals("Locked"))
+        else if(tblAccount.getValueAt(row, 4).toString().replaceAll("\\s+","").equals("Locked"))
         {
             JOptionPane.showMessageDialog(this, "This account has been locked already.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -355,23 +325,24 @@ public class AccountManagement_GUI extends javax.swing.JFrame
                 }
             }
         }
-    }//GEN-LAST:event_btnLockAcc_SearchAccountActionPerformed
+    }//GEN-LAST:event_btnLockAccountActionPerformed
 
-    private void txtSearch_SearchAccountKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch_SearchAccountKeyReleased
-        DefaultTableModel SearchTable = (DefaultTableModel) tblAccountInformation_SearchAccount.getModel();
-        String search = txtSearch_SearchAccount.getText();
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        DefaultTableModel SearchTable = (DefaultTableModel) tblAccount.getModel();
+        String search = txtSearch.getText();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(SearchTable);
-        tblAccountInformation_SearchAccount.setRowSorter(tr);
+        tblAccount.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(search));
-    }//GEN-LAST:event_txtSearch_SearchAccountKeyReleased
+    }//GEN-LAST:event_txtSearchKeyReleased
 
-    private void btnUnlockAcc_SearchAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnlockAcc_SearchAccountActionPerformed
-        int row = tblAccountInformation_SearchAccount.getSelectedRow();
+    private void btnUnlockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnlockAccountActionPerformed
+        int row = tblAccount.getSelectedRow();
+        int accountId = Integer.parseInt(tblAccount.getValueAt(row, 0).toString().replaceAll("\\s+",""));
         if(accountId == 0)
         {
             JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else if(tblAccountInformation_SearchAccount.getValueAt(row, 4).toString().replaceAll("\\s+","").equals("Active"))
+        else if(tblAccount.getValueAt(row, 4).toString().replaceAll("\\s+","").equals("Active"))
         {
             JOptionPane.showMessageDialog(this, "This account is not locked.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -387,27 +358,20 @@ public class AccountManagement_GUI extends javax.swing.JFrame
                 }
             }
         }
-    }//GEN-LAST:event_btnUnlockAcc_SearchAccountActionPerformed
+    }//GEN-LAST:event_btnUnlockAccountActionPerformed
 
     private void txtCustomerID_OpenAccountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerID_OpenAccountKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
-            //getToolkit().beep();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-        }
     }//GEN-LAST:event_txtCustomerID_OpenAccountKeyTyped
 
     private void txtAmount_OpenAccountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmount_OpenAccountKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
-            //getToolkit().beep();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-        }
     }//GEN-LAST:event_txtAmount_OpenAccountKeyTyped
 
-
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel_OpenAccount;
     private javax.swing.JPanel Panel_SearchAccount;
@@ -415,22 +379,22 @@ public class AccountManagement_GUI extends javax.swing.JFrame
     private javax.swing.JButton btnActivate_OpenAccount;
     private javax.swing.JButton btnHome_OpenAccount;
     private javax.swing.JButton btnHome_SearchAccount;
-    private javax.swing.JButton btnLockAcc_SearchAccount;
-    private javax.swing.JButton btnUnlockAcc_SearchAccount;
+    private javax.swing.JButton btnLockAccount;
+    private javax.swing.JButton btnUnlockAccount;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbAmount_OpenAccount;
     private javax.swing.JLabel lbCustomerID_OpenAccount;
     private javax.swing.JLabel lbIcon_OpenAccount;
     private javax.swing.JLabel lbIcon_SearchAccount;
     private javax.swing.JLabel lbOpenAccount;
+    private javax.swing.JLabel lbSearch;
     private javax.swing.JLabel lbSearchAccount;
-    private javax.swing.JLabel lbSearch_SearchAccount;
     private javax.swing.JLabel lxlInputError_Amount;
     private javax.swing.JLabel lxlInputError_CustomerID;
     private javax.swing.JTabbedPane tbP_AccountManagement;
-    private javax.swing.JTable tblAccountInformation_SearchAccount;
+    private javax.swing.JTable tblAccount;
     private javax.swing.JTextField txtAmount_OpenAccount;
     private javax.swing.JTextField txtCustomerID_OpenAccount;
-    private javax.swing.JTextField txtSearch_SearchAccount;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }

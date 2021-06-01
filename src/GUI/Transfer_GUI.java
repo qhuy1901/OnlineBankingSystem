@@ -15,6 +15,7 @@ public class Transfer_GUI extends javax.swing.JFrame
     
     Account_DTO dtoAccount = null; // Tài khoản của người chuyển tiền
     Customer_DTO dtoCustomer = null; //Người chuyển tiền
+    Account_DTO dtoReceiverAccount = null;
     
     public Transfer_GUI(Customer_DTO customer, Account_DTO account) 
     {
@@ -50,8 +51,8 @@ public class Transfer_GUI extends javax.swing.JFrame
         txtContent = new javax.swing.JTextPane();
         lblReceiverBank = new javax.swing.JLabel();
         txtAmount = new javax.swing.JTextField();
-        lxlInputError_Amount = new javax.swing.JLabel();
-        lxlInputError_ReceiverAccount = new javax.swing.JLabel();
+        txtReceiverName = new javax.swing.JTextField();
+        lblReceiverName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Transfer");
@@ -90,7 +91,7 @@ public class Transfer_GUI extends javax.swing.JFrame
         lblImage_Description.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblImage_Description.setForeground(new java.awt.Color(51, 51, 51));
         lblImage_Description.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Transfer_Description.png"))); // NOI18N
-        jPanel1.add(lblImage_Description, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 400, 40, -1));
+        jPanel1.add(lblImage_Description, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 450, 40, -1));
 
         lblReceiverAccount.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblReceiverAccount.setForeground(new java.awt.Color(32, 172, 216));
@@ -100,12 +101,12 @@ public class Transfer_GUI extends javax.swing.JFrame
         lblAmount.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblAmount.setForeground(new java.awt.Color(32, 172, 216));
         lblAmount.setText("Amount");
-        jPanel1.add(lblAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, -1));
+        jPanel1.add(lblAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, -1, -1));
 
         lblContent.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblContent.setForeground(new java.awt.Color(32, 172, 216));
         lblContent.setText("Content");
-        jPanel1.add(lblContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
+        jPanel1.add(lblContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, -1, -1));
 
         cboReceiverBank.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         cboReceiverBank.setForeground(new java.awt.Color(32, 172, 216));
@@ -114,6 +115,11 @@ public class Transfer_GUI extends javax.swing.JFrame
 
         txtReceiverAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtReceiverAccount.setForeground(new java.awt.Color(32, 172, 216));
+        txtReceiverAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtReceiverAccountActionPerformed(evt);
+            }
+        });
         txtReceiverAccount.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtReceiverAccountKeyTyped(evt);
@@ -125,7 +131,7 @@ public class Transfer_GUI extends javax.swing.JFrame
         lbltienVND.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbltienVND.setForeground(new java.awt.Color(32, 172, 216));
         lbltienVND.setText("VND");
-        jPanel1.add(lbltienVND, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, -1, 30));
+        jPanel1.add(lbltienVND, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 380, -1, 30));
 
         btnContinue.setBackground(new java.awt.Color(32, 172, 216));
         btnContinue.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -137,7 +143,7 @@ public class Transfer_GUI extends javax.swing.JFrame
                 btnContinueActionPerformed(evt);
             }
         });
-        jPanel1.add(btnContinue, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 520, -1, -1));
+        jPanel1.add(btnContinue, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 560, -1, -1));
 
         lblImage_Bank.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblImage_Bank.setForeground(new java.awt.Color(51, 51, 51));
@@ -158,7 +164,7 @@ public class Transfer_GUI extends javax.swing.JFrame
         txtContent.setForeground(new java.awt.Color(32, 172, 216));
         jScrollPane1.setViewportView(txtContent);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, 430, 60));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, 430, 60));
 
         lblReceiverBank.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblReceiverBank.setForeground(new java.awt.Color(32, 172, 216));
@@ -167,35 +173,31 @@ public class Transfer_GUI extends javax.swing.JFrame
 
         txtAmount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtAmount.setForeground(new java.awt.Color(32, 172, 216));
-        txtAmount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAmountActionPerformed(evt);
-            }
-        });
         txtAmount.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtAmountKeyTyped(evt);
             }
         });
-        jPanel1.add(txtAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 250, -1));
+        jPanel1.add(txtAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, 250, -1));
 
-        lxlInputError_Amount.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        lxlInputError_Amount.setForeground(new java.awt.Color(255, 102, 102));
-        jPanel1.add(lxlInputError_Amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, 170, 20));
+        txtReceiverName.setEditable(false);
+        txtReceiverName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtReceiverName.setForeground(new java.awt.Color(32, 172, 216));
+        jPanel1.add(txtReceiverName, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 422, -1));
 
-        lxlInputError_ReceiverAccount.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        lxlInputError_ReceiverAccount.setForeground(new java.awt.Color(255, 102, 102));
-        jPanel1.add(lxlInputError_ReceiverAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 170, 20));
+        lblReceiverName.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblReceiverName.setForeground(new java.awt.Color(32, 172, 216));
+        lblReceiverName.setText("Receiver name");
+        jPanel1.add(lblReceiverName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // Hàm này chỉ có chức năng tạo ra 1 window để nhập mật khẩu và trả về mật khẩu của khách hàng đã nhập
-    private String confirmPassword()
+    private boolean confirmPassword()
     {
-        // Create Password JOptionPane
+        // Hiển thị form nhập mật khẩu
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Please enter your password:");
         JPasswordField pass = new JPasswordField(10);
@@ -203,99 +205,88 @@ public class Transfer_GUI extends javax.swing.JFrame
         panel.add(pass);
         String[] options = new String[]{"Confirm", "Cancel"};
         int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
-        String password = "";
-        if(option == 0) // pressing OK button
+
+        if(option == 0) // Customer pressing OK button
         {
-            char[] pw = pass.getPassword();
-            password = new String(pw);
+            String password = pass.getText();
+            UserLogin_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); // Get customer password in database
+            if(password.equals(dtoUserLogIn.getPassword()))
+                return true;
+            else
+                JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
         }
-        else
-            return "cancel";
-        return password;
+        return false;
     }
     
     
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
-        lxlInputError_Amount.setText("");
-        lxlInputError_ReceiverAccount.setText("");
-        if(txtReceiverAccount.getText().equals("")||  txtAmount.getText().equals("")|| txtContent.getText().equals(""))
+        if(cboReceiverBank.getSelectedItem().equals("") || txtReceiverAccount.getText().equals("") || txtReceiverName.getText().equals("") ||  txtAmount.getText().equals("")|| txtContent.getText().equals(""))
         {
             JOptionPane.showConfirmDialog(null, "Required fields are empty", "Please fill all required fields...!", JOptionPane.CLOSED_OPTION);
         }
         else
         {
-            Account_DTO dtoReceiverAccount = new Account_DTO(Long.parseLong(txtReceiverAccount.getText())); // Tạo tài khoản của người nhận
-            if(busTransfer.isValidPaymentAccount(dtoReceiverAccount)) // Kiểm tra tài khoản người nhận có tồn tại hay không và kiểm tra tài khoản đó có phải là tk thanh toán không
+            if(dtoAccount.getCurrentBalance() >= Long.parseLong(txtAmount.getText().replaceAll("\\s+",""))) // Kiểm tra số dư 
             {
-                if(dtoAccount.getCurrentBalance() >= Long.parseLong(txtAmount.getText().replaceAll("\\s+",""))) // Kiểm tra số dư 
+                if(confirmPassword())
                 {
-                    String EnteredPassword = confirmPassword();
-                    UserLogin_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); // Lấy password của người chuyển tiềnT
-                    if(EnteredPassword.equals(dtoUserLogIn.getPassword()))// // So sánh password với password người dùng nhập
+                    TransferDetail_DTO dtoTransferDetail = new TransferDetail_DTO(dtoAccount.getId(), dtoReceiverAccount.getId(), cboReceiverBank.getSelectedItem().toString(), Long.parseLong(txtAmount.getText()), txtContent.getText());
+                    int transactionId = busTransfer.transfer(dtoTransferDetail); // Thực hiện giao dịch
+                    if(transactionId != 0) // Thực hiện giao dịch thành công
                     {
-                        TransferDetail_DTO dtoTransferDetail = new TransferDetail_DTO(dtoAccount.getId(), dtoReceiverAccount.getId(), cboReceiverBank.getSelectedItem().toString(), Long.parseLong(txtAmount.getText()), txtContent.getText());
-                        int transactionId = busTransfer.transfer(dtoTransferDetail); // Thực hiện giao dịch
-                        if(transactionId != 0) // Thực hiện giao dịch thành công
-                        {
-                            JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);
-                            busTransfer.showTransferReceipt(transactionId);
-                            
-                            //Clear Form
-                            cboReceiverBank.setSelectedItem(null);
-                            txtReceiverAccount.setText("");
-                            txtAmount.setText("");
-                            txtContent.setText("");
-                        }
+                        JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);
+
+                        //Clear Form
+                        cboReceiverBank.setSelectedItem(null);
+                        txtReceiverAccount.setText("");
+                        txtAmount.setText("");
+                        txtReceiverName.setText("");
+                        txtContent.setText("");
+
+                        busTransfer.showTransferReceipt(transactionId);
                     }
-                    else if(EnteredPassword.equals("cancel"))
-                    {
-                        // Không làm gì hết
-                    }
-                    else
-                        JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
                 }
                 else
-                    JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
             }
-            else       
-                JOptionPane.showConfirmDialog(null, "Receiver account is not exist or is blocked", "Error", JOptionPane.CLOSED_OPTION);
+            else
+                JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);     
+                
         }
     }//GEN-LAST:event_btnContinueActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         new CustomerHome_GUI(dtoCustomer);
-        this.setVisible(false);
+        setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
-
-    private void txtAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountActionPerformed
-
-    }//GEN-LAST:event_txtAmountActionPerformed
 
     private void txtReceiverAccountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReceiverAccountKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
-            //getToolkit().beep();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-            lxlInputError_ReceiverAccount.setText("This field only accepts numbers");
-        }
-        else 
-        {
-            lxlInputError_ReceiverAccount.setText("");
-        }
     }//GEN-LAST:event_txtReceiverAccountKeyTyped
 
     private void txtAmountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmountKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE)){
-            //getToolkit().beep();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-            lxlInputError_Amount.setText("This field only accepts numbers");
-        }
-        else 
-        {
-            lxlInputError_Amount.setText("");
-        }
     }//GEN-LAST:event_txtAmountKeyTyped
+
+    private void txtReceiverAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReceiverAccountActionPerformed
+       if(txtReceiverAccount.getText().equals("") == false)
+       {
+           dtoReceiverAccount = new Account_DTO(Long.parseLong(txtReceiverAccount.getText()));
+           if(busTransfer.isValidPaymentAccount(dtoReceiverAccount) == false || dtoReceiverAccount.getId() == dtoAccount.getId()) // Kiểm tra tài khoản người nhận và người nhận có hợp lệ không
+           {
+               JOptionPane.showConfirmDialog(null, "Receiver account is invalid", "Error", JOptionPane.CLOSED_OPTION);
+           }
+           else
+           {
+               Customer_DTO dtoReceiver = busTransfer.getCustomerInfo(dtoReceiverAccount);
+               txtReceiverName.setText(dtoReceiver.getFirstName() + " " + dtoReceiver.getLastName());
+           }
+       }
+    }//GEN-LAST:event_txtReceiverAccountActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -313,12 +304,12 @@ public class Transfer_GUI extends javax.swing.JFrame
     private javax.swing.JLabel lblReceiverAccount;
     private javax.swing.JLabel lblReceiverBank;
     private javax.swing.JLabel lblReceiverInformation;
+    private javax.swing.JLabel lblReceiverName;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lbltienVND;
-    private javax.swing.JLabel lxlInputError_Amount;
-    private javax.swing.JLabel lxlInputError_ReceiverAccount;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextPane txtContent;
     private javax.swing.JTextField txtReceiverAccount;
+    private javax.swing.JTextField txtReceiverName;
     // End of variables declaration//GEN-END:variables
 }

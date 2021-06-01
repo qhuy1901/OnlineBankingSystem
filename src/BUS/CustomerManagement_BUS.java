@@ -32,7 +32,6 @@ public class CustomerManagement_BUS
         return dalCustomer.getInformation(id);
     }
     
-    
     public ArrayList<Customer_DTO> getCustomersList()
     {
         return dalCustomer.getCustomersList();

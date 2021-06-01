@@ -1,5 +1,6 @@
 package DAL;
 
+import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
 import java.sql.CallableStatement;
@@ -94,6 +95,28 @@ public class Customer_DAL
             Connection con = DBConnection.ConnectDb();
             String SQL = "SELECT CUSTOMER_ID, FIRST_NAME, LAST_NAME, GENDER, DATE_OF_BIRTH, ADDRESS, PHONE_NUMBER, ID_CARD"
                     + " FROM CUSTOMER WHERE CUSTOMER_ID = " + id;
+            Statement stat = con.createStatement();
+            ResultSet rs = stat.executeQuery(SQL);
+            while(rs.next())
+                dotCustomer = new Customer_DTO(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5),rs.getString(6), rs.getString(7), rs.getString(8));
+            con.close();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return dotCustomer; 
+    }
+    
+    public Customer_DTO getCustomerInfo(Account_DTO dtoAccount)
+    {
+        Customer_DTO dotCustomer = null;
+        try
+        {
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "SELECT C.CUSTOMER_ID, FIRST_NAME, LAST_NAME, GENDER, DATE_OF_BIRTH, ADDRESS, PHONE_NUMBER, ID_CARD"
+                    + " FROM CUSTOMER C JOIN ACCOUNT A ON C.CUSTOMER_ID = A.CUSTOMER_ID"
+                    + " WHERE A.ACCOUNT_ID = " + dtoAccount.getId();
             Statement stat = con.createStatement();
             ResultSet rs = stat.executeQuery(SQL);
             while(rs.next())

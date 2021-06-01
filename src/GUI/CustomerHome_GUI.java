@@ -196,14 +196,13 @@ public class CustomerHome_GUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        LogIn_GUI guiLogIn = new LogIn_GUI();
+        setVisible(false);
+        new LogIn_GUI();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnMyWalletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyWalletActionPerformed
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
-        this.setVisible(false);
+        setVisible(false);
         new MyWallet_GUI(dtoCustomer, dtoAccount);
     }//GEN-LAST:event_btnMyWalletActionPerformed
 
@@ -211,7 +210,7 @@ public class CustomerHome_GUI extends javax.swing.JFrame
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
         if(dtoAccount.getStatus().equals("Active"))
         {
-            this.setVisible(false);
+            setVisible(false);
             new Transfer_GUI(dtoCustomer, dtoAccount);
         }
         else
@@ -222,7 +221,7 @@ public class CustomerHome_GUI extends javax.swing.JFrame
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
         if(dtoAccount.getStatus().equals("Active"))
         {
-            this.setVisible(false);
+            setVisible(false);
             new Saving_GUI(dtoCustomer, dtoAccount);
         }
         else
@@ -233,7 +232,7 @@ public class CustomerHome_GUI extends javax.swing.JFrame
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
         if(dtoAccount.getStatus().equals("Active"))
         {
-            this.setVisible(false);
+            setVisible(false);
             new Payment_GUI(dtoCustomer, dtoAccount);
         }
         else
