@@ -52,7 +52,7 @@ public class AccountType_DAL extends DBConnection
         return dtoAccountType;
     }
     
-    public TreeMap<String, String> getSavingsAccountType()
+    public TreeMap<String, String> getAccountTypeList()
     {
         TreeMap<String, String> accountList = new TreeMap<String, String>();
         try{

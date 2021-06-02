@@ -46,7 +46,6 @@ public class Saving_GUI extends javax.swing.JFrame
         btnOpenAccount.setVisible(false);
         txtTotalSavingAccount.setText(String.format("%,d",busSaving.getTotalSavingAccount(dtoCustomer)) + " VND");
         createTable();
-        //tblSavingsAccountSelectRow();
     }
 
     public String calculateRemainingDay(Account_DTO dtoAccount)
@@ -68,7 +67,7 @@ public class Saving_GUI extends javax.swing.JFrame
     public void createTable()
     {
         savingsAccountList = busSaving.getSavingsAccountList(dtoCustomer);
-        accountTypeList = busSaving.getSavingsAccountType();
+        accountTypeList = busSaving.getAccountTypeList();
         tblAccountModel = new DefaultTableModel();
         String title[] = {"Account No", "Name", "Amount", "Open Date", "Maturity Date", "Remaining days"};
         tblAccountModel.setColumnIdentifiers(title);
@@ -575,41 +574,46 @@ public class Saving_GUI extends javax.swing.JFrame
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
         }
-        else if(Long.parseLong(txtDeposits.getText()) > dtoPaymentAccount.getCurrentBalance())
-        {
-            JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);
-        }
-        else if(Long.parseLong(txtDeposits.getText()) < 1000000)
-        {
-            JOptionPane.showMessageDialog(this, "The deposit amount must be more than 1,000,000 VND", "Error", JOptionPane.ERROR_MESSAGE);
-        }
         else
         {
-            // Bus lấy loại tài khoản tiết kiệm, lãi suất từ database
-            dtoSavingsAccountType = busSaving.getSavingsAccountType(cboSavingsAccountType.getSelectedItem().toString(), cboTerm.getSelectedItem().toString());
-            
-            // Lấy lãi suất
-            double interestRate = dtoSavingsAccountType.getInterestRate();
-            
-            // Tính ngày đáo hạn
-            String maturityDate = calculateMaturityDate();
-            
-            // Tính tiền lãi dự kiến = số tiền gửi x  lãi suất (% năm)/ 12  x số tháng gửi
-            long anticipatedInterest = (long)(Long.parseLong(txtDeposits.getText()) * interestRate * numberOfMonth) / 12;
-            
-            // Tính tổng số tiền nhận được khi tất toán tài khoản tiết kiệm
-            long total = (long)(Long.parseLong(txtDeposits.getText()) + anticipatedInterest);
-            
-            // Hiển thị sản phẩm phù hợp lên form
-            txtProductName.setText(dtoSavingsAccountType.getName());
-            txtInterestRate.setText(String.valueOf(Math.round(interestRate * 100.0 * 100.0) / 100.0) + "%/year");
-            txtAnticipatedInterest.setText(String.format("%,d",anticipatedInterest));
-            txtTotal.setText(String.format("%,d",total));
-            Date nowDate = new Date();
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            txtStartDate.setText(df.format(nowDate));
-            txtMaturityDate.setText(maturityDate);
-            btnOpenAccount.setVisible(true);
+            if(Long.parseLong(txtDeposits.getText()) > dtoPaymentAccount.getCurrentBalance())
+            {
+                JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            }
+            else 
+            {
+                if(Long.parseLong(txtDeposits.getText()) < 1000000)
+                {
+                    JOptionPane.showMessageDialog(this, "The deposit amount must be more than 1,000,000 VND", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else
+                {
+                    // Bus lấy loại tài khoản tiết kiệm, lãi suất từ database
+                    dtoSavingsAccountType = busSaving.getSavingsAccountType(cboSavingsAccountType.getSelectedItem().toString(), cboTerm.getSelectedItem().toString());
+                    // Lấy lãi suất
+                    double interestRate = dtoSavingsAccountType.getInterestRate();
+
+                    // Tính ngày đáo hạn
+                    String maturityDate = calculateMaturityDate();
+
+                    // Tính tiền lãi dự kiến = số tiền gửi x  lãi suất (% năm)/ 12  x số tháng gửi
+                    long anticipatedInterest = (long)(Long.parseLong(txtDeposits.getText()) * interestRate * numberOfMonth) / 12;
+
+                    // Tính tổng số tiền nhận được khi tất toán tài khoản tiết kiệm
+                    long total = (long)(Long.parseLong(txtDeposits.getText()) + anticipatedInterest);
+
+                    // Hiển thị sản phẩm phù hợp lên form
+                    txtProductName.setText(dtoSavingsAccountType.getName());
+                    txtInterestRate.setText(String.valueOf(Math.round(interestRate * 100.0 * 100.0) / 100.0) + "%/year");
+                    txtAnticipatedInterest.setText(String.format("%,d",anticipatedInterest));
+                    txtTotal.setText(String.format("%,d",total));
+                    Date nowDate = new Date();
+                    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                    txtStartDate.setText(df.format(nowDate));
+                    txtMaturityDate.setText(maturityDate);
+                    btnOpenAccount.setVisible(true);
+                }
+            }
         }
     }//GEN-LAST:event_btnFindSuitableProductActionPerformed
 

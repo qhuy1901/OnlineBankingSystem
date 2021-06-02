@@ -26,9 +26,9 @@ public class Saving_BUS
         return dalAccountType.getSavingsAccountType(savingsAccountType, term);
     }
 
-    public TreeMap<String, String> getSavingsAccountType()
+    public TreeMap<String, String> getAccountTypeList()
     {
-        return dalAccountType.getSavingsAccountType();
+        return dalAccountType.getAccountTypeList();
     }
     
     public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)

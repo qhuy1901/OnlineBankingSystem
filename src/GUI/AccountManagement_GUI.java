@@ -6,6 +6,7 @@ import DTO.Admin_DTO;
 import GUI.AdminHome_GUI;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.TreeMap;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -30,17 +31,30 @@ public class AccountManagement_GUI extends javax.swing.JFrame
     public void createTable()
     {
         ArrayList<Account_DTO> accountList = busAccount.getAccountList();
+        TreeMap<String, String> accountTypeList = busAccount.getAccountTypeList();
         tblAccountModel = new DefaultTableModel();
-        String title[] = {"ID", "CurrentBalance", "Open Day","AccountType", "Status", "CustomerID"};
+        String title[] = {"Account ID", "Current Balance", "Open Day","Account Type", "Status", "Customer ID"};
         tblAccountModel.setColumnIdentifiers(title);
         tblAccountModel.setRowCount(0); 
         for(int i = 0; i < accountList.size(); i++)
         {
             Account_DTO dtoAccount = accountList.get(i);
-            String[] rows = {String.valueOf(dtoAccount.getId()), String.format("%,d", dtoAccount.getCurrentBalance()),dtoAccount.getOpenDay().toString() , dtoAccount.getAccountTypeID(),dtoAccount.getStatus(),String.valueOf(dtoAccount.getCustomerID())};
+            String accountId = String.valueOf(dtoAccount.getId());
+            String currentBalance = String.format("%,d", dtoAccount.getCurrentBalance()) + " VND";
+            String openDay = dtoAccount.getOpenDay().toString();
+            String accountTypeId =  dtoAccount.getAccountTypeID();
+            String accountTypeName = accountTypeList.get(accountTypeId);
+            String status = dtoAccount.getStatus();
+            String customerId = String.valueOf(dtoAccount.getCustomerID());
+            String[] rows = {accountId, currentBalance, openDay ,accountTypeName, status, customerId};
             tblAccountModel.addRow(rows);
+            
         }
         tblAccount.setModel(tblAccountModel);
+        tblAccount.getColumnModel().getColumn(0).setPreferredWidth(60);
+        tblAccount.getColumnModel().getColumn(1).setPreferredWidth(80);
+        tblAccount.getColumnModel().getColumn(2).setPreferredWidth(60);
+        tblAccount.getColumnModel().getColumn(3).setPreferredWidth(310);
         setVisible(true);
     }
     @SuppressWarnings("unchecked")
@@ -301,27 +315,33 @@ public class AccountManagement_GUI extends javax.swing.JFrame
     private void btnLockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockAccountActionPerformed
         int row = tblAccount.getSelectedRow();
         int accountId = Integer.parseInt(tblAccount.getValueAt(row, 0).toString().replaceAll("\\s+",""));
-        if(accountId == -1)
+        if(accountId == 0)
         {
                 JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else if(tblAccount.getValueAt(row, 3).toString().replaceAll("\\s+","").equals("PA") == false) // phải xóa các khoản trắng khi lấy data từ bảng xuống
-        {
-            JOptionPane.showMessageDialog(this, "Savings account cannot be locked .", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else if(tblAccount.getValueAt(row, 4).toString().replaceAll("\\s+","").equals("Locked"))
-        {
-            JOptionPane.showMessageDialog(this, "This account has been locked already.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
         else
         {
-            int reply = JOptionPane.showConfirmDialog(null, "Are you sure to lock this account?", "Confirm", JOptionPane.YES_NO_OPTION);
-            if (reply == JOptionPane.YES_OPTION) 
+            if(tblAccount.getValueAt(row, 3).toString().contains("Savings Account"))
             {
-                if(busAccount.lockAccount(accountId))
+                JOptionPane.showMessageDialog(this, "Savings account cannot be locked .", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else 
+            {
+                if(tblAccount.getValueAt(row, 4).toString().contains("Locked"))
                 {
-                    JOptionPane.showMessageDialog(this, "Locked successfully" , "Notification", JOptionPane.INFORMATION_MESSAGE); 
-                    createTable();
+                    JOptionPane.showMessageDialog(this, "This account has been locked already.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else
+                {
+                    int reply = JOptionPane.showConfirmDialog(null, "Are you sure to lock this account?", "Confirm", JOptionPane.YES_NO_OPTION);
+                    if (reply == JOptionPane.YES_OPTION) 
+                    {
+                        if(busAccount.lockAccount(accountId))
+                        {
+                            JOptionPane.showMessageDialog(this, "Locked successfully" , "Notification", JOptionPane.INFORMATION_MESSAGE); 
+                            createTable();
+                        }
+                    }
                 }
             }
         }
@@ -342,21 +362,32 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         {
             JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else if(tblAccount.getValueAt(row, 4).toString().replaceAll("\\s+","").equals("Active"))
-        {
-            JOptionPane.showMessageDialog(this, "This account is not locked.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
         else
         {
-            int reply = JOptionPane.showConfirmDialog(null, "Are you sure to unlock this account?", "Confirm", JOptionPane.YES_NO_OPTION);
-            if (reply == JOptionPane.YES_OPTION) 
+            if(tblAccount.getValueAt(row, 3).toString().contains("Savings Account")) // Không được mở khóa tài khoản tiết kiệm
             {
-                if(busAccount.unlockAccount(accountId))
+                JOptionPane.showMessageDialog(this, "Cannot unlocked savings account.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else
+            {
+                if(tblAccount.getValueAt(row, 4).toString().contains("Active")) 
                 {
-                    JOptionPane.showMessageDialog(this, "Unlocked successfully" , "Notification", JOptionPane.INFORMATION_MESSAGE); 
-                    createTable();
+                    JOptionPane.showMessageDialog(this, "This account is not locked.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else
+                {
+                    int reply = JOptionPane.showConfirmDialog(null, "Are you sure to unlock this account?", "Confirm", JOptionPane.YES_NO_OPTION);
+                    if (reply == JOptionPane.YES_OPTION) 
+                    {
+                        if(busAccount.unlockAccount(accountId))
+                        {
+                            JOptionPane.showMessageDialog(this, "Unlocked successfully" , "Notification", JOptionPane.INFORMATION_MESSAGE); 
+                            createTable();
+                        }
+                    }
                 }
             }
+            
         }
     }//GEN-LAST:event_btnUnlockAccountActionPerformed
 
