@@ -8,6 +8,7 @@ import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.UserLogin_DTO;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class Saving_BUS 
 {
@@ -23,6 +24,11 @@ public class Saving_BUS
     public AccountType_DTO getSavingsAccountType(String savingsAccountType, String term)
     {
         return dalAccountType.getSavingsAccountType(savingsAccountType, term);
+    }
+
+    public TreeMap<String, String> getSavingsAccountType()
+    {
+        return dalAccountType.getSavingsAccountType();
     }
     
     public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)

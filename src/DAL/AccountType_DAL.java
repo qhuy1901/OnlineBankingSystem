@@ -4,6 +4,8 @@ import DTO.AccountType_DTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.TreeMap;
 import javax.swing.JOptionPane;
 
 public class AccountType_DAL extends DBConnection
@@ -48,5 +50,25 @@ public class AccountType_DAL extends DBConnection
             JOptionPane.showMessageDialog(null, e);    
         }
         return dtoAccountType;
+    }
+    
+    public TreeMap<String, String> getSavingsAccountType()
+    {
+        TreeMap<String, String> accountList = new TreeMap<String, String>();
+        try{
+            Connection con = DBConnection.ConnectDb();
+            String SQL = "SELECT ACCOUNT_TYPE_ID, NAME FROM ACCOUNT_TYPE";
+            PreparedStatement prest = con.prepareStatement(SQL);
+            ResultSet rs = prest.executeQuery();
+            while(rs.next())
+            {
+                accountList.put(rs.getString(1), rs.getString(2));
+            }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return accountList;
     }
 }

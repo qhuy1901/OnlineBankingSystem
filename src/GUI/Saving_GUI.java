@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +30,8 @@ public class Saving_GUI extends javax.swing.JFrame
     Customer_DTO dtoCustomer = null;
     AccountType_DTO dtoSavingsAccountType = null;
     Account_DTO dtoPaymentAccount = null;
+    TreeMap<String, String> accountTypeList = null;
+    ArrayList<Account_DTO> savingsAccountList = null;
     
     public Saving_GUI(Customer_DTO customer, Account_DTO account) 
     {
@@ -46,54 +49,101 @@ public class Saving_GUI extends javax.swing.JFrame
         //tblSavingsAccountSelectRow();
     }
 
+    public String calculateRemainingDay(Account_DTO dtoAccount)
+    {
+        // Tính số ngày còn lại
+        Date currentDate = new Date();
+        long remainingDays =  TimeUnit.MILLISECONDS.toDays(dtoAccount.getMaturityDate().getTime() - currentDate.getTime()) + 1; 
+        String strRemainingDays = "";
+        if(remainingDays > 1)
+            strRemainingDays = remainingDays + " days";
+        else if(remainingDays == 1)
+            strRemainingDays = "1 day";
+        else
+            strRemainingDays = "0 day";
+        return strRemainingDays;
+    }
+    
     DefaultTableModel tblAccountModel;
     public void createTable()
     {
-        ArrayList<Account_DTO> list = busSaving.getSavingsAccountList(dtoCustomer);
+        savingsAccountList = busSaving.getSavingsAccountList(dtoCustomer);
+        accountTypeList = busSaving.getSavingsAccountType();
         tblAccountModel = new DefaultTableModel();
         String title[] = {"Account No", "Name", "Amount", "Open Date", "Maturity Date", "Remaining days"};
         tblAccountModel.setColumnIdentifiers(title);
         tblAccountModel.setRowCount(0); 
-        for(int i = 0; i < list.size(); i++)
+        for(int i = 0; i < savingsAccountList.size(); i++)
         {
-            Account_DTO dtoAccount = list.get(i);
+            Account_DTO dtoAccount = savingsAccountList.get(i);
             
-            // Tính số ngày còn lại
-            Date currentDate = new Date();
-            long remainingDays =  TimeUnit.MILLISECONDS.toDays(dtoAccount.getMaturityDate().getTime() - currentDate.getTime()) + 1; 
-            String strRemainingDays = "";
-            if(remainingDays > 1)
-                strRemainingDays = remainingDays + " days";
-            else if(remainingDays == 1)
-                strRemainingDays = "1 day";
-            else
-                strRemainingDays = "0 day";
             // Show data to table
-            String[] rows = {String.valueOf(dtoAccount.getId()), dtoAccount.getAccountTypeID(), String.format("%,d", dtoAccount.getCurrentBalance()) + " VND", String.valueOf(dtoAccount.getOpenDay()), String.valueOf(dtoAccount.getMaturityDate()), strRemainingDays};
+            String accountId = String.valueOf(dtoAccount.getId());
+            String name = accountTypeList.get(dtoAccount.getAccountTypeID());
+            String amount = String.format("%,d", dtoAccount.getCurrentBalance()) + " VND";
+            String openDate = String.valueOf(dtoAccount.getOpenDay());
+            String maturityDate = String.valueOf(dtoAccount.getMaturityDate());
+            String remainingDays = calculateRemainingDay(dtoAccount);
+            String[] rows = {accountId, name , amount , openDate, maturityDate, remainingDays};
             tblAccountModel.addRow(rows);
         }
         tblSavingsAccount.setModel(tblAccountModel);
+        tblSavingsAccount.getColumnModel().getColumn(0).setPreferredWidth(60);
+        tblSavingsAccount.getColumnModel().getColumn(1).setPreferredWidth(310);
         setVisible(true);
     }
     
-    int savingAccountId = 0;
-    /*public void tblSavingsAccountSelectRow()
+    private boolean confirmPassword()
     {
-        tblSavingsAccount.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            @Override
-            public void valueChanged(ListSelectionEvent lse) {
-                if(!lse.getValueIsAdjusting())
-                {
-                    int row = tblSavingsAccount.getSelectedRow();
-                    if(row >= 0)
-                    {
-                        savingAccountId = Integer.parseInt(tblSavingsAccount.getValueAt(row, 0).toString());
-                    }
-                }
-            }
-        });
-    }*/
+        // Hiển thị form nhập mật khẩu
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Please enter your password:");
+        JPasswordField pass = new JPasswordField(10);
+        panel.add(label);
+        panel.add(pass);
+        String[] options = new String[]{"Confirm", "Cancel"};
+        int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
+
+        if(option == 0) // Customer pressing OK button
+        {
+            String password = pass.getText();
+            UserLogin_DTO dtoUserLogIn = busSaving.getUserLogin(dtoCustomer); // Get customer password in database
+            if(password.equals(dtoUserLogIn.getPassword()))
+                return true;
+            else
+                JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+    }
     
+    int numberOfMonth = 0;
+    public String calculateMaturityDate()
+    {
+        //-- Tính ngày đáo hạn
+        long millis = System.currentTimeMillis();
+        java.sql.Date startDate = new java.sql.Date(millis);
+        Calendar temp = Calendar.getInstance();
+        temp.setTime(startDate);
+        String term = cboTerm.getSelectedItem().toString();
+        if(term.equals("6 months"))
+        {
+            numberOfMonth = 6;
+            temp.roll(Calendar.MONTH, 6);
+        }
+        else if(term.equals("3 months"))
+        {
+            numberOfMonth = 3;
+            temp.roll(Calendar.MONTH, 3);
+        }
+        else
+        {
+            numberOfMonth = 1;
+            temp.roll(Calendar.MONTH, 1);
+        }
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String maturityDate = df.format(temp.getTime());
+        return maturityDate;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -294,11 +344,6 @@ public class Saving_GUI extends javax.swing.JFrame
                 txtDepositsMousePressed(evt);
             }
         });
-        txtDeposits.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDepositsActionPerformed(evt);
-            }
-        });
         txtDeposits.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDepositsKeyTyped(evt);
@@ -381,33 +426,18 @@ public class Saving_GUI extends javax.swing.JFrame
         txtTotal.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(32, 172, 216));
         txtTotal.setBorder(null);
-        txtTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTotalActionPerformed(evt);
-            }
-        });
         pnlSuitableProductDetails.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 140, -1));
 
         txtInterestRate.setEditable(false);
         txtInterestRate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
         txtInterestRate.setForeground(new java.awt.Color(32, 172, 216));
         txtInterestRate.setBorder(null);
-        txtInterestRate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtInterestRateActionPerformed(evt);
-            }
-        });
         pnlSuitableProductDetails.add(txtInterestRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 140, -1));
 
         txtAnticipatedInterest.setEditable(false);
         txtAnticipatedInterest.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
         txtAnticipatedInterest.setForeground(new java.awt.Color(32, 172, 216));
         txtAnticipatedInterest.setBorder(null);
-        txtAnticipatedInterest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAnticipatedInterestActionPerformed(evt);
-            }
-        });
         pnlSuitableProductDetails.add(txtAnticipatedInterest, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 140, -1));
 
         lblInterestRate.setBackground(new java.awt.Color(32, 172, 216));
@@ -420,33 +450,18 @@ public class Saving_GUI extends javax.swing.JFrame
         txtStartDate.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         txtStartDate.setForeground(new java.awt.Color(32, 172, 216));
         txtStartDate.setBorder(null);
-        txtStartDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStartDateActionPerformed(evt);
-            }
-        });
         pnlSuitableProductDetails.add(txtStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 140, -1));
 
         txtMaturityDate.setEditable(false);
         txtMaturityDate.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         txtMaturityDate.setForeground(new java.awt.Color(32, 172, 216));
         txtMaturityDate.setBorder(null);
-        txtMaturityDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaturityDateActionPerformed(evt);
-            }
-        });
         pnlSuitableProductDetails.add(txtMaturityDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 150, -1));
 
         txtProductName.setEditable(false);
         txtProductName.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         txtProductName.setForeground(new java.awt.Color(32, 172, 216));
         txtProductName.setBorder(null);
-        txtProductName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductNameActionPerformed(evt);
-            }
-        });
         pnlSuitableProductDetails.add(txtProductName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 470, -1));
 
         lblVND2.setBackground(new java.awt.Color(32, 172, 216));
@@ -491,7 +506,7 @@ public class Saving_GUI extends javax.swing.JFrame
     private void btnSettlementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettlementActionPerformed
         // Xử lý tất toán tài khoản tiết kiệm
         int row = tblSavingsAccount.getSelectedRow();
-        if(savingAccountId == 0)
+        if(savingAccountId == 0 || row == -1)
         {
             JOptionPane.showMessageDialog(this, "Please select a saving account to settle.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -499,8 +514,8 @@ public class Saving_GUI extends javax.swing.JFrame
         {
             if(tblSavingsAccount.getValueAt(row, 5).toString().equals("0 day") == false) // Nếu chưa đến ngày đáo hạn
             {
-                String accountSavingType = tblSavingsAccount.getModel().getValueAt(row, 1).toString().replaceAll("\\s+","");
-                if(accountSavingType.contains("TSA")) // Đối với tiết kiệm có kỳ hạn thì không được tất toán
+                String accountSavingTypeName = tblSavingsAccount.getModel().getValueAt(row, 1).toString().replaceAll("\\s+","");
+                if(savingsAccountList.get(row).getAccountTypeID().contains("TSA")) // Đối với tiết kiệm có kỳ hạn thì không được tất toán
                 {
                     JOptionPane.showMessageDialog(this, "Term savings account cannot be settled because the maturity date hasn't come yet.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -540,9 +555,8 @@ public class Saving_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnSettlementActionPerformed
 
     private void btnHome_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_OpenAccountActionPerformed
-        // TODO add your handling code here:
         new CustomerHome_GUI(dtoCustomer);
-        this.setVisible(false);
+        setVisible(false);
     }//GEN-LAST:event_btnHome_OpenAccountActionPerformed
 
     private void cboTermActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTermActionPerformed
@@ -555,7 +569,7 @@ public class Saving_GUI extends javax.swing.JFrame
         txtProductName.setText("");
         btnOpenAccount.setVisible(false);
     }//GEN-LAST:event_cboTermActionPerformed
-
+    
     private void btnFindSuitableProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindSuitableProductActionPerformed
         if(cboSavingsAccountType.getSelectedItem() == null ||cboTerm.getSelectedItem() == null || txtDeposits.getText().equals(""))
         {
@@ -577,34 +591,13 @@ public class Saving_GUI extends javax.swing.JFrame
             // Lấy lãi suất
             double interestRate = dtoSavingsAccountType.getInterestRate();
             
-            int numberOfMonth = 0;
-            //-- Tính ngày đáo hạn
-            long millis = System.currentTimeMillis();
-            java.sql.Date startDate = new java.sql.Date(millis);
-            Calendar temp = Calendar.getInstance();
-            temp.setTime(startDate);
-            String term = cboTerm.getSelectedItem().toString();
-            if(term.equals("6 months"))
-            {
-                numberOfMonth = 6;
-                temp.roll(Calendar.MONTH, 6);
-            }
-            else if(term.equals("3 months"))
-            {
-                numberOfMonth = 3;
-                temp.roll(Calendar.MONTH, 3);
-            }
-            else
-            {
-                numberOfMonth = 1;
-                temp.roll(Calendar.MONTH, 1);
-            }
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            String maturityDate = df.format(temp.getTime());
+            // Tính ngày đáo hạn
+            String maturityDate = calculateMaturityDate();
             
-            //-- Tính tiền lãi dự kiến = số tiền gửi x  lãi suất (% năm)/ 12  x số tháng gửi
+            // Tính tiền lãi dự kiến = số tiền gửi x  lãi suất (% năm)/ 12  x số tháng gửi
             long anticipatedInterest = (long)(Long.parseLong(txtDeposits.getText()) * interestRate * numberOfMonth) / 12;
-            //-- Tính tổng số tiền nhận được khi tất toán tài khoản tiết kiệm
+            
+            // Tính tổng số tiền nhận được khi tất toán tài khoản tiết kiệm
             long total = (long)(Long.parseLong(txtDeposits.getText()) + anticipatedInterest);
             
             // Hiển thị sản phẩm phù hợp lên form
@@ -612,35 +605,14 @@ public class Saving_GUI extends javax.swing.JFrame
             txtInterestRate.setText(String.valueOf(Math.round(interestRate * 100.0 * 100.0) / 100.0) + "%/year");
             txtAnticipatedInterest.setText(String.format("%,d",anticipatedInterest));
             txtTotal.setText(String.format("%,d",total));
-            txtStartDate.setText(startDate.toString());
+            Date nowDate = new Date();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            txtStartDate.setText(df.format(nowDate));
             txtMaturityDate.setText(maturityDate);
             btnOpenAccount.setVisible(true);
         }
     }//GEN-LAST:event_btnFindSuitableProductActionPerformed
 
-    private boolean confirmPassword()
-    {
-        // Hiển thị form nhập mật khẩu
-        JPanel panel = new JPanel();
-        JLabel label = new JLabel("Please enter your password:");
-        JPasswordField pass = new JPasswordField(10);
-        panel.add(label);
-        panel.add(pass);
-        String[] options = new String[]{"Confirm", "Cancel"};
-        int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
-
-        if(option == 0) // Customer pressing OK button
-        {
-            String password = pass.getText();
-            UserLogin_DTO dtoUserLogIn = busSaving.getUserLogin(dtoCustomer); // Get customer password in database
-            if(password.equals(dtoUserLogIn.getPassword()))
-                return true;
-            else
-                JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
-        }
-        return false;
-    }
-    
     private void btnOpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenAccountActionPerformed
         if(confirmPassword())
         {
@@ -676,30 +648,6 @@ public class Saving_GUI extends javax.swing.JFrame
         }
     }//GEN-LAST:event_btnOpenAccountActionPerformed
 
-    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalActionPerformed
-
-    private void txtInterestRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInterestRateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtInterestRateActionPerformed
-
-    private void txtAnticipatedInterestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnticipatedInterestActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAnticipatedInterestActionPerformed
-
-    private void txtStartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStartDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStartDateActionPerformed
-
-    private void txtMaturityDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaturityDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaturityDateActionPerformed
-
-    private void txtProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProductNameActionPerformed
-
     private void cboSavingsAccountTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSavingsAccountTypeActionPerformed
         //Clear form
         txtInterestRate.setText("");
@@ -721,17 +669,13 @@ public class Saving_GUI extends javax.swing.JFrame
         btnOpenAccount.setVisible(false);
     }//GEN-LAST:event_txtDepositsMousePressed
 
-    private void txtDepositsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepositsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDepositsActionPerformed
-
     private void txtDepositsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepositsKeyTyped
         char c = evt.getKeyChar();
         if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-
     }//GEN-LAST:event_txtDepositsKeyTyped
-
+    
+    int savingAccountId = 0;
     private void tblSavingsAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSavingsAccountMouseClicked
         int row = tblSavingsAccount.getSelectedRow();
         if(row  < tblAccountModel.getRowCount() && row  >= 0)
