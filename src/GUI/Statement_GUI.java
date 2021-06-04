@@ -5,9 +5,12 @@ import DTO.Account_DTO;
 import DTO.Admin_DTO;
 import DTO.Customer_DTO;
 import DTO.Transaction_DTO;
+import DTO.Transaction_Type_DTO;
+import DTO.Transfer_Detail_DTO;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.TreeMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,7 +24,7 @@ public class Statement_GUI extends javax.swing.JFrame {
         initComponents();
         setSize(1064,650);
         setLocationRelativeTo(null);
-        String title[] = {"ID", "Transaction Type", "Time", "Debit", "Credit"};
+        String title[] = {"Transaction ID", "Time", "Total Transaction Amount", "Content"};
         tblStatementModel.setColumnIdentifiers(title);
         tblStatement.setModel(tblStatementModel);
         dtoAdmin = admin;
@@ -36,30 +39,40 @@ public class Statement_GUI extends javax.swing.JFrame {
         ArrayList<Transaction_DTO> list = busStatement.getBankStatement(dtoAccount, datFromDate.getDate(), datToDate.getDate());
         if(list.size() == 0)
         {
-             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             JOptionPane.showMessageDialog(this, "Customers do not make transactions from " + df.format(datFromDate.getDate())+ " to " + df.format(datToDate.getDate()) , "Notification", JOptionPane.INFORMATION_MESSAGE);
         }
         else
         {
             tblStatementModel.setRowCount(0); 
+            TreeMap<String, Transaction_Type_DTO> transactionTypeList = busStatement.getTransactionTypeList();
             for(int i = 0; i < list.size(); i++) {
                 Transaction_DTO dtoTransaction = list.get(i);
                 String transactionId = String.valueOf(dtoTransaction.getId());
                 String transactionTypeID = dtoTransaction.getTransactionTypeID();
-                String transactionDate =  dtoTransaction.getTrasactionDate().toString();
-                String amount = String.format("%,d", dtoTransaction.getTotalTransactionAmount());
-                String debit = "";
-                String credit = "";
-                if(transactionTypeID.equals("NT01") || transactionTypeID.equals("TK02")) 
-                    credit = amount + " VND";
-                else
-                    debit = amount + " VND";
-                String[] rows = {transactionId, transactionTypeID , transactionDate, debit, credit};
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String transactionDate =  df.format(dtoTransaction.getTrasactionDate());
+                String totalTransactionAmount = String.format("%,d", dtoTransaction.getTotalTransactionAmount());
+                if(transactionTypeID.equals("NT01") || transactionTypeID.equals("TK02")) // nếu là giao dịch nhận tiền
+                    totalTransactionAmount = "+" + totalTransactionAmount + " VND";
+                else // nếu là giao dịch trừ tiền tài khoản
+                    totalTransactionAmount = "-" + totalTransactionAmount + " VND";
+                String transactionName = transactionTypeList.get(transactionTypeID).getName().toUpperCase();
+                if(transactionTypeID.contains("CT")) // Nếu là giao dịch chuyển tiền
+                {
+                    Transfer_Detail_DTO dtoTransferDetail = busStatement.getTransferDetail(dtoTransaction.getId());
+                    transactionName = transactionName + " \nTRANSFER FROM " + dtoTransferDetail.getReceiverAccount() + " " + dtoTransferDetail.getContent();
+                }
+                String[] rows = {transactionId, transactionDate , totalTransactionAmount , transactionName};
                 tblStatementModel.addRow(rows);
             }
             btnExportreport.setVisible(true);
             tblStatement.setModel(tblStatementModel);
-            //setVisible(true);
+            
+            // set kích thước cột
+            tblStatement.getColumnModel().getColumn(0).setPreferredWidth(35);
+            tblStatement.getColumnModel().getColumn(1).setPreferredWidth(80);
+            tblStatement.getColumnModel().getColumn(3).setPreferredWidth(320);
         }
     }
  
@@ -154,7 +167,7 @@ public class Statement_GUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblStatement);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 720, 260));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 780, 260));
 
         btnHome.setBackground(new java.awt.Color(32, 172, 216));
         btnHome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -171,7 +184,7 @@ public class Statement_GUI extends javax.swing.JFrame {
                 btnHomeActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 50, 57));
+        jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 30, 50, 57));
 
         lblTitle.setBackground(new java.awt.Color(32, 172, 216));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N

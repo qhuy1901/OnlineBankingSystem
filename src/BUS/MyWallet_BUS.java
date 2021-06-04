@@ -4,6 +4,7 @@ import DAL.Transaction_DAL;
 import DAL.Transaction_Type_DAL;
 import DTO.Account_DTO;
 import DTO.Transaction_DTO;
+import DTO.Transaction_Type_DTO;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -22,7 +23,7 @@ public class MyWallet_BUS
         return dalTransaction.getTransactionHistory(dtoAccount);
     }
     
-    public TreeMap<String, String> getTransactionTypeList()
+    public TreeMap<String, Transaction_Type_DTO> getTransactionTypeList()
     {
         return dalTransactionType.getTransactionTypeList();
     }

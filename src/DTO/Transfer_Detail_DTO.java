@@ -13,6 +13,16 @@ public class Transfer_Detail_DTO
     public Transfer_Detail_DTO() {
     }
 
+    public Transfer_Detail_DTO(int id, long senderAccount, long receiverAccount, String receiverBank, long amount, String content, int transactionID) {
+        this.id = id;
+        this.senderAccount = senderAccount;
+        this.receiverAccount = receiverAccount;
+        this.receiverBank = receiverBank;
+        this.amount = amount;
+        this.content = content;
+        this.transactionID = transactionID;
+    }
+
     public Transfer_Detail_DTO(long senderAccount, long receiverAccount, String receiverBank, long amount, String content) {
         this.senderAccount = senderAccount;
         this.receiverAccount = receiverAccount;
@@ -20,8 +30,15 @@ public class Transfer_Detail_DTO
         this.amount = amount;
         this.content = content;
     }
-
     
+    public void setSenderAccount(long senderAccount) {
+        this.senderAccount = senderAccount;
+    }
+
+    public void setReceiverAccount(long receiverAccount) {
+        this.receiverAccount = receiverAccount;
+    }
+
     public int getId() {
         return id;
     }

@@ -18,11 +18,12 @@ public class Transaction_DAL
         try
         {
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT TRANSACTION_DATE\n" +
+            String SQL = "SELECT TRANSACTION_DATE  \n" +
+                        "FROM (SELECT TRANSACTION_DATE\n" +
                         "FROM TRANSACTION\n" +
                         "WHERE ACCOUNT_ID = ?\n" +
-                        "AND ROWNUM = 1\n" +
-                        "ORDER BY TRANSACTION_ID DESC";
+                        "ORDER BY TRANSACTION_ID DESC)\n" +
+                        "WHERE ROWNUM = 1";
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, dtoAccount.getId());
             ResultSet rs = prest.executeQuery();

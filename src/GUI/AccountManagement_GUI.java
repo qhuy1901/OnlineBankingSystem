@@ -71,6 +71,7 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         btnUnlockAccount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Account Management");
 
         Panel_SearchAccount.setBackground(new java.awt.Color(239, 250, 252));
         Panel_SearchAccount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -138,7 +139,7 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         lbSearchAccount.setBackground(new java.awt.Color(32, 172, 216));
         lbSearchAccount.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lbSearchAccount.setForeground(new java.awt.Color(255, 255, 255));
-        lbSearchAccount.setText("          View Account");
+        lbSearchAccount.setText("          Account Management");
         lbSearchAccount.setOpaque(true);
         lbSearchAccount.setPreferredSize(new java.awt.Dimension(34, 50));
         Panel_SearchAccount.add(lbSearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 930, 66));

@@ -256,7 +256,7 @@ public class Saving_GUI extends javax.swing.JFrame
         });
         jScrollPane1.setViewportView(tblSavingsAccount);
 
-        WithdrawOnlineSavings.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 230, 760, 240));
+        WithdrawOnlineSavings.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 230, 840, 240));
 
         lblTotalSavingAccount.setBackground(new java.awt.Color(32, 172, 216));
         lblTotalSavingAccount.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
