@@ -3,8 +3,8 @@ package GUI;
 import BUS.Transfer_BUS;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
-import DTO.TransferDetail_DTO;
-import DTO.UserLogin_DTO;
+import DTO.Transfer_Detail_DTO;
+import DTO.User_Login_DTO;
 import GUI.CustomerHome_GUI;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
@@ -22,6 +22,7 @@ public class Transfer_GUI extends javax.swing.JFrame
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
+        setResizable(false);
         dtoAccount = account;
         dtoCustomer = customer;
         cboReceiverBank.setSelectedItem(null);
@@ -115,6 +116,11 @@ public class Transfer_GUI extends javax.swing.JFrame
 
         txtReceiverAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtReceiverAccount.setForeground(new java.awt.Color(32, 172, 216));
+        txtReceiverAccount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtReceiverAccountMouseClicked(evt);
+            }
+        });
         txtReceiverAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtReceiverAccountActionPerformed(evt);
@@ -209,7 +215,7 @@ public class Transfer_GUI extends javax.swing.JFrame
         if(option == 0) // Customer pressing OK button
         {
             String password = pass.getText();
-            UserLogin_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); // Get customer password in database
+            User_Login_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); // Get customer password in database
             if(password.equals(dtoUserLogIn.getPassword()))
                 return true;
             else
@@ -230,7 +236,7 @@ public class Transfer_GUI extends javax.swing.JFrame
             {
                 if(confirmPassword())
                 {
-                    TransferDetail_DTO dtoTransferDetail = new TransferDetail_DTO(dtoAccount.getId(), dtoReceiverAccount.getId(), cboReceiverBank.getSelectedItem().toString(), Long.parseLong(txtAmount.getText()), txtContent.getText());
+                    Transfer_Detail_DTO dtoTransferDetail = new Transfer_Detail_DTO(dtoAccount.getId(), dtoReceiverAccount.getId(), cboReceiverBank.getSelectedItem().toString(), Long.parseLong(txtAmount.getText()), txtContent.getText());
                     int transactionId = busTransfer.transfer(dtoTransferDetail); // Thực hiện giao dịch
                     if(transactionId != 0) // Thực hiện giao dịch thành công
                     {
@@ -277,6 +283,7 @@ public class Transfer_GUI extends javax.swing.JFrame
            if(busTransfer.isValidPaymentAccount(dtoReceiverAccount) == false || dtoReceiverAccount.getId() == dtoAccount.getId()) // Kiểm tra tài khoản người nhận và người nhận có hợp lệ không
            {
                JOptionPane.showConfirmDialog(null, "Receiver account is invalid", "Error", JOptionPane.CLOSED_OPTION);
+               txtReceiverName.setText("");
            }
            else
            {
@@ -285,6 +292,10 @@ public class Transfer_GUI extends javax.swing.JFrame
            }
        }
     }//GEN-LAST:event_txtReceiverAccountActionPerformed
+
+    private void txtReceiverAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtReceiverAccountMouseClicked
+        txtReceiverName.setText("");
+    }//GEN-LAST:event_txtReceiverAccountMouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

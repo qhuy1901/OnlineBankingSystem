@@ -6,16 +6,15 @@ import DTO.Customer_DTO;
 import DTO.Transaction_DTO;
 import GUI.CustomerHome_GUI;
 import java.awt.Color;
-import java.awt.Component;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import javax.swing.JTable;
+import java.util.TreeMap;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumnModel;
 
 public class MyWallet_GUI extends javax.swing.JFrame 
 {
-    MyWallet_BUS busTransaction = new MyWallet_BUS();
+    MyWallet_BUS busMyWallet = new MyWallet_BUS();
     
     Customer_DTO dtoCustomer = null; // Người đang đăng nhập
     Account_DTO dtoAccount = null;
@@ -26,14 +25,12 @@ public class MyWallet_GUI extends javax.swing.JFrame
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
+        setResizable(false);
         dtoAccount = account;
         dtoCustomer = customer; // customer này là từ form LogIn tryền vào cho form này
         displayAccountInformation();
         currentBalanceIsShowed = false;
-        String title[] = {"ID","Transaction Type","Time", "Amount"};
-        tblTransactionModel.setColumnIdentifiers(title);
-        tblTransactionHistory.setModel(tblTransactionModel);
-        
+        createTable();
         setVisible(true);
     }
     
@@ -46,56 +43,46 @@ public class MyWallet_GUI extends javax.swing.JFrame
         txtStatus.setText(accountStatus);
         if(accountStatus.equals("Locked"))
             txtStatus.setForeground(Color.RED);
-        txtLatestTransactionDate.setText(busTransaction.getLatestTransactionDate(dtoAccount));
+        txtLatestTransactionDate.setText(busMyWallet.getLatestTransactionDate(dtoAccount));
     }
 
     DefaultTableModel tblTransactionModel = new DefaultTableModel();
     public void createTable() 
     {
-        ArrayList<Transaction_DTO> list = busTransaction.getTransactionHistory(dtoAccount);
-        
+        String title[] = {"Transaction ID","Transaction Type","Time", "Amount"};
+        tblTransactionModel.setColumnIdentifiers(title);
+        tblTransactionHistory.setModel(tblTransactionModel);
+    }
+    
+    public void loadTable() 
+    {
+        ArrayList<Transaction_DTO> transactionlist = busMyWallet.getTransactionHistory(dtoAccount);
+        TreeMap<String, String> transactionTypeList = busMyWallet.getTransactionTypeList();
         tblTransactionModel.setRowCount(0); 
-        for(int i = 0; i < list.size(); i++)
+        for(int i = 0; i < transactionlist.size(); i++)
         {
-            Transaction_DTO dtoTransaction = list.get(i);
+            Transaction_DTO dtoTransaction = transactionlist.get(i);
             String transactionId = String.valueOf(dtoTransaction.getId());
             String transactionTypeID = dtoTransaction.getTransactionTypeID();
-            String transactionDate =  dtoTransaction.getTrasactionDate().toString();
+            String transactionTypeName = transactionTypeList.get(transactionTypeID);
+            DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            String transactionDate =  df.format(dtoTransaction.getTrasactionDate());
             String totalTransactionAmount = String.format("%,d", dtoTransaction.getTotalTransactionAmount());
             if(transactionTypeID.equals("NT01") || transactionTypeID.equals("TK02")) // nếu là giao dịch nhận tiền
                 totalTransactionAmount = "+" + totalTransactionAmount + " VND";
             else // nếu là giao dịch trừ tiền tài khoản
                 totalTransactionAmount = "-" + totalTransactionAmount + " VND";
-            String[] rows = {transactionId, transactionTypeID , transactionDate, totalTransactionAmount};
+            String[] rows = {transactionId, transactionTypeName, transactionDate, totalTransactionAmount};
             tblTransactionModel.addRow(rows);
         }
         tblTransactionHistory.setModel(tblTransactionModel);
-        
-        
-        //Set size for table
-        resizeColumnWidth(tblTransactionHistory);
+        // Set kích thước cho các cột
+        tblTransactionHistory.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tblTransactionHistory.getColumnModel().getColumn(1).setPreferredWidth(270);
+        tblTransactionHistory.getColumnModel().getColumn(2).setPreferredWidth(100);
         setVisible(true);
     }
     
-    // Hàm tự động điều chỉnh kích thước cho các cột trong bảng
-    public void resizeColumnWidth(JTable table) 
-    {
-        final TableColumnModel columnModel = table.getColumnModel();
-        for (int column = 0; column < table.getColumnCount(); column++) 
-        {
-            int width = 15; // Min width
-            for (int row = 0; row < table.getRowCount(); row++) 
-            {
-                TableCellRenderer renderer = table.getCellRenderer(row, column);
-                Component comp = table.prepareRenderer(renderer, row, column);
-                width = Math.max(comp.getPreferredSize().width + 1 , width);
-            }
-            if(width > 300)
-                width = 300;
-            columnModel.getColumn(column).setPreferredWidth(width);
-        }
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -177,8 +164,22 @@ public class MyWallet_GUI extends javax.swing.JFrame
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane.setViewportView(tblTransactionHistory);
+        if (tblTransactionHistory.getColumnModel().getColumnCount() > 0) {
+            tblTransactionHistory.getColumnModel().getColumn(0).setResizable(false);
+            tblTransactionHistory.getColumnModel().getColumn(1).setResizable(false);
+            tblTransactionHistory.getColumnModel().getColumn(2).setResizable(false);
+            tblTransactionHistory.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 700, 160));
 
@@ -301,10 +302,9 @@ public class MyWallet_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnShowTransactionHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowTransactionHistoryActionPerformed
-        createTable();
+        loadTable();
         btnShowTransactionHistory.setVisible(false);
     }//GEN-LAST:event_btnShowTransactionHistoryActionPerformed
-    
     
     private void btnShowCurrentBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowCurrentBalanceActionPerformed
         if(currentBalanceIsShowed == false)

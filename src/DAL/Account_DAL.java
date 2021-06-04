@@ -2,7 +2,7 @@ package DAL;
 
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
-import DTO.TransferDetail_DTO;
+import DTO.Transfer_Detail_DTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -161,7 +161,7 @@ public class Account_DAL
         return totalSavingAccount;
     }
 
-    public int transfer(TransferDetail_DTO dtoTransferDetail)
+    public int transfer(Transfer_Detail_DTO dtoTransferDetail)
     {
         int transactionID = 0;
         try{
@@ -216,6 +216,25 @@ public class Account_DAL
             String strCall = "{call settlement(?)}";
             CallableStatement caSt = con.prepareCall(strCall);
             caSt.setLong(1, dtoSavingAccount.getId());
+            caSt.execute();
+            con.close();
+            return true;
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e);    
+        }
+        return false;
+    }
+    
+    public boolean deposit(Account_DTO dtoAccount, long amount)
+    {
+        try{
+            Connection con = DBConnection.ConnectDb();
+            String strCall = "{call DEPOSIT_TO_ACCOUNT(?, ?)}";
+            CallableStatement caSt = con.prepareCall(strCall);
+            caSt.setLong(1, dtoAccount.getId());
+            caSt.setLong(2, amount);
             caSt.execute();
             con.close();
             return true;

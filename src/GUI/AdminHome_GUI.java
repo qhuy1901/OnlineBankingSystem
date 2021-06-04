@@ -13,6 +13,7 @@ public class AdminHome_GUI extends javax.swing.JFrame
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
+        setResizable(false);
         setVisible(true);
         dtoAdmin = admin;
         lblHelloAdmin.setText("          Hello " + admin.getFirstName() + " " + admin.getLastName());
@@ -33,6 +34,9 @@ public class AdminHome_GUI extends javax.swing.JFrame
         btnAccountManagement = new javax.swing.JButton();
         btnCustomerManagement = new javax.swing.JButton();
         btnSupplierManagement = new javax.swing.JButton();
+        btnDeposit = new javax.swing.JButton();
+        btnUserLoginManagement = new javax.swing.JButton();
+        btnStatement = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Admin Home");
@@ -68,7 +72,7 @@ public class AdminHome_GUI extends javax.swing.JFrame
         jLabel6.setPreferredSize(new java.awt.Dimension(250, 44));
         pnlWelcome.add(jLabel6);
 
-        pnlBackground_Admin.add(pnlWelcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 330, 400));
+        pnlBackground_Admin.add(pnlWelcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 310, 400));
 
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/MenuIcon_118px.png"))); // NOI18N
         pnlBackground_Admin.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 120, 130));
@@ -92,7 +96,7 @@ public class AdminHome_GUI extends javax.swing.JFrame
         pnlBackground_Admin.add(lblHelloAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 35, 1010, 80));
 
         btnAccountManagement.setBackground(new java.awt.Color(255, 255, 255));
-        btnAccountManagement.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnAccountManagement.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnAccountManagement.setForeground(new java.awt.Color(32, 172, 210));
         btnAccountManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_AccountManagement.png"))); // NOI18N
         btnAccountManagement.setText("Account Management");
@@ -107,10 +111,10 @@ public class AdminHome_GUI extends javax.swing.JFrame
                 btnAccountManagementActionPerformed(evt);
             }
         });
-        pnlBackground_Admin.add(btnAccountManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 170, 270, -1));
+        pnlBackground_Admin.add(btnAccountManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, 200, 190));
 
         btnCustomerManagement.setBackground(new java.awt.Color(255, 255, 255));
-        btnCustomerManagement.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnCustomerManagement.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnCustomerManagement.setForeground(new java.awt.Color(32, 172, 210));
         btnCustomerManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_cusmanagement.png"))); // NOI18N
         btnCustomerManagement.setText("Customer Management");
@@ -125,10 +129,10 @@ public class AdminHome_GUI extends javax.swing.JFrame
                 btnCustomerManagementActionPerformed(evt);
             }
         });
-        pnlBackground_Admin.add(btnCustomerManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 270, -1));
+        pnlBackground_Admin.add(btnCustomerManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 210, 190));
 
         btnSupplierManagement.setBackground(new java.awt.Color(255, 255, 255));
-        btnSupplierManagement.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnSupplierManagement.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnSupplierManagement.setForeground(new java.awt.Color(32, 172, 210));
         btnSupplierManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_PartnerManagement.png"))); // NOI18N
         btnSupplierManagement.setText("Supplier Management");
@@ -143,7 +147,61 @@ public class AdminHome_GUI extends javax.swing.JFrame
                 btnSupplierManagementActionPerformed(evt);
             }
         });
-        pnlBackground_Admin.add(btnSupplierManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 270, -1));
+        pnlBackground_Admin.add(btnSupplierManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 380, 210, 190));
+
+        btnDeposit.setBackground(new java.awt.Color(255, 255, 255));
+        btnDeposit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnDeposit.setForeground(new java.awt.Color(32, 172, 210));
+        btnDeposit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_AccountManagement.png"))); // NOI18N
+        btnDeposit.setText("Deposit");
+        btnDeposit.setBorder(null);
+        btnDeposit.setBorderPainted(false);
+        btnDeposit.setDefaultCapable(false);
+        btnDeposit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDeposit.setMargin(new java.awt.Insets(0, 14, 30, 14));
+        btnDeposit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDeposit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDepositActionPerformed(evt);
+            }
+        });
+        pnlBackground_Admin.add(btnDeposit, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 170, 200, 190));
+
+        btnUserLoginManagement.setBackground(new java.awt.Color(255, 255, 255));
+        btnUserLoginManagement.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnUserLoginManagement.setForeground(new java.awt.Color(32, 172, 210));
+        btnUserLoginManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_AccountManagement.png"))); // NOI18N
+        btnUserLoginManagement.setText("User Login Managment");
+        btnUserLoginManagement.setBorder(null);
+        btnUserLoginManagement.setBorderPainted(false);
+        btnUserLoginManagement.setDefaultCapable(false);
+        btnUserLoginManagement.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUserLoginManagement.setMargin(new java.awt.Insets(0, 14, 30, 14));
+        btnUserLoginManagement.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUserLoginManagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUserLoginManagementActionPerformed(evt);
+            }
+        });
+        pnlBackground_Admin.add(btnUserLoginManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 380, 200, 190));
+
+        btnStatement.setBackground(new java.awt.Color(255, 255, 255));
+        btnStatement.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnStatement.setForeground(new java.awt.Color(32, 172, 210));
+        btnStatement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_AccountManagement.png"))); // NOI18N
+        btnStatement.setText("Statement");
+        btnStatement.setBorder(null);
+        btnStatement.setBorderPainted(false);
+        btnStatement.setDefaultCapable(false);
+        btnStatement.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnStatement.setMargin(new java.awt.Insets(0, 14, 30, 14));
+        btnStatement.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnStatement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStatementActionPerformed(evt);
+            }
+        });
+        pnlBackground_Admin.add(btnStatement, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 200, 190));
 
         getContentPane().add(pnlBackground_Admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 650));
 
@@ -152,7 +210,7 @@ public class AdminHome_GUI extends javax.swing.JFrame
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         setVisible(false);
-        new LogIn_GUI();
+        new UserLogIn_GUI();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnSupplierManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierManagementActionPerformed
@@ -170,11 +228,29 @@ public class AdminHome_GUI extends javax.swing.JFrame
         new CustomerManagement_GUI(dtoAdmin);
     }//GEN-LAST:event_btnCustomerManagementActionPerformed
 
+    private void btnDepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositActionPerformed
+        setVisible(false);
+        new Deposit_GUI(dtoAdmin);
+    }//GEN-LAST:event_btnDepositActionPerformed
+
+    private void btnUserLoginManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserLoginManagementActionPerformed
+        setVisible(false);
+        new UserLoginManagement_GUI(dtoAdmin);
+    }//GEN-LAST:event_btnUserLoginManagementActionPerformed
+
+    private void btnStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatementActionPerformed
+        setVisible(false);
+        new Statement_GUI(dtoAdmin);
+    }//GEN-LAST:event_btnStatementActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccountManagement;
     private javax.swing.JButton btnCustomerManagement;
+    private javax.swing.JButton btnDeposit;
     private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnStatement;
     private javax.swing.JButton btnSupplierManagement;
+    private javax.swing.JButton btnUserLoginManagement;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

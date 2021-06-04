@@ -1,6 +1,6 @@
 package DAL;
 
-import DTO.AccountType_DTO;
+import DTO.Account_Type_DTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,11 +8,11 @@ import java.sql.SQLException;
 import java.util.TreeMap;
 import javax.swing.JOptionPane;
 
-public class AccountType_DAL extends DBConnection
+public class Account_Type_DAL extends DBConnection
 {
-    public AccountType_DTO getSavingsAccountType(String savingsAccountType, String term)
+    public Account_Type_DTO getSavingsAccountType(String savingsAccountType, String term)
     {
-        AccountType_DTO dtoAccountType = null;
+        Account_Type_DTO dtoAccountType = null;
         try
         {
             // Xác định loại tài khoản tiết kiệm từ các tham số truyền vào
@@ -42,7 +42,7 @@ public class AccountType_DAL extends DBConnection
             prest.setString(1, accountTypeId);
             ResultSet rs = prest.executeQuery();
             while(rs.next())
-                dtoAccountType = new AccountType_DTO(rs.getString(1), rs.getString(2), rs.getDouble(3));
+                dtoAccountType = new Account_Type_DTO(rs.getString(1), rs.getString(2), rs.getDouble(3));
             con.close();
         }
         catch(Exception e)

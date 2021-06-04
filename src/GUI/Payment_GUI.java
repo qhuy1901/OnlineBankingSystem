@@ -5,7 +5,7 @@ import DTO.Account_DTO;
 import DTO.Bill_DTO;
 import DTO.Customer_DTO;
 import DTO.Supplier_DTO;
-import DTO.UserLogin_DTO;
+import DTO.User_Login_DTO;
 import GUI.CustomerHome_GUI;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -27,6 +27,7 @@ public class Payment_GUI extends javax.swing.JFrame
         // Set default form
         setLocationRelativeTo(null);
         setSize(1064, 650);
+        setResizable(false);
         dtoCustomer = customer;
         dtoAccount = account; 
         cboMonth.setSelectedItem(null);
@@ -373,7 +374,7 @@ public class Payment_GUI extends javax.swing.JFrame
         if(option == 0) // Customer pressing OK button
         {
             String password = pass.getText();
-            UserLogin_DTO dtoUserLogIn = busPayment.getUserLogin(dtoCustomer); // Get customer password in database
+            User_Login_DTO dtoUserLogIn = busPayment.getUserLogin(dtoCustomer); // Get customer password in database
             if(password.equals(dtoUserLogIn.getPassword()))
                 return true;
             else

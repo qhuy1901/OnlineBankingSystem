@@ -1,10 +1,10 @@
 package GUI;
 
 import BUS.Saving_BUS;
-import DTO.AccountType_DTO;
+import DTO.Account_Type_DTO;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
-import DTO.UserLogin_DTO;
+import DTO.User_Login_DTO;
 import GUI.CustomerHome_GUI;
 import java.awt.event.KeyEvent;
 import java.text.DateFormat;
@@ -28,7 +28,7 @@ public class Saving_GUI extends javax.swing.JFrame
     Saving_BUS busSaving = new Saving_BUS();
     
     Customer_DTO dtoCustomer = null;
-    AccountType_DTO dtoSavingsAccountType = null;
+    Account_Type_DTO dtoSavingsAccountType = null;
     Account_DTO dtoPaymentAccount = null;
     TreeMap<String, String> accountTypeList = null;
     ArrayList<Account_DTO> savingsAccountList = null;
@@ -38,6 +38,7 @@ public class Saving_GUI extends javax.swing.JFrame
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
+        setResizable(false);
         setVisible(true);
         cboSavingsAccountType.setSelectedItem(null);
         cboTerm.setSelectedItem(null);
@@ -106,7 +107,7 @@ public class Saving_GUI extends javax.swing.JFrame
         if(option == 0) // Customer pressing OK button
         {
             String password = pass.getText();
-            UserLogin_DTO dtoUserLogIn = busSaving.getUserLogin(dtoCustomer); // Get customer password in database
+            User_Login_DTO dtoUserLogIn = busSaving.getUserLogin(dtoCustomer); // Get customer password in database
             if(password.equals(dtoUserLogIn.getPassword()))
                 return true;
             else

@@ -1,6 +1,6 @@
 package DTO;
 
-public class TransferDetail_DTO 
+public class Transfer_Detail_DTO 
 {
     private int id;
     private long senderAccount;
@@ -10,10 +10,10 @@ public class TransferDetail_DTO
     private String content;
     private int transactionID;
 
-    public TransferDetail_DTO() {
+    public Transfer_Detail_DTO() {
     }
 
-    public TransferDetail_DTO(long senderAccount, long receiverAccount, String receiverBank, long amount, String content) {
+    public Transfer_Detail_DTO(long senderAccount, long receiverAccount, String receiverBank, long amount, String content) {
         this.senderAccount = senderAccount;
         this.receiverAccount = receiverAccount;
         this.receiverBank = receiverBank;

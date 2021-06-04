@@ -1,20 +1,21 @@
 package GUI;
 
-import BUS.Login_BUS;
+import BUS.UserLogin_BUS;
 import DTO.Admin_DTO;
 import DTO.Customer_DTO;
-import DTO.UserLogin_DTO;
+import DTO.User_Login_DTO;
 import javax.swing.JOptionPane;
 
-public class LogIn_GUI extends javax.swing.JFrame 
+public class UserLogIn_GUI extends javax.swing.JFrame 
 {
-    Login_BUS busUserLogin = new Login_BUS();
+    UserLogin_BUS busUserLogin = new UserLogin_BUS();
     
-    public LogIn_GUI() 
+    public UserLogIn_GUI() 
     {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
+        setResizable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -119,9 +120,9 @@ public class LogIn_GUI extends javax.swing.JFrame
         txtUsername.setFont(new java.awt.Font("Javanese Text", 0, 17)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(239, 250, 252));
         txtUsername.setBorder(null);
-        txtUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsernameActionPerformed(evt);
+        txtUsername.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtUsernameMouseClicked(evt);
             }
         });
         jPanel5.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 210, 30));
@@ -187,33 +188,58 @@ public class LogIn_GUI extends javax.swing.JFrame
         }
         else
         {
-            UserLogin_DTO dtoUserLogin = new UserLogin_DTO(txtUsername.getText(), txtPassword.getText());
-            if(busUserLogin.checkPassword(dtoUserLogin))
+            String username = txtUsername.getText();
+            String password = txtPassword.getText();
+            User_Login_DTO dtoUserLogin = busUserLogin.getUserLogin(username);
+            if(dtoUserLogin != null)
             {
-                if(busUserLogin.checkRole(dtoUserLogin))
+                if(dtoUserLogin.getNumberOfFailedLogin() >= 3)
                 {
-                    Admin_DTO dtoAdmin = busUserLogin.getAdminInfo(dtoUserLogin);
-                    new AdminHome_GUI(dtoAdmin);
+                    JOptionPane.showMessageDialog(this, "Your login account has been locked due to failed login more than 3 times.\n Please contact the bank for more information.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 else
                 {
-                    Customer_DTO dtoCustomer = busUserLogin.getCustomerInfo(dtoUserLogin);
-                    new CustomerHome_GUI(dtoCustomer);
+                    if(dtoUserLogin.getPassword().equals(password))
+                    {
+                        if(busUserLogin.updateLastAccessTime(username))
+                        {
+                            if(busUserLogin.checkRole(dtoUserLogin))
+                            {
+                                Admin_DTO dtoAdmin = busUserLogin.getAdminInfo(dtoUserLogin);
+                                new AdminHome_GUI(dtoAdmin);
+                            }
+                            else
+                            {
+                                Customer_DTO dtoCustomer = busUserLogin.getCustomerInfo(dtoUserLogin);
+                                new CustomerHome_GUI(dtoCustomer);
+                            }
+                            this.setVisible(false);
+                        }
+                    }
+                    else
+                    {
+                        if(busUserLogin.updateNumberOfFailedLogin(username))
+                        {
+                            int numberOfRemainingLogin = 3 - dtoUserLogin.getNumberOfFailedLogin();
+                            JOptionPane.showMessageDialog(this, "Password is incorrect. Account will be locked after "+ numberOfRemainingLogin +" failed login attempts", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
                 }
-                this.setVisible(false);
             }
             else
-                JOptionPane.showMessageDialog(this, "Username or password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            {
+                JOptionPane.showMessageDialog(this, "Username is incorrect.",  "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-
-    }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void txtUsernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsernameMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsernameMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;

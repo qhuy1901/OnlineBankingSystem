@@ -1,6 +1,6 @@
 package BUS;
 
-import DAL.AccountType_DAL;
+import DAL.Account_Type_DAL;
 import DAL.Account_DAL;
 import DTO.Account_DTO;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.TreeMap;
 public class AccountManagement_BUS 
 {
     Account_DAL dalAccount = new Account_DAL();
-    AccountType_DAL dalAccountType = new AccountType_DAL();
+    Account_Type_DAL dalAccountType = new Account_Type_DAL();
     
     public ArrayList<Account_DTO> getAccountList()
     {

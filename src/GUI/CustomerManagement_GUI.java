@@ -4,16 +4,11 @@ import BUS.CustomerManagement_BUS;
 import DTO.Admin_DTO;
 import DTO.Customer_DTO;
 import GUI.AdminHome_GUI;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 
 public class CustomerManagement_GUI extends javax.swing.JFrame 
@@ -26,6 +21,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
+        setResizable(false);
         setVisible(true);
         dtoAdmin = admin;
         createTable();
@@ -46,29 +42,9 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
             tblCustomerModel.addRow(rows);
         }
         tblViewCustomer.setModel(tblCustomerModel);
-        //resizeColumnWidth(tblViewCustomer);
         setVisible(true);
     }
 
-    /*// Hàm tự động điều chỉnh kích thước cho các cột trong bảng
-    public void resizeColumnWidth(JTable table) 
-    {
-        final TableColumnModel columnModel = table.getColumnModel();
-        for (int column = 0; column < table.getColumnCount(); column++) 
-        {
-            int width = 15; // Min width
-            for (int row = 0; row < table.getRowCount(); row++) 
-            {
-                TableCellRenderer renderer = table.getCellRenderer(row, column);
-                Component comp = table.prepareRenderer(renderer, row, column);
-                width = Math.max(comp.getPreferredSize().width + 1 , width);
-            }
-            if(width > 300)
-                width = 300;
-            columnModel.getColumn(column).setPreferredWidth(width);
-        }
-    }*/
-    
     private void clearForm()
     {
         txtFirstName_AddCustomer.setText("");
@@ -616,7 +592,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
             Customer_DTO ct = new Customer_DTO(0 , txtFirstName_AddCustomer.getText(), txtLastName_AddCustomer.getText(), cbGender_AddCustomer.getSelectedItem().toString(), dcDateOfBirth_AddCustomer.getDate() ,txtAddress.getText(), txtPhoneNumber.getText(), txtIDCard.getText());
             if(customer_BUS.insert(ct))
             {
-                JOptionPane.showMessageDialog(this, "Customer added susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Customer added successfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 clearForm();
             }
             else

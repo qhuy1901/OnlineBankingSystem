@@ -27,6 +27,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         initComponents();
         setSize(1064,650);
         setLocationRelativeTo(null);
+        setResizable(false);
         
         dtoAdmin = admin;
         loadCboServiceType();

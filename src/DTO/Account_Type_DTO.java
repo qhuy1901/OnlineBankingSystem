@@ -1,17 +1,17 @@
 package DTO;
 
-public class AccountType_DTO 
+public class Account_Type_DTO 
 {
     private String id;
     private String name;
     private double interestRate;
 
-    public AccountType_DTO() 
+    public Account_Type_DTO() 
     {
         
     }
 
-    public AccountType_DTO(String id, String name, double interestRate) 
+    public Account_Type_DTO(String id, String name, double interestRate) 
     {
         this.id = id;
         this.name = name;

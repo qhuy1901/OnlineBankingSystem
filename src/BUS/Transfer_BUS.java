@@ -3,18 +3,18 @@ package BUS;
 
 import DAL.Account_DAL;
 import DAL.Customer_DAL;
-import DAL.UserLogin_DAL;
+import DAL.User_Login_DAL;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
-import DTO.TransferDetail_DTO;
-import DTO.UserLogin_DTO;
+import DTO.Transfer_Detail_DTO;
+import DTO.User_Login_DTO;
 import GUI.Report.Report;
 
 public class Transfer_BUS 
 {
     Account_DAL dalAccount = new Account_DAL();
     Customer_DAL dalCustomer = new Customer_DAL();
-    UserLogin_DAL dalUserLogin = new UserLogin_DAL();
+    User_Login_DAL dalUserLogin = new User_Login_DAL();
     Report report = new Report();
     
     public Customer_DTO getCustomerInfo(Account_DTO dtoAccount)
@@ -22,7 +22,7 @@ public class Transfer_BUS
         return dalCustomer.getCustomerInfo(dtoAccount);
     }
     
-    public UserLogin_DTO getUserLogin(Customer_DTO dtoCustomer)
+    public User_Login_DTO getUserLogin(Customer_DTO dtoCustomer)
     {
         return dalUserLogin.getUserLogin(dtoCustomer);
     }
@@ -32,7 +32,7 @@ public class Transfer_BUS
         return dalAccount.isValidPaymentAccount(dtoAccount);
     }
     
-    public int transfer(TransferDetail_DTO dtoTransferDetail)
+    public int transfer(Transfer_Detail_DTO dtoTransferDetail)
     {
         return dalAccount.transfer(dtoTransferDetail);
     }

@@ -15,6 +15,7 @@ public class CustomerHome_GUI extends javax.swing.JFrame
         initComponents();
         setLocationRelativeTo(null);
         setSize(1064, 650);
+        setResizable(false);
         setVisible(true);
         dtoCustomer = customer;
         lblHelloCustomer.setText("         Hello " + dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
@@ -197,7 +198,7 @@ public class CustomerHome_GUI extends javax.swing.JFrame
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         setVisible(false);
-        new LogIn_GUI();
+        new UserLogIn_GUI();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnMyWalletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyWalletActionPerformed

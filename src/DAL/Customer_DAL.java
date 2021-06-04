@@ -2,7 +2,7 @@ package DAL;
 
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
-import DTO.UserLogin_DTO;
+import DTO.User_Login_DTO;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
@@ -93,12 +93,12 @@ public class Customer_DAL
         try
         {
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT CUSTOMER_ID, FIRST_NAME, LAST_NAME, GENDER, DATE_OF_BIRTH, ADDRESS, PHONE_NUMBER, ID_CARD"
+            String SQL = "SELECT CUSTOMER_ID, FIRST_NAME, LAST_NAME, GENDER, DATE_OF_BIRTH, ADDRESS, PHONE_NUMBER, ID_CARD, USERLOGIN_ID"
                     + " FROM CUSTOMER WHERE CUSTOMER_ID = " + id;
             Statement stat = con.createStatement();
             ResultSet rs = stat.executeQuery(SQL);
             while(rs.next())
-                dotCustomer = new Customer_DTO(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5),rs.getString(6), rs.getString(7), rs.getString(8));
+                dotCustomer = new Customer_DTO(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5),rs.getString(6), rs.getString(7), rs.getString(8), rs.getLong(9));
             con.close();
         }
         catch(Exception e)
@@ -114,13 +114,13 @@ public class Customer_DAL
         try
         {
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT C.CUSTOMER_ID, FIRST_NAME, LAST_NAME, GENDER, DATE_OF_BIRTH, ADDRESS, PHONE_NUMBER, ID_CARD"
+            String SQL = "SELECT C.CUSTOMER_ID, FIRST_NAME, LAST_NAME, GENDER, DATE_OF_BIRTH, ADDRESS, PHONE_NUMBER, ID_CARD, C.USERLOGIN_ID"
                     + " FROM CUSTOMER C JOIN ACCOUNT A ON C.CUSTOMER_ID = A.CUSTOMER_ID"
                     + " WHERE A.ACCOUNT_ID = " + dtoAccount.getId();
             Statement stat = con.createStatement();
             ResultSet rs = stat.executeQuery(SQL);
             while(rs.next())
-                dotCustomer = new Customer_DTO(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5),rs.getString(6), rs.getString(7), rs.getString(8));
+                dotCustomer = new Customer_DTO(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5),rs.getString(6), rs.getString(7), rs.getString(8), rs.getLong(9));
             con.close();
         }
         catch(Exception e)
@@ -136,13 +136,13 @@ public class Customer_DAL
         try
         {
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT CUSTOMER_ID, FIRST_NAME, LAST_NAME, GENDER, DATE_OF_BIRTH, ADDRESS, PHONE_NUMBER, ID_CARD"
+            String SQL = "SELECT CUSTOMER_ID, FIRST_NAME, LAST_NAME, GENDER, DATE_OF_BIRTH, ADDRESS, PHONE_NUMBER, ID_CARD, USERLOGIN_ID"
                     + " FROM CUSTOMER ORDER BY CUSTOMER_ID DESC";
             Statement stat = con.createStatement();
             ResultSet rs = stat.executeQuery(SQL);
             while(rs.next())
             {
-                Customer_DTO  ct = new Customer_DTO(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5),rs.getString(6), rs.getString(7), rs.getString(8));
+                Customer_DTO  ct = new Customer_DTO(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5),rs.getString(6), rs.getString(7), rs.getString(8),rs.getLong(9));
                 customersList.add(ct);
             } 
             con.close();
@@ -154,26 +154,14 @@ public class Customer_DAL
         return customersList; 
     }
     
-    public Customer_DTO getCustomerInfo(UserLogin_DTO dtoUserLogin) // Từ password và username --> trả về thông tin người dùng
+    public Customer_DTO getCustomerInfo(User_Login_DTO dtoUserLogin)
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            
-            // Lấy userID từ username và password
-            String SQL1 = "SELECT UserLogin_ID FROM User_Login WHERE Username = ? AND Password = ?"; 
-            PreparedStatement ps1 = con.prepareStatement(SQL1);
-            ps1.setString(1, dtoUserLogin.getUsername());
-            ps1.setString(2, dtoUserLogin.getPassword());
-            ResultSet rs1 = ps1.executeQuery();
-            long UserLoginID = 0;
-            while(rs1.next())
-                UserLoginID = rs1.getLong(1);
-            
-            // Tạo người dùng, lấy thông tin thông qua userID và return thông tin người dùng
             Customer_DTO dtoCustomer = null;
             String SQL2 = "SELECT * FROM Customer WHERE UserLogin_ID = ?"; 
             PreparedStatement ps2 = con.prepareStatement(SQL2);
-            ps2.setLong(1, UserLoginID);
+            ps2.setLong(1, dtoUserLogin.getId());
             ResultSet rs2 = ps2.executeQuery();
             while(rs2.next())
                 dtoCustomer = new Customer_DTO(rs2.getLong(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getDate(5),rs2.getString(6), rs2.getString(7), rs2.getString(8), rs2.getLong(9)); 
