@@ -272,7 +272,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
             }
             else
             {
-                if(Long.parseLong(txtAmount.getText()) > 10000)
+                if(Long.parseLong(txtAmount.getText()) > 100000)
                 {
                     long amount = Long.parseLong(txtAmount.getText());
                     Account_DTO dtoAccount = new Account_DTO(Long.parseLong(txtAccountID.getText()));
@@ -286,7 +286,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(this, "The amount must be more than 10,000 VND", "Error", JOptionPane.ERROR_MESSAGE); 
+                    JOptionPane.showMessageDialog(this, "The amount must be more than 100,000 VND", "Error", JOptionPane.ERROR_MESSAGE); 
                 }
             }
         }

@@ -319,7 +319,7 @@
               <Color blue="d2" green="ac" red="20" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/GUI/Images/admingui_AccountManagement.png"/>
+              <Image iconType="3" name="/GUI/Images/admingui_UserLoginManagement.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="User Login Managment"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -354,7 +354,7 @@
               <Color blue="d2" green="ac" red="20" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/GUI/Images/admingui_AccountManagement.png"/>
+              <Image iconType="3" name="/GUI/Images/admingui_Statement1.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Statement"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

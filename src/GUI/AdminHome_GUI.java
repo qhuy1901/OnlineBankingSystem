@@ -170,7 +170,7 @@ public class AdminHome_GUI extends javax.swing.JFrame
         btnUserLoginManagement.setBackground(new java.awt.Color(255, 255, 255));
         btnUserLoginManagement.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnUserLoginManagement.setForeground(new java.awt.Color(32, 172, 210));
-        btnUserLoginManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_AccountManagement.png"))); // NOI18N
+        btnUserLoginManagement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_UserLoginManagement.png"))); // NOI18N
         btnUserLoginManagement.setText("User Login Managment");
         btnUserLoginManagement.setBorder(null);
         btnUserLoginManagement.setBorderPainted(false);
@@ -188,7 +188,7 @@ public class AdminHome_GUI extends javax.swing.JFrame
         btnStatement.setBackground(new java.awt.Color(255, 255, 255));
         btnStatement.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnStatement.setForeground(new java.awt.Color(32, 172, 210));
-        btnStatement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_AccountManagement.png"))); // NOI18N
+        btnStatement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_Statement1.png"))); // NOI18N
         btnStatement.setText("Statement");
         btnStatement.setBorder(null);
         btnStatement.setBorderPainted(false);
