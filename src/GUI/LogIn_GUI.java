@@ -1,16 +1,16 @@
 package GUI;
 
-import BUS.UserLogin_BUS;
+import BUS.Login_BUS;
 import DTO.Admin_DTO;
 import DTO.Customer_DTO;
 import DTO.User_Login_DTO;
 import javax.swing.JOptionPane;
 
-public class UserLogIn_GUI extends javax.swing.JFrame 
+public class LogIn_GUI extends javax.swing.JFrame 
 {
-    UserLogin_BUS busUserLogin = new UserLogin_BUS();
+    Login_BUS busUserLogin = new Login_BUS();
     
-    public UserLogIn_GUI() 
+    public LogIn_GUI() 
     {
         initComponents();
         setLocationRelativeTo(null);
@@ -191,9 +191,13 @@ public class UserLogIn_GUI extends javax.swing.JFrame
             String username = txtUsername.getText();
             String password = txtPassword.getText();
             User_Login_DTO dtoUserLogin = busUserLogin.getUserLogin(username);
-            if(dtoUserLogin != null)
+            if(dtoUserLogin == null) 
             {
-                if(dtoUserLogin.getNumberOfFailedLogin() >= 3)
+                JOptionPane.showMessageDialog(this, "Username is incorrect.",  "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else
+            {
+                if(dtoUserLogin.getNumberOfFailedLogin() >= 3) // Kiểm tra số lần nhập sai mật khẩu
                 {
                     JOptionPane.showMessageDialog(this, "Your login account has been locked due to failed login more than 3 times.\n Please contact the bank for more information.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -218,18 +222,14 @@ public class UserLogIn_GUI extends javax.swing.JFrame
                     }
                     else
                     {
-                        if(busUserLogin.updateNumberOfFailedLogin(username))
+                        if(busUserLogin.updateNumberOfFailedLogin(username)) // Tăng số lần nhập sai mật khẩu lên
                         {
                             int numberOfRemainingLogin = 3 - dtoUserLogin.getNumberOfFailedLogin();
                             JOptionPane.showMessageDialog(this, "Password is incorrect. Account will be locked after "+ numberOfRemainingLogin +" failed login attempts", "Incorrect details", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 }
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(this, "Username is incorrect.",  "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            }  
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 

@@ -35,6 +35,11 @@ public class Statement_BUS
         return dalCustomer.getCustomerInfo(dtoAccount);
     }
     
+    public Customer_DTO getInformation(long id)
+    {
+        return dalCustomer.getInformation(id);
+    }
+    
     public Transfer_Detail_DTO getTransferDetail(int transactionId)
     {
         return dalTransferDetail.getTransferDetail(transactionId);

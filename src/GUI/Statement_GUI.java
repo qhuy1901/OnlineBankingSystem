@@ -134,10 +134,10 @@ public class Statement_GUI extends javax.swing.JFrame {
         btnExportreport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnExportreport.setForeground(new java.awt.Color(255, 255, 255));
         btnExportreport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Export.png"))); // NOI18N
-        btnExportreport.setText("Export bank statement  report");
+        btnExportreport.setText("Export statement report");
         btnExportreport.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnExportreport.setIconTextGap(2);
-        jPanel1.add(btnExportreport, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 270, 40));
+        jPanel1.add(btnExportreport, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 220, 40));
 
         btnStatement.setBackground(new java.awt.Color(32, 172, 216));
         btnStatement.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

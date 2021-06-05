@@ -5,7 +5,6 @@ import DTO.Admin_DTO;
 import DTO.Customer_DTO;
 import DTO.User_Login_DTO;
 import java.awt.event.KeyEvent;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public class UserLoginManagement_GUI extends javax.swing.JFrame 
@@ -20,17 +19,11 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         setLocationRelativeTo(null);
         setResizable(false);
         dtoAdmin = admin;
-        loadCbbRole();
         btnUpdate.setVisible(false);
         btnEdit.setVisible(false);
         setVisible(true);
     }
 
-    public void loadCbbRole()
-    {
-        cbbRole.setModel(new DefaultComboBoxModel<>(new String[]
-        {"Admin", "Customer"}));
-    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -87,7 +80,7 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         });
         Panel_SearchAccount.add(btnHome_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 76, 58));
 
-        lbIcon_SearchAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AccountManagement_SearchAccount.png"))); // NOI18N
+        lbIcon_SearchAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/UserLoginManagment.png"))); // NOI18N
         Panel_SearchAccount.add(lbIcon_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 110, 120));
 
         lbSearchAccount.setBackground(new java.awt.Color(32, 172, 216));
@@ -231,6 +224,7 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
 
         cbbRole.setEditable(true);
         cbbRole.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cbbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Customer" }));
         cbbRole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbRoleActionPerformed(evt);
@@ -289,46 +283,56 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         {
             if(cbbRole.getSelectedItem().equals("Admin"))
             {
-                Admin_DTO dtoAdmin = busUserLoginManagement.getAdminInfo(Integer.parseInt(txtId.getText()));
+                int adminId = Integer.parseInt(txtId.getText());
+                Admin_DTO dtoAdmin = busUserLoginManagement.getAdminInfo(adminId);
                 if(dtoAdmin == null)
                 {
                     JOptionPane.showMessageDialog(this, "Admin ID is invalid", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 else
                 {
-                    txtName.setText(dtoAdmin.getFirstName() + " " + dtoAdmin.getLastName());
                     dtoUserLogin = busUserLoginManagement.getUserLogin(dtoAdmin);
+                    txtName.setText(dtoAdmin.getFirstName() + " " + dtoAdmin.getLastName());
                     txtUserLoginId.setText(String.valueOf(dtoUserLogin.getId()));
                     txtRole.setText(dtoUserLogin.getRole());
                     txtUsername.setText(dtoUserLogin.getUsername());
                     txtPassword.setText(dtoUserLogin.getPassword());
                     if(dtoUserLogin.getLastAccessTime() == null)
-                        txtLastAccessTime.setText("never logged in");
+                    {
+                       txtLastAccessTime.setText("never logged in"); 
+                    }
                     else
+                    {
                         txtLastAccessTime.setText(dtoUserLogin.getLastAccessTime().toString());
+                    }
                     txtNumberFailedLogin.setText(String.valueOf(dtoUserLogin.getNumberOfFailedLogin()));
                     btnEdit.setVisible(true);
                 }
             }
             else
             {
-                Customer_DTO dtoCustomer = busUserLoginManagement.getInformation(Long.parseLong(txtId.getText()));
+                long customerId = Long.parseLong(txtId.getText());
+                Customer_DTO dtoCustomer = busUserLoginManagement.getInformation(customerId);
                 if(dtoCustomer == null)
                 {
                     JOptionPane.showMessageDialog(this, "Customer ID is invalid", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 else
                 {
-                    txtName.setText(dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
                     dtoUserLogin = busUserLoginManagement.getUserLogin(dtoCustomer);
+                    txtName.setText(dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
                     txtUserLoginId.setText(String.valueOf(dtoUserLogin.getId()));
                     txtRole.setText(dtoUserLogin.getRole());
                     txtUsername.setText(dtoUserLogin.getUsername());
                     txtPassword.setText(dtoUserLogin.getPassword());
                     if(dtoUserLogin.getLastAccessTime() == null)
+                    {
                         txtLastAccessTime.setText("never logged in");
+                    }
                     else
+                    {
                         txtLastAccessTime.setText(dtoUserLogin.getLastAccessTime().toString());
+                    }
                     txtNumberFailedLogin.setText(String.valueOf(dtoUserLogin.getNumberOfFailedLogin()));
                     btnEdit.setVisible(true);
                 }
@@ -357,6 +361,7 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         txtPassword.setEditable(false);
         txtPassword.setEchoChar('\u25cf');
         txtNumberFailedLogin.setEditable(false);
+        btnEdit.setVisible(false);
         btnUpdate.setVisible(false);
     }
     
@@ -366,7 +371,6 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         else
         {
             User_Login_DTO dtoNewUserLogin = new User_Login_DTO(dtoUserLogin.getId(), dtoUserLogin.getUsername(), txtPassword.getText(), dtoUserLogin.getRole(), Integer.parseInt(txtNumberFailedLogin.getText()), dtoUserLogin.getLastAccessTime());
-            System.out.print(dtoUserLogin.getId());
             if(busUserLoginManagement.updateInfo(dtoNewUserLogin))
             {
                 JOptionPane.showMessageDialog(this, "User login information updated successfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);

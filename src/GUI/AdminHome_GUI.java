@@ -152,7 +152,7 @@ public class AdminHome_GUI extends javax.swing.JFrame
         btnDeposit.setBackground(new java.awt.Color(255, 255, 255));
         btnDeposit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnDeposit.setForeground(new java.awt.Color(32, 172, 210));
-        btnDeposit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_AccountManagement.png"))); // NOI18N
+        btnDeposit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/admingui_Deposit2.0.png"))); // NOI18N
         btnDeposit.setText("Deposit");
         btnDeposit.setBorder(null);
         btnDeposit.setBorderPainted(false);
@@ -210,7 +210,7 @@ public class AdminHome_GUI extends javax.swing.JFrame
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         setVisible(false);
-        new UserLogIn_GUI();
+        new LogIn_GUI();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnSupplierManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierManagementActionPerformed

@@ -7,7 +7,7 @@ import DTO.Admin_DTO;
 import DTO.Customer_DTO;
 import DTO.User_Login_DTO;
 
-public class UserLogin_BUS 
+public class Login_BUS 
 {
     User_Login_DAL dalUserLogin = new User_Login_DAL();
     Admin_DAL dalAdmin = new Admin_DAL();

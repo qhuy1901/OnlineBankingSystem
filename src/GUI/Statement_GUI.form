@@ -131,13 +131,13 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/Export.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Export bank statement  report"/>
+            <Property name="text" type="java.lang.String" value="Export statement report"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="iconTextGap" type="int" value="2"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="520" y="260" width="270" height="40"/>
+              <AbsoluteConstraints x="520" y="260" width="220" height="40"/>
             </Constraint>
           </Constraints>
         </Component>

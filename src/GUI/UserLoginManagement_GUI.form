@@ -94,7 +94,7 @@
         <Component class="javax.swing.JLabel" name="lbIcon_SearchAccount">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/GUI/Images/AccountManagement_SearchAccount.png"/>
+              <Image iconType="3" name="/GUI/Images/UserLoginManagment.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -501,6 +501,12 @@
             <Property name="editable" type="boolean" value="true"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="Admin"/>
+                <StringItem index="1" value="Customer"/>
+              </StringArray>
             </Property>
           </Properties>
           <Events>

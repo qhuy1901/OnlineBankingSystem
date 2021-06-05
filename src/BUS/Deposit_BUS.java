@@ -9,12 +9,7 @@ public class Deposit_BUS
 {
     Account_DAL dalAccount = new Account_DAL();
     Customer_DAL dalCustomer = new Customer_DAL();
-    
-    /*public ArrayList<Account_DTO> findAccountId(String customerName)
-    {
-        return dalAccount.findAccountId(customerName);
-    }*/
-    
+
     public Customer_DTO getCustomerInfo(Account_DTO dtoAccount)
     {
         return dalCustomer.getCustomerInfo(dtoAccount);

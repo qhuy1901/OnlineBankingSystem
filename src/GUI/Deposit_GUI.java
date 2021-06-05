@@ -108,7 +108,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
         });
         Panel_OpenAccount.add(btnActivate_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 540, 140, 40));
 
-        lbIcon_OpenAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AccountManagement_OpenAccount.png"))); // NOI18N
+        lbIcon_OpenAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Deposit.png"))); // NOI18N
         Panel_OpenAccount.add(lbIcon_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 120, 110));
 
         lbOpenAccount.setBackground(new java.awt.Color(32, 172, 216));
@@ -261,7 +261,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
                     }
                 }
                 else
-                   JOptionPane.showMessageDialog(this, "The initial aount must be more than 50,000 VND", "Error", JOptionPane.ERROR_MESSAGE);  
+                   JOptionPane.showMessageDialog(this, "The initial amount must be more than 50,000 VND", "Error", JOptionPane.ERROR_MESSAGE);  
             }
         }
         if(rbDepositToAccount.isSelected())
@@ -272,15 +272,22 @@ public class Deposit_GUI extends javax.swing.JFrame {
             }
             else
             {
-                long amount = Long.parseLong(txtAmount.getText());
-                Account_DTO dtoAccount = new Account_DTO(Long.parseLong(txtAccountID.getText()));
-                if(busDeposit.deposit(dtoAccount, amount))
+                if(Long.parseLong(txtAmount.getText()) > 10000)
                 {
-                    JOptionPane.showMessageDialog(this, "Successful deposit to account" , "Notification", JOptionPane.INFORMATION_MESSAGE);  
-                    clearForm();
+                    long amount = Long.parseLong(txtAmount.getText());
+                    Account_DTO dtoAccount = new Account_DTO(Long.parseLong(txtAccountID.getText()));
+                    if(busDeposit.deposit(dtoAccount, amount))
+                    {
+                        JOptionPane.showMessageDialog(this, "Successful deposit to account" , "Notification", JOptionPane.INFORMATION_MESSAGE);  
+                        clearForm();
+                    }
+                    else
+                        JOptionPane.showMessageDialog(this, "Cannot deposit to account", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 else
-                    JOptionPane.showMessageDialog(this, "Cannot deposit to account", "Error", JOptionPane.ERROR_MESSAGE);
+                {
+                    JOptionPane.showMessageDialog(this, "The amount must be more than 10,000 VND", "Error", JOptionPane.ERROR_MESSAGE); 
+                }
             }
         }
     }//GEN-LAST:event_btnActivate_OpenAccountActionPerformed
