@@ -1,19 +1,19 @@
 package BUS;
 
-import DAL.Admin_DAL;
+import DAL.Employee_DAL;
 import DAL.Customer_DAL;
 import DAL.User_Login_DAL;
-import DTO.Admin_DTO;
+import DTO.Employee_DTO;
 import DTO.Customer_DTO;
 import DTO.User_Login_DTO;
 
 public class UserLoginManagement_BUS 
 {
-    Admin_DAL dalAdmin = new Admin_DAL();
+    Employee_DAL dalAdmin = new Employee_DAL();
     Customer_DAL dalCustomer = new Customer_DAL();
     User_Login_DAL dalUserLogin = new User_Login_DAL();
     
-    public  Admin_DTO getAdminInfo(int adminId)
+    public  Employee_DTO getAdminInfo(int adminId)
     {
         return dalAdmin.getAdminInfo(adminId);
     }
@@ -22,7 +22,7 @@ public class UserLoginManagement_BUS
         return dalCustomer.getInformation(id);
     }
     
-    public User_Login_DTO getUserLogin(Admin_DTO dtoAdmin)
+    public User_Login_DTO getUserLogin(Employee_DTO dtoAdmin)
     {
         return dalUserLogin.getUserLogin(dtoAdmin);
     }

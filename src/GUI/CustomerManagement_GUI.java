@@ -1,7 +1,7 @@
 package GUI;
 
 import BUS.CustomerManagement_BUS;
-import DTO.Admin_DTO;
+import DTO.Employee_DTO;
 import DTO.Customer_DTO;
 import GUI.AdminHome_GUI;
 import java.awt.event.KeyEvent;
@@ -14,9 +14,9 @@ import javax.swing.table.TableRowSorter;
 public class CustomerManagement_GUI extends javax.swing.JFrame 
 {
     CustomerManagement_BUS customer_BUS = new CustomerManagement_BUS();
-    Admin_DTO dtoAdmin = null;
+    Employee_DTO dtoAdmin = null;
     
-    public CustomerManagement_GUI(Admin_DTO admin) 
+    public CustomerManagement_GUI(Employee_DTO admin) 
     {
         initComponents();
         setLocationRelativeTo(null);

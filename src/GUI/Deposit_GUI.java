@@ -2,7 +2,7 @@ package GUI;
 
 import BUS.Deposit_BUS;
 import DTO.Account_DTO;
-import DTO.Admin_DTO;
+import DTO.Employee_DTO;
 import DTO.Customer_DTO;
 import java.awt.event.KeyEvent;
 import javax.swing.ButtonGroup;
@@ -11,9 +11,9 @@ import javax.swing.JOptionPane;
 public class Deposit_GUI extends javax.swing.JFrame {
 
     Deposit_BUS busDeposit = new Deposit_BUS();
-    Admin_DTO dtoAdmin = null;
+    Employee_DTO dtoAdmin = null;
     ButtonGroup radioGroup;
-    public Deposit_GUI(Admin_DTO admin) 
+    public Deposit_GUI(Employee_DTO admin) 
     {
         initComponents();
         setSize(1064,650);

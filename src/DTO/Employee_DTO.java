@@ -1,17 +1,17 @@
 package DTO;
 
-public class Admin_DTO 
+public class Employee_DTO 
 {
     private int id;
     private String firstName, lastName;
     private int userLoginId;
 
-    public Admin_DTO() 
+    public Employee_DTO() 
     {
         
     }
 
-    public Admin_DTO(int id, String firstName, String lastName, int userLoginId) 
+    public Employee_DTO(int id, String firstName, String lastName, int userLoginId) 
     {
         this.id = id;
         this.firstName = firstName;

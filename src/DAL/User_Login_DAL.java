@@ -1,6 +1,6 @@
 package DAL;
 
-import DTO.Admin_DTO;
+import DTO.Employee_DTO;
 import DTO.Customer_DTO;
 import DTO.User_Login_DTO;
 import java.sql.*;
@@ -137,7 +137,7 @@ public class User_Login_DAL extends DBConnection
         return null; 
     }
     
-    public User_Login_DTO getUserLogin(Admin_DTO dtoAdmin)
+    public User_Login_DTO getUserLogin(Employee_DTO dtoAdmin)
     {
         try
         {

@@ -1,7 +1,7 @@
 package GUI;
 
 import BUS.UserLoginManagement_BUS;
-import DTO.Admin_DTO;
+import DTO.Employee_DTO;
 import DTO.Customer_DTO;
 import DTO.User_Login_DTO;
 import java.awt.event.KeyEvent;
@@ -10,9 +10,9 @@ import javax.swing.JOptionPane;
 public class UserLoginManagement_GUI extends javax.swing.JFrame 
 {
     UserLoginManagement_BUS busUserLoginManagement = new UserLoginManagement_BUS();
-    Admin_DTO dtoAdmin = null;
+    Employee_DTO dtoAdmin = null;
     User_Login_DTO dtoUserLogin = null;
-    public UserLoginManagement_GUI(Admin_DTO admin) 
+    public UserLoginManagement_GUI(Employee_DTO admin) 
     {
         initComponents();
         setSize(1064,650);
@@ -284,7 +284,7 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
             if(cbbRole.getSelectedItem().equals("Admin"))
             {
                 int adminId = Integer.parseInt(txtId.getText());
-                Admin_DTO dtoAdmin = busUserLoginManagement.getAdminInfo(adminId);
+                Employee_DTO dtoAdmin = busUserLoginManagement.getAdminInfo(adminId);
                 if(dtoAdmin == null)
                 {
                     JOptionPane.showMessageDialog(this, "Admin ID is invalid", "Error", JOptionPane.ERROR_MESSAGE);

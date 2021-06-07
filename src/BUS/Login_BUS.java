@@ -1,16 +1,16 @@
 package BUS;
 // Bus này chỉ dùng cho form LogIn
-import DAL.Admin_DAL;
+import DAL.Employee_DAL;
 import DAL.Customer_DAL;
 import DAL.User_Login_DAL;
-import DTO.Admin_DTO;
+import DTO.Employee_DTO;
 import DTO.Customer_DTO;
 import DTO.User_Login_DTO;
 
 public class Login_BUS 
 {
     User_Login_DAL dalUserLogin = new User_Login_DAL();
-    Admin_DAL dalAdmin = new Admin_DAL();
+    Employee_DAL dalAdmin = new Employee_DAL();
     Customer_DAL dalCustomer = new Customer_DAL();
     
     
@@ -24,7 +24,7 @@ public class Login_BUS
         return dalCustomer.getCustomerInfo(dtoUserLogin);
     }
     
-    public Admin_DTO getAdminInfo(User_Login_DTO dtoUserLogin)
+    public Employee_DTO getAdminInfo(User_Login_DTO dtoUserLogin)
     {
         return dalAdmin.getAdminInfo(dtoUserLogin);
     }

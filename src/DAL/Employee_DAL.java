@@ -1,24 +1,24 @@
 package DAL;
 
-import DTO.Admin_DTO;
+import DTO.Employee_DTO;
 import DTO.User_Login_DTO;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
 
-public class Admin_DAL extends DBConnection
+public class Employee_DAL extends DBConnection
 {
-    public Admin_DTO getAdminInfo(User_Login_DTO dtoUserLogin) 
+    public Employee_DTO getAdminInfo(User_Login_DTO dtoUserLogin) 
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            Admin_DTO dtoAdmin = null;
+            Employee_DTO dtoAdmin = null;
             String SQL2 = "SELECT * FROM EMPLOYEE WHERE UserLogin_ID = ?"; 
             PreparedStatement ps2 = con.prepareStatement(SQL2);
             ps2.setLong(1, dtoUserLogin.getId());
             ResultSet rs2 = ps2.executeQuery();
             while(rs2.next())
-                dtoAdmin = new Admin_DTO(rs2.getInt(1), rs2.getString(2), rs2.getString(3), rs2.getInt(4)); 
+                dtoAdmin = new Employee_DTO(rs2.getInt(1), rs2.getString(2), rs2.getString(3), rs2.getInt(4)); 
             con.close();
             return dtoAdmin;
         }
@@ -29,9 +29,9 @@ public class Admin_DAL extends DBConnection
         return null; 
     }
     
-    public  Admin_DTO getAdminInfo(int adminId)
+    public  Employee_DTO getAdminInfo(int adminId)
     {
-        Admin_DTO dtoAdmin = null;
+        Employee_DTO dtoAdmin = null;
         try
         {
             Connection con = DBConnection.ConnectDb();
@@ -40,7 +40,7 @@ public class Admin_DAL extends DBConnection
             Statement stat = con.createStatement();
             ResultSet rs = stat.executeQuery(SQL);
             while(rs.next())
-                dtoAdmin = new Admin_DTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                dtoAdmin = new Employee_DTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
             con.close();
         }
         catch(Exception e)

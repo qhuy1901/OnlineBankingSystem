@@ -11,7 +11,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.TreeMap;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.*;
 
 public class MyWallet_GUI extends javax.swing.JFrame 
 {
@@ -172,6 +172,7 @@ public class MyWallet_GUI extends javax.swing.JFrame
                 return canEdit [columnIndex];
             }
         });
+        tblTransactionHistory.setShowGrid(true);
         jScrollPane.setViewportView(tblTransactionHistory);
         if (tblTransactionHistory.getColumnModel().getColumnCount() > 0) {
             tblTransactionHistory.getColumnModel().getColumn(0).setResizable(false);

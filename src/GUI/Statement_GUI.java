@@ -2,7 +2,7 @@ package GUI;
 
 import BUS.Statement_BUS;
 import DTO.Account_DTO;
-import DTO.Admin_DTO;
+import DTO.Employee_DTO;
 import DTO.Customer_DTO;
 import DTO.Transaction_DTO;
 import DTO.Transaction_Type_DTO;
@@ -15,11 +15,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Statement_GUI extends javax.swing.JFrame {
-    Admin_DTO dtoAdmin = null;
+    Employee_DTO dtoAdmin = null;
     Statement_BUS busStatement = new Statement_BUS();
     Account_DTO dtoAccount = null;
     
-    public Statement_GUI(Admin_DTO admin) 
+    public Statement_GUI(Employee_DTO admin) 
     {
         initComponents();
         setSize(1064,650);
@@ -36,7 +36,7 @@ public class Statement_GUI extends javax.swing.JFrame {
     DefaultTableModel tblStatementModel = new DefaultTableModel();
     public void createTable() 
     {
-        ArrayList<Transaction_DTO> list = busStatement.getBankStatement(dtoAccount, datFromDate.getDate(), datToDate.getDate());
+        ArrayList<Transaction_DTO> list = busStatement.getStatement(dtoAccount, datFromDate.getDate(), datToDate.getDate());
         if(list.size() == 0)
         {
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -44,8 +44,8 @@ public class Statement_GUI extends javax.swing.JFrame {
         }
         else
         {
-            tblStatementModel.setRowCount(0); 
             TreeMap<String, Transaction_Type_DTO> transactionTypeList = busStatement.getTransactionTypeList();
+            tblStatementModel.setRowCount(0); 
             for(int i = 0; i < list.size(); i++) {
                 Transaction_DTO dtoTransaction = list.get(i);
                 String transactionId = String.valueOf(dtoTransaction.getId());
@@ -57,22 +57,23 @@ public class Statement_GUI extends javax.swing.JFrame {
                     totalTransactionAmount = "+" + totalTransactionAmount + " VND";
                 else // nếu là giao dịch trừ tiền tài khoản
                     totalTransactionAmount = "-" + totalTransactionAmount + " VND";
-                String transactionName = transactionTypeList.get(transactionTypeID).getName().toUpperCase();
+                String transactionContent = transactionTypeList.get(transactionTypeID).getName().toUpperCase();
                 if(transactionTypeID.contains("CT")) // Nếu là giao dịch chuyển tiền
                 {
                     Transfer_Detail_DTO dtoTransferDetail = busStatement.getTransferDetail(dtoTransaction.getId());
-                    transactionName = transactionName + " \nTRANSFER FROM " + dtoTransferDetail.getReceiverAccount() + " " + dtoTransferDetail.getContent();
+                    transactionContent = transactionContent + " \nTRANSFER FROM " + dtoTransferDetail.getReceiverAccount() + " " + dtoTransferDetail.getContent();
                 }
-                String[] rows = {transactionId, transactionDate , totalTransactionAmount , transactionName};
+                String[] rows = {transactionId, transactionDate , totalTransactionAmount , transactionContent};
                 tblStatementModel.addRow(rows);
             }
-            btnExportreport.setVisible(true);
             tblStatement.setModel(tblStatementModel);
             
             // set kích thước cột
             tblStatement.getColumnModel().getColumn(0).setPreferredWidth(35);
             tblStatement.getColumnModel().getColumn(1).setPreferredWidth(80);
             tblStatement.getColumnModel().getColumn(3).setPreferredWidth(320);
+            
+            btnExportreport.setVisible(true);
         }
     }
  
@@ -234,7 +235,7 @@ public class Statement_GUI extends javax.swing.JFrame {
         }
         else
         {
-            if(datFromDate.getDate().compareTo(datToDate.getDate()) == 1)
+            if(datFromDate.getDate().compareTo(datToDate.getDate()) == 1) // Kiểm tra ngày sao kê: fromDate có lớn hơn toDate không?
             {
                 JOptionPane.showMessageDialog(this, "Invalid statement date", "Eroror", JOptionPane.ERROR_MESSAGE);
                 datFromDate.setDate(null);

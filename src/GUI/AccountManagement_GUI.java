@@ -2,7 +2,7 @@ package GUI;
 
 import BUS.AccountManagement_BUS;
 import DTO.Account_DTO;
-import DTO.Admin_DTO;
+import DTO.Employee_DTO;
 import GUI.AdminHome_GUI;
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -14,8 +14,8 @@ public class AccountManagement_GUI extends javax.swing.JFrame
 {
 
     AccountManagement_BUS busAccount = new AccountManagement_BUS();
-    Admin_DTO dtoAdmin = null;
-    public AccountManagement_GUI(Admin_DTO admin) {
+    Employee_DTO dtoAdmin = null;
+    public AccountManagement_GUI(Employee_DTO admin) {
         initComponents();
         setSize(1064,650);
         setLocationRelativeTo(null);

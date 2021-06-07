@@ -64,7 +64,7 @@ public class Transaction_DAL
         return transactionList; 
     }
     
-    public ArrayList<Transaction_DTO> getBankStatement(Account_DTO dtoAccount, Date fromDate, Date toDate) 
+    public ArrayList<Transaction_DTO> getStatement(Account_DTO dtoAccount, Date fromDate, Date toDate) 
     {
         ArrayList<Transaction_DTO> statementlist = new ArrayList<Transaction_DTO>();
          try

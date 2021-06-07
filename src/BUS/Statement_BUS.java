@@ -20,9 +20,9 @@ public class Statement_BUS
     Customer_DAL dalCustomer = new Customer_DAL();
     Transfer_Detail_DAL dalTransferDetail = new Transfer_Detail_DAL();
     
-    public ArrayList<Transaction_DTO> getBankStatement(Account_DTO dtoAccount, Date fromDate, Date toDate) 
+    public ArrayList<Transaction_DTO> getStatement(Account_DTO dtoAccount, Date fromDate, Date toDate) 
     {
-        return dalTransaction.getBankStatement(dtoAccount, fromDate, toDate);
+        return dalTransaction.getStatement(dtoAccount, fromDate, toDate);
     }
     
     public TreeMap<String, Transaction_Type_DTO> getTransactionTypeList()

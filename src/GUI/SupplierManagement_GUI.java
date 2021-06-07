@@ -1,7 +1,7 @@
 package GUI;
 
 import BUS.SupplierManagment_BUS;
-import DTO.Admin_DTO;
+import DTO.Employee_DTO;
 import DTO.Supplier_DTO;
 import GUI.AdminHome_GUI;
 import java.awt.event.KeyEvent;
@@ -20,9 +20,9 @@ import javax.swing.table.TableRowSorter;
 public class SupplierManagement_GUI extends javax.swing.JFrame 
 {
     SupplierManagment_BUS busSupplier = new SupplierManagment_BUS();
-    Admin_DTO dtoAdmin = null;
+    Employee_DTO dtoAdmin = null;
     
-    public SupplierManagement_GUI(Admin_DTO admin) 
+    public SupplierManagement_GUI(Employee_DTO admin) 
     {
         initComponents();
         setSize(1064,650);
