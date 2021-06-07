@@ -28,7 +28,7 @@ public class Statement_GUI extends javax.swing.JFrame {
         tblStatementModel.setColumnIdentifiers(title);
         tblStatement.setModel(tblStatementModel);
         dtoAdmin = admin;
-        btnExportreport.setVisible(false);
+        btnExport.setVisible(false);
         setVisible(true);
     }
     
@@ -73,7 +73,7 @@ public class Statement_GUI extends javax.swing.JFrame {
             tblStatement.getColumnModel().getColumn(1).setPreferredWidth(80);
             tblStatement.getColumnModel().getColumn(3).setPreferredWidth(320);
             
-            btnExportreport.setVisible(true);
+            btnExport.setVisible(true);
         }
     }
  
@@ -83,13 +83,13 @@ public class Statement_GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblToDay = new javax.swing.JLabel();
-        lblAccountID = new javax.swing.JLabel();
+        lblToDate = new javax.swing.JLabel();
+        lblAccountOnwer = new javax.swing.JLabel();
         lblFromDate = new javax.swing.JLabel();
         txtAccountID = new javax.swing.JTextField();
-        btnExportreport = new javax.swing.JButton();
+        btnExport = new javax.swing.JButton();
         btnStatement = new javax.swing.JButton();
-        lblImage_MyWalletCusGUI = new javax.swing.JLabel();
+        lblImage = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStatement = new javax.swing.JTable();
         btnHome = new javax.swing.JButton();
@@ -105,17 +105,17 @@ public class Statement_GUI extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(239, 250, 252));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblToDay.setBackground(new java.awt.Color(32, 172, 216));
-        lblToDay.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblToDay.setForeground(new java.awt.Color(32, 172, 216));
-        lblToDay.setText("To:");
-        jPanel1.add(lblToDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, -1, -1));
+        lblToDate.setBackground(new java.awt.Color(32, 172, 216));
+        lblToDate.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblToDate.setForeground(new java.awt.Color(32, 172, 216));
+        lblToDate.setText("To:");
+        jPanel1.add(lblToDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, -1, -1));
 
-        lblAccountID.setBackground(new java.awt.Color(32, 172, 216));
-        lblAccountID.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblAccountID.setForeground(new java.awt.Color(32, 172, 216));
-        lblAccountID.setText("Account onwer:");
-        jPanel1.add(lblAccountID, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
+        lblAccountOnwer.setBackground(new java.awt.Color(32, 172, 216));
+        lblAccountOnwer.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblAccountOnwer.setForeground(new java.awt.Color(32, 172, 216));
+        lblAccountOnwer.setText("Account onwer:");
+        jPanel1.add(lblAccountOnwer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
 
         lblFromDate.setBackground(new java.awt.Color(32, 172, 216));
         lblFromDate.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -131,14 +131,14 @@ public class Statement_GUI extends javax.swing.JFrame {
         });
         jPanel1.add(txtAccountID, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 300, 30));
 
-        btnExportreport.setBackground(new java.awt.Color(32, 172, 216));
-        btnExportreport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnExportreport.setForeground(new java.awt.Color(255, 255, 255));
-        btnExportreport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Export.png"))); // NOI18N
-        btnExportreport.setText("Export statement report");
-        btnExportreport.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnExportreport.setIconTextGap(2);
-        jPanel1.add(btnExportreport, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 220, 40));
+        btnExport.setBackground(new java.awt.Color(32, 172, 216));
+        btnExport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnExport.setForeground(new java.awt.Color(255, 255, 255));
+        btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Export.png"))); // NOI18N
+        btnExport.setText("Export statement report");
+        btnExport.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnExport.setIconTextGap(2);
+        jPanel1.add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 220, 40));
 
         btnStatement.setBackground(new java.awt.Color(32, 172, 216));
         btnStatement.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -152,8 +152,8 @@ public class Statement_GUI extends javax.swing.JFrame {
         });
         jPanel1.add(btnStatement, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 140, 40));
 
-        lblImage_MyWalletCusGUI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Statement.png"))); // NOI18N
-        jPanel1.add(lblImage_MyWalletCusGUI, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 100));
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Statement.png"))); // NOI18N
+        jPanel1.add(lblImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 100));
 
         tblStatement.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -264,19 +264,19 @@ public class Statement_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAccountIDActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExportreport;
+    private javax.swing.JButton btnExport;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnStatement;
     private com.toedter.calendar.JDateChooser datFromDate;
     private com.toedter.calendar.JDateChooser datToDate;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblAccountID;
     private javax.swing.JLabel lblAccountID1;
+    private javax.swing.JLabel lblAccountOnwer;
     private javax.swing.JLabel lblFromDate;
-    private javax.swing.JLabel lblImage_MyWalletCusGUI;
+    private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JLabel lblToDay;
+    private javax.swing.JLabel lblToDate;
     private javax.swing.JTable tblStatement;
     private javax.swing.JTextField txtAccountID;
     private javax.swing.JTextField txtAccountOnwer;

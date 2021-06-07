@@ -33,7 +33,7 @@ public class MyWallet_GUI extends javax.swing.JFrame
         setVisible(true);
     }
     
-    private void displayAccountInformation()
+    public void displayAccountInformation()
     {
         txtAccountId.setText(String.valueOf(dtoAccount.getId()));
         txtAccountOwner.setText(dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());

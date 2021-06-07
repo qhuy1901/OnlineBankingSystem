@@ -38,22 +38,22 @@ public class Deposit_GUI extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         Panel_OpenAccount = new javax.swing.JPanel();
         btnHome_OpenAccount = new javax.swing.JButton();
-        lbCustomerID_OpenAccount = new javax.swing.JLabel();
-        lbAmount_OpenAccount = new javax.swing.JLabel();
+        lblBeneficiaryName = new javax.swing.JLabel();
+        lblAmount = new javax.swing.JLabel();
         txtAmount = new javax.swing.JTextField();
-        btnActivate_OpenAccount = new javax.swing.JButton();
+        btnDeposit = new javax.swing.JButton();
         lbIcon_OpenAccount = new javax.swing.JLabel();
         lbOpenAccount = new javax.swing.JLabel();
         txtBeneficiaryName = new javax.swing.JTextField();
-        lbCustomerID_OpenAccount1 = new javax.swing.JLabel();
-        lblPaymentAccountInformation = new javax.swing.JLabel();
-        lbCustomerID_OpenAccount3 = new javax.swing.JLabel();
+        lblTransactionType = new javax.swing.JLabel();
+        lblDepositInformation = new javax.swing.JLabel();
+        lbCustomerID = new javax.swing.JLabel();
         rbDepositToAccount = new javax.swing.JRadioButton();
         rbAccountOpening = new javax.swing.JRadioButton();
-        lblPaymentAccountInformation1 = new javax.swing.JLabel();
+        lblBeneficiaryInformation = new javax.swing.JLabel();
         txtAccountID = new javax.swing.JTextField();
-        lbCustomerID_OpenAccount4 = new javax.swing.JLabel();
-        txtCustomer_ID = new javax.swing.JTextField();
+        lblAccountID = new javax.swing.JLabel();
+        txtCustomerID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Deposit");
@@ -78,15 +78,15 @@ public class Deposit_GUI extends javax.swing.JFrame {
         });
         Panel_OpenAccount.add(btnHome_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, 76, 58));
 
-        lbCustomerID_OpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbCustomerID_OpenAccount.setForeground(new java.awt.Color(32, 172, 216));
-        lbCustomerID_OpenAccount.setText("Beneficiary name: ");
-        Panel_OpenAccount.add(lbCustomerID_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, -1, -1));
+        lblBeneficiaryName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblBeneficiaryName.setForeground(new java.awt.Color(32, 172, 216));
+        lblBeneficiaryName.setText("Beneficiary name: ");
+        Panel_OpenAccount.add(lblBeneficiaryName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, -1, -1));
 
-        lbAmount_OpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbAmount_OpenAccount.setForeground(new java.awt.Color(32, 172, 216));
-        lbAmount_OpenAccount.setText("Amount:  ");
-        Panel_OpenAccount.add(lbAmount_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, -1, -1));
+        lblAmount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblAmount.setForeground(new java.awt.Color(32, 172, 216));
+        lblAmount.setText("Amount:  ");
+        Panel_OpenAccount.add(lblAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, -1, -1));
 
         txtAmount.setEditable(false);
         txtAmount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -97,16 +97,16 @@ public class Deposit_GUI extends javax.swing.JFrame {
         });
         Panel_OpenAccount.add(txtAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 450, 370, -1));
 
-        btnActivate_OpenAccount.setBackground(new java.awt.Color(32, 172, 216));
-        btnActivate_OpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnActivate_OpenAccount.setForeground(new java.awt.Color(255, 255, 255));
-        btnActivate_OpenAccount.setText("Deposit");
-        btnActivate_OpenAccount.addActionListener(new java.awt.event.ActionListener() {
+        btnDeposit.setBackground(new java.awt.Color(32, 172, 216));
+        btnDeposit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnDeposit.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeposit.setText("Deposit");
+        btnDeposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActivate_OpenAccountActionPerformed(evt);
+                btnDepositActionPerformed(evt);
             }
         });
-        Panel_OpenAccount.add(btnActivate_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 540, 140, 40));
+        Panel_OpenAccount.add(btnDeposit, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 540, 140, 40));
 
         lbIcon_OpenAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Deposit.png"))); // NOI18N
         Panel_OpenAccount.add(lbIcon_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 120, 110));
@@ -123,21 +123,21 @@ public class Deposit_GUI extends javax.swing.JFrame {
         txtBeneficiaryName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Panel_OpenAccount.add(txtBeneficiaryName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 370, -1));
 
-        lbCustomerID_OpenAccount1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbCustomerID_OpenAccount1.setForeground(new java.awt.Color(32, 172, 216));
-        lbCustomerID_OpenAccount1.setText("Transaction Type:");
-        Panel_OpenAccount.add(lbCustomerID_OpenAccount1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
+        lblTransactionType.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTransactionType.setForeground(new java.awt.Color(32, 172, 216));
+        lblTransactionType.setText("Transaction Type:");
+        Panel_OpenAccount.add(lblTransactionType, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
 
-        lblPaymentAccountInformation.setBackground(new java.awt.Color(32, 172, 216));
-        lblPaymentAccountInformation.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        lblPaymentAccountInformation.setForeground(new java.awt.Color(32, 172, 216));
-        lblPaymentAccountInformation.setText("Deposit Information:");
-        Panel_OpenAccount.add(lblPaymentAccountInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, -1, -1));
+        lblDepositInformation.setBackground(new java.awt.Color(32, 172, 216));
+        lblDepositInformation.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        lblDepositInformation.setForeground(new java.awt.Color(32, 172, 216));
+        lblDepositInformation.setText("Deposit Information:");
+        Panel_OpenAccount.add(lblDepositInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, -1, -1));
 
-        lbCustomerID_OpenAccount3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbCustomerID_OpenAccount3.setForeground(new java.awt.Color(32, 172, 216));
-        lbCustomerID_OpenAccount3.setText("Customer ID: ");
-        Panel_OpenAccount.add(lbCustomerID_OpenAccount3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
+        lbCustomerID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbCustomerID.setForeground(new java.awt.Color(32, 172, 216));
+        lbCustomerID.setText("Customer ID: ");
+        Panel_OpenAccount.add(lbCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
 
         rbDepositToAccount.setBackground(new java.awt.Color(239, 250, 252));
         rbDepositToAccount.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -161,11 +161,11 @@ public class Deposit_GUI extends javax.swing.JFrame {
         });
         Panel_OpenAccount.add(rbAccountOpening, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, -1, -1));
 
-        lblPaymentAccountInformation1.setBackground(new java.awt.Color(32, 172, 216));
-        lblPaymentAccountInformation1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        lblPaymentAccountInformation1.setForeground(new java.awt.Color(32, 172, 216));
-        lblPaymentAccountInformation1.setText("Beneficiary Information:");
-        Panel_OpenAccount.add(lblPaymentAccountInformation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+        lblBeneficiaryInformation.setBackground(new java.awt.Color(32, 172, 216));
+        lblBeneficiaryInformation.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        lblBeneficiaryInformation.setForeground(new java.awt.Color(32, 172, 216));
+        lblBeneficiaryInformation.setText("Beneficiary Information:");
+        Panel_OpenAccount.add(lblBeneficiaryInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
         txtAccountID.setEditable(false);
         txtAccountID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -186,29 +186,29 @@ public class Deposit_GUI extends javax.swing.JFrame {
         });
         Panel_OpenAccount.add(txtAccountID, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 370, -1));
 
-        lbCustomerID_OpenAccount4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbCustomerID_OpenAccount4.setForeground(new java.awt.Color(32, 172, 216));
-        lbCustomerID_OpenAccount4.setText("Account ID: ");
-        Panel_OpenAccount.add(lbCustomerID_OpenAccount4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
+        lblAccountID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblAccountID.setForeground(new java.awt.Color(32, 172, 216));
+        lblAccountID.setText("Account ID: ");
+        Panel_OpenAccount.add(lblAccountID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
 
-        txtCustomer_ID.setEditable(false);
-        txtCustomer_ID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtCustomer_ID.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtCustomerID.setEditable(false);
+        txtCustomerID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtCustomerID.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCustomer_IDMouseClicked(evt);
+                txtCustomerIDMouseClicked(evt);
             }
         });
-        txtCustomer_ID.addActionListener(new java.awt.event.ActionListener() {
+        txtCustomerID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCustomer_IDActionPerformed(evt);
+                txtCustomerIDActionPerformed(evt);
             }
         });
-        txtCustomer_ID.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCustomerID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCustomer_IDKeyTyped(evt);
+                txtCustomerIDKeyTyped(evt);
             }
         });
-        Panel_OpenAccount.add(txtCustomer_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 370, -1));
+        Panel_OpenAccount.add(txtCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 370, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -237,21 +237,21 @@ public class Deposit_GUI extends javax.swing.JFrame {
             evt.consume();
     }//GEN-LAST:event_txtAmountKeyTyped
 
-    private void btnActivate_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivate_OpenAccountActionPerformed
+    private void btnDepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositActionPerformed
         if(rbAccountOpening.isSelected())
         {
-            if(txtCustomer_ID.getText().equals("") || txtAmount.getText().equals(""))
+            if(txtCustomerID.getText().equals("") || txtAmount.getText().equals("") || txtBeneficiaryName.getText().equals(""))
             {
                 JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
             }
             else
             {
-                if(Long.parseLong(txtAmount.getText()) > 50000)
+                if(Long.parseLong(txtAmount.getText()) >= 50000)
                 {
                     int reply = JOptionPane.showConfirmDialog(null, "Are you sure to open this payment account for customer?", "Confirm", JOptionPane.YES_NO_OPTION);
                     if (reply == JOptionPane.YES_OPTION) 
                     {
-                        if(busDeposit.openPaymentAccount(Long.parseLong(txtCustomer_ID.getText()), Long.parseLong(txtAmount.getText())))
+                        if(busDeposit.openPaymentAccount(Long.parseLong(txtCustomerID.getText()), Long.parseLong(txtAmount.getText())))
                         {
                             JOptionPane.showMessageDialog(this, "Successful account opening" , "Notification", JOptionPane.INFORMATION_MESSAGE);  
                             clearForm();
@@ -272,7 +272,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
             }
             else
             {
-                if(Long.parseLong(txtAmount.getText()) > 100000)
+                if(Long.parseLong(txtAmount.getText()) >= 100000)
                 {
                     long amount = Long.parseLong(txtAmount.getText());
                     Account_DTO dtoAccount = new Account_DTO(Long.parseLong(txtAccountID.getText()));
@@ -290,11 +290,11 @@ public class Deposit_GUI extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_btnActivate_OpenAccountActionPerformed
+    }//GEN-LAST:event_btnDepositActionPerformed
 
     private void txtAccountIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAccountIDMouseClicked
         txtBeneficiaryName.setText("");
-        txtCustomer_ID.setText("");
+        txtCustomerID.setText("");
     }//GEN-LAST:event_txtAccountIDMouseClicked
 
     private void txtAccountIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccountIDActionPerformed
@@ -313,7 +313,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
             }
             else
             {
-                txtCustomer_ID.setText(String.valueOf(dtoCustomer.getId()));
+                txtCustomerID.setText(String.valueOf(dtoCustomer.getId()));
                 txtBeneficiaryName.setText(dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
             }
         }
@@ -326,18 +326,18 @@ public class Deposit_GUI extends javax.swing.JFrame {
             evt.consume();
     }//GEN-LAST:event_txtAccountIDKeyTyped
 
-    private void txtCustomer_IDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCustomer_IDMouseClicked
+    private void txtCustomerIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCustomerIDMouseClicked
         txtBeneficiaryName.setText("");
-    }//GEN-LAST:event_txtCustomer_IDMouseClicked
+    }//GEN-LAST:event_txtCustomerIDMouseClicked
 
-    private void txtCustomer_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomer_IDActionPerformed
-        if(txtCustomer_ID.getText().equals(""))
+    private void txtCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerIDActionPerformed
+        if(txtCustomerID.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
-            Customer_DTO dtoCustomer = busDeposit.getInformation(Long.parseLong(txtCustomer_ID.getText()));
+            Customer_DTO dtoCustomer = busDeposit.getInformation(Long.parseLong(txtCustomerID.getText()));
             if(dtoCustomer == null)
             {
                 JOptionPane.showMessageDialog(this, "Customer ID is invalid.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -348,18 +348,18 @@ public class Deposit_GUI extends javax.swing.JFrame {
                 txtBeneficiaryName.setText(dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
             }
         }
-    }//GEN-LAST:event_txtCustomer_IDActionPerformed
+    }//GEN-LAST:event_txtCustomerIDActionPerformed
 
-    private void txtCustomer_IDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomer_IDKeyTyped
+    private void txtCustomerIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIDKeyTyped
         char c = evt.getKeyChar();
         if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-    }//GEN-LAST:event_txtCustomer_IDKeyTyped
+    }//GEN-LAST:event_txtCustomerIDKeyTyped
 
     private void clearForm()
     {
         txtAccountID.setText("");
-        txtCustomer_ID.setText("");
+        txtCustomerID.setText("");
         txtBeneficiaryName.setText("");
         txtAmount.setText("");
     }
@@ -367,7 +367,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
     private void rbAccountOpeningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAccountOpeningActionPerformed
         clearForm();
         txtAccountID.setEditable(false);
-        txtCustomer_ID.setEditable(true);
+        txtCustomerID.setEditable(true);
         txtBeneficiaryName.setEditable(false);
         txtAmount.setEditable(true);
     }//GEN-LAST:event_rbAccountOpeningActionPerformed
@@ -375,7 +375,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
     private void rbDepositToAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDepositToAccountActionPerformed
         clearForm();
         txtAccountID.setEditable(true);
-        txtCustomer_ID.setEditable(false);
+        txtCustomerID.setEditable(false);
         txtBeneficiaryName.setEditable(false);
         txtAmount.setEditable(true);
     }//GEN-LAST:event_rbDepositToAccountActionPerformed
@@ -383,24 +383,24 @@ public class Deposit_GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel_OpenAccount;
-    private javax.swing.JButton btnActivate_OpenAccount;
+    private javax.swing.JButton btnDeposit;
     private javax.swing.JButton btnHome_OpenAccount;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel lbAmount_OpenAccount;
-    private javax.swing.JLabel lbCustomerID_OpenAccount;
-    private javax.swing.JLabel lbCustomerID_OpenAccount1;
-    private javax.swing.JLabel lbCustomerID_OpenAccount3;
-    private javax.swing.JLabel lbCustomerID_OpenAccount4;
+    private javax.swing.JLabel lbCustomerID;
     private javax.swing.JLabel lbIcon_OpenAccount;
     private javax.swing.JLabel lbOpenAccount;
-    private javax.swing.JLabel lblPaymentAccountInformation;
-    private javax.swing.JLabel lblPaymentAccountInformation1;
+    private javax.swing.JLabel lblAccountID;
+    private javax.swing.JLabel lblAmount;
+    private javax.swing.JLabel lblBeneficiaryInformation;
+    private javax.swing.JLabel lblBeneficiaryName;
+    private javax.swing.JLabel lblDepositInformation;
+    private javax.swing.JLabel lblTransactionType;
     private javax.swing.JRadioButton rbAccountOpening;
     private javax.swing.JRadioButton rbDepositToAccount;
     private javax.swing.JTextField txtAccountID;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtBeneficiaryName;
-    private javax.swing.JTextField txtCustomer_ID;
+    private javax.swing.JTextField txtCustomerID;
     // End of variables declaration//GEN-END:variables
 
 }

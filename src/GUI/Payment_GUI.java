@@ -39,7 +39,7 @@ public class Payment_GUI extends javax.swing.JFrame
         cboServiceType.setSelectedItem(null);
     }
     
-    private void loadCboServiceType()
+    public void loadCboServiceType()
     {
         ArrayList<String> serviceTypeList = busPayment.getServiceTypeList();
         for(String serviceType : serviceTypeList)
@@ -48,7 +48,7 @@ public class Payment_GUI extends javax.swing.JFrame
         }
     }
     
-    private void clearBillLookupInformation()
+    public void clearBillLookupInformation()
     {
         txtBillID_BillLookup.setText("");
         txtCustomerID_BillLookup.setText("");

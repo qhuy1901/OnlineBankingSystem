@@ -103,11 +103,6 @@ public class LogIn_GUI extends javax.swing.JFrame
         txtPassword.setFont(new java.awt.Font("Javanese Text", 0, 17)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(239, 250, 252));
         txtPassword.setBorder(null);
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
-            }
-        });
         jPanel5.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 220, 30));
 
         jLabel14.setBackground(new java.awt.Color(239, 250, 252));
@@ -120,11 +115,6 @@ public class LogIn_GUI extends javax.swing.JFrame
         txtUsername.setFont(new java.awt.Font("Javanese Text", 0, 17)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(239, 250, 252));
         txtUsername.setBorder(null);
-        txtUsername.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtUsernameMouseClicked(evt);
-            }
-        });
         jPanel5.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 210, 30));
 
         jLabel15.setFont(new java.awt.Font("Javanese Text", 1, 15)); // NOI18N
@@ -232,14 +222,6 @@ public class LogIn_GUI extends javax.swing.JFrame
             }  
         }
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
-
-    private void txtUsernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsernameMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;

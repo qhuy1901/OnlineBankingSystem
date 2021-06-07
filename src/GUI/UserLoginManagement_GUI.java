@@ -30,30 +30,30 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
 
         Panel_SearchAccount = new javax.swing.JPanel();
         btnHome_SearchAccount = new javax.swing.JButton();
-        lbIcon_SearchAccount = new javax.swing.JLabel();
-        lbSearchAccount = new javax.swing.JLabel();
+        lblIcon = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         pnlUserLoginInformation = new javax.swing.JPanel();
-        lblDebitAccount5 = new javax.swing.JLabel();
-        lblStartDate = new javax.swing.JLabel();
-        lblAnticipatedInterest = new javax.swing.JLabel();
-        lblInterestRate = new javax.swing.JLabel();
+        lblUserLoginInformation = new javax.swing.JLabel();
+        lblLastAccessTime = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
         btnEdit = new javax.swing.JButton();
-        lblStartDate1 = new javax.swing.JLabel();
-        lblStartDate3 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        lblNumberOfFailedLogin = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
-        lblTotalReceivedAmount1 = new javax.swing.JLabel();
+        lblUserLoginID = new javax.swing.JLabel();
         txtLastAccessTime = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
         txtRole = new javax.swing.JTextField();
         txtNumberFailedLogin = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
-        lblTotalReceivedAmount2 = new javax.swing.JLabel();
+        lblRole = new javax.swing.JLabel();
         txtUserLoginId = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         lbSearch2 = new javax.swing.JLabel();
-        lbSearch3 = new javax.swing.JLabel();
+        lbCustomerAdminID = new javax.swing.JLabel();
         cbbRole = new javax.swing.JComboBox<>();
         txtId = new javax.swing.JTextField();
 
@@ -80,43 +80,43 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         });
         Panel_SearchAccount.add(btnHome_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 76, 58));
 
-        lbIcon_SearchAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/UserLoginManagment.png"))); // NOI18N
-        Panel_SearchAccount.add(lbIcon_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 110, 120));
+        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/UserLoginManagment.png"))); // NOI18N
+        Panel_SearchAccount.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 110, 120));
 
-        lbSearchAccount.setBackground(new java.awt.Color(32, 172, 216));
-        lbSearchAccount.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lbSearchAccount.setForeground(new java.awt.Color(255, 255, 255));
-        lbSearchAccount.setText("          User Login Managment");
-        lbSearchAccount.setOpaque(true);
-        lbSearchAccount.setPreferredSize(new java.awt.Dimension(34, 50));
-        Panel_SearchAccount.add(lbSearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 930, 66));
+        lblTitle.setBackground(new java.awt.Color(32, 172, 216));
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setText("          User Login Managment");
+        lblTitle.setOpaque(true);
+        lblTitle.setPreferredSize(new java.awt.Dimension(34, 50));
+        Panel_SearchAccount.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 930, 66));
         Panel_SearchAccount.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 750, 30));
 
         pnlUserLoginInformation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblDebitAccount5.setBackground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount5.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        lblDebitAccount5.setForeground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount5.setText("User Login Information");
-        pnlUserLoginInformation.add(lblDebitAccount5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+        lblUserLoginInformation.setBackground(new java.awt.Color(32, 172, 216));
+        lblUserLoginInformation.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        lblUserLoginInformation.setForeground(new java.awt.Color(32, 172, 216));
+        lblUserLoginInformation.setText("User Login Information");
+        pnlUserLoginInformation.add(lblUserLoginInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
-        lblStartDate.setBackground(new java.awt.Color(32, 172, 216));
-        lblStartDate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblStartDate.setForeground(new java.awt.Color(32, 172, 216));
-        lblStartDate.setText("Last access time:");
-        pnlUserLoginInformation.add(lblStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, -1));
+        lblLastAccessTime.setBackground(new java.awt.Color(32, 172, 216));
+        lblLastAccessTime.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblLastAccessTime.setForeground(new java.awt.Color(32, 172, 216));
+        lblLastAccessTime.setText("Last access time:");
+        pnlUserLoginInformation.add(lblLastAccessTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, -1));
 
-        lblAnticipatedInterest.setBackground(new java.awt.Color(32, 172, 216));
-        lblAnticipatedInterest.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblAnticipatedInterest.setForeground(new java.awt.Color(32, 172, 216));
-        lblAnticipatedInterest.setText("Password:");
-        pnlUserLoginInformation.add(lblAnticipatedInterest, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+        lblPassword.setBackground(new java.awt.Color(32, 172, 216));
+        lblPassword.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblPassword.setForeground(new java.awt.Color(32, 172, 216));
+        lblPassword.setText("Password:");
+        pnlUserLoginInformation.add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
-        lblInterestRate.setBackground(new java.awt.Color(32, 172, 216));
-        lblInterestRate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblInterestRate.setForeground(new java.awt.Color(32, 172, 216));
-        lblInterestRate.setText("Username:");
-        pnlUserLoginInformation.add(lblInterestRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+        lblUsername.setBackground(new java.awt.Color(32, 172, 216));
+        lblUsername.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(32, 172, 216));
+        lblUsername.setText("Username:");
+        pnlUserLoginInformation.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
         btnEdit.setBackground(new java.awt.Color(32, 172, 216));
         btnEdit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -129,17 +129,17 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         });
         pnlUserLoginInformation.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 70, 30));
 
-        lblStartDate1.setBackground(new java.awt.Color(32, 172, 216));
-        lblStartDate1.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblStartDate1.setForeground(new java.awt.Color(32, 172, 216));
-        lblStartDate1.setText("Name:");
-        pnlUserLoginInformation.add(lblStartDate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+        lblName.setBackground(new java.awt.Color(32, 172, 216));
+        lblName.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblName.setForeground(new java.awt.Color(32, 172, 216));
+        lblName.setText("Name:");
+        pnlUserLoginInformation.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
-        lblStartDate3.setBackground(new java.awt.Color(32, 172, 216));
-        lblStartDate3.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblStartDate3.setForeground(new java.awt.Color(32, 172, 216));
-        lblStartDate3.setText("Number of failed login:");
-        pnlUserLoginInformation.add(lblStartDate3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
+        lblNumberOfFailedLogin.setBackground(new java.awt.Color(32, 172, 216));
+        lblNumberOfFailedLogin.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblNumberOfFailedLogin.setForeground(new java.awt.Color(32, 172, 216));
+        lblNumberOfFailedLogin.setText("Number of failed login:");
+        pnlUserLoginInformation.add(lblNumberOfFailedLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
 
         btnUpdate.setBackground(new java.awt.Color(32, 172, 216));
         btnUpdate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -153,11 +153,11 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         });
         pnlUserLoginInformation.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 120, 40));
 
-        lblTotalReceivedAmount1.setBackground(new java.awt.Color(32, 172, 216));
-        lblTotalReceivedAmount1.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblTotalReceivedAmount1.setForeground(new java.awt.Color(32, 172, 216));
-        lblTotalReceivedAmount1.setText("User Login ID:");
-        pnlUserLoginInformation.add(lblTotalReceivedAmount1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        lblUserLoginID.setBackground(new java.awt.Color(32, 172, 216));
+        lblUserLoginID.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblUserLoginID.setForeground(new java.awt.Color(32, 172, 216));
+        lblUserLoginID.setText("User Login ID:");
+        pnlUserLoginInformation.add(lblUserLoginID, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         txtLastAccessTime.setEditable(false);
         txtLastAccessTime.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -188,11 +188,11 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         txtPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         pnlUserLoginInformation.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 180, 30));
 
-        lblTotalReceivedAmount2.setBackground(new java.awt.Color(32, 172, 216));
-        lblTotalReceivedAmount2.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
-        lblTotalReceivedAmount2.setForeground(new java.awt.Color(32, 172, 216));
-        lblTotalReceivedAmount2.setText("Role:");
-        pnlUserLoginInformation.add(lblTotalReceivedAmount2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
+        lblRole.setBackground(new java.awt.Color(32, 172, 216));
+        lblRole.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblRole.setForeground(new java.awt.Color(32, 172, 216));
+        lblRole.setText("Role:");
+        pnlUserLoginInformation.add(lblRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
 
         txtUserLoginId.setEditable(false);
         txtUserLoginId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -217,10 +217,10 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         lbSearch2.setText("Role:");
         Panel_SearchAccount.add(lbSearch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
 
-        lbSearch3.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        lbSearch3.setForeground(new java.awt.Color(32, 172, 216));
-        lbSearch3.setText("Customer/ Admin ID:");
-        Panel_SearchAccount.add(lbSearch3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
+        lbCustomerAdminID.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lbCustomerAdminID.setForeground(new java.awt.Color(32, 172, 216));
+        lbCustomerAdminID.setText("Customer/ Admin ID:");
+        Panel_SearchAccount.add(lbCustomerAdminID, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         cbbRole.setEditable(true);
         cbbRole.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -412,18 +412,18 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cbbRole;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbIcon_SearchAccount;
+    private javax.swing.JLabel lbCustomerAdminID;
     private javax.swing.JLabel lbSearch2;
-    private javax.swing.JLabel lbSearch3;
-    private javax.swing.JLabel lbSearchAccount;
-    private javax.swing.JLabel lblAnticipatedInterest;
-    private javax.swing.JLabel lblDebitAccount5;
-    private javax.swing.JLabel lblInterestRate;
-    private javax.swing.JLabel lblStartDate;
-    private javax.swing.JLabel lblStartDate1;
-    private javax.swing.JLabel lblStartDate3;
-    private javax.swing.JLabel lblTotalReceivedAmount1;
-    private javax.swing.JLabel lblTotalReceivedAmount2;
+    private javax.swing.JLabel lblIcon;
+    private javax.swing.JLabel lblLastAccessTime;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblNumberOfFailedLogin;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblRole;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblUserLoginID;
+    private javax.swing.JLabel lblUserLoginInformation;
+    private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel pnlUserLoginInformation;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtLastAccessTime;

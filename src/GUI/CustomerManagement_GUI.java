@@ -164,12 +164,6 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         });
         pnlViewCustomer.add(btnExportCustomerListReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 530, 250, 40));
 
-        txtSearch.setForeground(new java.awt.Color(204, 204, 204));
-        txtSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchActionPerformed(evt);
-            }
-        });
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchKeyReleased(evt);
@@ -410,23 +404,12 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         cbbUpdateGender.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbbUpdateGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", " " }));
         cbbUpdateGender.setSelectedIndex(-1);
-        cbbUpdateGender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbbUpdateGenderActionPerformed(evt);
-            }
-        });
         jPanel3.add(cbbUpdateGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 220, -1));
 
         lblAddress_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblAddress_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblAddress_UpdateCustomer.setText("Address");
         jPanel3.add(lblAddress_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 338, -1, -1));
-
-        txtUpdateAddress.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUpdateAddressActionPerformed(evt);
-            }
-        });
         jPanel3.add(txtUpdateAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 338, 540, 32));
 
         lblPhoneNumber_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
@@ -609,24 +592,12 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_txtSearchKeyReleased
 
-    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchActionPerformed
-    
-    private boolean isTxtUpdateIDIsFilled()
-    {
-            if(txtUpdateID.getText().equals(""))
-            {
-                JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }    
-            else
-                return true;
-    }
-    
     private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed
-        // TODO add your handling code here:
-        if(isTxtUpdateIDIsFilled())
+        if(txtUpdateID.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
+        }
+        else
         {
             Customer_DTO dtoCustomer = customer_BUS.getInformation(Integer.parseInt(txtUpdateID.getText()));
             if(dtoCustomer != null)
@@ -648,12 +619,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         }
     }//GEN-LAST:event_btnDeleteCustomerActionPerformed
 
-    private void cbbUpdateGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbUpdateGenderActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_cbbUpdateGenderActionPerformed
-
-    private boolean isValidUpdateForm()
+    public boolean isValidUpdateForm()
     {
             if(txtLastName_UpdateCustomer.getText().equals("") || txtUpdateID.getText().equals("") || txtUpdateAddress.getText().equals("") || txtUpdatePhoneNumber.getText().equals("") || txtUpdateIDCard.getText().equals(""))
             {
@@ -665,8 +631,12 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     }
     
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        if(isTxtUpdateIDIsFilled())
+
+        if(txtUpdateID.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
+        }
+        else
         {
             Customer_DTO dtoCustomer = customer_BUS.getInformation(Integer.parseInt(txtUpdateID.getText()));
             if(dtoCustomer != null)
@@ -695,8 +665,11 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     
     
     private void btnShowInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowInformationActionPerformed
-        // TODO add your handling code here:
-        if(isTxtUpdateIDIsFilled())
+        if(txtUpdateID.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
+        }
+        else
         {
             Customer_DTO dtoCustomer = customer_BUS.getInformation(Integer.parseInt(txtUpdateID.getText()));
             if(dtoCustomer != null)
@@ -713,10 +686,6 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 JOptionPane.showMessageDialog(this, "No customer information found!", "Error", JOptionPane.ERROR_MESSAGE);
         } 
     }//GEN-LAST:event_btnShowInformationActionPerformed
-
-    private void txtUpdateAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUpdateAddressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUpdateAddressActionPerformed
 
     private void btnHome_UpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_UpdateCustomerActionPerformed
         new AdminHome_GUI(dtoAdmin);
