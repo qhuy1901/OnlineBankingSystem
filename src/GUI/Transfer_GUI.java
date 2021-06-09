@@ -232,30 +232,39 @@ public class Transfer_GUI extends javax.swing.JFrame
         }
         else
         {
-            if(dtoAccount.getCurrentBalance() >= Long.parseLong(txtAmount.getText().replaceAll("\\s+",""))) // Kiểm tra số dư 
+            long amount = Long.parseLong(txtAmount.getText());
+            if(amount < 10000)
             {
-                if(confirmPassword())
-                {
-                    Transfer_Detail_DTO dtoTransferDetail = new Transfer_Detail_DTO(dtoAccount.getId(), dtoReceiverAccount.getId(), cboReceiverBank.getSelectedItem().toString(), Long.parseLong(txtAmount.getText()), txtContent.getText());
-                    int transactionId = busTransfer.transfer(dtoTransferDetail); // Thực hiện giao dịch
-                    if(transactionId != 0) // Thực hiện giao dịch thành công
-                    {
-                        JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);
-
-                        //Clear Form
-                        cboReceiverBank.setSelectedItem(null);
-                        txtReceiverAccount.setText("");
-                        txtAmount.setText("");
-                        txtReceiverName.setText("");
-                        txtContent.setText("");
-
-                        busTransfer.showTransferReceipt(transactionId);
-                    }
-                }
+                JOptionPane.showMessageDialog(this, "The transfer amount must be more than or equal to 10,000 VND", "Incorrect details", JOptionPane.ERROR_MESSAGE); 
             }
             else
-                JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);     
-                
+            {
+                if(dtoAccount.getCurrentBalance() >= Long.parseLong(txtAmount.getText().replaceAll("\\s+",""))) // Kiểm tra số dư 
+                {
+                    if(confirmPassword())
+                    {
+                        Transfer_Detail_DTO dtoTransferDetail = new Transfer_Detail_DTO(dtoAccount.getId(), dtoReceiverAccount.getId(), cboReceiverBank.getSelectedItem().toString(), Long.parseLong(txtAmount.getText()), txtContent.getText());
+                        int transactionId = busTransfer.transfer(dtoTransferDetail); // Thực hiện giao dịch
+                        if(transactionId != 0) // Thực hiện giao dịch thành công
+                        {
+                            JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);
+
+                            //Clear Form
+                            cboReceiverBank.setSelectedItem(null);
+                            txtReceiverAccount.setText("");
+                            txtAmount.setText("");
+                            txtReceiverName.setText("");
+                            txtContent.setText("");
+
+                            busTransfer.showTransferReceipt(transactionId);
+                        }
+                        else
+                           JOptionPane.showMessageDialog(this, "Money transfer was unsuccessful.", "Error", JOptionPane.ERROR_MESSAGE); 
+                    }
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);   
+            }  
         }
     }//GEN-LAST:event_btnContinueActionPerformed
 
@@ -277,10 +286,10 @@ public class Transfer_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_txtAmountKeyTyped
 
     private void txtReceiverAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReceiverAccountActionPerformed
-       if(txtReceiverAccount.getText().equals("") == false)
+       if(txtReceiverAccount.getText().equals("") == false) // Kiểm tra đã điền Receiver account chưa
        {
            dtoReceiverAccount = new Account_DTO(Long.parseLong(txtReceiverAccount.getText()));
-           if(busTransfer.isValidPaymentAccount(dtoReceiverAccount) == false || dtoReceiverAccount.getId() == dtoAccount.getId()) // Kiểm tra tài khoản người nhận và người nhận có hợp lệ không
+           if(busTransfer.isValidPaymentAccount(dtoReceiverAccount) == false || dtoReceiverAccount.getId() == dtoAccount.getId()) // Kiểm tra tài khoản người nhận 
            {
                JOptionPane.showConfirmDialog(null, "Receiver account is invalid", "Error", JOptionPane.CLOSED_OPTION);
                txtReceiverName.setText("");

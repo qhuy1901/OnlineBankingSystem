@@ -356,7 +356,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
             evt.consume();
     }//GEN-LAST:event_txtCustomerIDKeyTyped
 
-    private void clearForm()
+    public void clearForm()
     {
         txtAccountID.setText("");
         txtCustomerID.setText("");

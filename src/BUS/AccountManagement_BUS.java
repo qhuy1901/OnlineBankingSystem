@@ -21,10 +21,10 @@ public class AccountManagement_BUS
         return dalAccountType.getAccountTypeList();
     }
     
-    public boolean openPaymentAccount(long customerId, long initialAmount)
+    /*public boolean openPaymentAccount(long customerId, long initialAmount)
     {
         return dalAccount.openPaymentAccount(customerId, initialAmount);
-    }
+    }*/
     
     public boolean lockAccount(long accountId)
     {

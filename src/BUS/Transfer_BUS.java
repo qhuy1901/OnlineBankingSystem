@@ -1,5 +1,4 @@
 package BUS;
-//Bus này chỉ sử dụng cho form Transfer
 
 import DAL.Account_DAL;
 import DAL.Customer_DAL;
