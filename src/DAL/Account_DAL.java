@@ -90,7 +90,7 @@ public class Account_DAL
         return accountList; 
     }
      
-    public boolean openSavingsAccount(Account_DTO dtoNewSavingAccount)
+    /*public boolean openSavingsAccount(Account_DTO dtoNewSavingAccount)
     {
         try{
             Connection con = DBConnection.ConnectDb();
@@ -111,7 +111,7 @@ public class Account_DAL
             JOptionPane.showMessageDialog(null, e);    
         }
         return false;
-    }
+    }*/
     
     public boolean isValidPaymentAccount(Account_DTO dtoAccount)
     {
@@ -161,7 +161,7 @@ public class Account_DAL
         return totalSavingAccount;
     }
 
-    public int transfer(Transfer_Detail_DTO dtoTransferDetail)
+    /*public int transfer(Transfer_Detail_DTO dtoTransferDetail)
     {
         int transactionID = 0;
         try{
@@ -183,7 +183,7 @@ public class Account_DAL
             JOptionPane.showMessageDialog(null, e);    
         }
         return transactionID;
-    }
+    }*/
     
     public ArrayList<Account_DTO> getSavingsAccountList(Customer_DTO dtoCustomer)
     {
@@ -209,7 +209,7 @@ public class Account_DAL
         return accountList; 
     }
     
-    public boolean settle(Account_DTO dtoSavingAccount)
+    /*public boolean settle(Account_DTO dtoSavingAccount)
     {
         try{
             Connection con = DBConnection.ConnectDb();
@@ -225,9 +225,9 @@ public class Account_DAL
             JOptionPane.showMessageDialog(null, e);    
         }
         return false;
-    }
+    }*/
     
-    public boolean deposit(Account_DTO dtoAccount, long amount)
+    /*public boolean deposit(Account_DTO dtoAccount, long amount)
     {
         try{
             Connection con = DBConnection.ConnectDb();
@@ -244,7 +244,7 @@ public class Account_DAL
             JOptionPane.showMessageDialog(null, e);    
         }
         return false;
-    }
+    }*/
     
     public Account_DTO getPaymentAccount(Customer_DTO dtoCustomer)
     {

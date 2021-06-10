@@ -10,7 +10,7 @@ import java.sql.*;
 
 public class Bill_DAL 
 {
-    public boolean payment(Bill_DTO dtoBill, Account_DTO dtoAccount)
+    /*public boolean payment(Bill_DTO dtoBill, Account_DTO dtoAccount)
     {
         try{
             Connection con = DBConnection.ConnectDb();
@@ -28,7 +28,7 @@ public class Bill_DAL
             JOptionPane.showMessageDialog(null, e);    
         }
         return false;
-    }
+    }*/
     
     public Bill_DTO getBillInformation(Customer_DTO dtoCustomer, Supplier_DTO dtoSupplier, int month, int year)
     {

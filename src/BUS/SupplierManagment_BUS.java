@@ -2,13 +2,13 @@ package BUS;
 
 import DAL.Supplier_DAL;
 import DTO.Supplier_DTO;
-import GUI.Report.Report;
+import DAL.Report.Report_DAL;
 import java.util.ArrayList;
 
 public class SupplierManagment_BUS 
 {
     Supplier_DAL dal = new Supplier_DAL();
-    Report report = new Report();
+    Report_DAL dalReport = new Report_DAL();
 
     public ArrayList<Supplier_DTO> getSupplierList()
     {
@@ -37,6 +37,6 @@ public class SupplierManagment_BUS
     
     public void showSupplierList() 
     {
-        report.showSupplierList();
+        dalReport.showSupplierList();
     }
 }

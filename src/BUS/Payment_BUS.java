@@ -1,6 +1,8 @@
 package BUS;
 
 import DAL.Bill_DAL;
+import DAL.Procedure_DAL;
+import DAL.Report.Report_DAL;
 import DAL.Supplier_DAL;
 import DAL.User_Login_DAL;
 import DTO.Account_DTO;
@@ -8,7 +10,6 @@ import DTO.Customer_DTO;
 import DTO.Bill_DTO;
 import DTO.Supplier_DTO;
 import DTO.User_Login_DTO;
-import GUI.Report.Report;
 import java.util.ArrayList;
 
 public class Payment_BUS 
@@ -16,11 +17,12 @@ public class Payment_BUS
     Bill_DAL dalPaymentBill = new Bill_DAL();
     Supplier_DAL dalSupplier = new Supplier_DAL();
     User_Login_DAL dalUserLogin = new User_Login_DAL();
-    Report report = new Report();
+    Procedure_DAL dalProcedure = new Procedure_DAL();
+    Report_DAL dalReport = new Report_DAL();
     
     public boolean payment(Bill_DTO dtoBill, Account_DTO dtoAccount)
     {
-        return dalPaymentBill.payment(dtoBill, dtoAccount);
+        return dalProcedure.payment(dtoBill, dtoAccount);
     }
     
     public Bill_DTO getBillInformation(Customer_DTO dtoCustomer, Supplier_DTO dtoSupplier, int month, int year)
@@ -45,6 +47,6 @@ public class Payment_BUS
     
     public void showTransferReceipt(long billID) 
     {
-        report.showPaymentReceipt(billID);
+        dalReport.showPaymentReceipt(billID);
     }
 }

@@ -2,6 +2,7 @@ package BUS;
 // Bus này chỉ dùng cho form Saving
 import DAL.Account_Type_DAL;
 import DAL.Account_DAL;
+import DAL.Procedure_DAL;
 import DAL.User_Login_DAL;
 import DTO.Account_Type_DTO;
 import DTO.Account_DTO;
@@ -15,6 +16,7 @@ public class Saving_BUS
     Account_DAL dalAccount = new Account_DAL();
     Account_Type_DAL dalAccountType = new Account_Type_DAL();
     User_Login_DAL dalUserLogin = new User_Login_DAL();
+    Procedure_DAL dalProcedure = new Procedure_DAL();
             
     public long getTotalSavingAccount(Customer_DTO dtoCustomer)
     {
@@ -43,12 +45,12 @@ public class Saving_BUS
     
     public boolean openSavingsAccount(Account_DTO dtoAccount)
     {
-        return dalAccount.openSavingsAccount(dtoAccount);
+        return dalProcedure.openSavingsAccount(dtoAccount);
     }
     
     public boolean settle(Account_DTO dtoSavingAccount)
     {
-        return dalAccount.settle(dtoSavingAccount);
+        return dalProcedure.settle(dtoSavingAccount);
     }
     
 }

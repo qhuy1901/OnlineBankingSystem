@@ -1,15 +1,15 @@
 package BUS;
 
 import DAL.Customer_DAL;
+import DAL.Report.Report_DAL;
 
 import DTO.Customer_DTO;
-import GUI.Report.Report;
 import java.util.ArrayList;
 
 public class CustomerManagement_BUS 
 {
     Customer_DAL dalCustomer = new Customer_DAL();
-    Report report = new Report();
+    Report_DAL dalReport = new Report_DAL();
     
     public boolean insert(Customer_DTO dtoCustomer)
     {
@@ -38,7 +38,7 @@ public class CustomerManagement_BUS
     
     public void showCustomerList() 
     {
-        report.showCustomerList();
+        dalReport.showCustomerList();
     }
    
 }
