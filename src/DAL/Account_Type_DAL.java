@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.TreeMap;
 import javax.swing.JOptionPane;
 
-public class Account_Type_DAL extends DBConnection
+public class Account_Type_DAL
 {
     public Account_Type_DTO getSavingsAccountType(String savingsAccountType, String term)
     {

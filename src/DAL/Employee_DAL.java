@@ -6,7 +6,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 
-public class Employee_DAL extends DBConnection
+public class Employee_DAL
 {
     public Employee_DTO getAdminInfo(User_Login_DTO dtoUserLogin) 
     {

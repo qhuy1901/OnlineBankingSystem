@@ -15,41 +15,50 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
 {
     CustomerManagement_BUS customer_BUS = new CustomerManagement_BUS();
     Employee_DTO dtoAdmin = null;
+    Customer_DTO dtoCustomer = null;
     
     public CustomerManagement_GUI(Employee_DTO admin) 
     {
         initComponents();
-        setLocationRelativeTo(null);
-        setSize(1064, 650);
-        setResizable(false);
-        setVisible(true);
-        dtoAdmin = admin;
+        dtoAdmin = admin; // Nhận thông tin admin từ AdminHome_GUI truyền vào
+        
+        /*Set giao diện*/
+        setSize(1064, 650); // Set kích thước giao diện
+        setResizable(false); // Không cho phóng to
+        setTitle("Customer Management"); // Set tiêu đề
+        setLocation(225,70); // Set vị trí trang
+        setVisible(true); // Hiển thị giao diện
+        
         createTable();
     }
     
     DefaultTableModel tblCustomerModel;
     public void createTable()
     {
-        ArrayList<Customer_DTO> list = customer_BUS.getCustomersList();
         tblCustomerModel = new DefaultTableModel();
+        /*Tạo bảng*/
+        // Set tiêu đề
         String title[] = {"ID", "Full Name", "Gender", "Date of birth", "Address", "Phone number", "ID Card"};
         tblCustomerModel.setColumnIdentifiers(title);
-        tblCustomerModel.setRowCount(0); 
-        for(int i = 0; i < list.size(); i++)
-        {
-            Customer_DTO dtoCustomer = list.get(i);
-            String[] rows = {String.valueOf(dtoCustomer.getId()), dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName() , dtoCustomer.getGender(),  dtoCustomer.getDateOfBirth().toString(), dtoCustomer.getAddress(), dtoCustomer.getPhoneNumber(), dtoCustomer.getIDCard()};
-            tblCustomerModel.addRow(rows);
-        }
+        tblCustomerModel.setRowCount(0);
         tblViewCustomer.setModel(tblCustomerModel);
-        
         // Set kích thước cho các cột
         tblViewCustomer.getColumnModel().getColumn(0).setPreferredWidth(70);
         tblViewCustomer.getColumnModel().getColumn(1).setPreferredWidth(200);
         tblViewCustomer.getColumnModel().getColumn(2).setPreferredWidth(60);
         tblViewCustomer.getColumnModel().getColumn(3).setPreferredWidth(80);
         tblViewCustomer.getColumnModel().getColumn(4).setPreferredWidth(250);
+        // Hiển thị bảng
         setVisible(true);
+        
+        /*Load data*/
+        ArrayList<Customer_DTO> list = customer_BUS.getCustomersList();
+        for(int i = 0; i < list.size(); i++)
+        {
+            Customer_DTO dtoCustomer = list.get(i);
+            String[] rows = {String.valueOf(dtoCustomer.getId()), dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName() , dtoCustomer.getGender(),  dtoCustomer.getDateOfBirth().toString(), dtoCustomer.getAddress(), dtoCustomer.getPhoneNumber(), dtoCustomer.getIDCard()};
+            tblCustomerModel.addRow(rows);
+        }
     }
 
     private void clearForm()
@@ -70,6 +79,8 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         txtUpdateAddress.setText("");
         txtUpdatePhoneNumber.setText("");
         txtUpdateIDCard.setText("");
+        
+        dtoCustomer = null;
         createTable();
     }
     @SuppressWarnings("unchecked")
@@ -391,11 +402,6 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 txtUpdateIDMouseClicked(evt);
             }
         });
-        txtUpdateID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUpdateIDActionPerformed(evt);
-            }
-        });
         txtUpdateID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUpdateIDKeyTyped(evt);
@@ -576,11 +582,14 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnHome_AddCustomerActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-        if(isFormValid())
+        if(txtLastName_AddCustomer.getText().equals("") || txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || txtIDCard.getText().equals(""))
         {
-            Customer_DTO ct = new Customer_DTO(0 , txtFirstName_AddCustomer.getText(), txtLastName_AddCustomer.getText(), cbGender_AddCustomer.getSelectedItem().toString(), dcDateOfBirth_AddCustomer.getDate() ,txtAddress.getText(), txtPhoneNumber.getText(), txtIDCard.getText());
-            if(customer_BUS.insert(ct))
+            JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            Customer_DTO newCustomer = new Customer_DTO(0 , txtFirstName_AddCustomer.getText(), txtLastName_AddCustomer.getText(), cbGender_AddCustomer.getSelectedItem().toString(), dcDateOfBirth_AddCustomer.getDate() ,txtAddress.getText(), txtPhoneNumber.getText(), txtIDCard.getText());
+            if(customer_BUS.insert(newCustomer))
             {
                 JOptionPane.showMessageDialog(this, "Customer added successfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 clearForm();
@@ -591,81 +600,56 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        // TODO add your handling code here:
-        DefaultTableModel SearchTable = (DefaultTableModel) tblViewCustomer.getModel();
+        DefaultTableModel searchTable = (DefaultTableModel) tblViewCustomer.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(searchTable); // Khởi tạo row sorter với tất cả dữ liệu trên tblViewCustomer
+        tblViewCustomer.setRowSorter(sorter); // chỉ định bộ lọc cho tblViewCustomer
         String search = txtSearch.getText();
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(SearchTable);
-        tblViewCustomer.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(search));
+        sorter.setRowFilter(RowFilter.regexFilter(search)); // sử dụng đối tượng RowFilter để lọc dựa trên giá trị trong textfield
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed
-        if(txtUpdateID.getText().equals(""))
+        if(dtoCustomer != null)
+        {
+            int ret = JOptionPane.showConfirmDialog(null, "Are you sure to delete this customer and and all information associated with this customer?", "Confirm", JOptionPane.YES_NO_OPTION);
+            if(ret == JOptionPane.YES_OPTION)
+            {
+                if(customer_BUS.delete(dtoCustomer))
+                {
+                    JOptionPane.showMessageDialog(this, "Customer deleted susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    clearForm();
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Cannot delete customers!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else
+            JOptionPane.showMessageDialog(this, "Please show customer information before deleting", "Error", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_btnDeleteCustomerActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        if(txtUpdateID.getText().equals("") || txtLastName_UpdateCustomer.getText().equals("") || txtUpdateID.getText().equals("") || txtUpdateAddress.getText().equals("") || txtUpdatePhoneNumber.getText().equals("") || txtUpdateIDCard.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
-            Customer_DTO dtoCustomer = customer_BUS.getInformation(Integer.parseInt(txtUpdateID.getText()));
             if(dtoCustomer != null)
             {
-                int ret = JOptionPane.showConfirmDialog(null, "Are you sure to delete this customer and and all information associated with this supplier?", "Confirm", JOptionPane.YES_NO_OPTION);
-                if(ret == JOptionPane.YES_OPTION)
+                int ret = JOptionPane.showConfirmDialog(null, "Are you sure to update this customer information?", "Confirm", JOptionPane.YES_NO_OPTION);
+                if(ret == JOptionPane.YES_OPTION) 
                 {
-                    if(customer_BUS.delete(dtoCustomer ))
+                    Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtUpdateID.getText()) , txtFirstName_UpdateCustomer.getText(), txtLastName_UpdateCustomer.getText(), cbbUpdateGender.getSelectedItem().toString(), dcDateOfBirth_UpdateCustomer.getDate(), txtUpdateAddress.getText(), txtUpdatePhoneNumber.getText(), txtUpdateIDCard.getText());
+                    if(customer_BUS.update(ct))
                     {
-                        JOptionPane.showMessageDialog(this, "Customer deleted susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Customer updated susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
                         clearForm();
                     }
                     else
-                        JOptionPane.showMessageDialog(this, "Cannot delete customers!", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+                        JOptionPane.showMessageDialog(this, "Cannot update customers!", "Error", JOptionPane.ERROR_MESSAGE);
+                } 
             }
             else
-                JOptionPane.showMessageDialog(this, "Customer ID is invalid!", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnDeleteCustomerActionPerformed
-
-    public boolean isValidUpdateForm()
-    {
-            if(txtLastName_UpdateCustomer.getText().equals("") || txtUpdateID.getText().equals("") || txtUpdateAddress.getText().equals("") || txtUpdatePhoneNumber.getText().equals("") || txtUpdateIDCard.getText().equals(""))
-            {
-                JOptionPane.showMessageDialog(this, "Please show customer information in this form.", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }    
-            else
-                return true;
-    }
-    
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-
-        if(txtUpdateID.getText().equals(""))
-        {
-            JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
-        }
-        else
-        {
-            Customer_DTO dtoCustomer = customer_BUS.getInformation(Integer.parseInt(txtUpdateID.getText()));
-            if(dtoCustomer != null)
-            {
-                if(isValidUpdateForm())
-                {
-                   int ret = JOptionPane.showConfirmDialog(null, "Are you sure to update this customer information?", "Confirm", JOptionPane.YES_NO_OPTION);
-                    if(ret == JOptionPane.YES_OPTION) 
-                    {
-                        Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtUpdateID.getText()) , txtFirstName_UpdateCustomer.getText(), txtLastName_UpdateCustomer.getText(), cbbUpdateGender.getSelectedItem().toString(), dcDateOfBirth_UpdateCustomer.getDate(), txtUpdateAddress.getText(), txtUpdatePhoneNumber.getText(), txtUpdateIDCard.getText());
-                        if(customer_BUS.update(ct))
-                        {
-                            JOptionPane.showMessageDialog(this, "Customer updated susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                            clearForm();
-                        }
-                        else
-                            JOptionPane.showMessageDialog(this, "Cannot update customers!", "Error", JOptionPane.ERROR_MESSAGE);
-                    } 
-                }
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Customer ID is invalid!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please show customer information before updating", "Error", JOptionPane.ERROR_MESSAGE);
         }
    
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -678,8 +662,12 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         }
         else
         {
-            Customer_DTO dtoCustomer = customer_BUS.getInformation(Integer.parseInt(txtUpdateID.getText()));
-            if(dtoCustomer != null)
+            dtoCustomer = customer_BUS.getInformation(Integer.parseInt(txtUpdateID.getText()));
+            if(dtoCustomer == null)
+            {
+                JOptionPane.showMessageDialog(this, "No customer information found!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else
             {
                 txtFirstName_UpdateCustomer.setText(dtoCustomer.getFirstName());
                 txtLastName_UpdateCustomer.setText(dtoCustomer.getLastName());
@@ -688,9 +676,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 txtUpdateAddress.setText(dtoCustomer.getAddress());
                 txtUpdatePhoneNumber.setText(dtoCustomer.getPhoneNumber());
                 txtUpdateIDCard.setText(dtoCustomer.getIDCard());
-            }
-            else
-                JOptionPane.showMessageDialog(this, "No customer information found!", "Error", JOptionPane.ERROR_MESSAGE);
+            }  
         } 
     }//GEN-LAST:event_btnShowInformationActionPerformed
 
@@ -705,30 +691,35 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnHome_ViewCustomerActionPerformed
 
     private void txtPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyTyped
-       char c = evt.getKeyChar();
+        // Hàm chỉ cho phép người dùng nhập số vào textfield này
+        char c = evt.getKeyChar();
         if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
     }//GEN-LAST:event_txtPhoneNumberKeyTyped
 
     private void txtIDCardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDCardKeyTyped
+        // Hàm chỉ cho phép người dùng nhập số vào textfield này
         char c = evt.getKeyChar();
         if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
     }//GEN-LAST:event_txtIDCardKeyTyped
 
     private void txtUpdatePhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUpdatePhoneNumberKeyTyped
+        // Hàm chỉ cho phép người dùng nhập số vào textfield này
         char c = evt.getKeyChar();
         if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
     }//GEN-LAST:event_txtUpdatePhoneNumberKeyTyped
 
     private void txtUpdateIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUpdateIDKeyTyped
+        // Hàm chỉ cho phép người dùng nhập số vào textfield này
         char c = evt.getKeyChar();
         if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
     }//GEN-LAST:event_txtUpdateIDKeyTyped
 
     private void txtUpdateIDCardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUpdateIDCardKeyTyped
+        // Hàm chỉ cho phép người dùng nhập số vào textfield này
         char c = evt.getKeyChar();
         if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
@@ -738,10 +729,6 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         customer_BUS.showCustomerList();
     }//GEN-LAST:event_btnExportCustomerListReportActionPerformed
 
-    private void txtUpdateIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUpdateIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUpdateIDActionPerformed
-
     private void txtUpdateIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUpdateIDMouseClicked
         txtFirstName_UpdateCustomer.setText("");
         txtLastName_UpdateCustomer.setText("");
@@ -750,19 +737,9 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         txtUpdateAddress.setText("");
         txtUpdatePhoneNumber.setText("");
         txtUpdateIDCard.setText("");
+        dtoCustomer = null;
     }//GEN-LAST:event_txtUpdateIDMouseClicked
 
-    private boolean isFormValid()
-    {
-            if(txtLastName_AddCustomer.getText().equals("") || txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || txtIDCard.getText().equals(""))
-            {
-                JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }    
-            else
-                return true;
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDeleteCustomer;

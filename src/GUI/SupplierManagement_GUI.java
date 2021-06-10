@@ -347,7 +347,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
 
     private void btnDelete_Supplier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete_Supplier1ActionPerformed
         int index = tblSupplier.getSelectedRow();
-        if(index == -1 || txtPhoneNumber.getText().equals("")|| txtSupplierName.getText().equals("") ||  txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || cboServiceType.getSelectedItem() == null)
+        if(index == -1)
         {
             JOptionPane.showMessageDialog(this, "Please select a supplier before updating", "Error", JOptionPane.ERROR_MESSAGE);
         }

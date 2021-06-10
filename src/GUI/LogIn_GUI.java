@@ -209,6 +209,8 @@ public class LogIn_GUI extends javax.swing.JFrame
                             }
                             this.setVisible(false);
                         }
+                        else
+                            JOptionPane.showMessageDialog(this, "An error occurred during login.\n Cannot udpate last access time.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                     else
                     {

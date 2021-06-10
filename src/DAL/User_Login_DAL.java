@@ -6,7 +6,7 @@ import DTO.User_Login_DTO;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-public class User_Login_DAL extends DBConnection
+public class User_Login_DAL
 {
     public boolean updateInfo(User_Login_DTO dtoUserLogin)
     {

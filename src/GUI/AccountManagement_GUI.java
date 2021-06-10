@@ -17,23 +17,39 @@ public class AccountManagement_GUI extends javax.swing.JFrame
     Employee_DTO dtoAdmin = null;
     public AccountManagement_GUI(Employee_DTO admin) {
         initComponents();
-        setSize(1064,650);
-        setLocationRelativeTo(null);
-        setResizable(false);
         dtoAdmin = admin;
+        
+        /*Set giao diện*/
+        setSize(1064, 650); // Set kích thước giao diện
+        setResizable(false); // Không cho phóng to
+        setTitle("Account Management"); // Set tiêu đề
+        setLocation(225,70); // Set vị trí trang
+        setVisible(true); // Hiển thị giao diện
+        
         createTable();
-        setVisible(true);
     }
     
     DefaultTableModel tblAccountModel;
     public void createTable()
     {
-        ArrayList<Account_DTO> accountList = busAccount.getAccountList();
-        TreeMap<String, String> accountTypeList = busAccount.getAccountTypeList();
         tblAccountModel = new DefaultTableModel();
+        /*Tạo bảng*/
+        // Set tiêu đề
         String title[] = {"Account ID", "Current Balance", "Open Day","Account Type", "Status", "Customer ID"};
         tblAccountModel.setColumnIdentifiers(title);
         tblAccountModel.setRowCount(0); 
+        tblAccount.setModel(tblAccountModel);
+        // Set kích thước cho các cột
+        tblAccount.getColumnModel().getColumn(0).setPreferredWidth(60);
+        tblAccount.getColumnModel().getColumn(1).setPreferredWidth(80);
+        tblAccount.getColumnModel().getColumn(2).setPreferredWidth(60);
+        tblAccount.getColumnModel().getColumn(3).setPreferredWidth(310);
+        // Hiển thị bảng
+        setVisible(true);
+        
+        /*Load data*/
+        ArrayList<Account_DTO> accountList = busAccount.getAccountList();
+        TreeMap<String, String> accountTypeList = busAccount.getAccountTypeList();
         for(int i = 0; i < accountList.size(); i++)
         {
             Account_DTO dtoAccount = accountList.get(i);
@@ -48,12 +64,6 @@ public class AccountManagement_GUI extends javax.swing.JFrame
             tblAccountModel.addRow(rows);
             
         }
-        tblAccount.setModel(tblAccountModel);
-        tblAccount.getColumnModel().getColumn(0).setPreferredWidth(60);
-        tblAccount.getColumnModel().getColumn(1).setPreferredWidth(80);
-        tblAccount.getColumnModel().getColumn(2).setPreferredWidth(60);
-        tblAccount.getColumnModel().getColumn(3).setPreferredWidth(310);
-        setVisible(true);
     }   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -196,19 +206,21 @@ public class AccountManagement_GUI extends javax.swing.JFrame
     private void btnLockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockAccountActionPerformed
         int row = tblAccount.getSelectedRow();
         int accountId = Integer.parseInt(tblAccount.getValueAt(row, 0).toString().replaceAll("\\s+",""));
-        if(accountId == 0)
+        if(accountId == 0) // Kiểm tra người dùng đã chọn tài khoản cần khóa chưa
         {
-            JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE); 
         }
         else
         {
-            if(tblAccount.getValueAt(row, 3).toString().contains("Savings Account"))
+            // Kiểm tra loại tài khoản của tài khoản đang được chọn
+            if(tblAccount.getValueAt(row, 3).toString().contains("Savings Account")) 
             {
-                JOptionPane.showMessageDialog(this, "Savings account cannot be locked .", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Savings account cannot be locked.", "Error", JOptionPane.ERROR_MESSAGE);
             }
             else
             {
-                if(tblAccount.getValueAt(row, 4).toString().contains("Locked"))
+                // Kiểm tra trạng thái của tài khoản đang được chọn
+                if(tblAccount.getValueAt(row, 4).toString().contains("Locked")) 
                 {
                     JOptionPane.showMessageDialog(this, "This account has been locked already.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -219,9 +231,11 @@ public class AccountManagement_GUI extends javax.swing.JFrame
                     {
                         if(busAccount.lockAccount(accountId))
                         {
-                            JOptionPane.showMessageDialog(this, "Locked successfully" , "Notification", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "Locked successfully." , "Notification", JOptionPane.INFORMATION_MESSAGE);
                             createTable();
                         }
+                        else
+                            JOptionPane.showMessageDialog(this, "Lock account unsuccessfully.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -231,7 +245,7 @@ public class AccountManagement_GUI extends javax.swing.JFrame
     private void btnUnlockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnlockAccountActionPerformed
         int row = tblAccount.getSelectedRow();
         int accountId = Integer.parseInt(tblAccount.getValueAt(row, 0).toString().replaceAll("\\s+",""));
-        if(accountId == 0)
+        if(accountId == 0) // Kiểm tra người dùng đã chọn tài khoản cần mở chưa
         {
             JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -254,9 +268,11 @@ public class AccountManagement_GUI extends javax.swing.JFrame
                     {
                         if(busAccount.unlockAccount(accountId))
                         {
-                            JOptionPane.showMessageDialog(this, "Unlocked successfully" , "Notification", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "Unlocked successfully." , "Notification", JOptionPane.INFORMATION_MESSAGE);
                             createTable();
                         }
+                        else
+                            JOptionPane.showMessageDialog(this, "Unlock account unsuccessfully.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }

@@ -212,7 +212,7 @@ public class Transfer_GUI extends javax.swing.JFrame
         String[] options = new String[]{"Confirm", "Cancel"};
         int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
 
-        if(option == 0) // Customer pressing OK button
+        if(option == 0) // Customer pressing Confirm button
         {
             String password = pass.getText();
             User_Login_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); // Get customer password in database
