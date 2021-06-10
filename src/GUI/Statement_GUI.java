@@ -22,22 +22,36 @@ public class Statement_GUI extends javax.swing.JFrame {
     public Statement_GUI(Employee_DTO admin) 
     {
         initComponents();
-        setSize(1064,650);
-        setLocationRelativeTo(null);
+        dtoAdmin = admin;
+        
+        /*Set giao diện*/
+        setSize(1064, 650); // Set kích thước giao diện
+        setResizable(false); // Không cho phóng to
+        setTitle("Statement"); // Set tiêu đề
+        setLocation(225,70); // Set vị trí trang
+        setVisible(true); // Hiển thị giao diện
+        
+        createTable();
+        btnExport.setVisible(false);
+    }
+    
+    public void createTable() 
+    {
+        // Set tiêu đề
         String title[] = {"Transaction ID", "Time", "Total Transaction Amount", "Content"};
         tblStatementModel.setColumnIdentifiers(title);
         tblStatement.setModel(tblStatementModel);
-        dtoAdmin = admin;
-        btnExport.setVisible(false);
-        setVisible(true);
+        // Set kích thước cột
+        tblStatement.getColumnModel().getColumn(0).setPreferredWidth(35);
+        tblStatement.getColumnModel().getColumn(1).setPreferredWidth(80);
+        tblStatement.getColumnModel().getColumn(3).setPreferredWidth(320);
     }
     
-
     DefaultTableModel tblStatementModel = new DefaultTableModel();
-    public void createTable() 
+    public void loadTable() 
     {
         ArrayList<Transaction_DTO> list = busStatement.getStatement(dtoAccount, datFromDate.getDate(), datToDate.getDate());
-        if(list.size() == 0)
+        if(list.size() == 0) // No transactions found
         {
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             JOptionPane.showMessageDialog(this, "Customers do not make transactions from " + df.format(datFromDate.getDate())+ " to " + df.format(datToDate.getDate()) , "Notification", JOptionPane.INFORMATION_MESSAGE);
@@ -66,14 +80,6 @@ public class Statement_GUI extends javax.swing.JFrame {
                 String[] rows = {transactionId, transactionDate , totalTransactionAmount , transactionContent};
                 tblStatementModel.addRow(rows);
             }
-            tblStatement.setModel(tblStatementModel);
-            
-            // set kích thước cột
-            tblStatement.getColumnModel().getColumn(0).setPreferredWidth(35);
-            tblStatement.getColumnModel().getColumn(1).setPreferredWidth(80);
-            tblStatement.getColumnModel().getColumn(3).setPreferredWidth(320);
-            
-            btnExport.setVisible(true);
         }
     }
  
@@ -124,6 +130,11 @@ public class Statement_GUI extends javax.swing.JFrame {
         jPanel1.add(lblFromDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
 
         txtAccountID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAccountID.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAccountIDMouseClicked(evt);
+            }
+        });
         txtAccountID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAccountIDActionPerformed(evt);
@@ -243,7 +254,8 @@ public class Statement_GUI extends javax.swing.JFrame {
             }
             else
             {
-                createTable();
+                loadTable();
+                btnExport.setVisible(true);
             }
         }
     }//GEN-LAST:event_btnStatementActionPerformed
@@ -262,6 +274,12 @@ public class Statement_GUI extends javax.swing.JFrame {
             txtAccountOnwer.setText(dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
         }
     }//GEN-LAST:event_txtAccountIDActionPerformed
+
+    private void txtAccountIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAccountIDMouseClicked
+        txtAccountOnwer.setText("");
+        tblStatementModel.setRowCount(0); // clear Table
+        btnExport.setVisible(false);
+    }//GEN-LAST:event_txtAccountIDMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;

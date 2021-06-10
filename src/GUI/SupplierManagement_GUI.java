@@ -25,14 +25,18 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
     public SupplierManagement_GUI(Employee_DTO admin) 
     {
         initComponents();
-        setSize(1064,650);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        
         dtoAdmin = admin;
+        
+        /*Set giao diện*/
+        setSize(1064, 650); // Set kích thước giao diện
+        setResizable(false); // Không cho phóng to
+        setTitle("Supplier Management"); // Set tiêu đề
+        setLocation(225,70); // Set vị trí trang
+        setVisible(true); // Hiển thị giao diện
+        
+        
         loadCboServiceType();
         createTable();
-        setVisible(true);
     }
     
     public void loadCboServiceType()
@@ -347,7 +351,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
 
     private void btnDelete_Supplier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete_Supplier1ActionPerformed
         int index = tblSupplier.getSelectedRow();
-        if(index == -1)
+        if(index == -1) // Kiểm tra người dùng đã chọn supplier chưa
         {
             JOptionPane.showMessageDialog(this, "Please select a supplier before updating", "Error", JOptionPane.ERROR_MESSAGE);
         }
