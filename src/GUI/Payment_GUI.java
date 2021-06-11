@@ -393,6 +393,7 @@ public class Payment_GUI extends javax.swing.JFrame
                 {
                     JOptionPane.showConfirmDialog(null, "Payment is successful", "Successful", JOptionPane.CLOSED_OPTION);
 
+                    busPayment.showPaymentReceipt(dtoBill.getId());
                     //Clear form
                     cboServiceType.setSelectedItem(null);
                     txtCustomerID.setText("");
@@ -400,9 +401,9 @@ public class Payment_GUI extends javax.swing.JFrame
                     cboYear.setSelectedItem(null);
                     txtCustomerID.setText("");
                     clearBillLookupInformation();
-                    
-                    busPayment.showTransferReceipt(dtoBill.getId());
                 }
+                else
+                    JOptionPane.showMessageDialog(this, "Payment is unsuccessful", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         else

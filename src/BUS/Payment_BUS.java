@@ -45,7 +45,7 @@ public class Payment_BUS
         return dalSupplier.getSupplierNameList(serviceType);
     }
     
-    public void showTransferReceipt(long billID) 
+    public void showPaymentReceipt(long billID) 
     {
         dalReport.showPaymentReceipt(billID);
     }

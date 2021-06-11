@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="00d49678-4bed-4096-99cd-bb09b96202f7">
 	<property name="ireport.zoom" value="1.331000000000001"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="537"/>
+	<property name="ireport.y" value="0"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT B.BILL_ID, B.BILL_AMOUNT, B.INVOICE_DATE, B.PAYMENT_DATE, C.CUSTOMER_ID, C.FIRST_NAME || ' ' || C.LAST_NAME FULL_NAME, B.SUPPLIER_ID, S.SUPPLIER_NAME, S.SERVICE_TYPE
 FROM ((CUSTOMER C JOIN BILL B ON C.CUSTOMER_ID = B.CUSTOMER_ID) 
@@ -20,13 +20,6 @@ FROM ((CUSTOMER C JOIN BILL B ON C.CUSTOMER_ID = B.CUSTOMER_ID)
 	<field name="SERVICE_TYPE" class="java.lang.String"/>
 	<title>
 		<band height="186" splitType="Stretch">
-			<staticText>
-				<reportElement x="4" y="1" width="329" height="20" uuid="089cf3a3-7d5a-48af-965e-d11c5d808323"/>
-				<textElement>
-					<font fontName="Serif" size="14" isBold="true" isItalic="true"/>
-				</textElement>
-				<text><![CDATA[Ngân Hàng TMCP Ngoại Thương Việt Nam]]></text>
-			</staticText>
 			<image>
 				<reportElement x="390" y="19" width="194" height="68" uuid="f347276e-4308-4edc-839f-55588efd3ea8"/>
 				<imageExpression><![CDATA["C:\\Users\\ACER\\Desktop\\no-image-news.jpg"]]></imageExpression>
@@ -58,6 +51,27 @@ FROM ((CUSTOMER C JOIN BILL B ON C.CUSTOMER_ID = B.CUSTOMER_ID)
 			<line>
 				<reportElement x="1" y="90" width="569" height="2" uuid="8c97dda8-6e48-459b-943f-c7673404e27a"/>
 			</line>
+			<staticText>
+				<reportElement x="1" y="40" width="566" height="20" uuid="b4810aec-e4e9-497b-93eb-a9900ce50834"/>
+				<textElement>
+					<font fontName="Serif" size="13" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Tel: 04-8243524/8245716]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="398" height="20" uuid="ca2b8670-b019-4d5e-909c-d4d68a93ce85"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[NGÂN HÀNG TMCP NGOẠI THƯƠNG VIỆT NAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="20" width="566" height="20" uuid="81bb1adc-74df-4c17-bc10-78408d9614bd"/>
+				<textElement>
+					<font fontName="Serif" size="13" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Số 53-55, Đường Võ Thị Sáu, Phường Quyết Thắng, Tp. Biên Hòa, Tỉnh Đồng Nai.]]></text>
+			</staticText>
 		</band>
 	</title>
 	<detail>

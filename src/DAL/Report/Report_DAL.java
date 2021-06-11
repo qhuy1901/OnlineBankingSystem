@@ -48,7 +48,6 @@ public class Report_DAL
         String m_sql_stmt = "SELECT B.BILL_ID, B.BILL_AMOUNT, B.INVOICE_DATE, B.PAYMENT_DATE, C.CUSTOMER_ID, C.FIRST_NAME || ' ' || C.LAST_NAME FULL_NAME, B.SUPPLIER_ID, S.SUPPLIER_NAME, S.SERVICE_TYPE\n" +
                         "FROM ((CUSTOMER C JOIN BILL B ON C.CUSTOMER_ID = B.CUSTOMER_ID) \n" +
                         "        JOIN SUPPLIER S ON S.SUPPLIER_ID = B.SUPPLIER_ID)\n" +
-                        "            JOIN SUPPLIER S ON S.SUPPLIER_ID = B.SUPPLIER_ID\n" +
                         "WHERE B.BILL_ID = " + billID;
         showReport(m_report_source, m_sql_stmt);
     }

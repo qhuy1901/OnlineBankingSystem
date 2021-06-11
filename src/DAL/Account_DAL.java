@@ -139,12 +139,16 @@ public class Account_DAL
         return false;
     }
     
-    public long getTotalSavingAccount(Customer_DTO dtoCustomer)
+    public long getTotalSavingsAmount(Customer_DTO dtoCustomer)
     {
         long totalSavingAccount = 0;
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT SUM(CURRENT_BALANCE) FROM Account WHERE CUSTOMER_ID = ? AND ACCOUNT_TYPE_ID LIKE '%SA%' AND STATUS = 'Active'";
+            String SQL = "SELECT SUM(CURRENT_BALANCE) "
+                    + "FROM Account "
+                    + "WHERE CUSTOMER_ID = ? "
+                    + "AND ACCOUNT_TYPE_ID LIKE '%SA%' "
+                    + "AND STATUS = 'Active'";
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, dtoCustomer.getId());
             ResultSet rs = prest.executeQuery();

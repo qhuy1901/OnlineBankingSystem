@@ -18,9 +18,9 @@ public class Saving_BUS
     User_Login_DAL dalUserLogin = new User_Login_DAL();
     Procedure_DAL dalProcedure = new Procedure_DAL();
             
-    public long getTotalSavingAccount(Customer_DTO dtoCustomer)
+    public long getTotalSavingsAmount(Customer_DTO dtoCustomer)
     {
-        return dalAccount.getTotalSavingAccount(dtoCustomer);
+        return dalAccount.getTotalSavingsAmount(dtoCustomer);
     }
     
     public Account_Type_DTO getSavingsAccountType(String savingsAccountType, String term)

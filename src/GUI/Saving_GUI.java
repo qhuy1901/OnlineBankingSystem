@@ -36,16 +36,25 @@ public class Saving_GUI extends javax.swing.JFrame
     public Saving_GUI(Customer_DTO customer, Account_DTO account) 
     {
         initComponents();
-        setLocationRelativeTo(null);
-        setSize(1064, 650);
-        setResizable(false);
-        setVisible(true);
-        cboSavingsAccountType.setSelectedItem(null);
-        cboTerm.setSelectedItem(null);
+        /*Nhận tham số từ CustomerHome_GUI*/
         dtoCustomer = customer;
         dtoPaymentAccount = account;
-        btnOpenAccount.setVisible(false);
-        txtTotalSavingAccount.setText(String.format("%,d",busSaving.getTotalSavingAccount(dtoCustomer)) + " VND");
+        
+        /*Set giao diện*/
+        setSize(1064, 650); // Set kích thước giao diện
+        setResizable(false); // Không cho phóng to
+        setTitle("My Wallet"); // Set tiêu đề
+        setLocation(225,70); // Set vị trí trang
+        setVisible(true); // Hiển thị giao diện
+        
+        
+        cboSavingsAccountType.setSelectedItem(null); // Set giá trị ban đầu của combobox là null
+        cboTerm.setSelectedItem(null); 
+        btnOpenAccount.setVisible(false); // Ẩn button open account
+        
+        long totalSavingAccount = busSaving.getTotalSavingsAmount(dtoCustomer);
+        // Hiển thị tổng số tiền tiết kiệm
+        txtTotalSavingAccount.setText(String.format("%,d", totalSavingAccount) + " VND");
         createTable();
     }
 
@@ -67,30 +76,34 @@ public class Saving_GUI extends javax.swing.JFrame
     DefaultTableModel tblAccountModel;
     public void createTable()
     {
-        savingsAccountList = busSaving.getSavingsAccountList(dtoCustomer);
-        accountTypeList = busSaving.getAccountTypeList();
         tblAccountModel = new DefaultTableModel();
-        String title[] = {"Account No", "Name", "Amount", "Open Date", "Maturity Date", "Remaining days"};
+        // Set tiêu đề
+        String title[] = {"Account No", "Name", "Amount", "Interest", "Open Date", "Maturity Date", "Remaining days"};
         tblAccountModel.setColumnIdentifiers(title);
         tblAccountModel.setRowCount(0); 
+        tblSavingsAccount.setModel(tblAccountModel);
+        
+        // Set kích thước cho các cột
+        tblSavingsAccount.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblSavingsAccount.getColumnModel().getColumn(1).setPreferredWidth(280);
+        
+        // Laayss data từ database
+        savingsAccountList = busSaving.getSavingsAccountList(dtoCustomer);
+        accountTypeList = busSaving.getAccountTypeList();
+        // Load data vô table
         for(int i = 0; i < savingsAccountList.size(); i++)
         {
             Account_DTO dtoAccount = savingsAccountList.get(i);
-            
-            // Show data to table
             String accountId = String.valueOf(dtoAccount.getId());
             String name = accountTypeList.get(dtoAccount.getAccountTypeID());
             String amount = String.format("%,d", dtoAccount.getCurrentBalance()) + " VND";
+            String interest = String.format("%,d",dtoAccount.getAnticipatedInterest()) + " VND";
             String openDate = String.valueOf(dtoAccount.getOpenDay());
             String maturityDate = String.valueOf(dtoAccount.getMaturityDate());
             String remainingDays = calculateRemainingDay(dtoAccount);
-            String[] rows = {accountId, name , amount , openDate, maturityDate, remainingDays};
+            String[] rows = {accountId, name , amount , interest, openDate, maturityDate, remainingDays};
             tblAccountModel.addRow(rows);
         }
-        tblSavingsAccount.setModel(tblAccountModel);
-        tblSavingsAccount.getColumnModel().getColumn(0).setPreferredWidth(60);
-        tblSavingsAccount.getColumnModel().getColumn(1).setPreferredWidth(310);
-        setVisible(true);
     }
     
     private boolean confirmPassword()
@@ -261,7 +274,7 @@ public class Saving_GUI extends javax.swing.JFrame
         lblTotalSavingAccount.setBackground(new java.awt.Color(32, 172, 216));
         lblTotalSavingAccount.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblTotalSavingAccount.setForeground(new java.awt.Color(32, 172, 216));
-        lblTotalSavingAccount.setText("Total Saving Account:");
+        lblTotalSavingAccount.setText("Total Savings Amount:");
         WithdrawOnlineSavings.add(lblTotalSavingAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
 
         txtTotalSavingAccount.setEditable(false);
@@ -506,16 +519,18 @@ public class Saving_GUI extends javax.swing.JFrame
     private void btnSettlementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettlementActionPerformed
         // Xử lý tất toán tài khoản tiết kiệm
         int row = tblSavingsAccount.getSelectedRow();
-        if(savingAccountId == 0 || row == -1)
+        if(savingAccountId == 0 || row == -1) // Check to see if the customer has selected an account or not
         {
             JOptionPane.showMessageDialog(this, "Please select a saving account to settle.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
+            // Check the number of remaining day
             if(tblSavingsAccount.getValueAt(row, 5).toString().equals("0 day") == false) // Nếu chưa đến ngày đáo hạn
             {
-                String accountSavingTypeName = tblSavingsAccount.getModel().getValueAt(row, 1).toString().replaceAll("\\s+","");
-                if(savingsAccountList.get(row).getAccountTypeID().contains("TSA")) // Đối với tiết kiệm có kỳ hạn thì không được tất toán
+                String accountsSavingType= savingsAccountList.get(row).getAccountTypeID();
+                // Check the savings type
+                if(accountsSavingType.contains("TSA")) // Đối với tiết kiệm có kỳ hạn thì không được tất toán
                 {
                     JOptionPane.showMessageDialog(this, "Term savings account cannot be settled because the maturity date hasn't come yet.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -532,7 +547,7 @@ public class Saving_GUI extends javax.swing.JFrame
                             {
                                 JOptionPane.showMessageDialog(this, "Settled successfully" , "Notification", JOptionPane.INFORMATION_MESSAGE); 
                                 createTable();
-                                txtTotalSavingAccount.setText(String.format("%,d",busSaving.getTotalSavingAccount(dtoCustomer)) + " VND");
+                                txtTotalSavingAccount.setText(String.format("%,d",busSaving.getTotalSavingsAmount(dtoCustomer)) + " VND");
                             }
                         }
                     }
@@ -547,7 +562,7 @@ public class Saving_GUI extends javax.swing.JFrame
                     {
                         JOptionPane.showMessageDialog(this, "Settled successfully" , "Notification", JOptionPane.INFORMATION_MESSAGE); 
                         createTable();
-                        txtTotalSavingAccount.setText(String.format("%,d",busSaving.getTotalSavingAccount(dtoCustomer)) + " VND");
+                        txtTotalSavingAccount.setText(String.format("%,d",busSaving.getTotalSavingsAmount(dtoCustomer)) + " VND");
                     }
                 }
             }
@@ -577,6 +592,7 @@ public class Saving_GUI extends javax.swing.JFrame
         }
         else
         {
+            // Check balance
             if(Long.parseLong(txtDeposits.getText()) > dtoPaymentAccount.getCurrentBalance())
             {
                 JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);
@@ -634,7 +650,7 @@ public class Saving_GUI extends javax.swing.JFrame
             {
                 JOptionPane.showConfirmDialog(null, "Open savings account is successful", "Successful", JOptionPane.CLOSED_OPTION);
                 createTable();
-                txtTotalSavingAccount.setText(String.format("%,d",busSaving.getTotalSavingAccount(dtoCustomer)) + " VND");
+                txtTotalSavingAccount.setText(String.format("%,d",busSaving.getTotalSavingsAmount(dtoCustomer)) + " VND");
                 
                 //Clear form
                 cboSavingsAccountType.setSelectedItem(null);
