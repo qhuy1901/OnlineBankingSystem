@@ -11,11 +11,16 @@ public class AdminHome_GUI extends javax.swing.JFrame
     public AdminHome_GUI(Employee_DTO admin) 
     {
         initComponents();
-        setLocationRelativeTo(null);
-        setSize(1064, 650);
-        setResizable(false);
-        setVisible(true);
         dtoAdmin = admin;
+        
+        /*Set giao diện*/
+        setSize(1064, 650); // Set kích thước giao diện
+        setResizable(false); // Không cho phóng to
+        setTitle("Admin Home"); // Set tiêu đề
+        setLocation(225,70); // Set vị trí trang
+        setVisible(true); // Hiển thị giao diện
+        
+        // Show the admin's name
         lblHelloAdmin.setText("          Hello " + admin.getFirstName() + " " + admin.getLastName());
     }
 

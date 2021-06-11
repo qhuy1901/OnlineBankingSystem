@@ -249,14 +249,15 @@ public class Transfer_GUI extends javax.swing.JFrame
                         {
                             JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);
 
+                            // Request transfer receipt
+                            busTransfer.showTransferReceipt(transactionId);
+                            
                             //Clear Form
                             cboReceiverBank.setSelectedItem(null);
                             txtReceiverAccount.setText("");
                             txtAmount.setText("");
                             txtReceiverName.setText("");
                             txtContent.setText("");
-
-                            busTransfer.showTransferReceipt(transactionId);
                         }
                         else
                            JOptionPane.showMessageDialog(this, "Money transfer was unsuccessful.", "Error", JOptionPane.ERROR_MESSAGE); 

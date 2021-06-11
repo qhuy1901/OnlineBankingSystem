@@ -15,13 +15,17 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
     public UserLoginManagement_GUI(Employee_DTO admin) 
     {
         initComponents();
-        setSize(1064,650);
-        setLocationRelativeTo(null);
-        setResizable(false);
         dtoAdmin = admin;
+        
+        /*Set giao diện*/
+        setSize(1064, 650); // Set kích thước giao diện
+        setResizable(false); // Không cho phóng to
+        setTitle("User Login Management"); // Set tiêu đề
+        setLocation(225,70); // Set vị trí trang
+        setVisible(true); // Hiển thị giao diện
+        
         btnUpdate.setVisible(false);
         btnEdit.setVisible(false);
-        setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -281,23 +285,26 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         }
         else
         {
-            if(cbbRole.getSelectedItem().equals("Admin"))
+            if(cbbRole.getSelectedItem().equals("Admin")) // Check role
             {
                 int adminId = Integer.parseInt(txtId.getText());
                 Employee_DTO dtoAdmin = busUserLoginManagement.getAdminInfo(adminId);
-                if(dtoAdmin == null)
+                if(dtoAdmin == null) // Kiểm tra thông tin Admin
                 {
                     JOptionPane.showMessageDialog(this, "Admin ID is invalid", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 else
                 {
+                    // Get user login information
                     dtoUserLogin = busUserLoginManagement.getUserLogin(dtoAdmin);
+                    
+                    // Display information on the form
                     txtName.setText(dtoAdmin.getFirstName() + " " + dtoAdmin.getLastName());
                     txtUserLoginId.setText(String.valueOf(dtoUserLogin.getId()));
                     txtRole.setText(dtoUserLogin.getRole());
                     txtUsername.setText(dtoUserLogin.getUsername());
                     txtPassword.setText(dtoUserLogin.getPassword());
-                    if(dtoUserLogin.getLastAccessTime() == null)
+                    if(dtoUserLogin.getLastAccessTime() == null) // Nếu chưa đăng nhập lần nào
                     {
                        txtLastAccessTime.setText("never logged in"); 
                     }
@@ -306,20 +313,25 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
                         txtLastAccessTime.setText(dtoUserLogin.getLastAccessTime().toString());
                     }
                     txtNumberFailedLogin.setText(String.valueOf(dtoUserLogin.getNumberOfFailedLogin()));
-                    btnEdit.setVisible(true);
+                    
+                    //Show Edit button
+                    btnEdit.setVisible(true); 
                 }
             }
             else
             {
                 long customerId = Long.parseLong(txtId.getText());
                 Customer_DTO dtoCustomer = busUserLoginManagement.getInformation(customerId);
-                if(dtoCustomer == null)
+                if(dtoCustomer == null) // Kiểm tra thông tin Customer
                 {
                     JOptionPane.showMessageDialog(this, "Customer ID is invalid", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 else
                 {
+                    // Get user login information
                     dtoUserLogin = busUserLoginManagement.getUserLogin(dtoCustomer);
+                    
+                    // Display information on the form
                     txtName.setText(dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
                     txtUserLoginId.setText(String.valueOf(dtoUserLogin.getId()));
                     txtRole.setText(dtoUserLogin.getRole());
@@ -334,6 +346,8 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
                         txtLastAccessTime.setText(dtoUserLogin.getLastAccessTime().toString());
                     }
                     txtNumberFailedLogin.setText(String.valueOf(dtoUserLogin.getNumberOfFailedLogin()));
+                    
+                    //Show Edit button
                     btnEdit.setVisible(true);
                 }
             }
@@ -341,10 +355,15 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // Display editable information
         txtPassword.setEditable(true);
         txtPassword.setEchoChar((char)0);
         txtNumberFailedLogin.setEditable(true);
+        
+        // Show Update button 
         btnUpdate.setVisible(true);
+        
+        // Hide Edit button
         btnEdit.setVisible(false);
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -366,15 +385,22 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
     }
     
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // Check if the information is enough or not
         if(txtNumberFailedLogin.getText().equals("") || txtPassword.getText().equals(""))
+        {
             JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
+        }
         else
         {
             User_Login_DTO dtoNewUserLogin = new User_Login_DTO(dtoUserLogin.getId(), dtoUserLogin.getUsername(), txtPassword.getText(), dtoUserLogin.getRole(), Integer.parseInt(txtNumberFailedLogin.getText()), dtoUserLogin.getLastAccessTime());
+            
+            // Update user login information
             if(busUserLoginManagement.updateInfo(dtoNewUserLogin))
             {
                 JOptionPane.showMessageDialog(this, "User login information updated successfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 clearForm();
+                
+                // Hide update button
                 btnUpdate.setVisible(false);
             }
             else

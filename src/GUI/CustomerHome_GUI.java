@@ -13,11 +13,16 @@ public class CustomerHome_GUI extends javax.swing.JFrame
     public CustomerHome_GUI(Customer_DTO customer) 
     {
         initComponents();
-        setLocationRelativeTo(null);
-        setSize(1064, 650);
-        setResizable(false);
-        setVisible(true);
         dtoCustomer = customer;
+        
+        /*Set giao diện*/
+        setSize(1064, 650); // Set kích thước giao diện
+        setResizable(false); // Không cho phóng to
+        setTitle("Customer Home"); // Set tiêu đề
+        setLocation(225,70); // Set vị trí trang
+        setVisible(true); // Hiển thị giao diện
+        
+        // Show customer's name
         lblHelloCustomer.setText("         Hello " + dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
     }
 

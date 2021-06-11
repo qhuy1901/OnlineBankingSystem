@@ -111,4 +111,23 @@ public class Procedure_DAL
         }
         return false;
     }
+    
+    /*public boolean delete(Customer_DTO ct)
+    {
+        try{
+            Connection con = DBConnection.ConnectDb();
+            String strCall = "{call DELETE_CUSTOMER(?)}";
+            CallableStatement caSt = con.prepareCall(strCall);
+            caSt.setLong(1, ct.getId());
+           
+            caSt.execute();
+            con.close();
+            return true;
+        }
+        catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e);    
+        }
+        return false;
+    }*/
 }

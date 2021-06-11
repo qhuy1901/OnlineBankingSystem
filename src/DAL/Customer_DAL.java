@@ -42,15 +42,14 @@ public class Customer_DAL
         return false;
     }
     
-    public boolean delete(Customer_DTO ct)
+    public boolean delete(Customer_DTO dtoCustomer)
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String strCall = "{call DELETE_CUSTOMER(?)}";
-            CallableStatement caSt = con.prepareCall(strCall);
-            caSt.setLong(1, ct.getId());
-           
-            caSt.execute();
+            String sql = "DELETE FROM CUSTOMER WHERE CUSTOMER_ID = ?";
+            PreparedStatement prest = con.prepareStatement(sql);
+            prest.setLong(1, dtoCustomer.getId());
+            prest.executeUpdate();
             con.close();
             return true;
         }
@@ -59,6 +58,7 @@ public class Customer_DAL
             JOptionPane.showMessageDialog(null, e);    
         }
         return false;
+            
     }
     
     public boolean update(Customer_DTO ct)

@@ -23,14 +23,19 @@ public class MyWallet_GUI extends javax.swing.JFrame
     public MyWallet_GUI(Customer_DTO customer, Account_DTO account)
     {
         initComponents();
-        setLocationRelativeTo(null);
-        setSize(1064, 650);
-        setResizable(false);
+        // Nhận tham số mà CustomerHome_GUI truyền vào
         dtoAccount = account;
-        dtoCustomer = customer; // customer này là từ form LogIn tryền vào cho form này
+        dtoCustomer = customer; 
+        
+        /*Set giao diện*/
+        setSize(1064, 650); // Set kích thước giao diện
+        setResizable(false); // Không cho phóng to
+        setTitle("My Wallet"); // Set tiêu đề
+        setLocation(225,70); // Set vị trí trang
+        setVisible(true); // Hiển thị giao diện
+        
         displayAccountInformation();
         createTable();
-        setVisible(true);
     }
     
     public void displayAccountInformation()
@@ -48,9 +53,15 @@ public class MyWallet_GUI extends javax.swing.JFrame
     DefaultTableModel tblTransactionModel = new DefaultTableModel();
     public void createTable() 
     {
+        // Set tiêu đề
         String title[] = {"Transaction ID","Transaction Type","Time", "Amount"};
         tblTransactionModel.setColumnIdentifiers(title);
         tblTransactionHistory.setModel(tblTransactionModel);
+        
+        // Set kích thước cho các cột
+        tblTransactionHistory.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tblTransactionHistory.getColumnModel().getColumn(1).setPreferredWidth(270);
+        tblTransactionHistory.getColumnModel().getColumn(2).setPreferredWidth(100);
     }
     
     public void loadTable() 
@@ -67,19 +78,15 @@ public class MyWallet_GUI extends javax.swing.JFrame
             DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             String transactionDate =  df.format(dtoTransaction.getTrasactionDate());
             String totalTransactionAmount = String.format("%,d", dtoTransaction.getTotalTransactionAmount());
+            
             if(transactionTypeID.equals("NT01") || transactionTypeID.equals("TK02")) // nếu là giao dịch nhận tiền
                 totalTransactionAmount = "+" + totalTransactionAmount + " VND";
             else // nếu là giao dịch trừ tiền tài khoản
                 totalTransactionAmount = "-" + totalTransactionAmount + " VND";
+            
             String[] rows = {transactionId, transactionTypeName, transactionDate, totalTransactionAmount};
             tblTransactionModel.addRow(rows);
         }
-        tblTransactionHistory.setModel(tblTransactionModel);
-        // Set kích thước cho các cột
-        tblTransactionHistory.getColumnModel().getColumn(0).setPreferredWidth(30);
-        tblTransactionHistory.getColumnModel().getColumn(1).setPreferredWidth(270);
-        tblTransactionHistory.getColumnModel().getColumn(2).setPreferredWidth(100);
-        setVisible(true);
     }
     
     @SuppressWarnings("unchecked")
@@ -302,10 +309,17 @@ public class MyWallet_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnShowTransactionHistoryActionPerformed
     
     private void ckbShowCurrentBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckbShowCurrentBalanceActionPerformed
+        // Check checkbox status
         if(ckbShowCurrentBalance.isSelected())
+        {
+            // Show balance
             txtCurrentBalance.setText(String.format("%,d", dtoAccount.getCurrentBalance()) + " VND");
+        }
         else
+        {
+            // Hide balance
             txtCurrentBalance.setText("*************");
+        } 
     }//GEN-LAST:event_ckbShowCurrentBalanceActionPerformed
 
 
