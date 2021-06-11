@@ -13,9 +13,11 @@ public class LogIn_GUI extends javax.swing.JFrame
     public LogIn_GUI() 
     {
         initComponents();
-        setLocationRelativeTo(null);
-        setVisible(true);
-        setResizable(false);
+        /*Set giao diện*/
+        setLocationRelativeTo(null); // Căn giữa màn hình 
+        setResizable(false); // Không cho phóng to
+        setTitle("Login"); // Set tiêu đề
+        setVisible(true); // Hiển thị giao diện
     }
 
     @SuppressWarnings("unchecked")

@@ -16,12 +16,16 @@ public class Deposit_GUI extends javax.swing.JFrame {
     public Deposit_GUI(Employee_DTO admin) 
     {
         initComponents();
-        setSize(1064,650);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setupRadioButtonGroup();
         dtoAdmin  = admin;
-        setVisible(true);
+        
+        /*Set giao diện*/
+        setSize(1064, 650); // Set kích thước giao diện
+        setResizable(false); // Không cho phóng to
+        setTitle("Deposit"); // Set tiêu đề
+        setLocation(225,70); // Set vị trí trang
+        setVisible(true); // Hiển thị giao diện
+        
+        setupRadioButtonGroup();
     }
 
     public void setupRadioButtonGroup()
@@ -238,14 +242,17 @@ public class Deposit_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAmountKeyTyped
 
     private void btnDepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositActionPerformed
+        // Check the status of  radio button group
         if(rbAccountOpening.isSelected())
         {
+            // Check if the user input is enough or not
             if(txtCustomerID.getText().equals("") || txtAmount.getText().equals("") || txtBeneficiaryName.getText().equals(""))
             {
                 JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
             }
             else
             {
+                // Check amount
                 if(Long.parseLong(txtAmount.getText()) >= 50000)
                 {
                     int reply = JOptionPane.showConfirmDialog(null, "Are you sure to open this payment account for customer?", "Confirm", JOptionPane.YES_NO_OPTION);
@@ -266,12 +273,14 @@ public class Deposit_GUI extends javax.swing.JFrame {
         }
         if(rbDepositToAccount.isSelected())
         {
+            // Check if the user input is enough or not
             if(txtAccountID.getText().equals("") || txtBeneficiaryName.getText().equals("") || txtAmount.getText().equals(""))
             {
                 JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
             }
             else
             {
+                // Check amount
                 if(Long.parseLong(txtAmount.getText()) >= 100000)
                 {
                     long amount = Long.parseLong(txtAmount.getText());
@@ -298,6 +307,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAccountIDMouseClicked
 
     private void txtAccountIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccountIDActionPerformed
+        
         if(txtAccountID.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
@@ -331,6 +341,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCustomerIDMouseClicked
 
     private void txtCustomerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerIDActionPerformed
+        // Check if the customer text field is filled or not
         if(txtCustomerID.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
@@ -366,6 +377,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
     
     private void rbAccountOpeningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAccountOpeningActionPerformed
         clearForm();
+        // Enable fillable textfield 
         txtAccountID.setEditable(false);
         txtCustomerID.setEditable(true);
         txtBeneficiaryName.setEditable(false);
@@ -374,10 +386,12 @@ public class Deposit_GUI extends javax.swing.JFrame {
 
     private void rbDepositToAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDepositToAccountActionPerformed
         clearForm();
+        //Enable fillable textfield 
         txtAccountID.setEditable(true);
         txtCustomerID.setEditable(false);
         txtBeneficiaryName.setEditable(false);
         txtAmount.setEditable(true);
+        
     }//GEN-LAST:event_rbDepositToAccountActionPerformed
 
 

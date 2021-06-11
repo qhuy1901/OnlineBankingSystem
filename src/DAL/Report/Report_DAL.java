@@ -67,10 +67,9 @@ public class Report_DAL
     
     public void showCustomerList() 
     {
-        String m_report_source = "Customer.jrxml";
-        String m_sql_stmt = "SELECT C.CUSTOMER_ID, FIRST_NAME || ' ' || LAST_NAME FULL_NAME, C.GENDER, C.DATE_OF_BIRTH, C.ADDRESS, C.PHONE_NUMBER, C.ID_CARD, A.ACCOUNT_ID, STATUS, REVENUE\n" +
-                    "FROM CUSTOMER C JOIN ACCOUNT A ON C.CUSTOMER_ID = A.CUSTOMER_ID\n"
-                    + "WHERE ACCOUNT_TYPE_ID = 'PA'";
+        String m_report_source = "CustomerList.jrxml";
+        String m_sql_stmt = "SELECT CUSTOMER_ID, FIRST_NAME || ' ' || LAST_NAME FULL_NAME, GENDER, DATE_OF_BIRTH, ADDRESS, PHONE_NUMBER, ID_CARD,REVENUE\n" +
+                    "FROM CUSTOMER";
         showReport(m_report_source, m_sql_stmt);
     }
     
