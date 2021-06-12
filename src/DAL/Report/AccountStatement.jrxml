@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="670" pageHeight="900" columnWidth="630" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="931e9db9-18a8-4523-b736-298a24b1c542">
 	<property name="ireport.zoom" value="1.0000000000000004"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="74"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -240,27 +240,6 @@ from (((TRANSACTION T JOIN TRANSACTION_TYPE TP USING(TRANSACTION_TYPE_ID))
 				<textFieldExpression><![CDATA[$F{ADDRESS}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="209" y="251" width="125" height="20" uuid="ea529810-b74c-40f2-a663-e904e1365aca"/>
-				<textElement>
-					<font fontName="Serif" size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ACCOUNT_ID}]]></textFieldExpression>
-			</textField>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="72" y="316" width="119" height="20" uuid="e4fccae7-62c8-4530-9c85-a87e6c156745"/>
-				<textElement>
-					<font fontName="Serif" size="14" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{TRANSACTION_DATE}]]></textFieldExpression>
-			</textField>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="272" y="317" width="128" height="20" uuid="5a1c87d7-f310-47ab-b142-c5ab64e19020"/>
-				<textElement>
-					<font fontName="Serif" size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{TRANSACTION_DATE}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="272" y="347" width="179" height="20" uuid="d801d52a-c4b0-47e7-a035-d816d356f790"/>
 				<textElement>
 					<font fontName="Serif" size="14" isBold="true"/>
@@ -286,13 +265,7 @@ from (((TRANSACTION T JOIN TRANSACTION_TYPE TP USING(TRANSACTION_TYPE_ID))
 Date]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:detailCell style="table 4_TD" height="41" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="138" height="41" uuid="b51a6949-22ca-4a35-b1b1-51f1f8cfe886"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{TRANSACTION_DATE}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
+						<jr:detailCell style="table 4_TD" height="41" rowSpan="1"/>
 					</jr:column>
 					<jr:column width="112" uuid="e29dd0a9-4f4a-4c73-82d0-198b5a20ac29">
 						<jr:tableHeader style="table 4_TH" height="30" rowSpan="1">
@@ -303,13 +276,7 @@ Date]]></text>
 Amount]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:detailCell style="table 4_TD" height="41" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="112" height="41" uuid="dff9d2f5-cacc-4300-90dc-9d7d55379e36"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{AMOUNT}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
+						<jr:detailCell style="table 4_TD" height="41" rowSpan="1"/>
 					</jr:column>
 					<jr:column width="118" uuid="c4213637-62ea-4a05-8c69-778fd9d93471">
 						<jr:tableHeader style="table 4_TH" height="30" rowSpan="1">
@@ -320,13 +287,7 @@ Amount]]></text>
 Fee]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:detailCell style="table 4_TD" height="41" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="118" height="41" uuid="b963f2bc-7bc6-4f1d-bbd1-38ec22714b45"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{FEE}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
+						<jr:detailCell style="table 4_TD" height="41" rowSpan="1"/>
 					</jr:column>
 					<jr:column width="126" uuid="0d90b55b-1da9-4f04-9189-22b96c6fa278">
 						<jr:tableHeader style="table 4_TH" height="30" rowSpan="1">
@@ -337,13 +298,7 @@ Fee]]></text>
 Current balance]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:detailCell style="table 4_TD" height="41" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="126" height="41" uuid="41c87548-6080-4d55-9e48-6a86136580fb"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{CURRENT_BALANCE}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
+						<jr:detailCell style="table 4_TD" height="41" rowSpan="1"/>
 					</jr:column>
 					<jr:column width="277" uuid="c49a25d7-7c38-4cf5-bfdd-e9d7e7a95c78">
 						<jr:tableHeader style="table 4_TH" height="30" rowSpan="1">
@@ -354,12 +309,7 @@ Current balance]]></text>
 Transaction in detail]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:detailCell style="table 4_TD" height="41" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="277" height="41" uuid="96ba3ab3-e20d-4fbb-94b8-196a862bb2d3"/>
-								<textFieldExpression><![CDATA[$F{NAME}$F{CONTENT}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
+						<jr:detailCell style="table 4_TD" height="41" rowSpan="1"/>
 					</jr:column>
 				</jr:table>
 			</componentElement>
@@ -370,13 +320,6 @@ Transaction in detail]]></text>
 				</textElement>
 				<text><![CDATA[Số dư cuối kỳ:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="434" y="230" width="150" height="20" uuid="e9c1ad8e-eb8b-403a-a752-290f0d365899"/>
-				<textElement>
-					<font fontName="Serif" size="14" isBold="true" isItalic="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{CURRENT_BALANCE}]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement x="0" y="229" width="630" height="1" uuid="bec4ada6-6757-4a95-ac93-ed6055222eac"/>
 			</line>

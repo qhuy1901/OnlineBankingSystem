@@ -43,7 +43,7 @@ public class Saving_GUI extends javax.swing.JFrame
         /*Set giao diện*/
         setSize(1064, 650); // Set kích thước giao diện
         setResizable(false); // Không cho phóng to
-        setTitle("My Wallet"); // Set tiêu đề
+        setTitle("Saving"); // Set tiêu đề
         setLocation(225,70); // Set vị trí trang
         setVisible(true); // Hiển thị giao diện
         

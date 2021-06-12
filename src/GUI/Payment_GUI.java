@@ -23,29 +23,33 @@ public class Payment_GUI extends javax.swing.JFrame
     public Payment_GUI(Customer_DTO customer, Account_DTO account) 
     {
         initComponents();
-        
-        // Set default form
-        setLocationRelativeTo(null);
-        setSize(1064, 650);
-        setResizable(false);
         dtoCustomer = customer;
         dtoAccount = account; 
-        cboMonth.setSelectedItem(null);
+        
+        /*Set giao diện*/
+        setSize(1064, 650); // Set kích thước giao diện
+        setResizable(false); // Không cho phóng to
+        setTitle("Payment"); // Set tiêu đề
+        setLocation(225,70); // Set vị trí trang
+        setVisible(true); // Hiển thị giao diện
+        
+        cboMonth.setSelectedItem(null); // Set giá trị ban đầu của combobox là null
         cboYear.setSelectedItem(null);
         btnPayment.setEnabled(true);
-        setVisible(true);
-        
+
         loadCboServiceType();
-        cboServiceType.setSelectedItem(null);
     }
     
     public void loadCboServiceType()
     {
+        // Get service types information
         ArrayList<String> serviceTypeList = busPayment.getServiceTypeList();
+        // Load data into the combobox
         for(String serviceType : serviceTypeList)
         {
             cboServiceType.addItem(serviceType);
         }
+        cboServiceType.setSelectedItem(null);
     }
     
     public void clearBillLookupInformation()
@@ -436,21 +440,26 @@ public class Payment_GUI extends javax.swing.JFrame
         }
         else
         {
+            // Lấy thông tin từ form xuống
             long customerId = Long.parseLong(txtCustomerID.getText().replace(" ", ""));
             String supplierName = cboSupplierName.getSelectedItem().toString();
             int month = Integer.parseInt(cboMonth.getSelectedItem().toString());
             int year = Integer.parseInt(cboYear.getSelectedItem().toString());
+            // Lấy thông tin hóa đơn từ database
             dtoBill = busPayment.getBillInformation(new Customer_DTO(customerId), new Supplier_DTO(supplierName),month , year);
             if(dtoBill != null) // Hóa đơn tồn tại
             {
                 if(dtoBill.getStatus().equals("Unpaid")) // Hóa đơn chưa được thanh toán
                 {
+                    // Display bill information
                     txtBillID_BillLookup.setText(String.valueOf(dtoBill.getId()));
                     txtCustomerID_BillLookup.setText(String.valueOf(dtoBill.getCustomerID()));
                     txtSupplier_BillLookup.setText(cboSupplierName.getSelectedItem().toString());
                     txtBillDate_BillLookup.setText(dtoBill.getInvoiceDate().toString());
                     txtStatus_BillLookup.setText(dtoBill.getStatus());
                     txtBillAmount_BillLookup.setText(String.format("%,d", dtoBill.getBillAmount()) + " VND");
+                    
+                    // Show Payment button
                     btnPayment.setVisible(true);
                 }
                 else

@@ -1,6 +1,7 @@
 package BUS;
 
 import DAL.Customer_DAL;
+import DAL.Report.Report_DAL;
 import DAL.Transaction_DAL;
 import DAL.Transaction_Type_DAL;
 import DAL.Transfer_Detail_DAL;
@@ -19,7 +20,8 @@ public class Statement_BUS
     Transaction_Type_DAL dalTransactionType = new Transaction_Type_DAL();
     Customer_DAL dalCustomer = new Customer_DAL();
     Transfer_Detail_DAL dalTransferDetail = new Transfer_Detail_DAL();
-    
+    Report_DAL dalReport = new Report_DAL();
+            
     public ArrayList<Transaction_DTO> getStatement(Account_DTO dtoAccount, Date fromDate, Date toDate) 
     {
         return dalTransaction.getStatement(dtoAccount, fromDate, toDate);
@@ -38,5 +40,10 @@ public class Statement_BUS
     public Transfer_Detail_DTO getTransferDetail(int transactionId)
     {
         return dalTransferDetail.getTransferDetail(transactionId);
+    }
+    
+    public void showStatementReport(long accountId, Date fromDate, Date toDate) 
+    {
+        dalReport.showStatementReport(accountId, fromDate, toDate);
     }
 }

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8391bbaa-e17b-4963-9072-6fa46c1c14a0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="240"/>
+	<queryString language="SQL">
+		<![CDATA[select T.TRANSACTION_ID, T.TRANSACTION_DATE, T.TOTAL_TRANSACTION_AMOUNT, TP.NAME, TP.FEE, TD.AMOUNT, TD.SENDER_ACCOUNT, TD.RECEIVER_ACCOUNT, TD.CONTENT , C.FIRST_NAME || ' ' || C.LAST_NAME FULL_NAME
+from (((TRANSACTION T JOIN TRANSACTION_TYPE TP USING(TRANSACTION_TYPE_ID))
+        JOIN TRANSFER_DETAIL TD ON TD.TRANSACTION_ID= T.TRANSACTION_ID)
+            JOIN ACCOUNT A ON A.ACCOUNT_ID = TD.RECEIVER_ACCOUNT)
+                JOIN CUSTOMER C ON C.CUSTOMER_ID = A.CUSTOMER_ID]]>
+	</queryString>
+	<field name="TRANSACTION_ID" class="java.math.BigDecimal"/>
+	<field name="TRANSACTION_DATE" class="java.sql.Timestamp"/>
+	<field name="TOTAL_TRANSACTION_AMOUNT" class="java.math.BigDecimal"/>
+	<field name="NAME" class="java.lang.String"/>
+	<field name="FEE" class="java.math.BigDecimal"/>
+	<field name="AMOUNT" class="java.math.BigDecimal"/>
+	<field name="SENDER_ACCOUNT" class="java.math.BigDecimal"/>
+	<field name="RECEIVER_ACCOUNT" class="java.math.BigDecimal"/>
+	<field name="CONTENT" class="java.lang.String"/>
+	<field name="FULL_NAME" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="410" splitType="Stretch">
+			<staticText>
+				<reportElement x="392" y="86" width="125" height="20" uuid="f8b26ef6-389e-4896-8480-e7defe2109cd"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày thực hiện(date):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="28" width="129" height="20" uuid="cf56e615-971c-4fd4-b5f8-5d9b92088f8c"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ACCOUNT STATEMENT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="357" width="172" height="20" uuid="5d6afbf0-116f-4a9b-803e-857331c3cc8d"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số dư đầu kỳ/Caried blance:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="0" width="203" height="28" uuid="65395f03-e291-44f2-8b08-f74b48961a4b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Serif" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SAO KÊ TÀI KHOẢN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="281" width="40" height="20" uuid="89c06dd5-3e74-4e9f-8c89-7f802b1337d2"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[VND]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="168" width="192" height="20" uuid="d776a989-90e6-4933-9f5e-2e1690031a80"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Chủ tài khoản/Account name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="325" width="70" height="20" uuid="51839f18-9b3c-41ac-9fa9-9f16d0caca82"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Từ (From):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="281" width="123" height="20" uuid="33698cad-abc0-4861-8e17-816138e64993"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Loại tiền/Currency:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="208" width="100" height="20" uuid="60d9d308-e8c7-4877-bb94-d17d0ab43783"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Địa chỉ/Address:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="326" width="63" height="20" uuid="340ce908-29c5-408f-b567-07a780aa7b36"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Đến (To):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="261" width="192" height="20" uuid="75a2af5b-2fab-4ca2-845b-bc4db6ee0d6a"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số tài khoản/Account number:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="10" width="268" height="28" uuid="85744140-6ecf-414b-8477-dacd7d94b8e2"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Ngân Hàng TMCP Ngoại Thương Việt Nam]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="71" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="195" y="2" width="100" height="20" uuid="df9d2631-de38-4e4a-9553-298536450833"/>
+				<text><![CDATA[FULL_NAME]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="195" y="35" width="100" height="20" uuid="03f7b140-7db3-4cf1-92cd-8a334dcebf2a"/>
+				<textFieldExpression><![CDATA[$F{FULL_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

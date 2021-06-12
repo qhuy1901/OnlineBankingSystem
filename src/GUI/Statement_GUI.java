@@ -10,6 +10,7 @@ import DTO.Transfer_Detail_DTO;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.TreeMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -149,6 +150,11 @@ public class Statement_GUI extends javax.swing.JFrame {
         btnExport.setText("Export statement report");
         btnExport.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnExport.setIconTextGap(2);
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 220, 40));
 
         btnStatement.setBackground(new java.awt.Color(32, 172, 216));
@@ -278,8 +284,16 @@ public class Statement_GUI extends javax.swing.JFrame {
     private void txtAccountIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAccountIDMouseClicked
         txtAccountOnwer.setText("");
         tblStatementModel.setRowCount(0); // clear Table
+        dtoAccount = null;
         btnExport.setVisible(false);
     }//GEN-LAST:event_txtAccountIDMouseClicked
+
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        long accountId = dtoAccount.getId();
+        Date fromDate = datFromDate.getDate();
+        Date toDate = datToDate.getDate();
+        busStatement.showStatementReport(accountId, fromDate, toDate);
+    }//GEN-LAST:event_btnExportActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;
