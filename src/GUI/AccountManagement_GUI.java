@@ -39,14 +39,12 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         String title[] = {"Account ID", "Current Balance", "Open Day","Account Type", "Status", "Customer ID"};
         tblAccountModel.setColumnIdentifiers(title);
         tblAccountModel.setRowCount(0); 
-        tblAccount.setModel(tblAccountModel);
+        
         // Set kích thước cho các cột
         tblAccount.getColumnModel().getColumn(0).setPreferredWidth(60);
         tblAccount.getColumnModel().getColumn(1).setPreferredWidth(80);
         tblAccount.getColumnModel().getColumn(2).setPreferredWidth(60);
         tblAccount.getColumnModel().getColumn(3).setPreferredWidth(310);
-        // Hiển thị bảng
-        setVisible(true);
         
         // Get all account information
         ArrayList<Account_DTO> accountList = busAccount.getAccountList();
@@ -68,6 +66,7 @@ public class AccountManagement_GUI extends javax.swing.JFrame
             String[] rows = {accountId, currentBalance, openDay ,accountTypeName, status, customerId};
             tblAccountModel.addRow(rows);
         }
+        tblAccount.setModel(tblAccountModel);
     }   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

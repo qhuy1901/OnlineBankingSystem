@@ -57,8 +57,6 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         String title[] = {"ID", "Supplier Name", "Service Type","Contract Singing Date", "Address", "Phone Number"};
         tblSupplierModel.setColumnIdentifiers(title);
         tblSupplierModel.setRowCount(0);
-        // set model to table
-        tblSupplier.setModel(tblSupplierModel);
         
         // Get all supplier information
         ArrayList<Supplier_DTO> list = busSupplier.getSupplierList();
@@ -70,6 +68,9 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
             String[] rows = {String.valueOf(dtoSupplier.getId()), dtoSupplier.getName(), dtoSupplier.getServiceName(), dtoSupplier.getContractSigningDate().toString(), dtoSupplier.getAddress(), dtoSupplier.getPhoneNumber() };
             tblSupplierModel.addRow(rows);
         }
+
+        // set model to table
+        tblSupplier.setModel(tblSupplierModel);
     }
 
     public void clearForm()
@@ -79,7 +80,6 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         txtAddress.setText("");
         datContractSingingDate.setDate(null);
         cboServiceType.setSelectedItem(null);
-        txtSearch.setText("");
         createTable();
     }
     

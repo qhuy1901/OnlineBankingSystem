@@ -48,8 +48,6 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         tblViewCustomer.getColumnModel().getColumn(2).setPreferredWidth(60);
         tblViewCustomer.getColumnModel().getColumn(3).setPreferredWidth(80);
         tblViewCustomer.getColumnModel().getColumn(4).setPreferredWidth(250);
-        // Hiển thị bảng
-        setVisible(true);
         
         // Get all customer information
         ArrayList<Customer_DTO> list = busCustomerManagment.getCustomersList();
