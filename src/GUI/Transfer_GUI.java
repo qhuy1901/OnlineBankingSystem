@@ -31,7 +31,7 @@ public class Transfer_GUI extends javax.swing.JFrame
         setLocation(225,70); // Set vị trí trang
         setVisible(true); // Hiển thị giao diện
         
-        cboReceiverBank.setSelectedItem(null);
+        cboReceiverBank.setSelectedItem(null); // Set giá trị ban đầu của combobox là null
     }
 
     @SuppressWarnings("unchecked")
@@ -208,7 +208,7 @@ public class Transfer_GUI extends javax.swing.JFrame
 
     private boolean confirmPassword()
     {
-        // Hiển thị form nhập mật khẩu
+        // Show password input dialog
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Please enter your password:");
         JPasswordField pass = new JPasswordField(10);
@@ -218,9 +218,11 @@ public class Transfer_GUI extends javax.swing.JFrame
         int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
 
         if(option == 0) // Customer pressing Confirm button
-        {
+        {   
             String password = pass.getText();
-            User_Login_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); // Get customer password in database
+            // Get user login information
+            User_Login_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); 
+            // Check password
             if(password.equals(dtoUserLogIn.getPassword()))
                 return true;
             else
@@ -231,12 +233,14 @@ public class Transfer_GUI extends javax.swing.JFrame
     
     
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
+        // Check if the customer input is enough or not
         if(cboReceiverBank.getSelectedItem().equals("") || txtReceiverAccount.getText().equals("") || txtReceiverName.getText().equals("") ||  txtAmount.getText().equals("")|| txtContent.getText().equals(""))
         {
             JOptionPane.showConfirmDialog(null, "Required fields are empty", "Please fill all required fields...!", JOptionPane.CLOSED_OPTION);
         }
         else
         {
+            // Check transfer amount
             long amount = Long.parseLong(txtAmount.getText());
             if(amount < 10000)
             {
@@ -244,12 +248,15 @@ public class Transfer_GUI extends javax.swing.JFrame
             }
             else
             {
+                // Check balance
                 if(dtoAccount.getCurrentBalance() >= Long.parseLong(txtAmount.getText().replaceAll("\\s+",""))) // Kiểm tra số dư 
                 {
+                    // Show password input dialog and check password
                     if(confirmPassword())
                     {
                         Transfer_Detail_DTO dtoTransferDetail = new Transfer_Detail_DTO(dtoAccount.getId(), dtoReceiverAccount.getId(), cboReceiverBank.getSelectedItem().toString(), Long.parseLong(txtAmount.getText()), txtContent.getText());
-                        int transactionId = busTransfer.transfer(dtoTransferDetail); // Thực hiện giao dịch
+                        // Make transfer transaction
+                        int transactionId = busTransfer.transfer(dtoTransferDetail); 
                         if(transactionId != 0) // Thực hiện giao dịch thành công
                         {
                             JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);
@@ -295,6 +302,7 @@ public class Transfer_GUI extends javax.swing.JFrame
        if(txtReceiverAccount.getText().equals("") == false) // Kiểm tra đã điền Receiver account chưa
        {
            dtoReceiverAccount = new Account_DTO(Long.parseLong(txtReceiverAccount.getText()));
+           // Check receiver account information
            if(busTransfer.isValidPaymentAccount(dtoReceiverAccount) == false || dtoReceiverAccount.getId() == dtoAccount.getId()) // Kiểm tra tài khoản người nhận 
            {
                JOptionPane.showConfirmDialog(null, "Receiver account is invalid", "Error", JOptionPane.CLOSED_OPTION);
@@ -302,7 +310,9 @@ public class Transfer_GUI extends javax.swing.JFrame
            }
            else
            {
+               // Get receiver information
                Customer_DTO dtoReceiver = busTransfer.getCustomerInfo(dtoReceiverAccount);
+               // Display receiver name
                txtReceiverName.setText(dtoReceiver.getFirstName() + " " + dtoReceiver.getLastName());
            }
        }

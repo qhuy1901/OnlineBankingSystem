@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="fa403466-1626-45fa-a76c-65fae0ef5015">
-	<property name="ireport.zoom" value="1.9487171000000636"/>
+	<property name="ireport.zoom" value="1.46410000000005"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="439"/>
+	<property name="ireport.y" value="156"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -66,9 +66,6 @@ WHERE ACCOUNT_TYPE_ID = 'PA']]>
 	<field name="ADDRESS" class="java.lang.String"/>
 	<field name="CURRENT_BALANCE" class="java.math.BigDecimal"/>
 	<field name="FULL_NAME" class="java.lang.String"/>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
 	<title>
 		<band height="357" splitType="Stretch">
 			<staticText>
@@ -305,28 +302,44 @@ WHERE ACCOUNT_TYPE_ID = 'PA']]>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="17">
+		<band height="19">
 			<line>
 				<reportElement x="0" y="0" width="555" height="1" uuid="d4a335ea-350b-4372-8c41-05df3c144a7d"/>
 			</line>
 		</band>
 	</columnFooter>
 	<summary>
-		<band height="50">
+		<band height="31">
 			<staticText>
-				<reportElement x="317" y="0" width="74" height="20" uuid="ff0fc46a-b152-4c6f-a805-3c54671f88ff"/>
+				<reportElement x="326" y="7" width="74" height="20" uuid="ff0fc46a-b152-4c6f-a805-3c54671f88ff"/>
 				<textElement>
 					<font fontName="Serif" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Số dư cuối:]]></text>
 			</staticText>
 			<textField pattern="#,##0">
-				<reportElement x="391" y="0" width="110" height="20" uuid="38f40586-a5a9-401c-906a-f12b005e2c0d"/>
+				<reportElement x="400" y="7" width="98" height="20" uuid="38f40586-a5a9-401c-906a-f12b005e2c0d"/>
 				<textElement>
 					<font fontName="Serif" size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{CURRENT_BALANCE}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="498" y="7" width="35" height="20" uuid="e4429cbb-04d0-4475-ab36-e85873c54e36"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VND]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="1" height="31" uuid="c51a03bb-67f6-4274-bcf6-ea86c17d9408"/>
+			</line>
+			<line>
+				<reportElement x="554" y="0" width="1" height="31" uuid="0a6c41ef-160c-46d7-b96e-cbece403cf8d"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="aac50f3a-4cb1-4db6-b64e-3d10f2b38919"/>
+			</line>
 		</band>
 	</summary>
 </jasperReport>

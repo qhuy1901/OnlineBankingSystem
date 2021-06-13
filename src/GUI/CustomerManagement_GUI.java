@@ -13,7 +13,7 @@ import javax.swing.table.TableRowSorter;
 
 public class CustomerManagement_GUI extends javax.swing.JFrame 
 {
-    CustomerManagement_BUS customer_BUS = new CustomerManagement_BUS();
+    CustomerManagement_BUS busCustomerManagment = new CustomerManagement_BUS();
     Employee_DTO dtoAdmin = null;
     Customer_DTO dtoCustomer = null;
     
@@ -52,7 +52,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         setVisible(true);
         
         /*Load data*/
-        ArrayList<Customer_DTO> list = customer_BUS.getCustomersList();
+        ArrayList<Customer_DTO> list = busCustomerManagment.getCustomersList();
         for(int i = 0; i < list.size(); i++)
         {
             Customer_DTO dtoCustomer = list.get(i);
@@ -589,7 +589,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         else
         {
             Customer_DTO newCustomer = new Customer_DTO(0 , txtFirstName_AddCustomer.getText(), txtLastName_AddCustomer.getText(), cbGender_AddCustomer.getSelectedItem().toString(), dcDateOfBirth_AddCustomer.getDate() ,txtAddress.getText(), txtPhoneNumber.getText(), txtIDCard.getText());
-            if(customer_BUS.insert(newCustomer))
+            if(busCustomerManagment.insert(newCustomer))
             {
                 JOptionPane.showMessageDialog(this, "Customer added successfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 clearForm();
@@ -613,7 +613,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
             int ret = JOptionPane.showConfirmDialog(null, "Are you sure to delete this customer and and all information associated with this customer?", "Confirm", JOptionPane.YES_NO_OPTION);
             if(ret == JOptionPane.YES_OPTION)
             {
-                if(customer_BUS.delete(dtoCustomer))
+                if(busCustomerManagment.delete(dtoCustomer))
                 {
                     JOptionPane.showMessageDialog(this, "Customer deleted susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     clearForm();
@@ -639,7 +639,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 if(ret == JOptionPane.YES_OPTION) 
                 {
                     Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtUpdateID.getText()) , txtFirstName_UpdateCustomer.getText(), txtLastName_UpdateCustomer.getText(), cbbUpdateGender.getSelectedItem().toString(), dcDateOfBirth_UpdateCustomer.getDate(), txtUpdateAddress.getText(), txtUpdatePhoneNumber.getText(), txtUpdateIDCard.getText());
-                    if(customer_BUS.update(ct))
+                    if(busCustomerManagment.update(ct))
                     {
                         JOptionPane.showMessageDialog(this, "Customer updated susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
                         clearForm();
@@ -662,7 +662,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         }
         else
         {
-            dtoCustomer = customer_BUS.getInformation(Integer.parseInt(txtUpdateID.getText()));
+            dtoCustomer = busCustomerManagment.getInformation(Integer.parseInt(txtUpdateID.getText()));
             if(dtoCustomer == null)
             {
                 JOptionPane.showMessageDialog(this, "No customer information found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -726,7 +726,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_txtUpdateIDCardKeyTyped
 
     private void btnExportCustomerListReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportCustomerListReportActionPerformed
-        customer_BUS.showCustomerList();
+        busCustomerManagment.showCustomerList();
     }//GEN-LAST:event_btnExportCustomerListReportActionPerformed
 
     private void txtUpdateIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUpdateIDMouseClicked

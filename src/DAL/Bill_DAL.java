@@ -1,6 +1,5 @@
 package DAL;
 
-import DTO.Account_DTO;
 import DTO.Customer_DTO;
 import DTO.Bill_DTO;
 import DTO.Supplier_DTO;

@@ -88,12 +88,6 @@ public class Report_DAL
         DateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         
         String m_report_source = "Statement4.jrxml";
-//        String m_sql_stmt = "select T.TRANSACTION_ID, T.TRANSACTION_DATE, T.TOTAL_TRANSACTION_AMOUNT, TP.NAME, TP.FEE, TD.AMOUNT, TD.SENDER_ACCOUNT, TD.RECEIVER_ACCOUNT, TD.CONTENT , C.FIRST_NAME || ' ' || C.LAST_NAME FULL_NAME\n" +
-//                    "from (((TRANSACTION T JOIN TRANSACTION_TYPE TP USING(TRANSACTION_TYPE_ID))\n" +
-//                    "        JOIN TRANSFER_DETAIL TD ON TD.TRANSACTION_ID= T.TRANSACTION_ID)\n" +
-//                    "            JOIN ACCOUNT A ON A.ACCOUNT_ID = TD.RECEIVER_ACCOUNT)\n" +
-//                    "                JOIN CUSTOMER C ON C.CUSTOMER_ID = A.CUSTOMER_ID\n" +
-//                    "WHERE A.ACCOUNT_ID = " + accountId + " AND TRANSACTION_DATE >= '" + df.format(fromDate) + "' AND TRANSACTION_DATE <= '" + df.format(toDate) + "'";
         String m_sql_stmt = "select T.TRANSACTION_ID, T.TRANSACTION_DATE, T.TOTAL_TRANSACTION_AMOUNT, TP.NAME, TP.FEE, A.ACCOUNT_ID, C. ADDRESS, TP.NAME, A.CURRENT_BALANCE , C.FIRST_NAME || ' ' || C.LAST_NAME FULL_NAME\n" +
                             "from ((TRANSACTION T JOIN TRANSACTION_TYPE TP ON T.TRANSACTION_TYPE_ID = TP.TRANSACTION_TYPE_ID)\n" +
                             "            JOIN ACCOUNT A ON A.ACCOUNT_ID = T.ACCOUNT_ID)\n" +

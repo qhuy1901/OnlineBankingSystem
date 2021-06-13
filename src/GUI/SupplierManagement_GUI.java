@@ -353,7 +353,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         int index = tblSupplier.getSelectedRow();
         if(index == -1) // Kiểm tra người dùng đã chọn supplier chưa
         {
-            JOptionPane.showMessageDialog(this, "Please select a supplier before updating", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select a supplier before deleting", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
@@ -379,12 +379,18 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-
+        // Tạo biến SearchTable có kdl là DefaultTableModel và gán model trên bảng tblSupplier cho biến đó
         DefaultTableModel SearchTable = (DefaultTableModel) tblSupplier.getModel();
+        
+        // Khởi tạo biến sorter có kdl TableRowSorter gán dữ liệu của SearchTable cho nó
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(SearchTable);
+        
+        // Set sorter đó cho bảng tblSupplier
+        tblSupplier.setRowSorter(sorter);
+        
+        // sử dụng đối tượng RowFilter để lọc dựa trên giá trị trong textfield
         String search = txtSearch.getText();
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(SearchTable);
-        tblSupplier.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(search));
+        sorter.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void txtPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyTyped
