@@ -41,13 +41,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         String title[] = {"ID", "Full Name", "Gender", "Date of birth", "Address", "Phone number", "ID Card"};
         tblCustomerModel.setColumnIdentifiers(title);
         tblCustomerModel.setRowCount(0);
-        tblViewCustomer.setModel(tblCustomerModel);
-        // Set kích thước cho các cột
-        tblViewCustomer.getColumnModel().getColumn(0).setPreferredWidth(70);
-        tblViewCustomer.getColumnModel().getColumn(1).setPreferredWidth(200);
-        tblViewCustomer.getColumnModel().getColumn(2).setPreferredWidth(60);
-        tblViewCustomer.getColumnModel().getColumn(3).setPreferredWidth(80);
-        tblViewCustomer.getColumnModel().getColumn(4).setPreferredWidth(250);
+        
         
         // Get all customer information
         ArrayList<Customer_DTO> list = busCustomerManagment.getCustomersList();
@@ -59,6 +53,15 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
             String[] rows = {String.valueOf(dtoCustomer.getId()), dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName() , dtoCustomer.getGender(),  dtoCustomer.getDateOfBirth().toString(), dtoCustomer.getAddress(), dtoCustomer.getPhoneNumber(), dtoCustomer.getIDCard()};
             tblCustomerModel.addRow(rows);
         }
+
+        tblViewCustomer.setModel(tblCustomerModel);
+        
+        // Set kích thước cho các cột
+        tblViewCustomer.getColumnModel().getColumn(0).setPreferredWidth(70);
+        tblViewCustomer.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblViewCustomer.getColumnModel().getColumn(2).setPreferredWidth(60);
+        tblViewCustomer.getColumnModel().getColumn(3).setPreferredWidth(80);
+        tblViewCustomer.getColumnModel().getColumn(4).setPreferredWidth(250);
     }
 
     private void clearForm()

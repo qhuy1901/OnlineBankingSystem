@@ -40,12 +40,6 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         tblAccountModel.setColumnIdentifiers(title);
         tblAccountModel.setRowCount(0); 
         
-        // Set kích thước cho các cột
-        tblAccount.getColumnModel().getColumn(0).setPreferredWidth(60);
-        tblAccount.getColumnModel().getColumn(1).setPreferredWidth(80);
-        tblAccount.getColumnModel().getColumn(2).setPreferredWidth(60);
-        tblAccount.getColumnModel().getColumn(3).setPreferredWidth(310);
-        
         // Get all account information
         ArrayList<Account_DTO> accountList = busAccount.getAccountList();
         
@@ -67,6 +61,12 @@ public class AccountManagement_GUI extends javax.swing.JFrame
             tblAccountModel.addRow(rows);
         }
         tblAccount.setModel(tblAccountModel);
+        
+        // Set kích thước cho các cột
+        tblAccount.getColumnModel().getColumn(0).setPreferredWidth(60);
+        tblAccount.getColumnModel().getColumn(1).setPreferredWidth(80);
+        tblAccount.getColumnModel().getColumn(2).setPreferredWidth(60);
+        tblAccount.getColumnModel().getColumn(3).setPreferredWidth(310);
     }   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -215,14 +215,13 @@ public class AccountManagement_GUI extends javax.swing.JFrame
 
     private void btnLockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockAccountActionPerformed
         int row = tblAccount.getSelectedRow();
-        int accountId = Integer.parseInt(tblAccount.getValueAt(row, 0).toString().replaceAll("\\s+",""));
-        
-        if(accountId == 0) // Kiểm tra người dùng đã chọn tài khoản cần khóa chưa
+        if(row == -1) // Kiểm tra người dùng đã chọn tài khoản cần khóa chưa
         {
             JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE); 
         }
         else
         {
+            int accountId = Integer.parseInt(tblAccount.getValueAt(row, 0).toString().replaceAll("\\s+",""));
             // Kiểm tra loại tài khoản của tài khoản đang được chọn
             if(tblAccount.getValueAt(row, 3).toString().contains("Savings Account")) 
             {
@@ -255,13 +254,13 @@ public class AccountManagement_GUI extends javax.swing.JFrame
 
     private void btnUnlockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnlockAccountActionPerformed
         int row = tblAccount.getSelectedRow();
-        int accountId = Integer.parseInt(tblAccount.getValueAt(row, 0).toString().replaceAll("\\s+",""));
-        if(accountId == 0) // Kiểm tra người dùng đã chọn tài khoản cần mở chưa
+        if(row == -1) // Kiểm tra người dùng đã chọn tài khoản cần mở chưa
         {
             JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
+            int accountId = Integer.parseInt(tblAccount.getValueAt(row, 0).toString().replaceAll("\\s+",""));
             // Kiểm tra loại tài khoản của tài khoản đang được chọn
             if(tblAccount.getValueAt(row, 3).toString().contains("Savings Account")) // Không được mở khóa tài khoản tiết kiệm
             {
