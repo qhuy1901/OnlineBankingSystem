@@ -51,8 +51,10 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         // Hiển thị bảng
         setVisible(true);
         
-        /*Load data*/
+        // Get all customer information
         ArrayList<Customer_DTO> list = busCustomerManagment.getCustomersList();
+        
+        // Load customer information into the table
         for(int i = 0; i < list.size(); i++)
         {
             Customer_DTO dtoCustomer = list.get(i);
@@ -582,6 +584,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnHome_AddCustomerActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // Check if the user input is enough or not
         if(txtLastName_AddCustomer.getText().equals("") || txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || txtIDCard.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
@@ -589,6 +592,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         else
         {
             Customer_DTO newCustomer = new Customer_DTO(0 , txtFirstName_AddCustomer.getText(), txtLastName_AddCustomer.getText(), cbGender_AddCustomer.getSelectedItem().toString(), dcDateOfBirth_AddCustomer.getDate() ,txtAddress.getText(), txtPhoneNumber.getText(), txtIDCard.getText());
+            // Add new customer
             if(busCustomerManagment.insert(newCustomer))
             {
                 JOptionPane.showMessageDialog(this, "Customer added successfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -608,11 +612,14 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed
+        // Check if customer information is shown or not
         if(dtoCustomer != null)
         {
+            // Show confirmation dialog
             int ret = JOptionPane.showConfirmDialog(null, "Are you sure to delete this customer and and all information associated with this customer?", "Confirm", JOptionPane.YES_NO_OPTION);
             if(ret == JOptionPane.YES_OPTION)
             {
+                // Delete customer information
                 if(busCustomerManagment.delete(dtoCustomer))
                 {
                     JOptionPane.showMessageDialog(this, "Customer deleted susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -627,12 +634,14 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnDeleteCustomerActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // Check if the user enter customer id or not
         if(txtUpdateID.getText().equals("") || txtLastName_UpdateCustomer.getText().equals("") || txtUpdateID.getText().equals("") || txtUpdateAddress.getText().equals("") || txtUpdatePhoneNumber.getText().equals("") || txtUpdateIDCard.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
+            // Check customer information
             if(dtoCustomer != null)
             {
                 int ret = JOptionPane.showConfirmDialog(null, "Are you sure to update this customer information?", "Confirm", JOptionPane.YES_NO_OPTION);
@@ -656,12 +665,14 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     
     
     private void btnShowInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowInformationActionPerformed
+        // Check if the user enter customer id or not
         if(txtUpdateID.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
+            // Get customer information
             dtoCustomer = busCustomerManagment.getInformation(Integer.parseInt(txtUpdateID.getText()));
             if(dtoCustomer == null)
             {
@@ -669,6 +680,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
             }
             else
             {
+                // Display customer infromation
                 txtFirstName_UpdateCustomer.setText(dtoCustomer.getFirstName());
                 txtLastName_UpdateCustomer.setText(dtoCustomer.getLastName());
                 cbbUpdateGender.setSelectedItem(dtoCustomer.getGender());

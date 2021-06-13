@@ -307,7 +307,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAccountIDMouseClicked
 
     private void txtAccountIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccountIDActionPerformed
-        
+        // Check if the account id text field is filled or not
         if(txtAccountID.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
@@ -315,6 +315,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
         else
         {
             Account_DTO dtoAccount = new Account_DTO(Long.parseLong(txtAccountID.getText()));
+            // Get customer information
             Customer_DTO dtoCustomer = busDeposit.getCustomerInfo(dtoAccount);
             if(dtoCustomer == null)
             {
@@ -323,6 +324,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
             }
             else
             {
+                // Display customer id and customer's name 
                 txtCustomerID.setText(String.valueOf(dtoCustomer.getId()));
                 txtBeneficiaryName.setText(dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
             }
@@ -348,6 +350,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
         }
         else
         {
+            // Get customer information
             Customer_DTO dtoCustomer = busDeposit.getInformation(Long.parseLong(txtCustomerID.getText()));
             if(dtoCustomer == null)
             {
@@ -356,6 +359,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
             }
             else
             {
+                // Display the customer's name 
                 txtBeneficiaryName.setText(dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
             }
         }

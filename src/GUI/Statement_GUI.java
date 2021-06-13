@@ -51,17 +51,24 @@ public class Statement_GUI extends javax.swing.JFrame {
     DefaultTableModel tblStatementModel = new DefaultTableModel();
     public void loadTable() 
     {
+        // Get statement information
         ArrayList<Transaction_DTO> list = busStatement.getStatement(dtoAccount, datFromDate.getDate(), datToDate.getDate());
+        
+        // Check statement information
         if(list.size() == 0) // No transactions found
         {
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             JOptionPane.showMessageDialog(this, "Customers do not make transactions from " + df.format(datFromDate.getDate())+ " to " + df.format(datToDate.getDate()) , "Notification", JOptionPane.INFORMATION_MESSAGE);
         }
-        else
+        else // Transaction information is found
         {
+            // Get transaction types information
             TreeMap<String, Transaction_Type_DTO> transactionTypeList = busStatement.getTransactionTypeList();
             tblStatementModel.setRowCount(0); 
-            for(int i = 0; i < list.size(); i++) {
+            
+            // Display each line of transaction information on the table.
+            for(int i = 0; i < list.size(); i++) 
+            {
                 Transaction_DTO dtoTransaction = list.get(i);
                 String transactionId = String.valueOf(dtoTransaction.getId());
                 String transactionTypeID = dtoTransaction.getTransactionTypeID();
@@ -73,9 +80,14 @@ public class Statement_GUI extends javax.swing.JFrame {
                 else // nếu là giao dịch trừ tiền tài khoản
                     totalTransactionAmount = "-" + totalTransactionAmount + " VND";
                 String transactionContent = transactionTypeList.get(transactionTypeID).getName().toUpperCase();
+                
+                // Check if it's a transfer transaction or not
                 if(transactionTypeID.contains("CT")) // Nếu là giao dịch chuyển tiền
                 {
+                    // Get transfer details
                     Transfer_Detail_DTO dtoTransferDetail = busStatement.getTransferDetail(dtoTransaction.getId());
+                    
+                   // Add transfer details to transaction content
                     transactionContent = transactionContent + " \nTRANSFER FROM " + dtoTransferDetail.getReceiverAccount() + " " + dtoTransferDetail.getContent();
                 }
                 String[] rows = {transactionId, transactionDate , totalTransactionAmount , transactionContent};
@@ -246,12 +258,14 @@ public class Statement_GUI extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
     private void btnStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatementActionPerformed
+        // Check if the user input is enough or not
         if(txtAccountID.getText().equals("") || txtAccountOnwer.getText().equals("") || datToDate.getDate() == null || datToDate.getDate() == null)
         {
             JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
+            // Check statement date 
             if(datFromDate.getDate().compareTo(datToDate.getDate()) == 1) // Kiểm tra ngày sao kê: fromDate có lớn hơn toDate không?
             {
                 JOptionPane.showMessageDialog(this, "Invalid statement date", "Eroror", JOptionPane.ERROR_MESSAGE);
@@ -261,15 +275,19 @@ public class Statement_GUI extends javax.swing.JFrame {
             else
             {
                 loadTable();
+                
+                // Show statement export button
                 btnExport.setVisible(true);
             }
         }
     }//GEN-LAST:event_btnStatementActionPerformed
 
     private void txtAccountIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccountIDActionPerformed
-
+        // Get account owner information
         dtoAccount = new Account_DTO(Long.parseLong(txtAccountID.getText()));
         Customer_DTO dtoCustomer = busStatement.getCustomerInfo(dtoAccount);
+        
+        // Check account owner information
         if(dtoCustomer == null)
         {
             JOptionPane.showMessageDialog(this, "Account ID is invalid", "Error", JOptionPane.ERROR_MESSAGE);
@@ -277,6 +295,7 @@ public class Statement_GUI extends javax.swing.JFrame {
         }
         else
         {
+            // Display the account owner's name 
             txtAccountOnwer.setText(dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
         }
     }//GEN-LAST:event_txtAccountIDActionPerformed

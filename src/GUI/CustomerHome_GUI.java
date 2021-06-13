@@ -202,20 +202,28 @@ public class CustomerHome_GUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        // Show Logout interface 
         setVisible(false);
         new Login_GUI();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnMyWalletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyWalletActionPerformed
+        // Get account information
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
+        
+        // Show MyWallet interface 
         setVisible(false);
         new MyWallet_GUI(dtoCustomer, dtoAccount);
     }//GEN-LAST:event_btnMyWalletActionPerformed
 
     private void btnTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferActionPerformed
+        // Get account information
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
+        
+        // Check the account's status
         if(dtoAccount.getStatus().equals("Active"))
         {
+            // Show Transfer interface 
             setVisible(false);
             new Transfer_GUI(dtoCustomer, dtoAccount);
         }
@@ -224,9 +232,13 @@ public class CustomerHome_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnTransferActionPerformed
 
     private void btnSavingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavingActionPerformed
+        // Get account information
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
+        
+        // Check the account's status
         if(dtoAccount.getStatus().equals("Active"))
         {
+            // Show Saving interface
             setVisible(false);
             new Saving_GUI(dtoCustomer, dtoAccount);
         }
@@ -235,9 +247,13 @@ public class CustomerHome_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnSavingActionPerformed
 
     private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
+        // Get account information
         Account_DTO dtoAccount = busCustomer.getPaymentAccount(dtoCustomer);
+        
+        // Check the account's status
         if(dtoAccount.getStatus().equals("Active"))
         {
+            // Show Payment interface
             setVisible(false);
             new Payment_GUI(dtoCustomer, dtoAccount);
         }

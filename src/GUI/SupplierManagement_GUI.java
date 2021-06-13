@@ -41,7 +41,10 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
     
     public void loadCboServiceType()
     {
+        // Get service types information
         ArrayList<String> serviceList = busSupplier.getServiceTypeList();
+        
+        // Load data into the combobox
         for(String service: serviceList)
             cboServiceType.addItem(service);
     }
@@ -49,19 +52,24 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
     DefaultTableModel tblSupplierModel;
     public void createTable()
     {
-        ArrayList<Supplier_DTO> list = busSupplier.getSupplierList();
         tblSupplierModel = new DefaultTableModel();
+        // Set title
         String title[] = {"ID", "Supplier Name", "Service Type","Contract Singing Date", "Address", "Phone Number"};
         tblSupplierModel.setColumnIdentifiers(title);
-        tblSupplierModel.setRowCount(0); 
+        tblSupplierModel.setRowCount(0);
+        // set model to table
+        tblSupplier.setModel(tblSupplierModel);
+        
+        // Get all supplier information
+        ArrayList<Supplier_DTO> list = busSupplier.getSupplierList();
+        
+        // Load data into the table
         for(int i = 0; i < list.size(); i++)
         {
             Supplier_DTO dtoSupplier = list.get(i);
             String[] rows = {String.valueOf(dtoSupplier.getId()), dtoSupplier.getName(), dtoSupplier.getServiceName(), dtoSupplier.getContractSigningDate().toString(), dtoSupplier.getAddress(), dtoSupplier.getPhoneNumber() };
             tblSupplierModel.addRow(rows);
         }
-        tblSupplier.setModel(tblSupplierModel);
-        setVisible(true);
     }
 
     public void clearForm()
@@ -308,6 +316,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnClear_SupplierActionPerformed
 
     private void btnAdd_SupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_SupplierActionPerformed
+        // Check if the user input is enough or not
         if(txtPhoneNumber.getText().equals("")|| txtSupplierName.getText().equals("") ||  txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || cboServiceType.getSelectedItem() == null)
         {
                JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
@@ -315,6 +324,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         else
         {
             Supplier_DTO dtoSupplier = new Supplier_DTO(0, txtSupplierName.getText(), cboServiceType.getSelectedItem().toString(), datContractSingingDate.getDate(), txtAddress.getText(), txtPhoneNumber.getText());
+            // Add new supplier
             if(busSupplier.insert(dtoSupplier))
             {
                 JOptionPane.showMessageDialog(this, "Supplier added susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -327,17 +337,20 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
 
     private void btnUpdate_SupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate_SupplierActionPerformed
         int index = tblSupplier.getSelectedRow();
+        // Check the information on the textfield
         if(index == -1 || txtPhoneNumber.getText().equals("")|| txtSupplierName.getText().equals("") ||  txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || cboServiceType.getSelectedItem() == null)
         {
             JOptionPane.showMessageDialog(this, "Please select a supplier before updating", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
+            // Show confirmation dialog
             int ret = JOptionPane.showConfirmDialog(null, "Are you sure to update this supplier information?", "Confirm", JOptionPane.YES_NO_OPTION);
             if(ret == JOptionPane.YES_OPTION)
             {
                 int id = Integer.parseInt(tblSupplier.getValueAt(index, 0).toString());
                 Supplier_DTO dtoSupplier = new Supplier_DTO(id, txtSupplierName.getText(), cboServiceType.getSelectedItem().toString(), datContractSingingDate.getDate(), txtAddress.getText(), txtPhoneNumber.getText());
+                // Update supplier information
                 if(busSupplier.update(dtoSupplier))
                 {
                     JOptionPane.showConfirmDialog(null, "Supplier updated susccessfully...!", "Success", JOptionPane.CLOSED_OPTION);
@@ -357,11 +370,13 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         }
         else
         {
+            // Show confirmation dialog
             int ret = JOptionPane.showConfirmDialog(null, "Are you sure to delete this supplier and all bills associated with this supplier?", "Confirm", JOptionPane.YES_NO_OPTION);
             if(ret == JOptionPane.YES_OPTION) 
             {
                 int id = Integer.parseInt(tblSupplier.getValueAt(index, 0).toString());
                 Supplier_DTO dtoSupplier = new Supplier_DTO(id, txtSupplierName.getText(), cboServiceType.getSelectedItem().toString(), datContractSingingDate.getDate(), txtAddress.getText(), txtPhoneNumber.getText());
+                // Delete supplier information
                 if(busSupplier.delete(dtoSupplier))
                 {
                     JOptionPane.showConfirmDialog(null, "Supplier deleted susccessfully...!", "Success", JOptionPane.CLOSED_OPTION);
@@ -374,8 +389,8 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnDelete_Supplier1ActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new AdminHome_GUI(dtoAdmin);
         setVisible(false);
+        new AdminHome_GUI(dtoAdmin);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
@@ -406,9 +421,10 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
 
     private void tblSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSupplierMouseClicked
         int row = tblSupplier.getSelectedRow();
+        
+        // Display the information on the textfield
         if(row  < tblSupplierModel.getRowCount() && row  >= 0)
         {
-            //txtSupplierName.setText(tblSupplier.getModel().getValueAt(row, 1).toString());
             txtSupplierName.setText(tblSupplier.getValueAt(row, 1).toString());
             cboServiceType.setSelectedItem(tblSupplier.getValueAt(row, 2).toString());
             String contractSingingDateString = tblSupplier.getValueAt(row, 3).toString();

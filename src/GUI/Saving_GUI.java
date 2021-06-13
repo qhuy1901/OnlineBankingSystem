@@ -52,8 +52,9 @@ public class Saving_GUI extends javax.swing.JFrame
         cboTerm.setSelectedItem(null); 
         btnOpenAccount.setVisible(false); // Ẩn button open account
         
+        // Calculate total savings amount
         long totalSavingAccount = busSaving.getTotalSavingsAmount(dtoCustomer);
-        // Hiển thị tổng số tiền tiết kiệm
+        // Display total savings amount
         txtTotalSavingAccount.setText(String.format("%,d", totalSavingAccount) + " VND");
         createTable();
     }
@@ -87,10 +88,11 @@ public class Saving_GUI extends javax.swing.JFrame
         tblSavingsAccount.getColumnModel().getColumn(0).setPreferredWidth(50);
         tblSavingsAccount.getColumnModel().getColumn(1).setPreferredWidth(280);
         
-        // Laayss data từ database
+        // Get savings accounts information
         savingsAccountList = busSaving.getSavingsAccountList(dtoCustomer);
+        // Get savings types information
         accountTypeList = busSaving.getAccountTypeList();
-        // Load data vô table
+        // Load data into savings accounts table
         for(int i = 0; i < savingsAccountList.size(); i++)
         {
             Account_DTO dtoAccount = savingsAccountList.get(i);

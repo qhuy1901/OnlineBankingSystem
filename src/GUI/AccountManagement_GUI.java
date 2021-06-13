@@ -12,10 +12,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 public class AccountManagement_GUI extends javax.swing.JFrame 
 {
-
     AccountManagement_BUS busAccount = new AccountManagement_BUS();
     Employee_DTO dtoAdmin = null;
-    public AccountManagement_GUI(Employee_DTO admin) {
+    
+    public AccountManagement_GUI(Employee_DTO admin) 
+    {
         initComponents();
         dtoAdmin = admin;
         
@@ -47,9 +48,13 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         // Hiển thị bảng
         setVisible(true);
         
-        /*Load data*/
+        // Get all account information
         ArrayList<Account_DTO> accountList = busAccount.getAccountList();
+        
+        // Get account type information
         TreeMap<String, String> accountTypeList = busAccount.getAccountTypeList();
+        
+        // Load data into the table
         for(int i = 0; i < accountList.size(); i++)
         {
             Account_DTO dtoAccount = accountList.get(i);
@@ -62,7 +67,6 @@ public class AccountManagement_GUI extends javax.swing.JFrame
             String customerId = String.valueOf(dtoAccount.getCustomerID());
             String[] rows = {accountId, currentBalance, openDay ,accountTypeName, status, customerId};
             tblAccountModel.addRow(rows);
-            
         }
     }   
     @SuppressWarnings("unchecked")
@@ -196,16 +200,24 @@ public class AccountManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnHome_SearchAccountActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // Tạo biến SearchTable có kdl là DefaultTableModel và gán model trên bảng tblAccount cho biến đó
         DefaultTableModel SearchTable = (DefaultTableModel) tblAccount.getModel();
+        
+        // Khởi tạo biến sorter có kdl TableRowSorter gán dữ liệu của SearchTable cho nó
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(SearchTable);
+        
+        // Set sorter đó cho bảng tblAccount
+        tblAccount.setRowSorter(sorter);
+        
+        // sử dụng đối tượng RowFilter để lọc dựa trên giá trị trong textfield
         String search = txtSearch.getText();
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(SearchTable);
-        tblAccount.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(search));
+        sorter.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnLockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockAccountActionPerformed
         int row = tblAccount.getSelectedRow();
         int accountId = Integer.parseInt(tblAccount.getValueAt(row, 0).toString().replaceAll("\\s+",""));
+        
         if(accountId == 0) // Kiểm tra người dùng đã chọn tài khoản cần khóa chưa
         {
             JOptionPane.showMessageDialog(this, "Please select an account.", "Error", JOptionPane.ERROR_MESSAGE); 
@@ -251,12 +263,14 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         }
         else
         {
+            // Kiểm tra loại tài khoản của tài khoản đang được chọn
             if(tblAccount.getValueAt(row, 3).toString().contains("Savings Account")) // Không được mở khóa tài khoản tiết kiệm
             {
                 JOptionPane.showMessageDialog(this, "Cannot unlocked savings account.", "Error", JOptionPane.ERROR_MESSAGE);
             }
             else
             {
+                // Kiểm tra trạng thái của tài khoản đang được chọn
                 if(tblAccount.getValueAt(row, 4).toString().contains("Active"))
                 {
                     JOptionPane.showMessageDialog(this, "This account is not locked.", "Error", JOptionPane.ERROR_MESSAGE);

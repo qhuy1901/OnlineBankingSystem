@@ -366,7 +366,7 @@ public class Payment_GUI extends javax.swing.JFrame
 
     private boolean confirmPassword()
     {
-        // Hiển thị form nhập mật khẩu
+        // Show password input dialog
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Please enter your password:");
         JPasswordField pass = new JPasswordField(10);
@@ -375,10 +375,14 @@ public class Payment_GUI extends javax.swing.JFrame
         String[] options = new String[]{"Confirm", "Cancel"};
         int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
 
-        if(option == 0) // Customer pressing OK button
+        if(option == 0) // Customer pressing Confirm button
         {
             String password = pass.getText();
-            User_Login_DTO dtoUserLogIn = busPayment.getUserLogin(dtoCustomer); // Get customer password in database
+            
+            // Get user login information
+            User_Login_DTO dtoUserLogIn = busPayment.getUserLogin(dtoCustomer); 
+            
+            // Check password
             if(password.equals(dtoUserLogIn.getPassword()))
                 return true;
             else
@@ -389,10 +393,12 @@ public class Payment_GUI extends javax.swing.JFrame
     
     Bill_DTO dtoBill = null;
     private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
+        // Check balance
         if(dtoAccount.getCurrentBalance() > Long.parseLong(txtBillAmount_BillLookup.getText().replace(",", "").replace(" VND", "")))
         {
             if(confirmPassword())
             {
+                // Make payment transaction
                 if(busPayment.payment(dtoBill, dtoAccount))
                 {
                     JOptionPane.showConfirmDialog(null, "Payment is successful", "Successful", JOptionPane.CLOSED_OPTION);
@@ -404,6 +410,7 @@ public class Payment_GUI extends javax.swing.JFrame
                     cboMonth.setSelectedItem(null);
                     cboYear.setSelectedItem(null);
                     txtCustomerID.setText("");
+                    
                     clearBillLookupInformation();
                 }
                 else
@@ -434,6 +441,7 @@ public class Payment_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_cboServiceTypeActionPerformed
 
     private void btnBillLoopupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillLoopupActionPerformed
+        // Check if the user input is enough or not
         if(cboServiceType.getSelectedItem() == null || cboSupplierName.getSelectedItem() == null || txtCustomerID.getText().equals("") || cboMonth.getSelectedItem() == null || cboYear.getSelectedItem() == null)
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
@@ -445,7 +453,7 @@ public class Payment_GUI extends javax.swing.JFrame
             String supplierName = cboSupplierName.getSelectedItem().toString();
             int month = Integer.parseInt(cboMonth.getSelectedItem().toString());
             int year = Integer.parseInt(cboYear.getSelectedItem().toString());
-            // Lấy thông tin hóa đơn từ database
+            // Get bill information
             dtoBill = busPayment.getBillInformation(new Customer_DTO(customerId), new Supplier_DTO(supplierName),month , year);
             if(dtoBill != null) // Hóa đơn tồn tại
             {

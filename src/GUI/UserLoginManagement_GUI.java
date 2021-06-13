@@ -279,15 +279,18 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_btnHome_SearchAccountActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // Check if the customer input is enough or not
         if(cbbRole.getSelectedItem() == null || txtId.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
-            if(cbbRole.getSelectedItem().equals("Admin")) // Check role
+            // check Role
+            if(cbbRole.getSelectedItem().equals("Admin")) 
             {
                 int adminId = Integer.parseInt(txtId.getText());
+                // Get admin information
                 Employee_DTO dtoAdmin = busUserLoginManagement.getAdminInfo(adminId);
                 if(dtoAdmin == null) // Kiểm tra thông tin Admin
                 {
@@ -318,9 +321,11 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
                     btnEdit.setVisible(true); 
                 }
             }
-            else
+            else // Role as customer
             {
                 long customerId = Long.parseLong(txtId.getText());
+                
+                // Get customer information
                 Customer_DTO dtoCustomer = busUserLoginManagement.getInformation(customerId);
                 if(dtoCustomer == null) // Kiểm tra thông tin Customer
                 {

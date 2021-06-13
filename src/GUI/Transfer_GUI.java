@@ -299,8 +299,9 @@ public class Transfer_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_txtAmountKeyTyped
 
     private void txtReceiverAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReceiverAccountActionPerformed
-       if(txtReceiverAccount.getText().equals("") == false) // Kiểm tra đã điền Receiver account chưa
-       {
+        // Check if the user input is enough or not
+        if(txtReceiverAccount.getText().equals("") == false || cboReceiverBank.getSelectedItem() == null) 
+        {
            dtoReceiverAccount = new Account_DTO(Long.parseLong(txtReceiverAccount.getText()));
            // Check receiver account information
            if(busTransfer.isValidPaymentAccount(dtoReceiverAccount) == false || dtoReceiverAccount.getId() == dtoAccount.getId()) // Kiểm tra tài khoản người nhận 

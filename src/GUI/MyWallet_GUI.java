@@ -45,9 +45,16 @@ public class MyWallet_GUI extends javax.swing.JFrame
         txtOpenDay.setText(dtoAccount.getOpenDay().toString());
         String accountStatus = dtoAccount.getStatus().toString();
         txtStatus.setText(accountStatus);
+        
+        // Check the account's status
         if(accountStatus.equals("Locked"))
             txtStatus.setForeground(Color.RED);
-        txtLatestTransactionDate.setText(busMyWallet.getLatestTransactionDate(dtoAccount));
+        
+        // Get the latest transaction date
+        String lastestTransactionDate = busMyWallet.getLatestTransactionDate(dtoAccount);
+        
+        // Display the latest transaction date
+        txtLatestTransactionDate.setText(lastestTransactionDate);
     }
 
     DefaultTableModel tblTransactionModel = new DefaultTableModel();
@@ -56,6 +63,7 @@ public class MyWallet_GUI extends javax.swing.JFrame
         // Set tiêu đề
         String title[] = {"Transaction ID","Transaction Type","Time", "Amount"};
         tblTransactionModel.setColumnIdentifiers(title);
+        tblTransactionModel.setRowCount(0); 
         tblTransactionHistory.setModel(tblTransactionModel);
         
         // Set kích thước cho các cột
@@ -66,9 +74,13 @@ public class MyWallet_GUI extends javax.swing.JFrame
     
     public void loadTable() 
     {
+        // Get the most latest 15 transactions
         ArrayList<Transaction_DTO> transactionlist = busMyWallet.getTransactionHistory(dtoAccount);
+        
+        // Get transaction types information
         TreeMap<String, Transaction_Type_DTO> transactionTypeList = busMyWallet.getTransactionTypeList();
-        tblTransactionModel.setRowCount(0); 
+        
+        // Displays a list of the 15 most latest transactions on the table.
         for(int i = 0; i < transactionlist.size(); i++)
         {
             Transaction_DTO dtoTransaction = transactionlist.get(i);
@@ -305,6 +317,8 @@ public class MyWallet_GUI extends javax.swing.JFrame
 
     private void btnShowTransactionHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowTransactionHistoryActionPerformed
         loadTable();
+        
+        // Hide the Show Transaction History button
         btnShowTransactionHistory.setVisible(false);
     }//GEN-LAST:event_btnShowTransactionHistoryActionPerformed
     
