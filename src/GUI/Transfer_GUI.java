@@ -219,14 +219,14 @@ public class Transfer_GUI extends javax.swing.JFrame
 
         if(option == 0) // Customer pressing Confirm button
         {   
-            String password = pass.getText();
             // Get user login information
             User_Login_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); 
             // Check password
-            if(password.equals(dtoUserLogIn.getPassword()))
-                return true;
-            else
+            String password = pass.getText();
+            if(password.equals(dtoUserLogIn.getPassword()) == false)
                 JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            else
+                return true;
         }
         return false;
     }
@@ -249,7 +249,11 @@ public class Transfer_GUI extends javax.swing.JFrame
             else
             {
                 // Check balance
-                if(dtoAccount.getCurrentBalance() >= Long.parseLong(txtAmount.getText().replaceAll("\\s+",""))) // Kiểm tra số dư 
+                if(dtoAccount.getCurrentBalance() < Long.parseLong(txtAmount.getText().replaceAll("\\s+",""))) 
+                {
+                    JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);   
+                }
+                else
                 {
                     // Show password input dialog and check password
                     if(confirmPassword())
@@ -274,9 +278,7 @@ public class Transfer_GUI extends javax.swing.JFrame
                         else
                            JOptionPane.showMessageDialog(this, "Money transfer was unsuccessful.", "Error", JOptionPane.ERROR_MESSAGE); 
                     }
-                }
-                else
-                    JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);   
+                } 
             }  
         }
     }//GEN-LAST:event_btnContinueActionPerformed
@@ -300,9 +302,13 @@ public class Transfer_GUI extends javax.swing.JFrame
 
     private void txtReceiverAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReceiverAccountActionPerformed
         // Check if the user input is enough or not
-        if(txtReceiverAccount.getText().equals("") == false || cboReceiverBank.getSelectedItem() == null) 
+        if(txtReceiverAccount.getText().equals("") || cboReceiverBank.getSelectedItem() == null) 
         {
-           dtoReceiverAccount = new Account_DTO(Long.parseLong(txtReceiverAccount.getText()));
+           JOptionPane.showConfirmDialog(null, "Required fields are empty", "Please fill all required fields...!", JOptionPane.CLOSED_OPTION);
+        }
+        else
+        {
+            dtoReceiverAccount = new Account_DTO(Long.parseLong(txtReceiverAccount.getText()));
            // Check receiver account information
            if(busTransfer.isValidPaymentAccount(dtoReceiverAccount) == false || dtoReceiverAccount.getId() == dtoAccount.getId()) // Kiểm tra tài khoản người nhận 
            {
@@ -316,7 +322,7 @@ public class Transfer_GUI extends javax.swing.JFrame
                // Display receiver name
                txtReceiverName.setText(dtoReceiver.getFirstName() + " " + dtoReceiver.getLastName());
            }
-       }
+        }
     }//GEN-LAST:event_txtReceiverAccountActionPerformed
 
     private void txtReceiverAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtReceiverAccountMouseClicked

@@ -279,7 +279,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
 
         txtAddress.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtAddress.setForeground(new java.awt.Color(32, 172, 216));
-        lblServiceType.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 720, -1));
+        lblServiceType.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 440, -1));
 
         lblTransaction_type1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTransaction_type1.setForeground(new java.awt.Color(32, 172, 216));

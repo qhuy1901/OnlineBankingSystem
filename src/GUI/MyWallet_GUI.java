@@ -311,8 +311,8 @@ public class MyWallet_GUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        new CustomerHome_GUI(dtoCustomer);
         this.setVisible(false);
+        new CustomerHome_GUI(dtoCustomer);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnShowTransactionHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowTransactionHistoryActionPerformed

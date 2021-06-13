@@ -91,7 +91,7 @@ public class AdminHome_GUI extends javax.swing.JFrame
                 btnLogOutActionPerformed(evt);
             }
         });
-        pnlBackground_Admin.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 60, 150, 40));
+        pnlBackground_Admin.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 50, 150, 40));
 
         lblHelloAdmin.setBackground(new java.awt.Color(32, 172, 210));
         lblHelloAdmin.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
