@@ -1,6 +1,7 @@
 package DAL.Report;
 
 import DAL.DBConnection;
+import DTO.Employee_DTO;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -92,20 +93,24 @@ public class Report_DAL
         showReport(m_report_source, m_sql_stmt);
     }
     
-    public void showCustomerList() 
+    public void showCustomerList(Employee_DTO dtoEmployee) 
     {
+        Map parametersMap = new HashMap();
+        parametersMap.put("employeeName", dtoEmployee.getFirstName() + " " + dtoEmployee.getLastName());
         String m_report_source = "CustomerList.jrxml";
         String m_sql_stmt = "SELECT CUSTOMER_ID, FIRST_NAME || ' ' || LAST_NAME FULL_NAME, GENDER, DATE_OF_BIRTH, ADDRESS, PHONE_NUMBER, ID_CARD,REVENUE\n" +
                     "FROM CUSTOMER";
-        showReport(m_report_source, m_sql_stmt);
+        showReport(m_report_source, m_sql_stmt, parametersMap);
     }
     
     
-    public void showSupplierList() 
+    public void showSupplierList(Employee_DTO dtoAdmin) 
     {
+        Map parametersMap = new HashMap();
+        parametersMap.put("employeeName", dtoAdmin.getFirstName() + " " + dtoAdmin.getLastName());
         String m_report_source = "SupplierReport.jrxml";
         String m_sql_stmt = "SELECT * FROM SUPPLIER";
-        showReport(m_report_source, m_sql_stmt);
+        showReport(m_report_source, m_sql_stmt, parametersMap);
     }
     
     public void showStatementReport(long accountId, Date fromDate, Date toDate) 

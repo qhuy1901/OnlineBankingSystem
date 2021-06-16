@@ -3,6 +3,7 @@ package BUS;
 import DAL.Supplier_DAL;
 import DTO.Supplier_DTO;
 import DAL.Report.Report_DAL;
+import DTO.Employee_DTO;
 import java.util.ArrayList;
 
 public class SupplierManagment_BUS 
@@ -35,8 +36,8 @@ public class SupplierManagment_BUS
         return dal.delete(dtoSupplier);
     }
     
-    public void showSupplierList() 
+    public void showSupplierList(Employee_DTO dtoAdmin) 
     {
-        dalReport.showSupplierList();
+        dalReport.showSupplierList(dtoAdmin);
     }
 }

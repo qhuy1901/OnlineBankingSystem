@@ -4,6 +4,7 @@ import DAL.Customer_DAL;
 import DAL.Report.Report_DAL;
 
 import DTO.Customer_DTO;
+import DTO.Employee_DTO;
 import java.util.ArrayList;
 
 public class CustomerManagement_BUS 
@@ -36,9 +37,9 @@ public class CustomerManagement_BUS
         return dalCustomer.getCustomersList();
     }
     
-    public void showCustomerList() 
+    public void showCustomerList(Employee_DTO dtoEmployee) 
     {
-        dalReport.showCustomerList();
+        dalReport.showCustomerList(dtoEmployee);
     }
    
 }

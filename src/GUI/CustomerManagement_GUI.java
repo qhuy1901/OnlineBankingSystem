@@ -738,7 +738,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_txtUpdateIDCardKeyTyped
 
     private void btnExportCustomerListReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportCustomerListReportActionPerformed
-        busCustomerManagment.showCustomerList();
+        busCustomerManagment.showCustomerList(dtoAdmin);
     }//GEN-LAST:event_btnExportCustomerListReportActionPerformed
 
     private void txtUpdateIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUpdateIDMouseClicked

@@ -2,7 +2,8 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9c5cfe77-88ec-4c95-aeb4-8ff0e821accf">
 	<property name="ireport.zoom" value="1.2100000000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="83"/>
+	<property name="ireport.y" value="76"/>
+	<parameter name="employeeName" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT CUSTOMER_ID, FIRST_NAME || ' ' || LAST_NAME FULL_NAME, GENDER, DATE_OF_BIRTH, ADDRESS, PHONE_NUMBER, ID_CARD, REVENUE
 FROM CUSTOMER]]>
@@ -19,7 +20,7 @@ FROM CUSTOMER]]>
 		<variableExpression><![CDATA[$F{CUSTOMER_ID}]]></variableExpression>
 	</variable>
 	<title>
-		<band height="191" splitType="Stretch">
+		<band height="221" splitType="Stretch">
 			<staticText>
 				<reportElement x="133" y="118" width="545" height="40" uuid="aa3107f6-4f81-4102-bc53-357986672a45"/>
 				<textElement textAlignment="Center">
@@ -60,17 +61,31 @@ FROM CUSTOMER]]>
 			</staticText>
 			<staticText>
 				<reportElement x="8" y="167" width="125" height="24" uuid="97fe45cd-b9f3-45d8-bcfd-006db3bcab1c"/>
-				<textElement textAlignment="Center">
-					<font fontName="Serif" size="16" isBold="true" isItalic="false"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[Ngày lập báo cáo:]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="133" y="168" width="136" height="20" uuid="409482ac-18c0-472f-9a93-e29caadf382d"/>
+				<reportElement x="133" y="167" width="136" height="24" uuid="409482ac-18c0-472f-9a93-e29caadf382d"/>
 				<textElement>
 					<font fontName="Serif" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="194" width="125" height="24" uuid="bcf15c54-b394-4371-814b-e769a9dcc34f"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Người lập báo cáo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="133" y="194" width="166" height="24" uuid="c987cf8c-2be5-4147-8f7a-c4a904866085"/>
+				<textElement>
+					<font fontName="Serif" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{employeeName}.toUpperCase()]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -238,6 +253,17 @@ FROM CUSTOMER]]>
 			</textField>
 		</band>
 	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="1" y="30" width="800" height="20" uuid="6c9dcd0d-b906-4db4-9324-986e6d42259b"/>
+				<textElement textAlignment="Right">
+					<font fontName="Serif" size="14" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Trang " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
 	<summary>
 		<band height="40" splitType="Stretch">
 			<staticText>

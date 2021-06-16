@@ -60,7 +60,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         
         // Get all supplier information
         ArrayList<Supplier_DTO> list = busSupplier.getSupplierList();
-        
+
         // Load data into the table
         for(int i = 0; i < list.size(); i++)
         {
@@ -416,7 +416,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_txtPhoneNumberKeyTyped
 
     private void btnExportReport_SupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportReport_SupplierActionPerformed
-        busSupplier.showSupplierList();
+        busSupplier.showSupplierList(dtoAdmin);
     }//GEN-LAST:event_btnExportReport_SupplierActionPerformed
 
     private void tblSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSupplierMouseClicked
