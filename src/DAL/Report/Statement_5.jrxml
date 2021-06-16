@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="fa403466-1626-45fa-a76c-65fae0ef5015">
-	<property name="ireport.zoom" value="1.46410000000005"/>
+	<property name="ireport.zoom" value="1.210000000000041"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="156"/>
+	<property name="ireport.y" value="579"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -47,9 +47,33 @@
 			<style backcolor="#EFF7FF"/>
 		</conditionalStyle>
 	</style>
-	<subDataset name="Table Dataset 1" uuid="612368cd-3968-4617-b831-c158de26eb2b"/>
-	<subDataset name="Table Dataset 2" uuid="602f7d8d-63a3-44bc-a4d6-58718b139de4"/>
-	<subDataset name="Table Dataset 3" uuid="970a6b06-2b72-4823-851a-2f96fa9db265"/>
+	<subDataset name="Table Dataset 1" uuid="612368cd-3968-4617-b831-c158de26eb2b">
+		<queryString>
+			<![CDATA[SELECT TRANSACTION_DATE, COUNT(TRANSACTION_ID)
+FROM TRANSACTION
+GROUP BY TRANSACTION_dATE]]>
+		</queryString>
+		<field name="TRANSACTION_DATE" class="java.sql.Timestamp"/>
+		<field name="COUNT(TRANSACTION_ID)" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="Table Dataset 2" uuid="602f7d8d-63a3-44bc-a4d6-58718b139de4">
+		<queryString>
+			<![CDATA[SELECT NAME, COUNT(TRANSACTION_ID)
+FROM TRANSACTION T JOIN TRANSACTION_TYPE TT  ON  T.TRANSACTION_TYPE_ID = TT.TRANSACTION_TYPE_ID
+GROUP BY NAME]]>
+		</queryString>
+		<field name="NAME" class="java.lang.String"/>
+		<field name="COUNT(TRANSACTION_ID)" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="Table Dataset 3" uuid="970a6b06-2b72-4823-851a-2f96fa9db265">
+		<queryString>
+			<![CDATA[SELECT TO_DATE(TRANSACTION_DATE, 'dd/MM/yyyy'), SUM(TOTAL_TRANSACTION_AMOUNT)
+FROM TRANSACTION
+GROUP BY TO_DATE(TRANSACTION_DATE, 'dd/MM/yyyy')]]>
+		</queryString>
+		<field name="TO_DATE(TRANSACTION_DATE,&apos;DD/MM/YYYY&apos;)" class="java.sql.Timestamp"/>
+		<field name="SUM(TOTAL_TRANSACTION_AMOUNT)" class="java.math.BigDecimal"/>
+	</subDataset>
 	<parameter name="toDate" class="java.lang.String"/>
 	<parameter name="fromDate" class="java.lang.String"/>
 	<queryString language="SQL">
@@ -193,20 +217,6 @@ WHERE ACCOUNT_TYPE_ID = 'PA']]>
 				</textElement>
 				<text><![CDATA[Giờ in/(print time):]]></text>
 			</staticText>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="275" y="293" width="100" height="20" uuid="7c33e04b-608d-4fe7-8783-30fe93940782"/>
-				<textElement>
-					<font fontName="Serif" size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{toDate}]]></textFieldExpression>
-			</textField>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="72" y="293" width="100" height="20" uuid="083eb250-4fdb-444c-afa0-874db3196e47"/>
-				<textElement>
-					<font fontName="Serif" size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{fromDate}]]></textFieldExpression>
-			</textField>
 		</band>
 	</title>
 	<columnHeader>
@@ -318,14 +328,14 @@ WHERE ACCOUNT_TYPE_ID = 'PA']]>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="19">
+		<band height="8">
 			<line>
 				<reportElement x="0" y="0" width="555" height="1" uuid="d4a335ea-350b-4372-8c41-05df3c144a7d"/>
 			</line>
 		</band>
 	</columnFooter>
 	<summary>
-		<band height="31">
+		<band height="733">
 			<staticText>
 				<reportElement x="326" y="7" width="74" height="20" uuid="ff0fc46a-b152-4c6f-a805-3c54671f88ff"/>
 				<textElement>
@@ -356,6 +366,46 @@ WHERE ACCOUNT_TYPE_ID = 'PA']]>
 			<line>
 				<reportElement x="0" y="0" width="555" height="1" uuid="aac50f3a-4cb1-4db6-b64e-3d10f2b38919"/>
 			</line>
+			<line>
+				<reportElement x="1" y="30" width="553" height="1" uuid="3a589c4f-b97a-47d4-8324-8c3f93466624"/>
+			</line>
+			<staticText>
+				<reportElement x="11" y="42" width="480" height="20" uuid="21ef4321-f3b7-40e1-ab5b-68854864df17"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Biểu đồ thống kê số lần giao dịch của khác hàng cho mỗi loại giao dịch ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="273" width="480" height="20" uuid="3697c55f-ea45-48ff-a65b-5aada0c541f1"/>
+				<textElement>
+					<font fontName="Serif" size="14" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Biểu đồ thống kê tổng số tiền giao dịch của khác hàng theo ngày:]]></text>
+			</staticText>
+			<pieChart>
+				<chart>
+					<reportElement x="11" y="74" width="511" height="184" uuid="855a86f3-1952-45ad-b970-8e55e916d847"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<dataset>
+						<datasetRun subDataset="Table Dataset 2" uuid="6b5c81c2-9d27-49e4-b944-43ccc4b19ea1"/>
+					</dataset>
+					<keyExpression><![CDATA[$F{NAME}]]></keyExpression>
+					<valueExpression><![CDATA[$F{COUNT(TRANSACTION_ID)}]]></valueExpression>
+					<labelExpression><![CDATA[$F{NAME}]]></labelExpression>
+					<sectionHyperlink>
+						<hyperlinkTooltipExpression><![CDATA[$F{COUNT(TRANSACTION_ID)}.toString()]]></hyperlinkTooltipExpression>
+					</sectionHyperlink>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
 		</band>
 	</summary>
 </jasperReport>

@@ -5,6 +5,8 @@ import DTO.Transaction_DTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -73,13 +75,15 @@ public class Transaction_DAL
             String SQL =    "SELECT * \n" +
                             "FROM TRANSACTION \n" +
                             "WHERE account_id = ?\n" +
-                            "AND TRANSACTION_DATE <= ?\n" +
-                            "AND TRANSACTION_DATE >= ?\n" +
+                            "AND (TRANSACTION_DATE BETWEEN TO_DATE(?, 'dd/MM/yyyy') AND TO_DATE(?, 'dd/MM/yyyy HH24:MI:SS'))\n" +
                             "ORDER BY transaction_id DESC";
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, dtoAccount.getId());
-            prest.setDate(2, new java.sql.Date(toDate.getTime()));
-            prest.setDate(3, new java.sql.Date(fromDate.getTime()));
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            String fDate = df.format(fromDate);
+            String tDate = df.format(toDate) + " 23:59:00";
+            prest.setString(2, fDate);
+            prest.setString(3, tDate);
             ResultSet rs = prest.executeQuery();
             while(rs.next())
             {

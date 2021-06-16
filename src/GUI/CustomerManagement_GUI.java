@@ -42,7 +42,6 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         tblCustomerModel.setColumnIdentifiers(title);
         tblCustomerModel.setRowCount(0);
         
-        
         // Get all customer information
         ArrayList<Customer_DTO> list = busCustomerManagment.getCustomersList();
         

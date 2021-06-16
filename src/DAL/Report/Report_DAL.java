@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.sql.*;
 
+
 public class Report_DAL 
 {
     private void showReport(String m_report_source, String m_sql_stmt) 
@@ -35,6 +36,30 @@ public class Report_DAL
             // Biên dịch JasperReport
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
             Map parametersMap = new HashMap();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametersMap, con);
+            // Hiển thị report
+            JasperViewer.viewReport(jasperPrint, false);
+        } 
+        catch (JRException e) 
+        {
+            System.out.println("Exception message " + e.getMessage());
+        }
+    }
+    
+    private void showReport(String m_report_source, String m_sql_stmt, Map parametersMap) 
+    {
+        try {
+            // Connect database
+            Connection con = DBConnection.ConnectDb();
+            // Chỉ định một báo cáo sẽ được tải lên
+            InputStream is = getClass().getResourceAsStream(m_report_source);
+            // Thực hiện truy vấn JRDesignQuery
+            JRDesignQuery jrDesignQuery = new JRDesignQuery();
+            jrDesignQuery.setText(m_sql_stmt);
+            JasperDesign jasperDesign = JRXmlLoader.load(is);
+            jasperDesign.setQuery(jrDesignQuery);
+            // Biên dịch JasperReport
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametersMap, con);
             // Hiển thị report
             JasperViewer.viewReport(jasperPrint, false);
@@ -86,14 +111,22 @@ public class Report_DAL
     public void showStatementReport(long accountId, Date fromDate, Date toDate) 
     {
         DateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        
-        String m_report_source = "Statement4.jrxml";
+        DateFormat df2 = new SimpleDateFormat("dd/MM/yyyy");
+        Map parametersMap = new HashMap();
+        String fDate = df2.format(fromDate);
+        String tDate = df2.format(toDate) + " 23:59:00";
+        parametersMap.put("fromDate", df2.format(fromDate));
+        parametersMap.put("toDate", df2.format(toDate));
+        parametersMap.put("accountId", accountId);
+        String m_report_source = "Statement.jrxml";
         String m_sql_stmt = "select T.TRANSACTION_ID, T.TRANSACTION_DATE, T.TOTAL_TRANSACTION_AMOUNT, TP.NAME, TP.FEE, A.ACCOUNT_ID, C. ADDRESS, TP.NAME, A.CURRENT_BALANCE , C.FIRST_NAME || ' ' || C.LAST_NAME FULL_NAME\n" +
                             "from ((TRANSACTION T JOIN TRANSACTION_TYPE TP ON T.TRANSACTION_TYPE_ID = TP.TRANSACTION_TYPE_ID)\n" +
                             "            JOIN ACCOUNT A ON A.ACCOUNT_ID = T.ACCOUNT_ID)\n" +
                             "                JOIN CUSTOMER C ON C.CUSTOMER_ID = A.CUSTOMER_ID\n" +
-                            "WHERE A.ACCOUNT_ID = " + accountId + " AND ACCOUNT_TYPE_ID = 'PA'\n"
-                            + "AND TRANSACTION_DATE >= '" + df.format(fromDate) + "' AND TRANSACTION_DATE <= '" + df.format(toDate) + "'";
-        showReport(m_report_source, m_sql_stmt);
+                            "WHERE A.ACCOUNT_ID = " + accountId + " AND ACCOUNT_TYPE_ID = 'PA'\n" +
+                            "AND (TRANSACTION_DATE BETWEEN TO_DATE('" + fDate + "', 'dd/MM/yyyy') AND TO_DATE('" + tDate +"', 'dd/MM/yyyy HH24:MI:SS'))\n" +
+                            "ORDER BY T.TRANSACTION_ID";
+                            //"AND TRANSACTION_DATE >= '" + df.format(fromDate) + "' AND TRANSACTION_DATE <= '" + df.format(toDate) + "'";
+        showReport(m_report_source, m_sql_stmt, parametersMap);
     }
 }
