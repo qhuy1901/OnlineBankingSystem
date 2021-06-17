@@ -260,7 +260,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="datToDate">
+        <Component class="com.toedter.calendar.JDateChooser" name="dcToDate">
           <Properties>
             <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
           </Properties>
@@ -270,7 +270,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="datFromDate">
+        <Component class="com.toedter.calendar.JDateChooser" name="dcFromDate">
           <Properties>
             <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
           </Properties>

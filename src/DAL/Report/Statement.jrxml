@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="fa403466-1626-45fa-a76c-65fae0ef5015">
-	<property name="ireport.zoom" value="1.9487171000000667"/>
-	<property name="ireport.x" value="89"/>
-	<property name="ireport.y" value="601"/>
+	<property name="ireport.zoom" value="1.46410000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="408"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -348,6 +348,17 @@ ORDER BY T.transaction_id DESC]]>
 			</line>
 		</band>
 	</columnFooter>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="144" y="30" width="413" height="20" uuid="6d5b83db-208e-4018-8261-77c3813842ed"/>
+				<textElement textAlignment="Right">
+					<font fontName="Serif" size="14" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Trang " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
 	<summary>
 		<band height="395">
 			<staticText>

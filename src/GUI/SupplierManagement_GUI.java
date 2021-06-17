@@ -89,7 +89,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
 
         lblServiceType = new javax.swing.JPanel();
         txtSearch = new javax.swing.JTextField();
-        btnAdd_Supplier = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         lblImage_Supplier = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
         lblSupplierManagement = new javax.swing.JLabel();
@@ -100,17 +100,17 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSupplier = new javax.swing.JTable();
         lblTransaction_type = new javax.swing.JLabel();
-        btnClear_Supplier = new javax.swing.JButton();
-        btnUpdate_Supplier = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         cboServiceType = new javax.swing.JComboBox<>();
-        btnDelete_Supplier1 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         lblAddress = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         lblPhoneNumber = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
         lblTransaction_type1 = new javax.swing.JLabel();
         datContractSingingDate = new com.toedter.calendar.JDateChooser();
-        btnExportReport_Supplier = new javax.swing.JButton();
+        btnExportReport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Supplier Management");
@@ -130,20 +130,20 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         });
         lblServiceType.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 270, -1));
 
-        btnAdd_Supplier.setBackground(new java.awt.Color(32, 172, 216));
-        btnAdd_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAdd_Supplier.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdd_Supplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnADD.png"))); // NOI18N
-        btnAdd_Supplier.setText("ADD");
-        btnAdd_Supplier.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnAdd_Supplier.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnAdd_Supplier.setIconTextGap(7);
-        btnAdd_Supplier.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setBackground(new java.awt.Color(32, 172, 216));
+        btnAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnADD.png"))); // NOI18N
+        btnAdd.setText("ADD");
+        btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAdd.setIconTextGap(7);
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd_SupplierActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
-        lblServiceType.add(btnAdd_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 570, 111, 30));
+        lblServiceType.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 570, 111, 30));
 
         lblImage_Supplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management.png"))); // NOI18N
         lblServiceType.add(lblImage_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 100));
@@ -220,51 +220,51 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         lblTransaction_type.setText("Service Type:  ");
         lblServiceType.add(lblTransaction_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, -1, -1));
 
-        btnClear_Supplier.setBackground(new java.awt.Color(32, 172, 216));
-        btnClear_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnClear_Supplier.setForeground(new java.awt.Color(255, 255, 255));
-        btnClear_Supplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnClear.png"))); // NOI18N
-        btnClear_Supplier.setText("CLEAR");
-        btnClear_Supplier.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnClear_Supplier.setIconTextGap(1);
-        btnClear_Supplier.addActionListener(new java.awt.event.ActionListener() {
+        btnClear.setBackground(new java.awt.Color(32, 172, 216));
+        btnClear.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnClear.setForeground(new java.awt.Color(255, 255, 255));
+        btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnClear.png"))); // NOI18N
+        btnClear.setText("CLEAR");
+        btnClear.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnClear.setIconTextGap(1);
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClear_SupplierActionPerformed(evt);
+                btnClearActionPerformed(evt);
             }
         });
-        lblServiceType.add(btnClear_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(891, 570, 110, 30));
+        lblServiceType.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(891, 570, 110, 30));
 
-        btnUpdate_Supplier.setBackground(new java.awt.Color(32, 172, 216));
-        btnUpdate_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnUpdate_Supplier.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdate_Supplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnUpdate.png"))); // NOI18N
-        btnUpdate_Supplier.setText("UPDATE");
-        btnUpdate_Supplier.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnUpdate_Supplier.setIconTextGap(1);
-        btnUpdate_Supplier.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setBackground(new java.awt.Color(32, 172, 216));
+        btnUpdate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnUpdate.png"))); // NOI18N
+        btnUpdate.setText("UPDATE");
+        btnUpdate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnUpdate.setIconTextGap(1);
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdate_SupplierActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
-        lblServiceType.add(btnUpdate_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 570, 113, 30));
+        lblServiceType.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 570, 113, 30));
 
         cboServiceType.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cboServiceType.setForeground(new java.awt.Color(32, 172, 216));
         lblServiceType.add(cboServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 130, 240, 30));
 
-        btnDelete_Supplier1.setBackground(new java.awt.Color(32, 172, 216));
-        btnDelete_Supplier1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnDelete_Supplier1.setForeground(new java.awt.Color(255, 255, 255));
-        btnDelete_Supplier1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnDelete.png"))); // NOI18N
-        btnDelete_Supplier1.setText("DELETE");
-        btnDelete_Supplier1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnDelete_Supplier1.setIconTextGap(1);
-        btnDelete_Supplier1.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setBackground(new java.awt.Color(32, 172, 216));
+        btnDelete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnDelete.png"))); // NOI18N
+        btnDelete.setText("DELETE");
+        btnDelete.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnDelete.setIconTextGap(1);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDelete_Supplier1ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
-        lblServiceType.add(btnDelete_Supplier1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 570, 111, 30));
+        lblServiceType.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 570, 111, 30));
 
         lblAddress.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblAddress.setForeground(new java.awt.Color(32, 172, 216));
@@ -292,30 +292,30 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         datContractSingingDate.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblServiceType.add(datContractSingingDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 180, 170, 30));
 
-        btnExportReport_Supplier.setBackground(new java.awt.Color(32, 172, 216));
-        btnExportReport_Supplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnExportReport_Supplier.setForeground(new java.awt.Color(255, 255, 255));
-        btnExportReport_Supplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Export.png"))); // NOI18N
-        btnExportReport_Supplier.setText("EXPORT SUPPLIER REPORT");
-        btnExportReport_Supplier.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnExportReport_Supplier.setIconTextGap(1);
-        btnExportReport_Supplier.addActionListener(new java.awt.event.ActionListener() {
+        btnExportReport.setBackground(new java.awt.Color(32, 172, 216));
+        btnExportReport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnExportReport.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Export.png"))); // NOI18N
+        btnExportReport.setText("EXPORT SUPPLIER REPORT");
+        btnExportReport.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnExportReport.setIconTextGap(1);
+        btnExportReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportReport_SupplierActionPerformed(evt);
+                btnExportReportActionPerformed(evt);
             }
         });
-        lblServiceType.add(btnExportReport_Supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 570, 240, 30));
+        lblServiceType.add(btnExportReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 570, 240, 30));
 
         getContentPane().add(lblServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1064, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void btnClear_SupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClear_SupplierActionPerformed
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         clearForm();
-    }//GEN-LAST:event_btnClear_SupplierActionPerformed
+    }//GEN-LAST:event_btnClearActionPerformed
 
-    private void btnAdd_SupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_SupplierActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // Check if the user input is enough or not
         if(txtPhoneNumber.getText().equals("")|| txtSupplierName.getText().equals("") ||  txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || cboServiceType.getSelectedItem() == null)
         {
@@ -333,9 +333,9 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
             else
                 JOptionPane.showMessageDialog(this, "Cannot add supplier!", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnAdd_SupplierActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnUpdate_SupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate_SupplierActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         int index = tblSupplier.getSelectedRow();
         // Check the information on the textfield
         if(index == -1 || txtPhoneNumber.getText().equals("")|| txtSupplierName.getText().equals("") ||  txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || cboServiceType.getSelectedItem() == null)
@@ -360,9 +360,9 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
                     JOptionPane.showMessageDialog(this, "Cannot update supplier!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_btnUpdate_SupplierActionPerformed
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void btnDelete_Supplier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete_Supplier1ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int index = tblSupplier.getSelectedRow();
         if(index == -1) // Kiểm tra người dùng đã chọn supplier chưa
         {
@@ -386,7 +386,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
                     JOptionPane.showMessageDialog(this, "Cannot delete supplier!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_btnDelete_Supplier1ActionPerformed
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         setVisible(false);
@@ -415,9 +415,9 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
             evt.consume();
     }//GEN-LAST:event_txtPhoneNumberKeyTyped
 
-    private void btnExportReport_SupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportReport_SupplierActionPerformed
+    private void btnExportReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportReportActionPerformed
         busSupplier.showSupplierList(dtoAdmin);
-    }//GEN-LAST:event_btnExportReport_SupplierActionPerformed
+    }//GEN-LAST:event_btnExportReportActionPerformed
 
     private void tblSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSupplierMouseClicked
         int row = tblSupplier.getSelectedRow();
@@ -443,12 +443,12 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd_Supplier;
-    private javax.swing.JButton btnClear_Supplier;
-    private javax.swing.JButton btnDelete_Supplier1;
-    private javax.swing.JButton btnExportReport_Supplier;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnExportReport;
     private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnUpdate_Supplier;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cboServiceType;
     private com.toedter.calendar.JDateChooser datContractSingingDate;
     private javax.swing.JScrollPane jScrollPane1;

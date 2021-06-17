@@ -5,6 +5,9 @@ import DTO.Employee_DTO;
 import DTO.Customer_DTO;
 import DTO.User_Login_DTO;
 import java.awt.event.KeyEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class UserLoginManagement_GUI extends javax.swing.JFrame 
@@ -313,7 +316,9 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
                     }
                     else
                     {
-                        txtLastAccessTime.setText(dtoUserLogin.getLastAccessTime().toString());
+                        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                        String lastAccessTime = df.format(dtoUserLogin.getLastAccessTime());
+                        txtLastAccessTime.setText(lastAccessTime);;
                     }
                     txtNumberFailedLogin.setText(String.valueOf(dtoUserLogin.getNumberOfFailedLogin()));
                     
@@ -348,7 +353,9 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
                     }
                     else
                     {
-                        txtLastAccessTime.setText(dtoUserLogin.getLastAccessTime().toString());
+                        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                        String lastAccessTime = df.format(dtoUserLogin.getLastAccessTime());
+                        txtLastAccessTime.setText(lastAccessTime);
                     }
                     txtNumberFailedLogin.setText(String.valueOf(dtoUserLogin.getNumberOfFailedLogin()));
                     

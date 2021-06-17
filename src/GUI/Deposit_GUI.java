@@ -41,7 +41,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         Panel_OpenAccount = new javax.swing.JPanel();
-        btnHome_OpenAccount = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
         lblBeneficiaryName = new javax.swing.JLabel();
         lblAmount = new javax.swing.JLabel();
         txtAmount = new javax.swing.JTextField();
@@ -65,22 +65,22 @@ public class Deposit_GUI extends javax.swing.JFrame {
         Panel_OpenAccount.setBackground(new java.awt.Color(239, 250, 252));
         Panel_OpenAccount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnHome_OpenAccount.setBackground(new java.awt.Color(32, 172, 216));
-        btnHome_OpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnHome_OpenAccount.setForeground(new java.awt.Color(255, 255, 255));
-        btnHome_OpenAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Home.png"))); // NOI18N
-        btnHome_OpenAccount.setText("Home");
-        btnHome_OpenAccount.setToolTipText("");
-        btnHome_OpenAccount.setBorder(null);
-        btnHome_OpenAccount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnHome_OpenAccount.setIconTextGap(1);
-        btnHome_OpenAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnHome_OpenAccount.addActionListener(new java.awt.event.ActionListener() {
+        btnHome.setBackground(new java.awt.Color(32, 172, 216));
+        btnHome.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnHome.setForeground(new java.awt.Color(255, 255, 255));
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Home.png"))); // NOI18N
+        btnHome.setText("Home");
+        btnHome.setToolTipText("");
+        btnHome.setBorder(null);
+        btnHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHome.setIconTextGap(1);
+        btnHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHome_OpenAccountActionPerformed(evt);
+                btnHomeActionPerformed(evt);
             }
         });
-        Panel_OpenAccount.add(btnHome_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, 76, 58));
+        Panel_OpenAccount.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, 76, 58));
 
         lblBeneficiaryName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblBeneficiaryName.setForeground(new java.awt.Color(32, 172, 216));
@@ -230,10 +230,10 @@ public class Deposit_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHome_OpenAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_OpenAccountActionPerformed
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         new AdminHome_GUI(dtoAdmin);
         setVisible(false);
-    }//GEN-LAST:event_btnHome_OpenAccountActionPerformed
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     private void txtAmountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmountKeyTyped
         char c = evt.getKeyChar();
@@ -402,7 +402,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel_OpenAccount;
     private javax.swing.JButton btnDeposit;
-    private javax.swing.JButton btnHome_OpenAccount;
+    private javax.swing.JButton btnHome;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel lbCustomerID;
     private javax.swing.JLabel lbIcon_OpenAccount;

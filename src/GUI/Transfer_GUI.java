@@ -33,6 +33,31 @@ public class Transfer_GUI extends javax.swing.JFrame
         
         cboReceiverBank.setSelectedItem(null); // Set giá trị ban đầu của combobox là null
     }
+    
+    private boolean confirmPassword()
+    {
+        // Show password input dialog
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Please enter your password:");
+        JPasswordField pass = new JPasswordField(10);
+        panel.add(label);
+        panel.add(pass);
+        String[] options = new String[]{"Confirm", "Cancel"};
+        int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
+
+        if(option == 0) // Customer pressing Confirm button
+        {   
+            // Get user login information
+            User_Login_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); 
+            // Check password
+            String password = pass.getText();
+            if(password.equals(dtoUserLogIn.getPassword()) == false)
+                JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            else
+                return true;
+        }
+        return false;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -206,32 +231,6 @@ public class Transfer_GUI extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean confirmPassword()
-    {
-        // Show password input dialog
-        JPanel panel = new JPanel();
-        JLabel label = new JLabel("Please enter your password:");
-        JPasswordField pass = new JPasswordField(10);
-        panel.add(label);
-        panel.add(pass);
-        String[] options = new String[]{"Confirm", "Cancel"};
-        int option = JOptionPane.showOptionDialog(null, panel, "Verify by password", JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
-
-        if(option == 0) // Customer pressing Confirm button
-        {   
-            // Get user login information
-            User_Login_DTO dtoUserLogIn = busTransfer.getUserLogin(dtoCustomer); 
-            // Check password
-            String password = pass.getText();
-            if(password.equals(dtoUserLogIn.getPassword()) == false)
-                JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
-            else
-                return true;
-        }
-        return false;
-    }
-    
-    
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
         // Check if the customer input is enough or not
         if(cboReceiverBank.getSelectedItem().equals("") || txtReceiverAccount.getText().equals("") || txtReceiverName.getText().equals("") ||  txtAmount.getText().equals("")|| txtContent.getText().equals(""))

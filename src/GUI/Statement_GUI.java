@@ -52,13 +52,13 @@ public class Statement_GUI extends javax.swing.JFrame {
     public void loadTable() 
     {
         // Get statement information
-        ArrayList<Transaction_DTO> list = busStatement.getStatement(dtoAccount, datFromDate.getDate(), datToDate.getDate());
+        ArrayList<Transaction_DTO> list = busStatement.getStatement(dtoAccount, dcFromDate.getDate(), dcToDate.getDate());
         
         // Check statement information
         if(list.size() == 0) // No transactions found
         {
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            JOptionPane.showMessageDialog(this, "Customers do not make transactions from " + df.format(datFromDate.getDate())+ " to " + df.format(datToDate.getDate()) , "Notification", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Customers do not make transactions from " + df.format(dcFromDate.getDate())+ " to " + df.format(dcToDate.getDate()) , "Notification", JOptionPane.INFORMATION_MESSAGE);
         }
         else // Transaction information is found
         {
@@ -113,8 +113,8 @@ public class Statement_GUI extends javax.swing.JFrame {
         tblStatement = new javax.swing.JTable();
         btnHome = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
-        datToDate = new com.toedter.calendar.JDateChooser();
-        datFromDate = new com.toedter.calendar.JDateChooser();
+        dcToDate = new com.toedter.calendar.JDateChooser();
+        dcFromDate = new com.toedter.calendar.JDateChooser();
         lblAccountID1 = new javax.swing.JLabel();
         txtAccountOnwer = new javax.swing.JTextField();
 
@@ -223,11 +223,11 @@ public class Statement_GUI extends javax.swing.JFrame {
         lblTitle.setOpaque(true);
         jPanel1.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 30, 935, 58));
 
-        datToDate.setDateFormatString("dd/MM/yyyy");
-        jPanel1.add(datToDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 210, 200, 30));
+        dcToDate.setDateFormatString("dd/MM/yyyy");
+        jPanel1.add(dcToDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 210, 200, 30));
 
-        datFromDate.setDateFormatString("dd/MM/yyyy");
-        jPanel1.add(datFromDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 200, 30));
+        dcFromDate.setDateFormatString("dd/MM/yyyy");
+        jPanel1.add(dcFromDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 200, 30));
 
         lblAccountID1.setBackground(new java.awt.Color(32, 172, 216));
         lblAccountID1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -259,18 +259,18 @@ public class Statement_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeActionPerformed
     private void btnStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatementActionPerformed
         // Check if the user input is enough or not
-        if(txtAccountID.getText().equals("") || txtAccountOnwer.getText().equals("") || datToDate.getDate() == null || datToDate.getDate() == null)
+        if(txtAccountID.getText().equals("") || txtAccountOnwer.getText().equals("") || dcToDate.getDate() == null || dcToDate.getDate() == null)
         {
             JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
             // Check statement date 
-            if(datFromDate.getDate().compareTo(datToDate.getDate()) == 1) // Kiểm tra ngày sao kê: fromDate có lớn hơn toDate không?
+            if(dcFromDate.getDate().compareTo(dcToDate.getDate()) == 1) // Kiểm tra ngày sao kê: fromDate có lớn hơn toDate không?
             {
                 JOptionPane.showMessageDialog(this, "Invalid statement date", "Eroror", JOptionPane.ERROR_MESSAGE);
-                datFromDate.setDate(null);
-                datToDate.setDate(null);
+                dcFromDate.setDate(null);
+                dcToDate.setDate(null);
             }
             else
             {
@@ -309,8 +309,8 @@ public class Statement_GUI extends javax.swing.JFrame {
 
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
         long accountId = dtoAccount.getId();
-        Date fromDate = datFromDate.getDate();
-        Date toDate = datToDate.getDate();
+        Date fromDate = dcFromDate.getDate();
+        Date toDate = dcToDate.getDate();
         busStatement.showStatementReport(accountId, fromDate, toDate);
     }//GEN-LAST:event_btnExportActionPerformed
 
@@ -318,8 +318,8 @@ public class Statement_GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnStatement;
-    private com.toedter.calendar.JDateChooser datFromDate;
-    private com.toedter.calendar.JDateChooser datToDate;
+    private com.toedter.calendar.JDateChooser dcFromDate;
+    private com.toedter.calendar.JDateChooser dcToDate;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAccountID1;

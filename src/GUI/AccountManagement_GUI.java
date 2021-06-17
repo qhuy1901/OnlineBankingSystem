@@ -73,7 +73,7 @@ public class AccountManagement_GUI extends javax.swing.JFrame
     private void initComponents() {
 
         Panel_SearchAccount = new javax.swing.JPanel();
-        btnHome_SearchAccount = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
         lbSearch = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
         ScroPane_SearchAccount = new javax.swing.JScrollPane();
@@ -89,22 +89,22 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         Panel_SearchAccount.setBackground(new java.awt.Color(239, 250, 252));
         Panel_SearchAccount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnHome_SearchAccount.setBackground(new java.awt.Color(32, 172, 216));
-        btnHome_SearchAccount.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnHome_SearchAccount.setForeground(new java.awt.Color(255, 255, 255));
-        btnHome_SearchAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Home.png"))); // NOI18N
-        btnHome_SearchAccount.setText("Home");
-        btnHome_SearchAccount.setToolTipText("");
-        btnHome_SearchAccount.setBorder(null);
-        btnHome_SearchAccount.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnHome_SearchAccount.setIconTextGap(1);
-        btnHome_SearchAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnHome_SearchAccount.addActionListener(new java.awt.event.ActionListener() {
+        btnHome.setBackground(new java.awt.Color(32, 172, 216));
+        btnHome.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnHome.setForeground(new java.awt.Color(255, 255, 255));
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Home.png"))); // NOI18N
+        btnHome.setText("Home");
+        btnHome.setToolTipText("");
+        btnHome.setBorder(null);
+        btnHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHome.setIconTextGap(1);
+        btnHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHome_SearchAccountActionPerformed(evt);
+                btnHomeActionPerformed(evt);
             }
         });
-        Panel_SearchAccount.add(btnHome_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 76, 58));
+        Panel_SearchAccount.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 76, 58));
 
         lbSearch.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lbSearch.setForeground(new java.awt.Color(32, 172, 216));
@@ -193,10 +193,10 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHome_SearchAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_SearchAccountActionPerformed
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         new AdminHome_GUI(dtoAdmin);
         this.setVisible(false);
-    }//GEN-LAST:event_btnHome_SearchAccountActionPerformed
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // Tạo biến SearchTable có kdl là DefaultTableModel và gán model trên bảng tblAccount cho biến đó
@@ -295,7 +295,7 @@ public class AccountManagement_GUI extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel_SearchAccount;
     private javax.swing.JScrollPane ScroPane_SearchAccount;
-    private javax.swing.JButton btnHome_SearchAccount;
+    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLockAccount;
     private javax.swing.JButton btnUnlockAccount;
     private javax.swing.JLabel lbIcon_SearchAccount;

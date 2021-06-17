@@ -182,7 +182,7 @@ public class Saving_GUI extends javax.swing.JFrame
         lblTerm = new javax.swing.JLabel();
         lblVND = new javax.swing.JLabel();
         cboSavingsAccountType = new javax.swing.JComboBox<>();
-        txtDeposits = new javax.swing.JTextField();
+        txtDeposit = new javax.swing.JTextField();
         cboTerm = new javax.swing.JComboBox<>();
         btnFindSuitableProduct = new javax.swing.JButton();
         btnOpenAccount = new javax.swing.JButton();
@@ -329,7 +329,7 @@ public class Saving_GUI extends javax.swing.JFrame
         lblDebitAccount.setBackground(new java.awt.Color(32, 172, 216));
         lblDebitAccount.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         lblDebitAccount.setForeground(new java.awt.Color(32, 172, 216));
-        lblDebitAccount.setText("Deposits:");
+        lblDebitAccount.setText("Deposit:");
         OpenOnlineSavings.add(lblDebitAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
 
         lblTerm.setBackground(new java.awt.Color(32, 172, 216));
@@ -352,19 +352,19 @@ public class Saving_GUI extends javax.swing.JFrame
         });
         OpenOnlineSavings.add(cboSavingsAccountType, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 320, -1));
 
-        txtDeposits.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtDeposits.setForeground(new java.awt.Color(1, 1, 1));
-        txtDeposits.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtDepositsMousePressed(evt);
+        txtDeposit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtDeposit.setForeground(new java.awt.Color(1, 1, 1));
+        txtDeposit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDepositMouseClicked(evt);
             }
         });
-        txtDeposits.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtDeposit.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDepositsKeyTyped(evt);
+                txtDepositKeyTyped(evt);
             }
         });
-        OpenOnlineSavings.add(txtDeposits, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 320, -1));
+        OpenOnlineSavings.add(txtDeposit, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 320, -1));
 
         cboTerm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cboTerm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 month", "3 months", "6 months" }));
@@ -588,20 +588,20 @@ public class Saving_GUI extends javax.swing.JFrame
     }//GEN-LAST:event_cboTermActionPerformed
     
     private void btnFindSuitableProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindSuitableProductActionPerformed
-        if(cboSavingsAccountType.getSelectedItem() == null ||cboTerm.getSelectedItem() == null || txtDeposits.getText().equals(""))
+        if(cboSavingsAccountType.getSelectedItem() == null ||cboTerm.getSelectedItem() == null || txtDeposit.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
             // Check balance
-            if(Long.parseLong(txtDeposits.getText()) > dtoPaymentAccount.getCurrentBalance())
+            if(Long.parseLong(txtDeposit.getText()) > dtoPaymentAccount.getCurrentBalance())
             {
                 JOptionPane.showMessageDialog(this, "Current balance is not enough", "Incorrect details", JOptionPane.ERROR_MESSAGE);
             }
             else 
             {
-                if(Long.parseLong(txtDeposits.getText()) < 1000000)
+                if(Long.parseLong(txtDeposit.getText()) < 1000000)
                 {
                     JOptionPane.showMessageDialog(this, "The deposit amount must be more than 1,000,000 VND", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -616,10 +616,10 @@ public class Saving_GUI extends javax.swing.JFrame
                     String maturityDate = calculateMaturityDate();
 
                     // Tính tiền lãi dự kiến = số tiền gửi x  lãi suất (% năm)/ 12  x số tháng gửi
-                    long anticipatedInterest = (long)(Long.parseLong(txtDeposits.getText()) * interestRate * numberOfMonth) / 12;
+                    long anticipatedInterest = (long)(Long.parseLong(txtDeposit.getText()) * interestRate * numberOfMonth) / 12;
 
                     // Tính tổng số tiền nhận được khi tất toán tài khoản tiết kiệm
-                    long total = (long)(Long.parseLong(txtDeposits.getText()) + anticipatedInterest);
+                    long total = (long)(Long.parseLong(txtDeposit.getText()) + anticipatedInterest);
 
                     // Hiển thị sản phẩm phù hợp lên form
                     txtProductName.setText(dtoSavingsAccountType.getName());
@@ -647,7 +647,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 Logger.getLogger(Saving_GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            Account_DTO dtoNewSavingAccount = new Account_DTO(dtoSavingsAccountType.getId(), Long.parseLong(txtDeposits.getText()), maturityDate, Long.parseLong(txtAnticipatedInterest.getText().replaceAll(",","")) , dtoCustomer.getId());
+            Account_DTO dtoNewSavingAccount = new Account_DTO(dtoSavingsAccountType.getId(), Long.parseLong(txtDeposit.getText()), maturityDate, Long.parseLong(txtAnticipatedInterest.getText().replaceAll(",","")) , dtoCustomer.getId());
             if(busSaving.openSavingsAccount(dtoNewSavingAccount))
             {
                 JOptionPane.showConfirmDialog(null, "Open savings account is successful", "Successful", JOptionPane.CLOSED_OPTION);
@@ -657,7 +657,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 //Clear form
                 cboSavingsAccountType.setSelectedItem(null);
                 cboTerm.setSelectedItem(null);
-                txtDeposits.setText("");
+                txtDeposit.setText("");
                 txtInterestRate.setText("");
                 txtAnticipatedInterest.setText("");
                 txtTotal.setText("");
@@ -682,21 +682,11 @@ public class Saving_GUI extends javax.swing.JFrame
         btnOpenAccount.setVisible(false);
     }//GEN-LAST:event_cboSavingsAccountTypeActionPerformed
 
-    private void txtDepositsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDepositsMousePressed
-        txtInterestRate.setText("");
-        txtAnticipatedInterest.setText("");
-        txtTotal.setText("");
-        txtStartDate.setText("");
-        txtMaturityDate.setText("");
-        txtProductName.setText("");
-        btnOpenAccount.setVisible(false);
-    }//GEN-LAST:event_txtDepositsMousePressed
-
-    private void txtDepositsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepositsKeyTyped
+    private void txtDepositKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepositKeyTyped
         char c = evt.getKeyChar();
         if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-    }//GEN-LAST:event_txtDepositsKeyTyped
+    }//GEN-LAST:event_txtDepositKeyTyped
     
     int savingAccountId = 0;
     private void tblSavingsAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSavingsAccountMouseClicked
@@ -704,6 +694,16 @@ public class Saving_GUI extends javax.swing.JFrame
         if(row  < tblAccountModel.getRowCount() && row  >= 0)
             savingAccountId = Integer.parseInt(tblSavingsAccount.getValueAt(row, 0).toString());
     }//GEN-LAST:event_tblSavingsAccountMouseClicked
+
+    private void txtDepositMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDepositMouseClicked
+        txtInterestRate.setText("");
+        txtAnticipatedInterest.setText("");
+        txtTotal.setText("");
+        txtStartDate.setText("");
+        txtMaturityDate.setText("");
+        txtProductName.setText("");
+        btnOpenAccount.setVisible(false);
+    }//GEN-LAST:event_txtDepositMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -741,7 +741,7 @@ public class Saving_GUI extends javax.swing.JFrame
     private javax.swing.JPanel pnlSuitableProductDetails;
     private javax.swing.JTable tblSavingsAccount;
     private javax.swing.JTextField txtAnticipatedInterest;
-    private javax.swing.JTextField txtDeposits;
+    private javax.swing.JTextField txtDeposit;
     private javax.swing.JTextField txtInterestRate;
     private javax.swing.JTextField txtMaturityDate;
     private javax.swing.JTextField txtProductName;

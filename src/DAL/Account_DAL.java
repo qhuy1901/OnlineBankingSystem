@@ -90,34 +90,15 @@ public class Account_DAL
         return accountList; 
     }
      
-    /*public boolean openSavingsAccount(Account_DTO dtoNewSavingAccount)
-    {
-        try{
-            Connection con = DBConnection.ConnectDb();
-            String strCall = "{call OPEN_SAVINGS_ACCOUNT(?, ?, ?, ?, ?)}";
-            CallableStatement caSt = con.prepareCall(strCall);
-            caSt.setLong(1, dtoNewSavingAccount.getCustomerID());
-            caSt.setString(2, dtoNewSavingAccount.getAccountTypeID());
-            caSt.setLong(3, dtoNewSavingAccount.getCurrentBalance());
-            Date sqlMaturityDate = new java.sql.Date(dtoNewSavingAccount.getMaturityDate().getTime());
-            caSt.setDate(4, sqlMaturityDate);
-            caSt.setLong(5, dtoNewSavingAccount.getAnticipatedInterest());
-            caSt.execute();
-            con.close();
-            return true;
-        }
-        catch(SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, e);    
-        }
-        return false;
-    }*/
+
     
     public boolean isValidPaymentAccount(Account_DTO dtoAccount)
     {
         try{
             Connection con = DBConnection.ConnectDb();
-            String SQL = "SELECT Account_ID, Status FROM Account WHERE Account_ID = ? AND Account_Type_ID = 'PA'";
+            String SQL = "SELECT Account_ID, Status "
+                    + "FROM Account "
+                    + "WHERE Account_ID = ? AND Account_Type_ID = 'PA'";
             PreparedStatement prest = con.prepareStatement(SQL);
             prest.setLong(1, dtoAccount.getId());
             ResultSet rs = prest.executeQuery();
@@ -165,29 +146,6 @@ public class Account_DAL
         return totalSavingAccount;
     }
 
-    /*public int transfer(Transfer_Detail_DTO dtoTransferDetail)
-    {
-        int transactionID = 0;
-        try{
-            Connection con = DBConnection.ConnectDb();
-            String strCall = "{call transfer(?, ?, ?, ?, ?, ?)}";
-            CallableStatement caSt = con.prepareCall(strCall);
-            caSt.setLong(1, dtoTransferDetail.getSenderAccount());
-            caSt.setLong(2, dtoTransferDetail.getReceiverAccount());
-            caSt.setString(3, dtoTransferDetail.getReceiverBank());
-            caSt.setLong(4, dtoTransferDetail.getAmount());
-            caSt.setString(5, dtoTransferDetail.getContent());
-            caSt.registerOutParameter(6, java.sql.Types.NUMERIC);
-            caSt.executeUpdate();
-            transactionID = caSt.getInt(6);
-            con.close();
-        }
-        catch(SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, e);    
-        }
-        return transactionID;
-    }*/
     
     public ArrayList<Account_DTO> getSavingsAccountList(Customer_DTO dtoCustomer)
     {
@@ -212,43 +170,6 @@ public class Account_DAL
         }
         return accountList; 
     }
-    
-    /*public boolean settle(Account_DTO dtoSavingAccount)
-    {
-        try{
-            Connection con = DBConnection.ConnectDb();
-            String strCall = "{call settlement(?)}";
-            CallableStatement caSt = con.prepareCall(strCall);
-            caSt.setLong(1, dtoSavingAccount.getId());
-            caSt.execute();
-            con.close();
-            return true;
-        }
-        catch(SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, e);    
-        }
-        return false;
-    }*/
-    
-    /*public boolean deposit(Account_DTO dtoAccount, long amount)
-    {
-        try{
-            Connection con = DBConnection.ConnectDb();
-            String strCall = "{call DEPOSIT_TO_ACCOUNT(?, ?)}";
-            CallableStatement caSt = con.prepareCall(strCall);
-            caSt.setLong(1, dtoAccount.getId());
-            caSt.setLong(2, amount);
-            caSt.execute();
-            con.close();
-            return true;
-        }
-        catch(SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, e);    
-        }
-        return false;
-    }*/
     
     public Account_DTO getPaymentAccount(Customer_DTO dtoCustomer)
     {
