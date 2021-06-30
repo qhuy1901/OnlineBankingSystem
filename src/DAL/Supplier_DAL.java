@@ -39,10 +39,10 @@ public class Supplier_DAL
     {
         try{
             Connection con = DBConnection.ConnectDb();
-//            String sqlDeleteBill = "DELETE FROM BILL WHERE SUPPLIER_ID = ?";
-//            PreparedStatement prest = con.prepareStatement(sqlDeleteBill);
-//            prest.setLong(1, dtoSupplier.getId());
-//            prest.executeUpdate();
+            String sqlDeleteBill = "DELETE FROM BILL WHERE SUPPLIER_ID = ?";
+            PreparedStatement prest = con.prepareStatement(sqlDeleteBill);
+            prest.setLong(1, dtoSupplier.getId());
+            prest.executeUpdate();
             
             String sqlDeleteSupplier = "DELETE FROM SUPPLIER WHERE SUPPLIER_ID = ?";
             PreparedStatement prest1 = con.prepareStatement(sqlDeleteSupplier);

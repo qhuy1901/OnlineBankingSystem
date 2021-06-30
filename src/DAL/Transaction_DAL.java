@@ -72,6 +72,9 @@ public class Transaction_DAL
          try
         {
             Connection con = DBConnection.ConnectDb();
+            int i = -1;
+            i = Connection.TRANSACTION_SERIALIZABLE;
+            con.setAutoCommit(false);
             String SQL =    "SELECT * \n" +
                             "FROM TRANSACTION \n" +
                             "WHERE account_id = ?\n" +

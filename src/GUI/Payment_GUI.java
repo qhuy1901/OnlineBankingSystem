@@ -410,7 +410,7 @@ public class Payment_GUI extends javax.swing.JFrame
                     cboMonth.setSelectedItem(null);
                     cboYear.setSelectedItem(null);
                     txtCustomerID.setText("");
-                    
+
                     clearBillLookupInformation();
                 }
                 else

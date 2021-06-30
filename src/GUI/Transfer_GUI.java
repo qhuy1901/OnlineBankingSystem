@@ -54,7 +54,7 @@ public class Transfer_GUI extends javax.swing.JFrame
             if(password.equals(dtoUserLogIn.getPassword()) == false)
                 JOptionPane.showMessageDialog(this, "Password is incorrect", "Incorrect details", JOptionPane.ERROR_MESSAGE);
             else
-                return true;
+                return true; // password is correct
         }
         return false;
     }
