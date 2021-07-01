@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="fa403466-1626-45fa-a76c-65fae0ef5015">
 	<property name="ireport.zoom" value="1.46410000000005"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="408"/>
+	<property name="ireport.y" value="456"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -81,7 +81,7 @@ GROUP BY TO_DATE(TRANSACTION_DATE, 'dd/MM/yyyy')]]>
 	<parameter name="toDate" class="java.lang.String"/>
 	<parameter name="accountId" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select T.TRANSACTION_ID, T.TRANSACTION_DATE, T.TOTAL_TRANSACTION_AMOUNT, TP.NAME, TP.FEE, A.ACCOUNT_ID, C. ADDRESS, TP.NAME, A.CURRENT_BALANCE , C.FIRST_NAME || ' ' || C.LAST_NAME FULL_NAME
+		<![CDATA[select T.TRANSACTION_ID, T.TRANSACTION_DATE, TP.TRANSACTION_TYPE_ID, T.TOTAL_TRANSACTION_AMOUNT, TP.NAME, TP.FEE, A.ACCOUNT_ID, C. ADDRESS, TP.NAME, A.CURRENT_BALANCE , C.FIRST_NAME || ' ' || C.LAST_NAME FULL_NAME
 from ((TRANSACTION T JOIN TRANSACTION_TYPE TP ON T.TRANSACTION_TYPE_ID = TP.TRANSACTION_TYPE_ID)
             JOIN ACCOUNT A ON A.ACCOUNT_ID = T.ACCOUNT_ID)
                 JOIN CUSTOMER C ON C.CUSTOMER_ID = A.CUSTOMER_ID
@@ -91,6 +91,7 @@ ORDER BY T.transaction_id DESC]]>
 	</queryString>
 	<field name="TRANSACTION_ID" class="java.math.BigDecimal"/>
 	<field name="TRANSACTION_DATE" class="java.sql.Timestamp"/>
+	<field name="TRANSACTION_TYPE_ID" class="java.lang.String"/>
 	<field name="TOTAL_TRANSACTION_AMOUNT" class="java.math.BigDecimal"/>
 	<field name="NAME" class="java.lang.String"/>
 	<field name="FEE" class="java.math.BigDecimal"/>
@@ -313,7 +314,7 @@ ORDER BY T.transaction_id DESC]]>
 				<reportElement x="139" y="0" width="1" height="32" uuid="eb48e48f-8fa2-46f3-b908-ba593f36575a"/>
 			</line>
 			<textField pattern="#,##0">
-				<reportElement x="144" y="5" width="79" height="20" uuid="286c3ec1-f4a7-45c2-b24c-be9e0f8793c7"/>
+				<reportElement x="155" y="5" width="70" height="20" uuid="286c3ec1-f4a7-45c2-b24c-be9e0f8793c7"/>
 				<textElement>
 					<font fontName="Serif" size="14"/>
 				</textElement>
@@ -339,6 +340,13 @@ ORDER BY T.transaction_id DESC]]>
 			<line>
 				<reportElement x="264" y="0" width="1" height="32" uuid="ff44b030-6673-4c65-a1b9-37108c960981"/>
 			</line>
+			<textField pattern="#,##0">
+				<reportElement x="144" y="5" width="16" height="20" uuid="bdddc4b0-fe87-4a87-9a6e-2bba430cb207"/>
+				<textElement>
+					<font fontName="Serif" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{TRANSACTION_TYPE_ID}.equals("NT01") || $F{TRANSACTION_TYPE_ID}.equals("TK02")) ? "+" : "-"]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

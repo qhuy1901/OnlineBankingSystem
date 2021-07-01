@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="fa403466-1626-45fa-a76c-65fae0ef5015">
 	<property name="ireport.zoom" value="1.210000000000041"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="579"/>
+	<property name="ireport.y" value="514"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -55,6 +55,7 @@ GROUP BY TRANSACTION_dATE]]>
 		</queryString>
 		<field name="TRANSACTION_DATE" class="java.sql.Timestamp"/>
 		<field name="COUNT(TRANSACTION_ID)" class="java.math.BigDecimal"/>
+		<variable name="variable1" class="java.lang.String"/>
 	</subDataset>
 	<subDataset name="Table Dataset 2" uuid="602f7d8d-63a3-44bc-a4d6-58718b139de4">
 		<queryString>
@@ -76,6 +77,7 @@ GROUP BY TO_DATE(TRANSACTION_DATE, 'dd/MM/yyyy')]]>
 	</subDataset>
 	<parameter name="toDate" class="java.lang.String"/>
 	<parameter name="fromDate" class="java.lang.String"/>
+	<parameter name="parameter1" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[select T.TRANSACTION_ID, T.TRANSACTION_DATE, T.TOTAL_TRANSACTION_AMOUNT, TP.NAME, TP.FEE, A.ACCOUNT_ID, C. ADDRESS, TP.NAME, A.CURRENT_BALANCE , C.FIRST_NAME || ' ' || C.LAST_NAME FULL_NAME
 from ((TRANSACTION T JOIN TRANSACTION_TYPE TP ON T.TRANSACTION_TYPE_ID = TP.TRANSACTION_TYPE_ID)
@@ -92,6 +94,9 @@ WHERE ACCOUNT_TYPE_ID = 'PA']]>
 	<field name="ADDRESS" class="java.lang.String"/>
 	<field name="CURRENT_BALANCE" class="java.math.BigDecimal"/>
 	<field name="FULL_NAME" class="java.lang.String"/>
+	<variable name="TOTAL_TRANSACTION_AMOUNT_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_TRANSACTION_AMOUNT}]]></variableExpression>
+	</variable>
 	<title>
 		<band height="357" splitType="Stretch">
 			<staticText>
@@ -383,29 +388,6 @@ WHERE ACCOUNT_TYPE_ID = 'PA']]>
 				</textElement>
 				<text><![CDATA[Biểu đồ thống kê tổng số tiền giao dịch của khác hàng theo ngày:]]></text>
 			</staticText>
-			<pieChart>
-				<chart>
-					<reportElement x="11" y="74" width="511" height="184" uuid="855a86f3-1952-45ad-b970-8e55e916d847"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<pieDataset>
-					<dataset>
-						<datasetRun subDataset="Table Dataset 2" uuid="6b5c81c2-9d27-49e4-b944-43ccc4b19ea1"/>
-					</dataset>
-					<keyExpression><![CDATA[$F{NAME}]]></keyExpression>
-					<valueExpression><![CDATA[$F{COUNT(TRANSACTION_ID)}]]></valueExpression>
-					<labelExpression><![CDATA[$F{NAME}]]></labelExpression>
-					<sectionHyperlink>
-						<hyperlinkTooltipExpression><![CDATA[$F{COUNT(TRANSACTION_ID)}.toString()]]></hyperlinkTooltipExpression>
-					</sectionHyperlink>
-				</pieDataset>
-				<piePlot>
-					<plot/>
-					<itemLabel/>
-				</piePlot>
-			</pieChart>
 		</band>
 	</summary>
 </jasperReport>

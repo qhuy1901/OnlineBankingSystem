@@ -22,31 +22,6 @@ import java.sql.*;
 
 public class Report_DAL 
 {
-    private void showReport(String m_report_source, String m_sql_stmt) 
-    {
-        try {
-            // Connect database
-            Connection con = DBConnection.ConnectDb();
-            // Chỉ định một báo cáo sẽ được tải lên
-            InputStream is = getClass().getResourceAsStream(m_report_source);
-            // Thực hiện truy vấn JRDesignQuery
-            JRDesignQuery jrDesignQuery = new JRDesignQuery();
-            jrDesignQuery.setText(m_sql_stmt);
-            JasperDesign jasperDesign = JRXmlLoader.load(is);
-            jasperDesign.setQuery(jrDesignQuery);
-            // Biên dịch JasperReport
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            Map parametersMap = new HashMap();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametersMap, con);
-            // Hiển thị report
-            JasperViewer.viewReport(jasperPrint, false);
-        } 
-        catch (JRException e) 
-        {
-            System.out.println("Exception message " + e.getMessage());
-        }
-    }
-    
     private void showReport(String m_report_source, String m_sql_stmt, Map parametersMap) 
     {
         try {
@@ -78,7 +53,8 @@ public class Report_DAL
                         "FROM ((CUSTOMER C JOIN BILL B ON C.CUSTOMER_ID = B.CUSTOMER_ID) \n" +
                         "        JOIN SUPPLIER S ON S.SUPPLIER_ID = B.SUPPLIER_ID)\n" +
                         "WHERE B.BILL_ID = " + billID;
-        showReport(m_report_source, m_sql_stmt);
+        Map parametersMap = new HashMap();
+        showReport(m_report_source, m_sql_stmt, parametersMap);
     }
     
     public void showTransferReceipt(long transactionID) 
@@ -90,7 +66,8 @@ public class Report_DAL
                     "            JOIN ACCOUNT A ON A.ACCOUNT_ID = TD.RECEIVER_ACCOUNT)\n" +
                     "                JOIN CUSTOMER C ON C.CUSTOMER_ID = A.CUSTOMER_ID\n" +
                     "WHERE T.TRANSACTION_ID = " + transactionID;
-        showReport(m_report_source, m_sql_stmt);
+        Map parametersMap = new HashMap();
+        showReport(m_report_source, m_sql_stmt, parametersMap);
     }
     
     public void showCustomerList(Employee_DTO dtoEmployee) 
@@ -124,7 +101,7 @@ public class Report_DAL
         parametersMap.put("toDate", df2.format(toDate));
         parametersMap.put("accountId", accountId);
         String m_report_source = "Statement.jrxml";
-        String m_sql_stmt = "select T.TRANSACTION_ID, T.TRANSACTION_DATE, T.TOTAL_TRANSACTION_AMOUNT, TP.NAME, TP.FEE, A.ACCOUNT_ID, C. ADDRESS, TP.NAME, A.CURRENT_BALANCE , C.FIRST_NAME || ' ' || C.LAST_NAME FULL_NAME\n" +
+        String m_sql_stmt = "select T.TRANSACTION_ID, T.TRANSACTION_DATE, TP.TRANSACTION_TYPE_ID, T.TOTAL_TRANSACTION_AMOUNT, TP.NAME, TP.FEE, A.ACCOUNT_ID, C. ADDRESS, TP.NAME, A.CURRENT_BALANCE , C.FIRST_NAME || ' ' || C.LAST_NAME FULL_NAME\n" +
                             "from ((TRANSACTION T JOIN TRANSACTION_TYPE TP ON T.TRANSACTION_TYPE_ID = TP.TRANSACTION_TYPE_ID)\n" +
                             "            JOIN ACCOUNT A ON A.ACCOUNT_ID = T.ACCOUNT_ID)\n" +
                             "                JOIN CUSTOMER C ON C.CUSTOMER_ID = A.CUSTOMER_ID\n" +

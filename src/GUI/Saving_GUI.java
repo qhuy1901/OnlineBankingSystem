@@ -528,7 +528,7 @@ public class Saving_GUI extends javax.swing.JFrame
         else
         {
             // Check the number of remaining day
-            if(tblSavingsAccount.getValueAt(row, 5).toString().equals("0 day") == false) // Nếu chưa đến ngày đáo hạn
+            if(tblSavingsAccount.getValueAt(row, 6).toString().equals("0 day") == false) // Nếu chưa đến ngày đáo hạn
             {
                 String accountsSavingType= savingsAccountList.get(row).getAccountTypeID();
                 // Check the savings type
