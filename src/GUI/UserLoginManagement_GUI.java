@@ -91,9 +91,9 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         Panel_SearchAccount.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 110, 120));
 
         lblTitle.setBackground(new java.awt.Color(32, 172, 216));
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitle.setText("          User Login Managment");
+        lblTitle.setText("        User Login Managment");
         lblTitle.setOpaque(true);
         lblTitle.setPreferredSize(new java.awt.Dimension(34, 50));
         Panel_SearchAccount.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 930, 66));
@@ -126,7 +126,7 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         pnlUserLoginInformation.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
         btnEdit.setBackground(new java.awt.Color(32, 172, 216));
-        btnEdit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEdit.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnEdit.setForeground(new java.awt.Color(255, 255, 255));
         btnEdit.setText("Edit");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +149,7 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         pnlUserLoginInformation.add(lblNumberOfFailedLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
 
         btnUpdate.setBackground(new java.awt.Color(32, 172, 216));
-        btnUpdate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/update_25px.png"))); // NOI18N
         btnUpdate.setText("Update");
@@ -208,7 +208,7 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         Panel_SearchAccount.add(pnlUserLoginInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 750, 320));
 
         btnSearch.setBackground(new java.awt.Color(32, 172, 216));
-        btnSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSearch.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Search.png"))); // NOI18N
         btnSearch.setText("Search");
@@ -219,18 +219,18 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         });
         Panel_SearchAccount.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 190, 120, 30));
 
-        lbSearch2.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lbSearch2.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lbSearch2.setForeground(new java.awt.Color(32, 172, 216));
         lbSearch2.setText("Role:");
         Panel_SearchAccount.add(lbSearch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
 
-        lbCustomerAdminID.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lbCustomerAdminID.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lbCustomerAdminID.setForeground(new java.awt.Color(32, 172, 216));
         lbCustomerAdminID.setText("Customer/ Admin ID:");
         Panel_SearchAccount.add(lbCustomerAdminID, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         cbbRole.setEditable(true);
-        cbbRole.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cbbRole.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cbbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Customer" }));
         cbbRole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,7 +239,7 @@ public class UserLoginManagement_GUI extends javax.swing.JFrame
         });
         Panel_SearchAccount.add(cbbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 330, -1));
 
-        txtId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtId.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtId.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtIdMouseClicked(evt);

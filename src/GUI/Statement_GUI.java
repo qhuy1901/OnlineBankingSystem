@@ -156,7 +156,7 @@ public class Statement_GUI extends javax.swing.JFrame {
         lblFromDate.setText("Report type:");
         jPanel1.add(lblFromDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, -1));
 
-        txtAccountID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAccountID.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtAccountID.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtAccountIDMouseClicked(evt);
@@ -170,7 +170,7 @@ public class Statement_GUI extends javax.swing.JFrame {
         jPanel1.add(txtAccountID, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 300, 30));
 
         btnExport.setBackground(new java.awt.Color(32, 172, 216));
-        btnExport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnExport.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnExport.setForeground(new java.awt.Color(255, 255, 255));
         btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Export.png"))); // NOI18N
         btnExport.setText("Export report PDF");
@@ -181,10 +181,10 @@ public class Statement_GUI extends javax.swing.JFrame {
                 btnExportActionPerformed(evt);
             }
         });
-        jPanel1.add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 290, 180, 40));
+        jPanel1.add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 290, 190, 40));
 
         btnStatement.setBackground(new java.awt.Color(32, 172, 216));
-        btnStatement.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnStatement.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnStatement.setForeground(new java.awt.Color(255, 255, 255));
         btnStatement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Statement_Statement.png"))); // NOI18N
         btnStatement.setText(" Statement");
@@ -193,7 +193,7 @@ public class Statement_GUI extends javax.swing.JFrame {
                 btnStatementActionPerformed(evt);
             }
         });
-        jPanel1.add(btnStatement, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 140, 40));
+        jPanel1.add(btnStatement, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 150, 40));
 
         lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Statement.png"))); // NOI18N
         jPanel1.add(lblImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 100));
@@ -231,16 +231,18 @@ public class Statement_GUI extends javax.swing.JFrame {
         jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 30, 50, 57));
 
         lblTitle.setBackground(new java.awt.Color(32, 172, 216));
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 29)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitle.setText("         Statement");
+        lblTitle.setText("        Statement");
         lblTitle.setOpaque(true);
         jPanel1.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 30, 935, 58));
 
         dcToDate.setDateFormatString("dd/MM/yyyy");
+        dcToDate.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jPanel1.add(dcToDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, 200, 30));
 
         dcFromDate.setDateFormatString("dd/MM/yyyy");
+        dcFromDate.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jPanel1.add(dcFromDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 200, 30));
 
         lblAccountID1.setBackground(new java.awt.Color(32, 172, 216));
@@ -250,10 +252,10 @@ public class Statement_GUI extends javax.swing.JFrame {
         jPanel1.add(lblAccountID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
         txtAccountOnwer.setEditable(false);
-        txtAccountOnwer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAccountOnwer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jPanel1.add(txtAccountOnwer, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 300, 30));
 
-        cbbReportType.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbbReportType.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jPanel1.add(cbbReportType, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 300, -1));
 
         lblFromDate1.setBackground(new java.awt.Color(32, 172, 216));

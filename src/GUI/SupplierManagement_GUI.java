@@ -122,7 +122,6 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         lblServiceType.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtSearch.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtSearch.setForeground(new java.awt.Color(32, 172, 216));
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchKeyReleased(evt);
@@ -131,7 +130,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         lblServiceType.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 270, -1));
 
         btnAdd.setBackground(new java.awt.Color(32, 172, 216));
-        btnAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnADD.png"))); // NOI18N
         btnAdd.setText("ADD");
@@ -166,7 +165,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         lblServiceType.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 30, 50, 57));
 
         lblSupplierManagement.setBackground(new java.awt.Color(32, 172, 216));
-        lblSupplierManagement.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblSupplierManagement.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
         lblSupplierManagement.setForeground(new java.awt.Color(255, 255, 255));
         lblSupplierManagement.setText("         Supplier Management");
         lblSupplierManagement.setOpaque(true);
@@ -178,7 +177,6 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         lblServiceType.add(lblSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
 
         txtPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtPhoneNumber.setForeground(new java.awt.Color(32, 172, 216));
         txtPhoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPhoneNumberKeyTyped(evt);
@@ -186,13 +184,12 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         });
         lblServiceType.add(txtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 310, -1));
 
-        lblSupplierName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSupplierName.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblSupplierName.setForeground(new java.awt.Color(32, 172, 216));
         lblSupplierName.setText("Supplier name:");
         lblServiceType.add(lblSupplierName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
 
         txtSupplierName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtSupplierName.setForeground(new java.awt.Color(32, 172, 216));
         lblServiceType.add(txtSupplierName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 310, -1));
 
         tblSupplier.setModel(new javax.swing.table.DefaultTableModel(
@@ -215,13 +212,13 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
 
         lblServiceType.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 890, 210));
 
-        lblTransaction_type.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTransaction_type.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblTransaction_type.setForeground(new java.awt.Color(32, 172, 216));
         lblTransaction_type.setText("Service Type:  ");
         lblServiceType.add(lblTransaction_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, -1, -1));
 
         btnClear.setBackground(new java.awt.Color(32, 172, 216));
-        btnClear.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnClear.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnClear.setForeground(new java.awt.Color(255, 255, 255));
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnClear.png"))); // NOI18N
         btnClear.setText("CLEAR");
@@ -235,7 +232,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         lblServiceType.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(891, 570, 110, 30));
 
         btnUpdate.setBackground(new java.awt.Color(32, 172, 216));
-        btnUpdate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnUpdate.png"))); // NOI18N
         btnUpdate.setText("UPDATE");
@@ -246,14 +243,13 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
                 btnUpdateActionPerformed(evt);
             }
         });
-        lblServiceType.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 570, 113, 30));
+        lblServiceType.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 570, 130, 30));
 
         cboServiceType.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cboServiceType.setForeground(new java.awt.Color(32, 172, 216));
         lblServiceType.add(cboServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 130, 240, 30));
 
         btnDelete.setBackground(new java.awt.Color(32, 172, 216));
-        btnDelete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Supplier_Management_btnDelete.png"))); // NOI18N
         btnDelete.setText("DELETE");
@@ -266,34 +262,32 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
         });
         lblServiceType.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 570, 111, 30));
 
-        lblAddress.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAddress.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblAddress.setForeground(new java.awt.Color(32, 172, 216));
         lblAddress.setText("Address:");
         lblServiceType.add(lblAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
         lblServiceType.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 278, 890, 20));
 
-        lblPhoneNumber.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblPhoneNumber.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblPhoneNumber.setForeground(new java.awt.Color(32, 172, 216));
         lblPhoneNumber.setText("Phone Number:");
         lblServiceType.add(lblPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
         txtAddress.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtAddress.setForeground(new java.awt.Color(32, 172, 216));
         lblServiceType.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 440, -1));
 
-        lblTransaction_type1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTransaction_type1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblTransaction_type1.setForeground(new java.awt.Color(32, 172, 216));
         lblTransaction_type1.setText("Contract Signing Date:");
         lblServiceType.add(lblTransaction_type1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, -1, -1));
 
         datContractSingingDate.setBackground(new java.awt.Color(32, 172, 216));
-        datContractSingingDate.setForeground(new java.awt.Color(32, 172, 216));
         datContractSingingDate.setDateFormatString("dd/MM/yyyy");
         datContractSingingDate.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblServiceType.add(datContractSingingDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 180, 170, 30));
 
         btnExportReport.setBackground(new java.awt.Color(32, 172, 216));
-        btnExportReport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnExportReport.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnExportReport.setForeground(new java.awt.Color(255, 255, 255));
         btnExportReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Export.png"))); // NOI18N
         btnExportReport.setText("EXPORT SUPPLIER REPORT");
@@ -304,7 +298,7 @@ public class SupplierManagement_GUI extends javax.swing.JFrame
                 btnExportReportActionPerformed(evt);
             }
         });
-        lblServiceType.add(btnExportReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 570, 240, 30));
+        lblServiceType.add(btnExportReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 570, 260, 30));
 
         getContentPane().add(lblServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1064, 650));
 

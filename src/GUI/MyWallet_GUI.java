@@ -159,7 +159,7 @@ public class MyWallet_GUI extends javax.swing.JFrame
         jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 50, 57));
 
         lblTitle.setBackground(new java.awt.Color(32, 172, 216));
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setText("         My Wallet");
         lblTitle.setOpaque(true);
@@ -234,22 +234,18 @@ public class MyWallet_GUI extends javax.swing.JFrame
 
         txtAccountOwner.setEditable(false);
         txtAccountOwner.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        txtAccountOwner.setForeground(new java.awt.Color(32, 172, 216));
         jPanel1.add(txtAccountOwner, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 240, 30));
 
         txtOpenDay.setEditable(false);
         txtOpenDay.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        txtOpenDay.setForeground(new java.awt.Color(32, 172, 216));
         jPanel1.add(txtOpenDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, 210, 30));
 
         txtLatestTransactionDate.setEditable(false);
         txtLatestTransactionDate.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        txtLatestTransactionDate.setForeground(new java.awt.Color(32, 172, 216));
         jPanel1.add(txtLatestTransactionDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 200, 210, 30));
 
         txtAccountId.setEditable(false);
         txtAccountId.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        txtAccountId.setForeground(new java.awt.Color(32, 172, 216));
         jPanel1.add(txtAccountId, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 240, 30));
 
         btnShowTransactionHistory.setBackground(new java.awt.Color(32, 172, 216));
@@ -266,7 +262,6 @@ public class MyWallet_GUI extends javax.swing.JFrame
 
         txtCurrentBalance.setEditable(false);
         txtCurrentBalance.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        txtCurrentBalance.setForeground(new java.awt.Color(32, 172, 216));
         txtCurrentBalance.setText("*************");
         jPanel1.add(txtCurrentBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 240, 30));
 
@@ -278,7 +273,6 @@ public class MyWallet_GUI extends javax.swing.JFrame
 
         txtStatus.setEditable(false);
         txtStatus.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        txtStatus.setForeground(new java.awt.Color(32, 172, 216));
         jPanel1.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 250, 210, 30));
 
         lblStatus.setBackground(new java.awt.Color(32, 172, 216));

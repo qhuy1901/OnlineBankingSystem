@@ -82,18 +82,18 @@ public class Deposit_GUI extends javax.swing.JFrame {
         });
         Panel_OpenAccount.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, 76, 58));
 
-        lblBeneficiaryName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblBeneficiaryName.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblBeneficiaryName.setForeground(new java.awt.Color(32, 172, 216));
         lblBeneficiaryName.setText("Beneficiary name: ");
         Panel_OpenAccount.add(lblBeneficiaryName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, -1, -1));
 
-        lblAmount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblAmount.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblAmount.setForeground(new java.awt.Color(32, 172, 216));
         lblAmount.setText("Amount:  ");
         Panel_OpenAccount.add(lblAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, -1, -1));
 
         txtAmount.setEditable(false);
-        txtAmount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtAmount.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtAmount.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtAmountKeyTyped(evt);
@@ -116,18 +116,18 @@ public class Deposit_GUI extends javax.swing.JFrame {
         Panel_OpenAccount.add(lbIcon_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 120, 110));
 
         lbOpenAccount.setBackground(new java.awt.Color(32, 172, 216));
-        lbOpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lbOpenAccount.setFont(new java.awt.Font("Segoe UI", 1, 29)); // NOI18N
         lbOpenAccount.setForeground(new java.awt.Color(255, 255, 255));
-        lbOpenAccount.setText("          Deposit");
+        lbOpenAccount.setText("       Deposit");
         lbOpenAccount.setOpaque(true);
         lbOpenAccount.setPreferredSize(new java.awt.Dimension(34, 50));
         Panel_OpenAccount.add(lbOpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 970, 66));
 
         txtBeneficiaryName.setEditable(false);
-        txtBeneficiaryName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtBeneficiaryName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         Panel_OpenAccount.add(txtBeneficiaryName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 370, -1));
 
-        lblTransactionType.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTransactionType.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         lblTransactionType.setForeground(new java.awt.Color(32, 172, 216));
         lblTransactionType.setText("Transaction Type:");
         Panel_OpenAccount.add(lblTransactionType, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
@@ -138,7 +138,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
         lblDepositInformation.setText("Deposit Information:");
         Panel_OpenAccount.add(lblDepositInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, -1, -1));
 
-        lbCustomerID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbCustomerID.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lbCustomerID.setForeground(new java.awt.Color(32, 172, 216));
         lbCustomerID.setText("Customer ID: ");
         Panel_OpenAccount.add(lbCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
@@ -172,7 +172,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
         Panel_OpenAccount.add(lblBeneficiaryInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
         txtAccountID.setEditable(false);
-        txtAccountID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtAccountID.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtAccountID.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtAccountIDMouseClicked(evt);
@@ -190,13 +190,13 @@ public class Deposit_GUI extends javax.swing.JFrame {
         });
         Panel_OpenAccount.add(txtAccountID, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 370, -1));
 
-        lblAccountID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblAccountID.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblAccountID.setForeground(new java.awt.Color(32, 172, 216));
         lblAccountID.setText("Account ID: ");
         Panel_OpenAccount.add(lblAccountID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
 
         txtCustomerID.setEditable(false);
-        txtCustomerID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtCustomerID.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtCustomerID.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtCustomerIDMouseClicked(evt);
@@ -283,15 +283,19 @@ public class Deposit_GUI extends javax.swing.JFrame {
                 // Check amount
                 if(Long.parseLong(txtAmount.getText()) >= 100000)
                 {
-                    long amount = Long.parseLong(txtAmount.getText());
-                    Account_DTO dtoAccount = new Account_DTO(Long.parseLong(txtAccountID.getText()));
-                    if(busDeposit.deposit(dtoAccount, amount))
+                    int reply = JOptionPane.showConfirmDialog(null, "Are you sure to deposit for this account?", "Confirm", JOptionPane.YES_NO_OPTION);
+                    if (reply == JOptionPane.YES_OPTION) 
                     {
-                        JOptionPane.showMessageDialog(this, "Successful deposit to account" , "Notification", JOptionPane.INFORMATION_MESSAGE);  
-                        clearForm();
+                        long amount = Long.parseLong(txtAmount.getText());
+                        Account_DTO dtoAccount = new Account_DTO(Long.parseLong(txtAccountID.getText()));
+                        if(busDeposit.deposit(dtoAccount, amount))
+                        {
+                            JOptionPane.showMessageDialog(this, "Successful deposit to account" , "Notification", JOptionPane.INFORMATION_MESSAGE);  
+                            clearForm();
+                        }
+                        else
+                            JOptionPane.showMessageDialog(this, "Cannot deposit to account", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                    else
-                        JOptionPane.showMessageDialog(this, "Cannot deposit to account", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 else
                 {

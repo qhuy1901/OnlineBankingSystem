@@ -234,9 +234,9 @@ public class Saving_GUI extends javax.swing.JFrame
         WithdrawOnlineSavings.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 120, 110));
 
         lblTitle_ViewAccount.setBackground(new java.awt.Color(32, 172, 216));
-        lblTitle_ViewAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTitle_ViewAccount.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
         lblTitle_ViewAccount.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitle_ViewAccount.setText("                 View Online Savings Accounts");
+        lblTitle_ViewAccount.setText("           View Online Savings Accounts");
         lblTitle_ViewAccount.setOpaque(true);
         lblTitle_ViewAccount.setPreferredSize(new java.awt.Dimension(34, 50));
         WithdrawOnlineSavings.add(lblTitle_ViewAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 940, 66));
@@ -319,9 +319,9 @@ public class Saving_GUI extends javax.swing.JFrame
         OpenOnlineSavings.add(lblIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 110, 110));
 
         lblTitle_OpenAccount.setBackground(new java.awt.Color(32, 172, 216));
-        lblTitle_OpenAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTitle_OpenAccount.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
         lblTitle_OpenAccount.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitle_OpenAccount.setText("         Open Online Savings Account");
+        lblTitle_OpenAccount.setText("       Open Online Savings Account");
         lblTitle_OpenAccount.setOpaque(true);
         lblTitle_OpenAccount.setPreferredSize(new java.awt.Dimension(34, 50));
         OpenOnlineSavings.add(lblTitle_OpenAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 940, 66));

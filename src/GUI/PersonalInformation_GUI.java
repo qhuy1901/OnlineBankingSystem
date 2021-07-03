@@ -137,20 +137,20 @@ public class PersonalInformation_GUI extends javax.swing.JFrame
 
         pnlPersonalnformation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNewPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        pnlPersonalnformation.add(txtNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 160, 30));
+        txtNewPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        pnlPersonalnformation.add(txtNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 160, 30));
 
         lblName2.setBackground(new java.awt.Color(32, 172, 216));
-        lblName2.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblName2.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblName2.setForeground(new java.awt.Color(32, 172, 216));
         lblName2.setText("New Password:");
         pnlPersonalnformation.add(lblName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        txtEnteraNewPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        pnlPersonalnformation.add(txtEnteraNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 160, 30));
+        txtEnteraNewPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        pnlPersonalnformation.add(txtEnteraNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 160, 30));
 
         lblName3.setBackground(new java.awt.Color(32, 172, 216));
-        lblName3.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblName3.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblName3.setForeground(new java.awt.Color(32, 172, 216));
         lblName3.setText("Confirm new password:");
         pnlPersonalnformation.add(lblName3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
@@ -162,7 +162,7 @@ public class PersonalInformation_GUI extends javax.swing.JFrame
                 ckbShowNewPasswordActionPerformed(evt);
             }
         });
-        pnlPersonalnformation.add(ckbShowNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, -1, -1));
+        pnlPersonalnformation.add(ckbShowNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, -1, -1));
 
         lblUserLoginInformation1.setBackground(new java.awt.Color(32, 172, 216));
         lblUserLoginInformation1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -171,7 +171,7 @@ public class PersonalInformation_GUI extends javax.swing.JFrame
         pnlPersonalnformation.add(lblUserLoginInformation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         btnUpdatePassword.setBackground(new java.awt.Color(32, 172, 216));
-        btnUpdatePassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnUpdatePassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnUpdatePassword.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdatePassword.setText("Update Password");
         btnUpdatePassword.addActionListener(new java.awt.event.ActionListener() {
@@ -179,94 +179,94 @@ public class PersonalInformation_GUI extends javax.swing.JFrame
                 btnUpdatePasswordActionPerformed(evt);
             }
         });
-        pnlPersonalnformation.add(btnUpdatePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 160, -1));
+        pnlPersonalnformation.add(btnUpdatePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 160, -1));
 
-        Panel_SearchAccount.add(pnlPersonalnformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 490, 190));
+        Panel_SearchAccount.add(pnlPersonalnformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 490, 200));
 
         lblTitle.setBackground(new java.awt.Color(32, 172, 216));
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitle.setText("        Personal Information");
+        lblTitle.setText("         Personal Information");
         lblTitle.setOpaque(true);
         lblTitle.setPreferredSize(new java.awt.Dimension(34, 50));
         Panel_SearchAccount.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 930, 66));
 
         txtCustomerID.setEditable(false);
-        txtCustomerID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCustomerID.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         Panel_SearchAccount.add(txtCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 200, 30));
 
         lblCustomerID.setBackground(new java.awt.Color(32, 172, 216));
-        lblCustomerID.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblCustomerID.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblCustomerID.setForeground(new java.awt.Color(32, 172, 216));
         lblCustomerID.setText("Customer ID:");
         Panel_SearchAccount.add(lblCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
 
         lblName.setBackground(new java.awt.Color(32, 172, 216));
-        lblName.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblName.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblName.setForeground(new java.awt.Color(32, 172, 216));
         lblName.setText("Name:");
         Panel_SearchAccount.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
 
         txtName.setEditable(false);
-        txtName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         Panel_SearchAccount.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 200, 30));
 
         txtPhoneNo.setEditable(false);
-        txtPhoneNo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPhoneNo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         Panel_SearchAccount.add(txtPhoneNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 320, 150, 30));
 
         txtDateofBirth.setEditable(false);
-        txtDateofBirth.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDateofBirth.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         Panel_SearchAccount.add(txtDateofBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 200, 30));
 
         lblPassword.setBackground(new java.awt.Color(32, 172, 216));
-        lblPassword.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblPassword.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblPassword.setForeground(new java.awt.Color(32, 172, 216));
         lblPassword.setText("Date of Birth:");
         Panel_SearchAccount.add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
 
         lblRole.setBackground(new java.awt.Color(32, 172, 216));
-        lblRole.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblRole.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblRole.setForeground(new java.awt.Color(32, 172, 216));
         lblRole.setText("Address:");
         Panel_SearchAccount.add(lblRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
 
         lblUsername1.setBackground(new java.awt.Color(32, 172, 216));
-        lblUsername1.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblUsername1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblUsername1.setForeground(new java.awt.Color(32, 172, 216));
         lblUsername1.setText("Username:");
         Panel_SearchAccount.add(lblUsername1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, -1));
 
         txtUserName.setEditable(false);
-        txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         Panel_SearchAccount.add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 200, 30));
 
         lblUsername2.setBackground(new java.awt.Color(32, 172, 216));
-        lblUsername2.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblUsername2.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblUsername2.setForeground(new java.awt.Color(32, 172, 216));
         lblUsername2.setText("ID Card:");
         Panel_SearchAccount.add(lblUsername2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
 
         txtIDCard.setEditable(false);
-        txtIDCard.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIDCard.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         Panel_SearchAccount.add(txtIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, 150, 30));
 
         lblUsername.setBackground(new java.awt.Color(32, 172, 216));
-        lblUsername.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblUsername.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(32, 172, 216));
         lblUsername.setText("Gender:");
         Panel_SearchAccount.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, -1, -1));
 
         txtGender.setEditable(false);
-        txtGender.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtGender.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         Panel_SearchAccount.add(txtGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, 150, 30));
 
         txtAddress.setEditable(false);
-        txtAddress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAddress.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         Panel_SearchAccount.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 460, 30));
 
         lblLastAccessTime.setBackground(new java.awt.Color(32, 172, 216));
-        lblLastAccessTime.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
+        lblLastAccessTime.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblLastAccessTime.setForeground(new java.awt.Color(32, 172, 216));
         lblLastAccessTime.setText("Phone No:");
         Panel_SearchAccount.add(lblLastAccessTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, -1, -1));
@@ -295,7 +295,7 @@ public class PersonalInformation_GUI extends javax.swing.JFrame
         Panel_SearchAccount.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 140, 180, 180));
 
         btnChangePassword.setBackground(new java.awt.Color(32, 172, 216));
-        btnChangePassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnChangePassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnChangePassword.setForeground(new java.awt.Color(255, 255, 255));
         btnChangePassword.setText("Change Password");
         btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
@@ -303,7 +303,7 @@ public class PersonalInformation_GUI extends javax.swing.JFrame
                 btnChangePasswordActionPerformed(evt);
             }
         });
-        Panel_SearchAccount.add(btnChangePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 150, -1));
+        Panel_SearchAccount.add(btnChangePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, 160, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

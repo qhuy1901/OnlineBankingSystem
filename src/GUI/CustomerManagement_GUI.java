@@ -203,8 +203,9 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 btnExportCustomerListReportActionPerformed(evt);
             }
         });
-        pnlViewCustomer.add(btnExportCustomerListReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 530, 250, 40));
+        pnlViewCustomer.add(btnExportCustomerListReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 110, 250, 40));
 
+        txtSearch.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchKeyReleased(evt);
@@ -229,7 +230,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         });
         pnlViewCustomer.add(btnHome_ViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 76, 50));
 
-        lblSearch.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblSearch.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblSearch.setForeground(new java.awt.Color(32, 172, 216));
         lblSearch.setText("Search:");
         pnlViewCustomer.add(lblSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, -1, -1));
@@ -238,12 +239,13 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         pnlViewCustomer.add(lblIcon_ViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
 
         lblViewCustomer.setBackground(new java.awt.Color(32, 172, 216));
-        lblViewCustomer.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblViewCustomer.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
         lblViewCustomer.setForeground(new java.awt.Color(255, 255, 255));
-        lblViewCustomer.setText("            View Customer");
+        lblViewCustomer.setText("        View Customers");
         lblViewCustomer.setOpaque(true);
         lblViewCustomer.setPreferredSize(new java.awt.Dimension(34, 50));
         pnlViewCustomer.add(lblViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 970, 65));
+        lblViewCustomer.getAccessibleContext().setAccessibleName("        View Customers");
 
         tblViewCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -258,41 +260,41 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         ));
         jScrollPane2.setViewportView(tblViewCustomer);
 
-        pnlViewCustomer.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 960, 280));
+        pnlViewCustomer.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 960, 330));
 
-        jTabbedPane1.addTab("View Customer", pnlViewCustomer);
+        jTabbedPane1.addTab("View Customers", pnlViewCustomer);
 
         pnlAddCustomer.setBackground(new java.awt.Color(239, 250, 252));
         pnlAddCustomer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblLastName.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblLastName.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblLastName.setForeground(new java.awt.Color(32, 172, 216));
         lblLastName.setText("Last Name");
-        pnlAddCustomer.add(lblLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 167, 94, -1));
+        pnlAddCustomer.add(lblLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 94, -1));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(32, 172, 216));
         jLabel8.setText("Date of birth");
-        pnlAddCustomer.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 233, -1, -1));
+        pnlAddCustomer.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, -1, -1));
 
-        txtLastName_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtLastName_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         pnlAddCustomer.add(txtLastName_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 200, 32));
 
-        lblGender.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblGender.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblGender.setForeground(new java.awt.Color(32, 172, 216));
         lblGender.setText("Gender");
         pnlAddCustomer.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 233, -1, -1));
 
-        cbGender_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbGender_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cbGender_AddCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose gender", "Male", "Female" }));
         pnlAddCustomer.add(cbGender_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 200, 32));
 
-        lblAddress.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblAddress.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblAddress.setForeground(new java.awt.Color(32, 172, 216));
         lblAddress.setText("Address");
         pnlAddCustomer.add(lblAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
 
-        txtAddress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAddress.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtAddress.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtAddressKeyReleased(evt);
@@ -300,12 +302,12 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         });
         pnlAddCustomer.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 540, 32));
 
-        lblPhoneNo.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblPhoneNo.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblPhoneNo.setForeground(new java.awt.Color(32, 172, 216));
         lblPhoneNo.setText("Phone No");
-        pnlAddCustomer.add(lblPhoneNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 363, -1, -1));
+        pnlAddCustomer.add(lblPhoneNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
 
-        txtPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtPhoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPhoneNumberKeyTyped(evt);
@@ -314,16 +316,16 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         pnlAddCustomer.add(txtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 320, 32));
 
         btnAdd.setBackground(new java.awt.Color(32, 172, 216));
-        btnAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/plus_25px.png"))); // NOI18N
-        btnAdd.setText("ADD");
+        btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
-        pnlAddCustomer.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 115, -1, -1));
+        pnlAddCustomer.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 100, 110, -1));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -346,7 +348,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 .addGap(46, 46, 46))
         );
 
-        pnlAddCustomer.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(795, 203, -1, 200));
+        pnlAddCustomer.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, -1, 200));
 
         btnHome_AddCustomer.setBackground(new java.awt.Color(32, 172, 216));
         btnHome_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -366,22 +368,22 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         pnlAddCustomer.add(btnHome_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 76, 50));
 
         lblIcon_AddCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/CustomerManagement_AddCustomer.png"))); // NOI18N
-        pnlAddCustomer.add(lblIcon_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 140, 100));
+        pnlAddCustomer.add(lblIcon_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 140, 100));
 
         lblAddCustomer.setBackground(new java.awt.Color(32, 172, 216));
-        lblAddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblAddCustomer.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
         lblAddCustomer.setForeground(new java.awt.Color(255, 255, 255));
-        lblAddCustomer.setText("            Add new customer");
+        lblAddCustomer.setText("         Add new customer");
         lblAddCustomer.setOpaque(true);
         lblAddCustomer.setPreferredSize(new java.awt.Dimension(34, 50));
         pnlAddCustomer.add(lblAddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 960, 65));
 
-        lblIDCard.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblIDCard.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblIDCard.setForeground(new java.awt.Color(32, 172, 216));
         lblIDCard.setText("ID Card");
-        pnlAddCustomer.add(lblIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 423, -1, -1));
+        pnlAddCustomer.add(lblIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 423, 90, -1));
 
-        txtIDCard.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIDCard.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtIDCard.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIDCardKeyTyped(evt);
@@ -390,6 +392,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         pnlAddCustomer.add(txtIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 320, 32));
 
         dcDateOfBirth_AddCustomer.setDateFormatString("dd/MM/yyyy");
+        dcDateOfBirth_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         dcDateOfBirth_AddCustomer.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 dcDateOfBirth_AddCustomerPropertyChange(evt);
@@ -402,12 +405,12 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         });
         pnlAddCustomer.add(dcDateOfBirth_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 200, 32));
 
-        lblFirstName.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblFirstName.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblFirstName.setForeground(new java.awt.Color(32, 172, 216));
         lblFirstName.setText("First Name");
-        pnlAddCustomer.add(lblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 167, 94, -1));
+        pnlAddCustomer.add(lblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 94, -1));
 
-        txtFirstName_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFirstName_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtFirstName_AddCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtFirstName_AddCustomerKeyReleased(evt);
@@ -429,50 +432,50 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblIcon_UpdateCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/CustomerManagement_Update&DeleteCustomer.png"))); // NOI18N
-        jPanel3.add(lblIcon_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 135, 120));
+        jPanel3.add(lblIcon_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 135, 100));
 
-        lblCustomerID.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblCustomerID.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblCustomerID.setForeground(new java.awt.Color(32, 172, 216));
-        lblCustomerID.setText("ID");
-        jPanel3.add(lblCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 115, -1, 20));
+        lblCustomerID.setText("Search");
+        jPanel3.add(lblCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, 20));
 
-        lblLastName_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblLastName_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblLastName_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblLastName_UpdateCustomer.setText("Last Name");
         jPanel3.add(lblLastName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 195, 90, -1));
 
-        lblDateOfBirth_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblDateOfBirth_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblDateOfBirth_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblDateOfBirth_UpdateCustomer.setText("Date of birth");
         jPanel3.add(lblDateOfBirth_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 265, -1, -1));
 
-        txtLastName_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtLastName_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jPanel3.add(txtLastName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 193, 180, 32));
 
-        lblGender_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblGender_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblGender_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblGender_UpdateCustomer.setText("Gender");
-        jPanel3.add(lblGender_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 265, -1, -1));
+        jPanel3.add(lblGender_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
 
-        cbbUpdateGender.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbbUpdateGender.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cbbUpdateGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
         cbbUpdateGender.setSelectedIndex(-1);
         jPanel3.add(cbbUpdateGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 220, 32));
 
-        lblAddress_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblAddress_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblAddress_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblAddress_UpdateCustomer.setText("Address");
         jPanel3.add(lblAddress_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 343, -1, -1));
 
-        txtUpdateAddress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtUpdateAddress.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jPanel3.add(txtUpdateAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 337, 540, 32));
 
-        lblPhoneNumber_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblPhoneNumber_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblPhoneNumber_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblPhoneNumber_UpdateCustomer.setText("Phone No");
         jPanel3.add(lblPhoneNumber_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 410, -1, -1));
 
-        txtUpdatePhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtUpdatePhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtUpdatePhoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUpdatePhoneNumberKeyTyped(evt);
@@ -481,7 +484,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         jPanel3.add(txtUpdatePhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 330, 32));
 
         btnUpdate.setBackground(new java.awt.Color(32, 172, 216));
-        btnUpdate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/update_25px.png"))); // NOI18N
         btnUpdate.setText("Update");
@@ -513,7 +516,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
-        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(761, 193, -1, 200));
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 190, -1, 200));
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 168, 1059, 19));
 
         btnHome_UpdateCustomer.setBackground(new java.awt.Color(32, 172, 216));
@@ -534,15 +537,15 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         jPanel3.add(btnHome_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 76, 50));
 
         lblUpdateCustomer.setBackground(new java.awt.Color(32, 172, 216));
-        lblUpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblUpdateCustomer.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
         lblUpdateCustomer.setForeground(new java.awt.Color(255, 255, 255));
-        lblUpdateCustomer.setText("            Update/Delete Customer");
+        lblUpdateCustomer.setText("        Update/Delete Customer");
         lblUpdateCustomer.setOpaque(true);
         lblUpdateCustomer.setPreferredSize(new java.awt.Dimension(34, 50));
         jPanel3.add(lblUpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 960, 65));
 
         btnDeleteCustomer.setBackground(new java.awt.Color(32, 172, 216));
-        btnDeleteCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnDeleteCustomer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnDeleteCustomer.setForeground(new java.awt.Color(255, 255, 255));
         btnDeleteCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/delete_25px.png"))); // NOI18N
         btnDeleteCustomer.setText("Delete");
@@ -553,35 +556,37 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         });
         jPanel3.add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 110, -1, -1));
 
-        lblIDCard_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblIDCard_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblIDCard_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblIDCard_UpdateCustomer.setText("ID Card");
         jPanel3.add(lblIDCard_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 488, -1, -1));
 
-        txtUpdateIDCard.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtUpdateIDCard.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtUpdateIDCard.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUpdateIDCardKeyTyped(evt);
             }
         });
         jPanel3.add(txtUpdateIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 488, 330, 32));
+
+        dcDateOfBirth_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jPanel3.add(dcDateOfBirth_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 178, 32));
 
-        lblFirstName_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lblFirstName_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblFirstName_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblFirstName_UpdateCustomer.setText("First Name");
         jPanel3.add(lblFirstName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 195, -1, -1));
 
-        txtFirstName_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFirstName_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jPanel3.add(txtFirstName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 193, 220, 32));
 
-        cbbID_Update.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbbID_Update.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cbbID_Update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbID_UpdateActionPerformed(evt);
             }
         });
-        jPanel3.add(cbbID_Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 115, 370, -1));
+        jPanel3.add(cbbID_Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 115, 360, -1));
 
         javax.swing.GroupLayout pnlUpdateCustomerLayout = new javax.swing.GroupLayout(pnlUpdateCustomer);
         pnlUpdateCustomer.setLayout(pnlUpdateCustomerLayout);

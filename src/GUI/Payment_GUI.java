@@ -133,7 +133,7 @@ public class Payment_GUI extends javax.swing.JFrame
         jPanel1.setBackground(new java.awt.Color(239, 250, 252));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cboServiceType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cboServiceType.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cboServiceType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboServiceTypeActionPerformed(evt);
@@ -141,7 +141,7 @@ public class Payment_GUI extends javax.swing.JFrame
         });
         jPanel1.add(cboServiceType, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 270, -1));
 
-        cboSupplierName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cboSupplierName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cboSupplierName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboSupplierNameActionPerformed(evt);
@@ -170,7 +170,7 @@ public class Payment_GUI extends javax.swing.JFrame
         jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 30, 50, 57));
 
         lblTitle.setBackground(new java.awt.Color(32, 172, 216));
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setText("         Bill Payment");
         lblTitle.setOpaque(true);
@@ -186,7 +186,7 @@ public class Payment_GUI extends javax.swing.JFrame
         lblYear.setText("Year:");
         jPanel1.add(lblYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, -1, -1));
 
-        txtCustomerID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCustomerID.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtCustomerID.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtCustomerIDMouseClicked(evt);
@@ -348,6 +348,7 @@ public class Payment_GUI extends javax.swing.JFrame
         lblSupplierName.setText("Supplier Name:");
         jPanel1.add(lblSupplierName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
 
+        cboYear.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cboYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021" }));
         cboYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -361,6 +362,7 @@ public class Payment_GUI extends javax.swing.JFrame
         lblMonth.setText("Month");
         jPanel1.add(lblMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
 
+        cboMonth.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cboMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         cboMonth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

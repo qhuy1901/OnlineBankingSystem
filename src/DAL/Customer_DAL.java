@@ -41,24 +41,24 @@ public class Customer_DAL
         return false;
     }
     
-    public boolean delete(Customer_DTO dtoCustomer)
-    {
-        try{
-            Connection con = DBConnection.ConnectDb();
-            String sql = "DELETE FROM CUSTOMER WHERE CUSTOMER_ID = ?";
-            PreparedStatement prest = con.prepareStatement(sql);
-            prest.setLong(1, dtoCustomer.getId());
-            prest.executeUpdate();
-            con.close();
-            return true;
-        }
-        catch(SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, e);    
-        }
-        return false;
-            
-    }
+//    public boolean delete(Customer_DTO dtoCustomer)
+//    {
+//        try{
+//            Connection con = DBConnection.ConnectDb();
+//            String sql = "DELETE FROM CUSTOMER WHERE CUSTOMER_ID = ?";
+//            PreparedStatement prest = con.prepareStatement(sql);
+//            prest.setLong(1, dtoCustomer.getId());
+//            prest.executeUpdate();
+//            con.close();
+//            return true;
+//        }
+//        catch(SQLException e)
+//        {
+//            JOptionPane.showMessageDialog(null, e);    
+//        }
+//        return false;
+//            
+//    }
     
     public boolean update(Customer_DTO ct)
     {

@@ -113,7 +113,7 @@ public class Transfer_GUI extends javax.swing.JFrame
         jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 30, 50, 57));
 
         lblTitle.setBackground(new java.awt.Color(32, 172, 216));
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 29)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setText("         Transfer");
         lblTitle.setOpaque(true);
@@ -140,12 +140,10 @@ public class Transfer_GUI extends javax.swing.JFrame
         jPanel1.add(lblContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, -1, -1));
 
         cboReceiverBank.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        cboReceiverBank.setForeground(new java.awt.Color(32, 172, 216));
         cboReceiverBank.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vietcombank", "ACB Bank", "VP Bank", "Saccombank" }));
         jPanel1.add(cboReceiverBank, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 422, -1));
 
         txtReceiverAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtReceiverAccount.setForeground(new java.awt.Color(32, 172, 216));
         txtReceiverAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtReceiverAccountMouseClicked(evt);
@@ -197,7 +195,6 @@ public class Transfer_GUI extends javax.swing.JFrame
         jPanel1.add(lblReceiverInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, 20));
 
         txtContent.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtContent.setForeground(new java.awt.Color(32, 172, 216));
         jScrollPane1.setViewportView(txtContent);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, 430, 60));
@@ -208,7 +205,6 @@ public class Transfer_GUI extends javax.swing.JFrame
         jPanel1.add(lblReceiverBank, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, 20));
 
         txtAmount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtAmount.setForeground(new java.awt.Color(32, 172, 216));
         txtAmount.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtAmountKeyTyped(evt);
@@ -218,7 +214,6 @@ public class Transfer_GUI extends javax.swing.JFrame
 
         txtReceiverName.setEditable(false);
         txtReceiverName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtReceiverName.setForeground(new java.awt.Color(32, 172, 216));
         jPanel1.add(txtReceiverName, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 422, -1));
 
         lblReceiverName.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N

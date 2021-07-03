@@ -106,12 +106,12 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         });
         Panel_SearchAccount.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 76, 58));
 
-        lbSearch.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        lbSearch.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbSearch.setForeground(new java.awt.Color(32, 172, 216));
         lbSearch.setText("Search: ");
-        Panel_SearchAccount.add(lbSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, -1));
+        Panel_SearchAccount.add(lbSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
 
-        txtSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtSearch.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchKeyReleased(evt);
@@ -135,7 +135,7 @@ public class AccountManagement_GUI extends javax.swing.JFrame
         Panel_SearchAccount.add(ScroPane_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 870, 340));
 
         btnLockAccount.setBackground(new java.awt.Color(32, 172, 216));
-        btnLockAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnLockAccount.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnLockAccount.setForeground(new java.awt.Color(255, 255, 255));
         btnLockAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AccountManagement_Lock.png"))); // NOI18N
         btnLockAccount.setText("Lock Account");
@@ -144,21 +144,21 @@ public class AccountManagement_GUI extends javax.swing.JFrame
                 btnLockAccountActionPerformed(evt);
             }
         });
-        Panel_SearchAccount.add(btnLockAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, -1, -1));
+        Panel_SearchAccount.add(btnLockAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, -1, -1));
 
         lbIcon_SearchAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AccountManagement_SearchAccount.png"))); // NOI18N
         Panel_SearchAccount.add(lbIcon_SearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 110, 120));
 
         lbSearchAccount.setBackground(new java.awt.Color(32, 172, 216));
-        lbSearchAccount.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lbSearchAccount.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
         lbSearchAccount.setForeground(new java.awt.Color(255, 255, 255));
-        lbSearchAccount.setText("          Account Management");
+        lbSearchAccount.setText("       Account Management");
         lbSearchAccount.setOpaque(true);
         lbSearchAccount.setPreferredSize(new java.awt.Dimension(34, 50));
         Panel_SearchAccount.add(lbSearchAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 930, 66));
 
         btnUnlockAccount.setBackground(new java.awt.Color(32, 172, 216));
-        btnUnlockAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnUnlockAccount.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnUnlockAccount.setForeground(new java.awt.Color(255, 255, 255));
         btnUnlockAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AccountManagement_Unlock.png"))); // NOI18N
         btnUnlockAccount.setText("Unlock Account");
@@ -167,7 +167,7 @@ public class AccountManagement_GUI extends javax.swing.JFrame
                 btnUnlockAccountActionPerformed(evt);
             }
         });
-        Panel_SearchAccount.add(btnUnlockAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 140, -1, -1));
+        Panel_SearchAccount.add(btnUnlockAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 140, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

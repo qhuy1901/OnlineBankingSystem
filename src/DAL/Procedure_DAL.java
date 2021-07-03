@@ -2,6 +2,7 @@ package DAL;
 
 import DTO.Account_DTO;
 import DTO.Bill_DTO;
+import DTO.Customer_DTO;
 import DTO.Transfer_Detail_DTO;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -112,7 +113,7 @@ public class Procedure_DAL
         return false;
     }
     
-    /*public boolean delete(Customer_DTO ct)
+    public boolean delete(Customer_DTO ct)
     {
         try{
             Connection con = DBConnection.ConnectDb();
@@ -129,5 +130,5 @@ public class Procedure_DAL
             JOptionPane.showMessageDialog(null, e);    
         }
         return false;
-    }*/
+    }
 }
