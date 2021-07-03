@@ -2,7 +2,6 @@ package DAL;
 
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
-import DTO.Transfer_Detail_DTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

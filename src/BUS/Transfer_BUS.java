@@ -3,7 +3,7 @@ package BUS;
 import DAL.Account_DAL;
 import DAL.Customer_DAL;
 import DAL.Procedure_DAL;
-import DAL.Report.Report_DAL;
+import DAL.Report.JasperReport_DAL;
 import DAL.User_Login_DAL;
 import DTO.Account_DTO;
 import DTO.Customer_DTO;
@@ -16,7 +16,7 @@ public class Transfer_BUS
     Customer_DAL dalCustomer = new Customer_DAL();
     User_Login_DAL dalUserLogin = new User_Login_DAL();
     Procedure_DAL dalProcedure = new Procedure_DAL();
-    Report_DAL dalReport = new Report_DAL();
+    JasperReport_DAL dalReport = new JasperReport_DAL();
     
     public Customer_DTO getCustomerInfo(Account_DTO dtoAccount)
     {

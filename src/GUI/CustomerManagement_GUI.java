@@ -6,16 +6,19 @@ import DTO.Customer_DTO;
 import GUI.AdminHome_GUI;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 public class CustomerManagement_GUI extends javax.swing.JFrame 
 {
     CustomerManagement_BUS busCustomerManagment = new CustomerManagement_BUS();
     Employee_DTO dtoAdmin = null;
     Customer_DTO dtoCustomer = null;
+    ArrayList<Customer_DTO> list = new ArrayList<Customer_DTO>();
     
     public CustomerManagement_GUI(Employee_DTO admin) 
     {
@@ -26,10 +29,29 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         setSize(1064, 650); // Set kích thước giao diện
         setResizable(false); // Không cho phóng to
         setTitle("Customer Management"); // Set tiêu đề
-        setLocation(225,70); // Set vị trí trang
-        setVisible(true); // Hiển thị giao diện
-        
         createTable();
+        loadCbbIDUpdate();
+        setVisible(true); // Hiển thị giao diện
+    }
+
+    public void loadCbbIDUpdate() {
+        // Get all customer information
+        list = busCustomerManagment.getCustomersList();
+        
+        // Khởi tạo mảng chứa thông tin ID và Họ tên của khách hàng
+        ArrayList<String> arrIDAndName = new ArrayList<String>();
+        arrIDAndName.add("Choose Customer");
+        String temp = new String();
+        for(int i = 0; i < list.size(); i++) {
+            // Biến temp tạm thời lưu trữ String sẽ được add vào arraylist
+            temp = Long.toString(list.get(i).getId()) + " - " + list.get(i).getFirstName() + " " + list.get(i).getLastName();
+            arrIDAndName.add(temp);
+        } 
+        // Set model cho cbb 
+        cbbID_Update.setModel(new DefaultComboBoxModel <> (arrIDAndName.toArray(new String[0])));
+        // Tự động hoàn thành combobox
+        AutoCompleteDecorator.decorate(cbbID_Update);
+        cbbID_Update.setSelectedIndex(0);
     }
     
     DefaultTableModel tblCustomerModel;
@@ -41,9 +63,9 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         String title[] = {"ID", "Full Name", "Gender", "Date of birth", "Address", "Phone number", "ID Card"};
         tblCustomerModel.setColumnIdentifiers(title);
         tblCustomerModel.setRowCount(0);
-        
+
         // Get all customer information
-        ArrayList<Customer_DTO> list = busCustomerManagment.getCustomersList();
+        list = busCustomerManagment.getCustomersList();
         
         // Load customer information into the table
         for(int i = 0; i < list.size(); i++)
@@ -54,7 +76,10 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         }
 
         tblViewCustomer.setModel(tblCustomerModel);
-        
+        //Cho phép sắp xếp từng cột
+        tblViewCustomer.setAutoCreateRowSorter(true);
+        // Không cho sửa dữ liệu trong bảng
+        tblViewCustomer.setEnabled(false);
         // Set kích thước cho các cột
         tblViewCustomer.getColumnModel().getColumn(0).setPreferredWidth(70);
         tblViewCustomer.getColumnModel().getColumn(1).setPreferredWidth(200);
@@ -62,18 +87,17 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         tblViewCustomer.getColumnModel().getColumn(3).setPreferredWidth(80);
         tblViewCustomer.getColumnModel().getColumn(4).setPreferredWidth(250);
     }
-
+    
     private void clearForm()
     {
         txtFirstName_AddCustomer.setText("");
         txtLastName_AddCustomer.setText("");
-        cbGender_AddCustomer.setSelectedItem(null);
+        cbGender_AddCustomer.setSelectedIndex(0);
         dcDateOfBirth_AddCustomer.setCalendar(null);
         txtAddress.setText("");
         txtPhoneNumber.setText("");
         txtIDCard.setText("");
         
-        txtUpdateID.setText("");
         txtFirstName_UpdateCustomer.setText("");
         txtLastName_UpdateCustomer.setText("");
         cbbUpdateGender.setSelectedItem(null);
@@ -131,7 +155,6 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         lblLastName_UpdateCustomer = new javax.swing.JLabel();
         lblDateOfBirth_UpdateCustomer = new javax.swing.JLabel();
         txtLastName_UpdateCustomer = new javax.swing.JTextField();
-        txtUpdateID = new javax.swing.JTextField();
         lblGender_UpdateCustomer = new javax.swing.JLabel();
         cbbUpdateGender = new javax.swing.JComboBox<>();
         lblAddress_UpdateCustomer = new javax.swing.JLabel();
@@ -144,15 +167,13 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         jSeparator1 = new javax.swing.JSeparator();
         btnHome_UpdateCustomer = new javax.swing.JButton();
         lblUpdateCustomer = new javax.swing.JLabel();
-        btnShowInformation = new javax.swing.JButton();
         btnDeleteCustomer = new javax.swing.JButton();
         lblIDCard_UpdateCustomer = new javax.swing.JLabel();
         txtUpdateIDCard = new javax.swing.JTextField();
         dcDateOfBirth_UpdateCustomer = new com.toedter.calendar.JDateChooser();
         lblFirstName_UpdateCustomer = new javax.swing.JLabel();
         txtFirstName_UpdateCustomer = new javax.swing.JTextField();
-        lxlInputError_UpdatePhoneNumber = new javax.swing.JLabel();
-        lxlInputError_UpdateIDCard = new javax.swing.JLabel();
+        cbbID_Update = new javax.swing.JComboBox<>();
 
         btnUpdate2.setBackground(new java.awt.Color(32, 172, 216));
         btnUpdate2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -222,7 +243,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         lblViewCustomer.setText("            View Customer");
         lblViewCustomer.setOpaque(true);
         lblViewCustomer.setPreferredSize(new java.awt.Dimension(34, 50));
-        pnlViewCustomer.add(lblViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 950, 66));
+        pnlViewCustomer.add(lblViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 970, 65));
 
         tblViewCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -237,7 +258,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         ));
         jScrollPane2.setViewportView(tblViewCustomer);
 
-        pnlViewCustomer.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 960, 300));
+        pnlViewCustomer.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 960, 280));
 
         jTabbedPane1.addTab("View Customer", pnlViewCustomer);
 
@@ -247,35 +268,44 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         lblLastName.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblLastName.setForeground(new java.awt.Color(32, 172, 216));
         lblLastName.setText("Last Name");
-        pnlAddCustomer.add(lblLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 94, -1));
+        pnlAddCustomer.add(lblLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 167, 94, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(32, 172, 216));
         jLabel8.setText("Date of birth");
-        pnlAddCustomer.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, -1, -1));
+        pnlAddCustomer.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 233, -1, -1));
+
+        txtLastName_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         pnlAddCustomer.add(txtLastName_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 200, 32));
 
         lblGender.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblGender.setForeground(new java.awt.Color(32, 172, 216));
         lblGender.setText("Gender");
-        pnlAddCustomer.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
+        pnlAddCustomer.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 233, -1, -1));
 
         cbGender_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbGender_AddCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", " " }));
-        cbGender_AddCustomer.setSelectedIndex(-1);
-        pnlAddCustomer.add(cbGender_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 200, -1));
+        cbGender_AddCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose gender", "Male", "Female" }));
+        pnlAddCustomer.add(cbGender_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 200, 32));
 
         lblAddress.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblAddress.setForeground(new java.awt.Color(32, 172, 216));
         lblAddress.setText("Address");
         pnlAddCustomer.add(lblAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
+
+        txtAddress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAddress.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAddressKeyReleased(evt);
+            }
+        });
         pnlAddCustomer.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 540, 32));
 
         lblPhoneNo.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblPhoneNo.setForeground(new java.awt.Color(32, 172, 216));
-        lblPhoneNo.setText("Phone No.");
-        pnlAddCustomer.add(lblPhoneNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
+        lblPhoneNo.setText("Phone No");
+        pnlAddCustomer.add(lblPhoneNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 363, -1, -1));
 
+        txtPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtPhoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPhoneNumberKeyTyped(evt);
@@ -293,7 +323,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 btnAddActionPerformed(evt);
             }
         });
-        pnlAddCustomer.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(948, 94, -1, -1));
+        pnlAddCustomer.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 115, -1, -1));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -333,24 +363,25 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 btnHome_AddCustomerActionPerformed(evt);
             }
         });
-        pnlAddCustomer.add(btnHome_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 20, 76, 58));
+        pnlAddCustomer.add(btnHome_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 76, 50));
 
         lblIcon_AddCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/CustomerManagement_AddCustomer.png"))); // NOI18N
-        pnlAddCustomer.add(lblIcon_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 140, 100));
+        pnlAddCustomer.add(lblIcon_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 140, 100));
 
         lblAddCustomer.setBackground(new java.awt.Color(32, 172, 216));
         lblAddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblAddCustomer.setForeground(new java.awt.Color(255, 255, 255));
-        lblAddCustomer.setText("         Add new customer");
+        lblAddCustomer.setText("            Add new customer");
         lblAddCustomer.setOpaque(true);
         lblAddCustomer.setPreferredSize(new java.awt.Dimension(34, 50));
-        pnlAddCustomer.add(lblAddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 19, 970, 66));
+        pnlAddCustomer.add(lblAddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 960, 65));
 
         lblIDCard.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblIDCard.setForeground(new java.awt.Color(32, 172, 216));
         lblIDCard.setText("ID Card");
-        pnlAddCustomer.add(lblIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, -1, -1));
+        pnlAddCustomer.add(lblIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 423, -1, -1));
 
+        txtIDCard.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtIDCard.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIDCardKeyTyped(evt);
@@ -359,12 +390,29 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         pnlAddCustomer.add(txtIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 320, 32));
 
         dcDateOfBirth_AddCustomer.setDateFormatString("dd/MM/yyyy");
+        dcDateOfBirth_AddCustomer.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dcDateOfBirth_AddCustomerPropertyChange(evt);
+            }
+        });
+        dcDateOfBirth_AddCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                dcDateOfBirth_AddCustomerKeyReleased(evt);
+            }
+        });
         pnlAddCustomer.add(dcDateOfBirth_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 200, 32));
 
         lblFirstName.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblFirstName.setForeground(new java.awt.Color(32, 172, 216));
         lblFirstName.setText("First Name");
-        pnlAddCustomer.add(lblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 94, -1));
+        pnlAddCustomer.add(lblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 167, 94, -1));
+
+        txtFirstName_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFirstName_AddCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFirstName_AddCustomerKeyReleased(evt);
+            }
+        });
         pnlAddCustomer.add(txtFirstName_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 200, 32));
 
         lxlInputError_PhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
@@ -381,57 +429,50 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblIcon_UpdateCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/CustomerManagement_Update&DeleteCustomer.png"))); // NOI18N
-        jPanel3.add(lblIcon_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, -10, 135, -1));
+        jPanel3.add(lblIcon_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 135, 120));
 
         lblCustomerID.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblCustomerID.setForeground(new java.awt.Color(32, 172, 216));
         lblCustomerID.setText("ID");
-        jPanel3.add(lblCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, 20));
+        jPanel3.add(lblCustomerID, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 115, -1, 20));
 
         lblLastName_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblLastName_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblLastName_UpdateCustomer.setText("Last Name");
-        jPanel3.add(lblLastName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 80, -1));
+        jPanel3.add(lblLastName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 195, 90, -1));
 
         lblDateOfBirth_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblDateOfBirth_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblDateOfBirth_UpdateCustomer.setText("Date of birth");
-        jPanel3.add(lblDateOfBirth_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, -1, -1));
-        jPanel3.add(txtLastName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 180, 32));
+        jPanel3.add(lblDateOfBirth_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 265, -1, -1));
 
-        txtUpdateID.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtUpdateIDMouseClicked(evt);
-            }
-        });
-        txtUpdateID.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtUpdateIDKeyTyped(evt);
-            }
-        });
-        jPanel3.add(txtUpdateID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 230, 32));
+        txtLastName_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel3.add(txtLastName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 193, 180, 32));
 
         lblGender_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblGender_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblGender_UpdateCustomer.setText("Gender");
-        jPanel3.add(lblGender_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
+        jPanel3.add(lblGender_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 265, -1, -1));
 
         cbbUpdateGender.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbbUpdateGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", " " }));
+        cbbUpdateGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
         cbbUpdateGender.setSelectedIndex(-1);
-        jPanel3.add(cbbUpdateGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 220, -1));
+        jPanel3.add(cbbUpdateGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 220, 32));
 
         lblAddress_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblAddress_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblAddress_UpdateCustomer.setText("Address");
-        jPanel3.add(lblAddress_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 338, -1, -1));
-        jPanel3.add(txtUpdateAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 338, 540, 32));
+        jPanel3.add(lblAddress_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 343, -1, -1));
+
+        txtUpdateAddress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel3.add(txtUpdateAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 337, 540, 32));
 
         lblPhoneNumber_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblPhoneNumber_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
-        lblPhoneNumber_UpdateCustomer.setText("Phone No.");
+        lblPhoneNumber_UpdateCustomer.setText("Phone No");
         jPanel3.add(lblPhoneNumber_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 410, -1, -1));
 
+        txtUpdatePhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtUpdatePhoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUpdatePhoneNumberKeyTyped(evt);
@@ -449,7 +490,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel3.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 110, -1, -1));
+        jPanel3.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 110, -1, -1));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -490,27 +531,15 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 btnHome_UpdateCustomerActionPerformed(evt);
             }
         });
-        jPanel3.add(btnHome_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 20, 76, 58));
+        jPanel3.add(btnHome_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 76, 50));
 
         lblUpdateCustomer.setBackground(new java.awt.Color(32, 172, 216));
         lblUpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblUpdateCustomer.setForeground(new java.awt.Color(255, 255, 255));
-        lblUpdateCustomer.setText("             Update/ Delete Customer");
+        lblUpdateCustomer.setText("            Update/Delete Customer");
         lblUpdateCustomer.setOpaque(true);
         lblUpdateCustomer.setPreferredSize(new java.awt.Dimension(34, 50));
-        jPanel3.add(lblUpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 19, 960, 66));
-
-        btnShowInformation.setBackground(new java.awt.Color(32, 172, 216));
-        btnShowInformation.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnShowInformation.setForeground(new java.awt.Color(255, 255, 255));
-        btnShowInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Search.png"))); // NOI18N
-        btnShowInformation.setText("Show Information");
-        btnShowInformation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowInformationActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnShowInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, -1, -1));
+        jPanel3.add(lblUpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 960, 65));
 
         btnDeleteCustomer.setBackground(new java.awt.Color(32, 172, 216));
         btnDeleteCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -522,13 +551,14 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 btnDeleteCustomerActionPerformed(evt);
             }
         });
-        jPanel3.add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 110, -1, -1));
+        jPanel3.add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 110, -1, -1));
 
         lblIDCard_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblIDCard_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblIDCard_UpdateCustomer.setText("ID Card");
         jPanel3.add(lblIDCard_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 488, -1, -1));
 
+        txtUpdateIDCard.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtUpdateIDCard.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUpdateIDCardKeyTyped(evt);
@@ -540,16 +570,18 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         lblFirstName_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         lblFirstName_UpdateCustomer.setForeground(new java.awt.Color(32, 172, 216));
         lblFirstName_UpdateCustomer.setText("First Name");
-        jPanel3.add(lblFirstName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 193, 80, -1));
+        jPanel3.add(lblFirstName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 195, -1, -1));
+
+        txtFirstName_UpdateCustomer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel3.add(txtFirstName_UpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 193, 220, 32));
 
-        lxlInputError_UpdatePhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        lxlInputError_UpdatePhoneNumber.setForeground(new java.awt.Color(255, 102, 102));
-        jPanel3.add(lxlInputError_UpdatePhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 170, 20));
-
-        lxlInputError_UpdateIDCard.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        lxlInputError_UpdateIDCard.setForeground(new java.awt.Color(255, 102, 102));
-        jPanel3.add(lxlInputError_UpdateIDCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, 170, 20));
+        cbbID_Update.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbbID_Update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbID_UpdateActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cbbID_Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 115, 370, -1));
 
         javax.swing.GroupLayout pnlUpdateCustomerLayout = new javax.swing.GroupLayout(pnlUpdateCustomer);
         pnlUpdateCustomer.setLayout(pnlUpdateCustomerLayout);
@@ -576,6 +608,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHome_AddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_AddCustomerActionPerformed
@@ -585,7 +618,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // Check if the user input is enough or not
-        if(txtLastName_AddCustomer.getText().equals("") || txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || txtIDCard.getText().equals(""))
+        if(txtFirstName_AddCustomer.getText().equals("") || txtLastName_AddCustomer.getText().equals("") || cbGender_AddCustomer.getSelectedIndex() < 1 || dcDateOfBirth_AddCustomer.getCalendar() == null || txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || txtIDCard.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
         }
@@ -597,19 +630,13 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
             {
                 JOptionPane.showMessageDialog(this, "Customer added successfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 clearForm();
+                loadCbbIDUpdate();
             }
             else
                 JOptionPane.showMessageDialog(this, "Cannot add customers!", "Error", JOptionPane.ERROR_MESSAGE);
+            txtFirstName_AddCustomer.requestFocus();
         }
     }//GEN-LAST:event_btnAddActionPerformed
-
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        DefaultTableModel searchTable = (DefaultTableModel) tblViewCustomer.getModel();
-        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(searchTable); // Khởi tạo row sorter với tất cả dữ liệu trên tblViewCustomer
-        tblViewCustomer.setRowSorter(sorter); // chỉ định bộ lọc cho tblViewCustomer
-        String search = txtSearch.getText();
-        sorter.setRowFilter(RowFilter.regexFilter(search)); // sử dụng đối tượng RowFilter để lọc dựa trên giá trị trong textfield
-    }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed
         // Check if customer information is shown or not
@@ -624,97 +651,59 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
                 {
                     JOptionPane.showMessageDialog(this, "Customer deleted susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     clearForm();
+                    loadCbbIDUpdate();
                 }
                 else
                     JOptionPane.showMessageDialog(this, "Cannot delete customers!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         else
-            JOptionPane.showMessageDialog(this, "Please show customer information before deleting", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select customer!", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnDeleteCustomerActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // Check if the user enter customer id or not
-        if(txtUpdateID.getText().equals("") || txtLastName_UpdateCustomer.getText().equals("") || txtUpdateID.getText().equals("") || txtUpdateAddress.getText().equals("") || txtUpdatePhoneNumber.getText().equals("") || txtUpdateIDCard.getText().equals(""))
+        // Check customer information
+        if(dtoCustomer != null)
         {
-            JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
-        }
-        else
-        {
-            // Check customer information
-            if(dtoCustomer != null)
+            // Check if the user enter customer id or not
+            if(txtFirstName_UpdateCustomer.getText().equals("") || txtLastName_UpdateCustomer.getText().equals("") || txtUpdateAddress.getText().equals("") || cbbUpdateGender.getSelectedIndex() < 0 || dcDateOfBirth_UpdateCustomer.getCalendar() == null || txtUpdatePhoneNumber.getText().equals("") || txtUpdateIDCard.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
+            }
+            else 
             {
                 int ret = JOptionPane.showConfirmDialog(null, "Are you sure to update this customer information?", "Confirm", JOptionPane.YES_NO_OPTION);
                 if(ret == JOptionPane.YES_OPTION) 
                 {
-                    Customer_DTO ct = new Customer_DTO(Integer.parseInt(txtUpdateID.getText()) , txtFirstName_UpdateCustomer.getText(), txtLastName_UpdateCustomer.getText(), cbbUpdateGender.getSelectedItem().toString(), dcDateOfBirth_UpdateCustomer.getDate(), txtUpdateAddress.getText(), txtUpdatePhoneNumber.getText(), txtUpdateIDCard.getText());
+                    String cus_id  = cbbID_Update.getSelectedItem().toString().substring(0, 8); 
+                    Customer_DTO ct = new Customer_DTO(Integer.parseInt(cus_id), txtFirstName_UpdateCustomer.getText(), txtLastName_UpdateCustomer.getText(), cbbUpdateGender.getSelectedItem().toString(), dcDateOfBirth_UpdateCustomer.getDate(), txtUpdateAddress.getText(), txtUpdatePhoneNumber.getText(), txtUpdateIDCard.getText());
                     if(busCustomerManagment.update(ct))
                     {
                         JOptionPane.showMessageDialog(this, "Customer updated susccessfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
                         clearForm();
+                        loadCbbIDUpdate();
                     }
                     else
                         JOptionPane.showMessageDialog(this, "Cannot update customers!", "Error", JOptionPane.ERROR_MESSAGE);
-                } 
+                }
             }
-            else
-                JOptionPane.showMessageDialog(this, "Please show customer information before updating", "Error", JOptionPane.ERROR_MESSAGE);
         }
-   
+        else
+            JOptionPane.showMessageDialog(this, "Please select customer!", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnUpdateActionPerformed
     
     
-    private void btnShowInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowInformationActionPerformed
-        // Check if the user enter customer id or not
-        if(txtUpdateID.getText().equals(""))
-        {
-            JOptionPane.showMessageDialog(this, "Required field are empty", "Please fill required field...!", JOptionPane.ERROR_MESSAGE);
-        }
-        else
-        {
-            // Get customer information
-            dtoCustomer = busCustomerManagment.getInformation(Integer.parseInt(txtUpdateID.getText()));
-            if(dtoCustomer == null)
-            {
-                JOptionPane.showMessageDialog(this, "No customer information found!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            else
-            {
-                // Display customer infromation
-                txtFirstName_UpdateCustomer.setText(dtoCustomer.getFirstName());
-                txtLastName_UpdateCustomer.setText(dtoCustomer.getLastName());
-                cbbUpdateGender.setSelectedItem(dtoCustomer.getGender());
-                dcDateOfBirth_UpdateCustomer.setDate(dtoCustomer.getDateOfBirth());
-                txtUpdateAddress.setText(dtoCustomer.getAddress());
-                txtUpdatePhoneNumber.setText(dtoCustomer.getPhoneNumber());
-                txtUpdateIDCard.setText(dtoCustomer.getIDCard());
-            }  
-        } 
-    }//GEN-LAST:event_btnShowInformationActionPerformed
-
     private void btnHome_UpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_UpdateCustomerActionPerformed
         new AdminHome_GUI(dtoAdmin);
         this.setVisible(false);
     }//GEN-LAST:event_btnHome_UpdateCustomerActionPerformed
-
-    private void btnHome_ViewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_ViewCustomerActionPerformed
-        new AdminHome_GUI(dtoAdmin);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnHome_ViewCustomerActionPerformed
-
-    private void txtPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyTyped
+  
+    private void txtUpdateIDCardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUpdateIDCardKeyTyped
         // Hàm chỉ cho phép người dùng nhập số vào textfield này
         char c = evt.getKeyChar();
         if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
             evt.consume();
-    }//GEN-LAST:event_txtPhoneNumberKeyTyped
-
-    private void txtIDCardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDCardKeyTyped
-        // Hàm chỉ cho phép người dùng nhập số vào textfield này
-        char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
-            evt.consume();
-    }//GEN-LAST:event_txtIDCardKeyTyped
+    }//GEN-LAST:event_txtUpdateIDCardKeyTyped
 
     private void txtUpdatePhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUpdatePhoneNumberKeyTyped
         // Hàm chỉ cho phép người dùng nhập số vào textfield này
@@ -723,34 +712,108 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
             evt.consume();
     }//GEN-LAST:event_txtUpdatePhoneNumberKeyTyped
 
-    private void txtUpdateIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUpdateIDKeyTyped
-        // Hàm chỉ cho phép người dùng nhập số vào textfield này
-        char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
-            evt.consume();
-    }//GEN-LAST:event_txtUpdateIDKeyTyped
+    private void btnHome_ViewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome_ViewCustomerActionPerformed
+        new AdminHome_GUI(dtoAdmin);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnHome_ViewCustomerActionPerformed
 
-    private void txtUpdateIDCardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUpdateIDCardKeyTyped
-        // Hàm chỉ cho phép người dùng nhập số vào textfield này
-        char c = evt.getKeyChar();
-        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
-            evt.consume();
-    }//GEN-LAST:event_txtUpdateIDCardKeyTyped
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        DefaultTableModel searchTable = (DefaultTableModel) tblViewCustomer.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(searchTable); // Khởi tạo row sorter với tất cả dữ liệu trên tblViewCustomer
+        tblViewCustomer.setRowSorter(sorter); // chỉ định bộ lọc cho tblViewCustomer
+        String search = txtSearch.getText();
+        sorter.setRowFilter(RowFilter.regexFilter(search)); // sử dụng đối tượng RowFilter để lọc dựa trên giá trị trong textfield
+    }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnExportCustomerListReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportCustomerListReportActionPerformed
         busCustomerManagment.showCustomerList(dtoAdmin);
     }//GEN-LAST:event_btnExportCustomerListReportActionPerformed
 
-    private void txtUpdateIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUpdateIDMouseClicked
-        txtFirstName_UpdateCustomer.setText("");
-        txtLastName_UpdateCustomer.setText("");
-        cbbUpdateGender.setSelectedItem(null);
-        dcDateOfBirth_UpdateCustomer.setDate(null);
-        txtUpdateAddress.setText("");
-        txtUpdatePhoneNumber.setText("");
-        txtUpdateIDCard.setText("");
-        dtoCustomer = null;
-    }//GEN-LAST:event_txtUpdateIDMouseClicked
+    private void dcDateOfBirth_AddCustomerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dcDateOfBirth_AddCustomerKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+            txtAddress.requestFocus();
+    }//GEN-LAST:event_dcDateOfBirth_AddCustomerKeyReleased
+
+    private void txtAddressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAddressKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        txtPhoneNumber.requestFocus();            
+    }//GEN-LAST:event_txtAddressKeyReleased
+
+    private void txtPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyTyped
+        // Hàm chỉ cho phép người dùng nhập số vào textfield này
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE))
+            evt.consume();
+        if (c == KeyEvent.VK_ENTER)
+            txtIDCard.requestFocus();
+    }//GEN-LAST:event_txtPhoneNumberKeyTyped
+
+    private void txtIDCardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDCardKeyTyped
+        // Hàm chỉ cho phép người dùng nhập số vào textfield này
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE) || c == KeyEvent.VK_ENTER)
+            evt.consume();
+        // nhấn enter sẽ thực hiện sự kiện giống btn Add;
+        if (c == KeyEvent.VK_ENTER) {
+            // Check if the user input is enough or not
+            if(txtFirstName_AddCustomer.getText().equals("") || txtLastName_AddCustomer.getText().equals("") || txtAddress.getText().equals("") || txtPhoneNumber.getText().equals("") || txtIDCard.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
+            }
+            else
+            {
+                Customer_DTO newCustomer = new Customer_DTO(0 , txtFirstName_AddCustomer.getText(), txtLastName_AddCustomer.getText(), cbGender_AddCustomer.getSelectedItem().toString(), dcDateOfBirth_AddCustomer.getDate() ,txtAddress.getText(), txtPhoneNumber.getText(), txtIDCard.getText());
+                // Add new customer
+                if(busCustomerManagment.insert(newCustomer))
+                {
+                    JOptionPane.showMessageDialog(this, "Customer added successfully...!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    clearForm();
+                    loadCbbIDUpdate();
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Cannot add customers!", "Error", JOptionPane.ERROR_MESSAGE);
+                txtFirstName_AddCustomer.requestFocus();
+            }    
+        }
+    }//GEN-LAST:event_txtIDCardKeyTyped
+
+    private void dcDateOfBirth_AddCustomerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dcDateOfBirth_AddCustomerPropertyChange
+        txtAddress.requestFocus();
+    }//GEN-LAST:event_dcDateOfBirth_AddCustomerPropertyChange
+
+    private void cbbID_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbID_UpdateActionPerformed
+        if (cbbID_Update.getSelectedItem() != null && cbbID_Update.getSelectedIndex() >=0) {
+            if (cbbID_Update.getSelectedIndex() == 0)
+            {
+                clearForm();
+            }
+            else {
+                String cus_id  = cbbID_Update.getSelectedItem().toString().substring(0, 8);
+                dtoCustomer = busCustomerManagment.getInformation(Integer.parseInt(cus_id));
+                if(dtoCustomer == null)
+                {
+                    JOptionPane.showMessageDialog(this, "No customer information found!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else
+                {
+                    // Display customer infromation
+                    txtFirstName_UpdateCustomer.setText(dtoCustomer.getFirstName());
+                    txtLastName_UpdateCustomer.setText(dtoCustomer.getLastName());
+                    cbbUpdateGender.setSelectedItem(dtoCustomer.getGender());
+                    dcDateOfBirth_UpdateCustomer.setDate(dtoCustomer.getDateOfBirth());
+                    txtUpdateAddress.setText(dtoCustomer.getAddress());
+                    txtUpdatePhoneNumber.setText(dtoCustomer.getPhoneNumber());
+                    txtUpdateIDCard.setText(dtoCustomer.getIDCard());
+                }
+            }
+        }
+    }//GEN-LAST:event_cbbID_UpdateActionPerformed
+
+    private void txtFirstName_AddCustomerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFirstName_AddCustomerKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        txtLastName_AddCustomer.requestFocus();
+    }//GEN-LAST:event_txtFirstName_AddCustomerKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -759,10 +822,10 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     private javax.swing.JButton btnHome_AddCustomer;
     private javax.swing.JButton btnHome_UpdateCustomer;
     private javax.swing.JButton btnHome_ViewCustomer;
-    private javax.swing.JButton btnShowInformation;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdate2;
     private javax.swing.JComboBox<String> cbGender_AddCustomer;
+    private javax.swing.JComboBox<String> cbbID_Update;
     private javax.swing.JComboBox<String> cbbUpdateGender;
     private com.toedter.calendar.JDateChooser dcDateOfBirth_AddCustomer;
     private com.toedter.calendar.JDateChooser dcDateOfBirth_UpdateCustomer;
@@ -799,8 +862,6 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     private javax.swing.JLabel lblViewCustomer;
     private javax.swing.JLabel lxlInputError_IDCard;
     private javax.swing.JLabel lxlInputError_PhoneNumber;
-    private javax.swing.JLabel lxlInputError_UpdateIDCard;
-    private javax.swing.JLabel lxlInputError_UpdatePhoneNumber;
     private javax.swing.JPanel pnlAddCustomer;
     private javax.swing.JPanel pnlUpdateCustomer;
     private javax.swing.JPanel pnlViewCustomer;
@@ -814,7 +875,6 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
     private javax.swing.JTextField txtPhoneNumber;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtUpdateAddress;
-    private javax.swing.JTextField txtUpdateID;
     private javax.swing.JTextField txtUpdateIDCard;
     private javax.swing.JTextField txtUpdatePhoneNumber;
     // End of variables declaration//GEN-END:variables

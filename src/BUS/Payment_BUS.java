@@ -2,7 +2,7 @@ package BUS;
 
 import DAL.Bill_DAL;
 import DAL.Procedure_DAL;
-import DAL.Report.Report_DAL;
+import DAL.Report.JasperReport_DAL;
 import DAL.Supplier_DAL;
 import DAL.User_Login_DAL;
 import DTO.Account_DTO;
@@ -18,7 +18,7 @@ public class Payment_BUS
     Supplier_DAL dalSupplier = new Supplier_DAL();
     User_Login_DAL dalUserLogin = new User_Login_DAL();
     Procedure_DAL dalProcedure = new Procedure_DAL();
-    Report_DAL dalReport = new Report_DAL();
+    JasperReport_DAL dalReport = new JasperReport_DAL();
     
     public boolean payment(Bill_DTO dtoBill, Account_DTO dtoAccount)
     {

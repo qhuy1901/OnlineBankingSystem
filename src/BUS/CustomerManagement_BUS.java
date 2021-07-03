@@ -1,7 +1,7 @@
 package BUS;
 
 import DAL.Customer_DAL;
-import DAL.Report.Report_DAL;
+import DAL.Report.JasperReport_DAL;
 
 import DTO.Customer_DTO;
 import DTO.Employee_DTO;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class CustomerManagement_BUS 
 {
     Customer_DAL dalCustomer = new Customer_DAL();
-    Report_DAL dalReport = new Report_DAL();
+    JasperReport_DAL dalReport = new JasperReport_DAL();
     
     public boolean insert(Customer_DTO dtoCustomer)
     {

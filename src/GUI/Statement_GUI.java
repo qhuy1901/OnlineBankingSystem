@@ -8,6 +8,7 @@ import DTO.Transaction_DTO;
 import DTO.Transaction_Type_DTO;
 import DTO.Transfer_Detail_DTO;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +20,7 @@ public class Statement_GUI extends javax.swing.JFrame {
     Employee_DTO dtoAdmin = null;
     Statement_BUS busStatement = new Statement_BUS();
     Account_DTO dtoAccount = null;
+    Customer_DTO dtoCustomer = null;
     
     public Statement_GUI(Employee_DTO admin) 
     {
@@ -31,13 +33,14 @@ public class Statement_GUI extends javax.swing.JFrame {
         setTitle("Statement"); // Set tiêu đề
         setLocation(225,70); // Set vị trí trang
         setVisible(true); // Hiển thị giao diện
-        
+        btnExport.setEnabled(true); 
         createTable();
-        btnExport.setVisible(false);
     }
     
+    DefaultTableModel tblStatementModel = null;
     public void createTable() 
     {
+        tblStatementModel = new DefaultTableModel();
         // Set tiêu đề
         String title[] = {"Transaction ID", "Time", "Total Transaction Amount", "Content"};
         tblStatementModel.setColumnIdentifiers(title);
@@ -48,17 +51,18 @@ public class Statement_GUI extends javax.swing.JFrame {
         tblStatement.getColumnModel().getColumn(3).setPreferredWidth(320);
     }
     
-    DefaultTableModel tblStatementModel = new DefaultTableModel();
+    ArrayList<Transaction_DTO> transactionList = null;
     public void loadTable() 
     {
         // Get statement information
-        ArrayList<Transaction_DTO> list = busStatement.getStatement(dtoAccount, dcFromDate.getDate(), dcToDate.getDate());
+        transactionList = busStatement.getStatement(dtoAccount, dcFromDate.getDate(), dcToDate.getDate());
         
         // Check statement information
-        if(list.size() == 0) // No transactions found
+        if(transactionList.size() == 0) // No transactions found
         {
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             JOptionPane.showMessageDialog(this, "Customers do not make transactions from " + df.format(dcFromDate.getDate())+ " to " + df.format(dcToDate.getDate()) , "Notification", JOptionPane.INFORMATION_MESSAGE);
+            tblStatementModel.setRowCount(0); 
         }
         else // Transaction information is found
         {
@@ -66,36 +70,44 @@ public class Statement_GUI extends javax.swing.JFrame {
             TreeMap<String, Transaction_Type_DTO> transactionTypeList = busStatement.getTransactionTypeList();
             tblStatementModel.setRowCount(0); 
             
-            // Display each line of transaction information on the table.
-            for(int i = 0; i < list.size(); i++) 
+            // Display transaction information on the table.
+            for(int i = 0; i < transactionList.size(); i++) 
             {
-                Transaction_DTO dtoTransaction = list.get(i);
+                Transaction_DTO dtoTransaction = transactionList.get(i);
                 String transactionId = String.valueOf(dtoTransaction.getId());
+                
                 String transactionTypeID = dtoTransaction.getTransactionTypeID();
+                
                 DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 String transactionDate =  df.format(dtoTransaction.getTrasactionDate());
+                
                 String totalTransactionAmount = String.format("%,d", dtoTransaction.getTotalTransactionAmount());
+                
                 if(transactionTypeID.equals("NT01") || transactionTypeID.equals("TK02")) // nếu là giao dịch nhận tiền
                     totalTransactionAmount = "+" + totalTransactionAmount + " VND";
                 else // nếu là giao dịch trừ tiền tài khoản
                     totalTransactionAmount = "-" + totalTransactionAmount + " VND";
                 String transactionContent = transactionTypeList.get(transactionTypeID).getName().toUpperCase();
                 
-                // Check if it's a transfer transaction or not
-                if(transactionTypeID.contains("CT")) // Nếu là giao dịch chuyển tiền
-                {
-                    // Get transfer details
-                    Transfer_Detail_DTO dtoTransferDetail = busStatement.getTransferDetail(dtoTransaction.getId());
-                    
-                   // Add transfer details to transaction content
-                    transactionContent = transactionContent + " \nTRANSFER FROM " + dtoTransferDetail.getReceiverAccount() + " " + dtoTransferDetail.getContent();
-                }
+                
                 String[] rows = {transactionId, transactionDate , totalTransactionAmount , transactionContent};
                 tblStatementModel.addRow(rows);
             }
         }
     }
  
+    public void loadCbbReportType()
+    {
+        cbbReportType.removeAllItems();
+        if(dtoAccount != null)
+            cbbReportType.addItem("Account balance confirmation");
+        if(transactionList != null)
+        {
+            cbbReportType.addItem("Account statement");
+            cbbReportType.addItem("Revenue report from customer");
+        }
+        cbbReportType.setSelectedItem(null);
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -117,6 +129,8 @@ public class Statement_GUI extends javax.swing.JFrame {
         dcFromDate = new com.toedter.calendar.JDateChooser();
         lblAccountID1 = new javax.swing.JLabel();
         txtAccountOnwer = new javax.swing.JTextField();
+        cbbReportType = new javax.swing.JComboBox<>();
+        lblFromDate1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Statement");
@@ -128,19 +142,19 @@ public class Statement_GUI extends javax.swing.JFrame {
         lblToDate.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblToDate.setForeground(new java.awt.Color(32, 172, 216));
         lblToDate.setText("To:");
-        jPanel1.add(lblToDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, -1, -1));
+        jPanel1.add(lblToDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, -1, -1));
 
         lblAccountOnwer.setBackground(new java.awt.Color(32, 172, 216));
         lblAccountOnwer.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblAccountOnwer.setForeground(new java.awt.Color(32, 172, 216));
         lblAccountOnwer.setText("Account onwer:");
-        jPanel1.add(lblAccountOnwer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
+        jPanel1.add(lblAccountOnwer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
 
         lblFromDate.setBackground(new java.awt.Color(32, 172, 216));
         lblFromDate.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblFromDate.setForeground(new java.awt.Color(32, 172, 216));
-        lblFromDate.setText("From:");
-        jPanel1.add(lblFromDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
+        lblFromDate.setText("Report type:");
+        jPanel1.add(lblFromDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, -1));
 
         txtAccountID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtAccountID.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -153,13 +167,13 @@ public class Statement_GUI extends javax.swing.JFrame {
                 txtAccountIDActionPerformed(evt);
             }
         });
-        jPanel1.add(txtAccountID, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 300, 30));
+        jPanel1.add(txtAccountID, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 300, 30));
 
         btnExport.setBackground(new java.awt.Color(32, 172, 216));
         btnExport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnExport.setForeground(new java.awt.Color(255, 255, 255));
         btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Export.png"))); // NOI18N
-        btnExport.setText("Export statement report");
+        btnExport.setText("Export report PDF");
         btnExport.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnExport.setIconTextGap(2);
         btnExport.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +181,7 @@ public class Statement_GUI extends javax.swing.JFrame {
                 btnExportActionPerformed(evt);
             }
         });
-        jPanel1.add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 220, 40));
+        jPanel1.add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 290, 180, 40));
 
         btnStatement.setBackground(new java.awt.Color(32, 172, 216));
         btnStatement.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -179,7 +193,7 @@ public class Statement_GUI extends javax.swing.JFrame {
                 btnStatementActionPerformed(evt);
             }
         });
-        jPanel1.add(btnStatement, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 140, 40));
+        jPanel1.add(btnStatement, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 140, 40));
 
         lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Statement.png"))); // NOI18N
         jPanel1.add(lblImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 100));
@@ -197,7 +211,7 @@ public class Statement_GUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblStatement);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 780, 260));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 780, 230));
 
         btnHome.setBackground(new java.awt.Color(32, 172, 216));
         btnHome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -224,26 +238,35 @@ public class Statement_GUI extends javax.swing.JFrame {
         jPanel1.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 30, 935, 58));
 
         dcToDate.setDateFormatString("dd/MM/yyyy");
-        jPanel1.add(dcToDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 210, 200, 30));
+        jPanel1.add(dcToDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, 200, 30));
 
         dcFromDate.setDateFormatString("dd/MM/yyyy");
-        jPanel1.add(dcFromDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 200, 30));
+        jPanel1.add(dcFromDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 200, 30));
 
         lblAccountID1.setBackground(new java.awt.Color(32, 172, 216));
         lblAccountID1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblAccountID1.setForeground(new java.awt.Color(32, 172, 216));
         lblAccountID1.setText("Account ID:");
-        jPanel1.add(lblAccountID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
+        jPanel1.add(lblAccountID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
         txtAccountOnwer.setEditable(false);
         txtAccountOnwer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(txtAccountOnwer, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 300, 30));
+        jPanel1.add(txtAccountOnwer, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 300, 30));
+
+        cbbReportType.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel1.add(cbbReportType, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 300, -1));
+
+        lblFromDate1.setBackground(new java.awt.Color(32, 172, 216));
+        lblFromDate1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblFromDate1.setForeground(new java.awt.Color(32, 172, 216));
+        lblFromDate1.setText("From:");
+        jPanel1.add(lblFromDate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1066, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,18 +289,14 @@ public class Statement_GUI extends javax.swing.JFrame {
         else
         {
             // Check statement date 
-            if(dcFromDate.getDate().compareTo(dcToDate.getDate()) == 1) // Kiểm tra ngày sao kê: fromDate có lớn hơn toDate không?
+            if(dcFromDate.getDate().compareTo(dcToDate.getDate()) == 1 || dcToDate.getDate().compareTo(new Date()) == 1) // Kiểm tra ngày sao kê: fromDate có lớn hơn toDate không? OR toDate có lớn hơn ngày hôm nay ko
             {
                 JOptionPane.showMessageDialog(this, "Invalid statement date", "Eroror", JOptionPane.ERROR_MESSAGE);
-                dcFromDate.setDate(null);
-                dcToDate.setDate(null);
             }
             else
             {
                 loadTable();
-                
-                // Show statement export button
-                btnExport.setVisible(true);
+                loadCbbReportType();
             }
         }
     }//GEN-LAST:event_btnStatementActionPerformed
@@ -285,39 +304,86 @@ public class Statement_GUI extends javax.swing.JFrame {
     private void txtAccountIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccountIDActionPerformed
         // Get account owner information
         dtoAccount = new Account_DTO(Long.parseLong(txtAccountID.getText()));
-        Customer_DTO dtoCustomer = busStatement.getCustomerInfo(dtoAccount);
+        dtoCustomer = busStatement.getCustomerInfo(dtoAccount);
         
         // Check account owner information
         if(dtoCustomer == null)
         {
             JOptionPane.showMessageDialog(this, "Account ID is invalid", "Error", JOptionPane.ERROR_MESSAGE);
-            txtAccountOnwer.setText("");
+            btnExport.setEnabled(false);
         }
         else
         {
             // Display the account owner's name 
             txtAccountOnwer.setText(dtoCustomer.getFirstName() + " " + dtoCustomer.getLastName());
+            btnExport.setEnabled(true);
         }
+        loadCbbReportType();
     }//GEN-LAST:event_txtAccountIDActionPerformed
 
     private void txtAccountIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAccountIDMouseClicked
         txtAccountOnwer.setText("");
         tblStatementModel.setRowCount(0); // clear Table
         dtoAccount = null;
-        btnExport.setVisible(false);
+        cbbReportType.removeAllItems();
+        btnExport.setEnabled(false);
     }//GEN-LAST:event_txtAccountIDMouseClicked
 
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
-        long accountId = dtoAccount.getId();
-        Date fromDate = dcFromDate.getDate();
-        Date toDate = dcToDate.getDate();
-        busStatement.showStatementReport(accountId, fromDate, toDate);
+        Account_DTO dtoAccount = busStatement.getPaymentAccount(dtoCustomer);
+        if(cbbReportType.getSelectedItem() == null)
+        {
+            JOptionPane.showMessageDialog(this, "Please select the type of report to export", "Required fields are empty", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+        {
+            if(cbbReportType.getSelectedItem().equals("Account balance confirmation"))
+            {
+                busStatement.printAccountBalanceConfirmationReport(dtoAccount, dtoCustomer);
+            }
+            else
+            {
+                if(dcFromDate.getDate().compareTo(dcToDate.getDate()) == 1) // Kiểm tra ngày sao kê: fromDate có lớn hơn toDate không?
+                {
+                    JOptionPane.showMessageDialog(this, "Invalid statement date", "Eroror", JOptionPane.ERROR_MESSAGE);
+                }
+                else
+                {
+
+                    DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
+                    DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String strFromDate = df1.format(dcFromDate.getDate()) + " 00:00:59";
+                    String strToDate = df1.format(dcToDate.getDate()) + " 23:59:59";
+                    Date fromDate = new Date();
+                    Date toDate = new Date();
+                    try 
+                    {
+                        fromDate = df2.parse(strFromDate);
+                        toDate = df2.parse(strToDate);
+                    } 
+                    catch (ParseException e) 
+                    {
+                        e.printStackTrace();
+                    }
+
+                    if(cbbReportType.getSelectedItem().equals("Account statement"))
+                    {
+                        busStatement.printAccountStatementReport(dtoAccount, dtoCustomer, fromDate,toDate) ;
+                    }
+                    if(cbbReportType.getSelectedItem().equals("Revenue report from customer"))
+                    {
+                        busStatement.printRevenueReportFromCustomer(dtoAccount, dtoCustomer, fromDate, toDate);
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_btnExportActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnStatement;
+    private javax.swing.JComboBox<String> cbbReportType;
     private com.toedter.calendar.JDateChooser dcFromDate;
     private com.toedter.calendar.JDateChooser dcToDate;
     private javax.swing.JPanel jPanel1;
@@ -325,6 +391,7 @@ public class Statement_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblAccountID1;
     private javax.swing.JLabel lblAccountOnwer;
     private javax.swing.JLabel lblFromDate;
+    private javax.swing.JLabel lblFromDate1;
     private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblToDate;

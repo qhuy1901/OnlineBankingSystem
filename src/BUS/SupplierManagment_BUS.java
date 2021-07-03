@@ -2,14 +2,14 @@ package BUS;
 
 import DAL.Supplier_DAL;
 import DTO.Supplier_DTO;
-import DAL.Report.Report_DAL;
+import DAL.Report.JasperReport_DAL;
 import DTO.Employee_DTO;
 import java.util.ArrayList;
 
 public class SupplierManagment_BUS 
 {
     Supplier_DAL dal = new Supplier_DAL();
-    Report_DAL dalReport = new Report_DAL();
+    JasperReport_DAL dalReport = new JasperReport_DAL();
 
     public ArrayList<Supplier_DTO> getSupplierList()
     {

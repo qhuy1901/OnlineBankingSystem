@@ -20,7 +20,7 @@ import java.util.Date;
 import java.sql.*;
 
 
-public class Report_DAL 
+public class JasperReport_DAL 
 {
     private void showReport(String m_report_source, String m_sql_stmt, Map parametersMap) 
     {
