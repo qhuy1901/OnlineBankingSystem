@@ -645,7 +645,7 @@ public class iTextPDF_DAL
             try{
                     Connection con = DBConnection.ConnectDb();
                     String SQL = "SELECT A.ACCOUNT_ID,AT.NAME,TO_CHAR(OPEN_DAY, 'dd-MM-yyyy'),CURRENT_BALANCE, STATUS "
-                                +"FROM ACCOUNT A JOIN ACCOUNT_TYPE AT ON A.ACCOUNT_TYPE_ID = AT.ACCOUNT_TYPE_ID WHERE STATUS = 'Active' AND CUSTOMER_ID=?";
+                                +"FROM ACCOUNT A JOIN ACCOUNT_TYPE AT ON A.ACCOUNT_TYPE_ID = AT.ACCOUNT_TYPE_ID WHERE STATUS = 'Active' AND CUSTOMER_ID=? ORDER BY A.ACCOUNT_ID";
                     PreparedStatement pres = con.prepareStatement(SQL);
                     pres.setLong(1,dtoCustomer.getId());
                     ResultSet rs = pres.executeQuery();
@@ -737,15 +737,15 @@ public class iTextPDF_DAL
             
             document.add(tableTK);
             
-            Paragraph prgChartTitile = new Paragraph("Financial overview chart", fontTieuDe3);
+            /*Paragraph prgChartTitile = new Paragraph("Financial overview chart", fontTieuDe3);
             prgChartTitile.setAlignment(Element.ALIGN_CENTER);
             prgChartTitile.setSpacingBefore(10);
-            prgChartTitile.setSpacingAfter(0);
+            prgChartTitile.setSpacingAfter(0);*/
             BufferedImage bufferedImage = createPieChart(dataset);
             Image image = Image.getInstance(writer, bufferedImage, 1.0f);
             image.setAlignment(Element.ALIGN_CENTER);
             image.scaleAbsolute(200, 200);
-            document.add(prgChartTitile);
+            //document.add(prgChartTitile);
             document.add(image);
            
             //xac nhan cua ngan hang va nguoi lap bao cao
@@ -813,8 +813,8 @@ public class iTextPDF_DAL
         BufferedImage bufferedImage = null;
         try
         {
-            JFreeChart chart = ChartFactory.createPieChart("", dataset, false, true, false);
-            chart.getTitle().setFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 120));
+            JFreeChart chart = ChartFactory.createPieChart("Financial overview chart", dataset, false, true, false);
+            chart.getTitle().setFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 220));
             PiePlot piePlot = (PiePlot) chart.getPlot();
             piePlot.setShadowPaint(null);
             piePlot.setBackgroundPaint(Color.white);

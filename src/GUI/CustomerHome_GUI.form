@@ -112,7 +112,7 @@
                           <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
                           <Component id="btnSaving" min="-2" pref="212" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnSaving1" min="-2" pref="212" max="-2" attributes="0"/>
+                          <Component id="btnPersonalInfo" min="-2" pref="212" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -134,7 +134,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btnSaving" max="32767" attributes="0"/>
-                              <Component id="btnSaving1" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="btnPersonalInfo" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -321,7 +321,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnSaving1">
+        <Component class="javax.swing.JButton" name="btnPersonalInfo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -348,7 +348,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaving1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPersonalInfoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

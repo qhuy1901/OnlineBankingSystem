@@ -42,7 +42,7 @@ public class CustomerHome_GUI extends javax.swing.JFrame
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btnSaving1 = new javax.swing.JButton();
+        btnPersonalInfo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Customer Home");
@@ -163,20 +163,20 @@ public class CustomerHome_GUI extends javax.swing.JFrame
         jLabel6.setPreferredSize(new java.awt.Dimension(250, 44));
         jPanel2.add(jLabel6);
 
-        btnSaving1.setBackground(new java.awt.Color(255, 255, 255));
-        btnSaving1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnSaving1.setForeground(new java.awt.Color(32, 172, 210));
-        btnSaving1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/personalInformation_icon.png"))); // NOI18N
-        btnSaving1.setText("Personal Info");
-        btnSaving1.setBorder(null);
-        btnSaving1.setBorderPainted(false);
-        btnSaving1.setDefaultCapable(false);
-        btnSaving1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSaving1.setMargin(new java.awt.Insets(0, 14, 30, 14));
-        btnSaving1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnSaving1.addActionListener(new java.awt.event.ActionListener() {
+        btnPersonalInfo.setBackground(new java.awt.Color(255, 255, 255));
+        btnPersonalInfo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnPersonalInfo.setForeground(new java.awt.Color(32, 172, 210));
+        btnPersonalInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/personalInformation_icon.png"))); // NOI18N
+        btnPersonalInfo.setText("Personal Info");
+        btnPersonalInfo.setBorder(null);
+        btnPersonalInfo.setBorderPainted(false);
+        btnPersonalInfo.setDefaultCapable(false);
+        btnPersonalInfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPersonalInfo.setMargin(new java.awt.Insets(0, 14, 30, 14));
+        btnPersonalInfo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnPersonalInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaving1ActionPerformed(evt);
+                btnPersonalInfoActionPerformed(evt);
             }
         });
 
@@ -200,7 +200,7 @@ public class CustomerHome_GUI extends javax.swing.JFrame
                         .addGap(134, 134, 134)
                         .addComponent(btnSaving, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSaving1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPersonalInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         pnlBackgroundLayout.setVerticalGroup(
@@ -217,7 +217,7 @@ public class CustomerHome_GUI extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnSaving, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSaving1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnPersonalInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
@@ -286,17 +286,17 @@ public class CustomerHome_GUI extends javax.swing.JFrame
             JOptionPane.showMessageDialog(this, "Your payment account is locked. You cannot make any transactions", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnPaymentActionPerformed
 
-    private void btnSaving1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaving1ActionPerformed
+    private void btnPersonalInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonalInfoActionPerformed
         setVisible(false);
         new PersonalInformation_GUI(dtoCustomer);
-    }//GEN-LAST:event_btnSaving1ActionPerformed
+    }//GEN-LAST:event_btnPersonalInfoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnMyWallet;
     private javax.swing.JButton btnPayment;
+    private javax.swing.JButton btnPersonalInfo;
     private javax.swing.JButton btnSaving;
-    private javax.swing.JButton btnSaving1;
     private javax.swing.JButton btnTransfer;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

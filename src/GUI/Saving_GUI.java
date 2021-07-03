@@ -586,7 +586,7 @@ public class Saving_GUI extends javax.swing.JFrame
         txtProductName.setText("");
         btnOpenAccount.setVisible(false);
     }//GEN-LAST:event_cboTermActionPerformed
-    
+    long anticipatedInterest = 0;
     private void btnFindSuitableProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindSuitableProductActionPerformed
         if(cboSavingsAccountType.getSelectedItem() == null ||cboTerm.getSelectedItem() == null || txtDeposit.getText().equals(""))
         {
@@ -616,7 +616,7 @@ public class Saving_GUI extends javax.swing.JFrame
                     String maturityDate = calculateMaturityDate();
 
                     // Tính tiền lãi dự kiến = số tiền gửi x  lãi suất (% năm)/ 12  x số tháng gửi
-                    long anticipatedInterest = (long)(Long.parseLong(txtDeposit.getText()) * interestRate * numberOfMonth) / 12;
+                    anticipatedInterest = (long)(Long.parseLong(txtDeposit.getText()) * interestRate * numberOfMonth) / 12;
 
                     // Tính tổng số tiền nhận được khi tất toán tài khoản tiết kiệm
                     long total = (long)(Long.parseLong(txtDeposit.getText()) + anticipatedInterest);
@@ -647,7 +647,7 @@ public class Saving_GUI extends javax.swing.JFrame
                 Logger.getLogger(Saving_GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            Account_DTO dtoNewSavingAccount = new Account_DTO(dtoSavingsAccountType.getId(), Long.parseLong(txtDeposit.getText()), maturityDate, Long.parseLong(txtAnticipatedInterest.getText().replaceAll(",","")) , dtoCustomer.getId());
+            Account_DTO dtoNewSavingAccount = new Account_DTO(dtoSavingsAccountType.getId(), Long.parseLong(txtDeposit.getText()), maturityDate, anticipatedInterest , dtoCustomer.getId());
             if(busSaving.openSavingsAccount(dtoNewSavingAccount))
             {
                 JOptionPane.showConfirmDialog(null, "Open savings account is successful", "Successful", JOptionPane.CLOSED_OPTION);
