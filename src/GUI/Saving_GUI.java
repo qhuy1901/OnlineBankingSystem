@@ -143,17 +143,17 @@ public class Saving_GUI extends javax.swing.JFrame
         if(term.equals("6 months"))
         {
             numberOfMonth = 6;
-            temp.roll(Calendar.MONTH, 6);
+            temp.add(Calendar.MONTH, 6);
         }
         else if(term.equals("3 months"))
         {
             numberOfMonth = 3;
-            temp.roll(Calendar.MONTH, 3);
+            temp.add(Calendar.MONTH, 3);
         }
         else
         {
             numberOfMonth = 1;
-            temp.roll(Calendar.MONTH, 1);
+            temp.add(Calendar.MONTH, 1);
         }
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String maturityDate = df.format(temp.getTime());
