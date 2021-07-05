@@ -17,6 +17,7 @@ import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -47,6 +48,8 @@ public class Saving_GUI extends javax.swing.JFrame
         setLocation(225,70); // Set vị trí trang
         setVisible(true); // Hiển thị giao diện
         
+        cboSavingsAccountType.setModel(new DefaultComboBoxModel<>(new String[] {"Term Savings Account", "Non-term Savings Account"} ) );
+        cboTerm.setModel(new DefaultComboBoxModel<>(new String[] {"1 month", "3 months", "6 months"} ) );
         
         cboSavingsAccountType.setSelectedItem(null); // Set giá trị ban đầu của combobox là null
         cboTerm.setSelectedItem(null); 
@@ -333,7 +336,6 @@ public class Saving_GUI extends javax.swing.JFrame
         OpenOnlineSavings.add(lblVND, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 180, -1, -1));
 
         cboSavingsAccountType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cboSavingsAccountType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Term Savings Account", "Non-term Savings Account" }));
         cboSavingsAccountType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboSavingsAccountTypeActionPerformed(evt);
@@ -356,7 +358,6 @@ public class Saving_GUI extends javax.swing.JFrame
         OpenOnlineSavings.add(txtDeposit, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 320, -1));
 
         cboTerm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cboTerm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 month", "3 months", "6 months" }));
         cboTerm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboTermActionPerformed(evt);

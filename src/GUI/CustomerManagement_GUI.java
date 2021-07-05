@@ -29,6 +29,7 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         setSize(1064, 650); // Set kích thước giao diện
         setResizable(false); // Không cho phóng to
         setTitle("Customer Management"); // Set tiêu đề
+        cbGender_AddCustomer.setModel(new DefaultComboBoxModel<>(new String[] {"Choose gender", "Male", "Female"} ));
         createTable();
         loadCbbIDUpdate();
         setVisible(true); // Hiển thị giao diện
@@ -245,7 +246,6 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         lblViewCustomer.setOpaque(true);
         lblViewCustomer.setPreferredSize(new java.awt.Dimension(34, 50));
         pnlViewCustomer.add(lblViewCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 970, 65));
-        lblViewCustomer.getAccessibleContext().setAccessibleName("        View Customers");
 
         tblViewCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -286,7 +286,6 @@ public class CustomerManagement_GUI extends javax.swing.JFrame
         pnlAddCustomer.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 233, -1, -1));
 
         cbGender_AddCustomer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cbGender_AddCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose gender", "Male", "Female" }));
         pnlAddCustomer.add(cbGender_AddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 200, 32));
 
         lblAddress.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
