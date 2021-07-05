@@ -1,5 +1,5 @@
 package BUS;
-// Bus này chỉ dùng cho form Saving
+
 import DAL.Account_Type_DAL;
 import DAL.Account_DAL;
 import DAL.Procedure_DAL;

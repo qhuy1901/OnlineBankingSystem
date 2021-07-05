@@ -1,11 +1,9 @@
 package GUI;
 
-import BUS.AdminHome_BUS;
 import DTO.Employee_DTO;
 
 public class AdminHome_GUI extends javax.swing.JFrame 
 {
-    AdminHome_BUS busAdmin = new AdminHome_BUS();
     Employee_DTO dtoAdmin = null;
     
     public AdminHome_GUI(Employee_DTO admin) 

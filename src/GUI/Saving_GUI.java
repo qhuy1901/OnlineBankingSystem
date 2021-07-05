@@ -140,21 +140,10 @@ public class Saving_GUI extends javax.swing.JFrame
         Calendar temp = Calendar.getInstance();
         temp.setTime(startDate);
         String term = cboTerm.getSelectedItem().toString();
-        if(term.equals("6 months"))
-        {
-            numberOfMonth = 6;
-            temp.add(Calendar.MONTH, 6);
-        }
-        else if(term.equals("3 months"))
-        {
-            numberOfMonth = 3;
-            temp.add(Calendar.MONTH, 3);
-        }
-        else
-        {
-            numberOfMonth = 1;
-            temp.add(Calendar.MONTH, 1);
-        }
+        
+        numberOfMonth = Integer.parseInt(term.replace(" months", "").replace( " month", ""));
+        temp.add(Calendar.MONTH, numberOfMonth);
+        
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String maturityDate = df.format(temp.getTime());
         return maturityDate;
@@ -462,13 +451,13 @@ public class Saving_GUI extends javax.swing.JFrame
         pnlSuitableProductDetails.add(lblInterestRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         txtStartDate.setEditable(false);
-        txtStartDate.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        txtStartDate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
         txtStartDate.setForeground(new java.awt.Color(32, 172, 216));
         txtStartDate.setBorder(null);
         pnlSuitableProductDetails.add(txtStartDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 140, -1));
 
         txtMaturityDate.setEditable(false);
-        txtMaturityDate.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        txtMaturityDate.setFont(new java.awt.Font("Segoe UI", 2, 17)); // NOI18N
         txtMaturityDate.setForeground(new java.awt.Color(32, 172, 216));
         txtMaturityDate.setBorder(null);
         pnlSuitableProductDetails.add(txtMaturityDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 150, -1));

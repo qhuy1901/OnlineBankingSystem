@@ -9,26 +9,6 @@ import java.sql.*;
 
 public class Bill_DAL 
 {
-    /*public boolean payment(Bill_DTO dtoBill, Account_DTO dtoAccount)
-    {
-        try{
-            Connection con = DBConnection.ConnectDb();
-            String strCall = "{call payment(? , ?)}";
-            CallableStatement caSt = con.prepareCall(strCall);
-            caSt.setLong(1, dtoAccount.getId());
-            caSt.setLong(2, dtoBill.getId());
-            caSt.execute();
-            con.close();
-            caSt.close();
-            return true;
-        }
-        catch(SQLException e)
-        {
-            JOptionPane.showMessageDialog(null, e);    
-        }
-        return false;
-    }*/
-    
     public Bill_DTO getBillInformation(Customer_DTO dtoCustomer, Supplier_DTO dtoSupplier, int month, int year)
     {
         Bill_DTO dotBill = null;

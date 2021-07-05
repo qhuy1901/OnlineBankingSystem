@@ -6,7 +6,6 @@ import DTO.Employee_DTO;
 import DTO.Customer_DTO;
 import DTO.Transaction_DTO;
 import DTO.Transaction_Type_DTO;
-import DTO.Transfer_Detail_DTO;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -327,6 +326,7 @@ public class Statement_GUI extends javax.swing.JFrame {
         txtAccountOnwer.setText("");
         tblStatementModel.setRowCount(0); // clear Table
         dtoAccount = null;
+        transactionList = null;
         cbbReportType.removeAllItems();
         btnExport.setEnabled(false);
     }//GEN-LAST:event_txtAccountIDMouseClicked
