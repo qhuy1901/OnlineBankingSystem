@@ -32,7 +32,7 @@ public class Statement_GUI extends javax.swing.JFrame {
         setTitle("Statement"); // Set tiêu đề
         setLocation(225,70); // Set vị trí trang
         setVisible(true); // Hiển thị giao diện
-        btnExport.setEnabled(true); 
+        btnExport.setEnabled(false); 
         createTable();
     }
     

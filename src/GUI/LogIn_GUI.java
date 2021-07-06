@@ -13,9 +13,10 @@ public class LogIn_GUI extends javax.swing.JFrame
     public LogIn_GUI() 
     {
         initComponents();
+        
         /*Set giao diện*/
         setLocationRelativeTo(null); // Căn giữa màn hình 
-        setResizable(false); // Không cho phóng to
+        this.setResizable(false);
         setTitle("Login"); // Set tiêu đề
         setVisible(true); // Hiển thị giao diện
     }
@@ -174,6 +175,7 @@ public class LogIn_GUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // Check if the user input is enough or not
         if(txtUsername.getText().equals("") || txtPassword.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Required fields are empty", "Please fill all required fields...!", JOptionPane.ERROR_MESSAGE);
@@ -182,23 +184,30 @@ public class LogIn_GUI extends javax.swing.JFrame
         {
             String username = txtUsername.getText();
             String password = txtPassword.getText();
+            // Get user login information
             User_Login_DTO dtoUserLogin = busUserLogin.getUserLogin(username);
+            
+            // Check user login information 
             if(dtoUserLogin == null) 
             {
                 JOptionPane.showMessageDialog(this, "Username is incorrect.",  "Error", JOptionPane.ERROR_MESSAGE);
             }
             else
             {
+                // Check number of failed login
                 if(dtoUserLogin.getNumberOfFailedLogin() >= 3) // Kiểm tra số lần nhập sai mật khẩu
                 {
                     JOptionPane.showMessageDialog(this, "Your login account has been locked due to failed login more than 3 times.\n Please contact the bank for more information.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 else
                 {
+                    // Check password
                     if(dtoUserLogin.getPassword().equals(password))
                     {
+                        // Update last access time
                         if(busUserLogin.updateLastAccessTime(username))
                         {
+                            // Identify user role
                             if(busUserLogin.checkRole(dtoUserLogin))
                             {
                                 Employee_DTO dtoAdmin = busUserLogin.getAdminInfo(dtoUserLogin);
@@ -216,9 +225,12 @@ public class LogIn_GUI extends javax.swing.JFrame
                     }
                     else
                     {
+                        // Increased number of failed login
                         if(busUserLogin.updateNumberOfFailedLogin(username)) // Tăng số lần nhập sai mật khẩu lên
                         {
+                            // Calculate the number of remaining login attempts
                             int numberOfRemainingLogin = 3 - dtoUserLogin.getNumberOfFailedLogin();
+                            // Show error message
                             JOptionPane.showMessageDialog(this, "Password is incorrect. Account will be locked after "+ numberOfRemainingLogin +" failed login attempts", "Incorrect details", JOptionPane.ERROR_MESSAGE);
                         }
                     }

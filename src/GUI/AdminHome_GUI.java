@@ -213,7 +213,7 @@ public class AdminHome_GUI extends javax.swing.JFrame
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         setVisible(false);
-        new Login_GUI();
+        new LogIn_GUI();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnSupplierManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierManagementActionPerformed

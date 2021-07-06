@@ -229,7 +229,7 @@ public class CustomerHome_GUI extends javax.swing.JFrame
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // Show Logout interface 
         setVisible(false);
-        new Login_GUI();
+        new LogIn_GUI();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnMyWalletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyWalletActionPerformed
