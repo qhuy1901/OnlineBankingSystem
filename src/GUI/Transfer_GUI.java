@@ -30,8 +30,6 @@ public class Transfer_GUI extends javax.swing.JFrame
         setTitle("Transfer"); // Set tiêu đề
         setLocation(225,70); // Set vị trí trang
         setVisible(true); // Hiển thị giao diện
-        
-        cboReceiverBank.setSelectedItem(null); // Set giá trị ban đầu của combobox là null
     }
     
     private boolean confirmPassword()
@@ -140,7 +138,7 @@ public class Transfer_GUI extends javax.swing.JFrame
         jPanel1.add(lblContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, -1, -1));
 
         cboReceiverBank.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        cboReceiverBank.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vietcombank", "ACB Bank", "VP Bank", "Saccombank" }));
+        cboReceiverBank.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vietcombank" }));
         jPanel1.add(cboReceiverBank, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 422, -1));
 
         txtReceiverAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -259,9 +257,12 @@ public class Transfer_GUI extends javax.swing.JFrame
                         {
                             JOptionPane.showConfirmDialog(null, "Money transfer is successful", "Successful", JOptionPane.CLOSED_OPTION);
 
-                            // Request transfer receipt
-                            busTransfer.showTransferReceipt(transactionId);
-                            
+                            int reply = JOptionPane.showConfirmDialog(null, "Would you like to print out the transfer receipt?", "Notification", JOptionPane.YES_NO_OPTION);
+                            if (reply == JOptionPane.YES_OPTION) 
+                            {
+                                // Request transfer receipt
+                                busTransfer.showTransferReceipt(transactionId);
+                            }
                             //Clear Form
                             cboReceiverBank.setSelectedItem(null);
                             txtReceiverAccount.setText("");

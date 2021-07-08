@@ -92,7 +92,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="d8" green="ac" red="20" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Beneficiary name: "/>
+            <Property name="text" type="java.lang.String" value="Customer&apos;s name: "/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

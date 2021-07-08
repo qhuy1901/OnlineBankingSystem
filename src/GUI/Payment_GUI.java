@@ -405,7 +405,11 @@ public class Payment_GUI extends javax.swing.JFrame
                 {
                     JOptionPane.showConfirmDialog(null, "Payment is successful", "Successful", JOptionPane.CLOSED_OPTION);
 
-                    busPayment.showPaymentReceipt(dtoBill.getId());
+                    int reply = JOptionPane.showConfirmDialog(null, "Would you like to print out the payment receipt?", "Notification", JOptionPane.YES_NO_OPTION);
+                    if (reply == JOptionPane.YES_OPTION) 
+                    {
+                        busPayment.showPaymentReceipt(dtoBill.getId());
+                    }
                     //Clear form
                     cboServiceType.setSelectedItem(null);
                     txtCustomerID.setText("");

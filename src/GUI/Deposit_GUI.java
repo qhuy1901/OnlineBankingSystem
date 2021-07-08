@@ -84,7 +84,7 @@ public class Deposit_GUI extends javax.swing.JFrame {
 
         lblBeneficiaryName.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblBeneficiaryName.setForeground(new java.awt.Color(32, 172, 216));
-        lblBeneficiaryName.setText("Beneficiary name: ");
+        lblBeneficiaryName.setText("Customer's name: ");
         Panel_OpenAccount.add(lblBeneficiaryName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, -1, -1));
 
         lblAmount.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
